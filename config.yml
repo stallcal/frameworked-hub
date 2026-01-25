@@ -29,8 +29,8 @@ menu:
           weight: 6
 
 params:
-    description: "This website hosts Moritz-Maria von Igelfeld's research papers, books, course materials, data, curriculum vitae, and contact information."
-    author: Moritz-Maria von Igelfeld
+    description: "Test Paragraph for Frameworked - Your hub for research papers, books, courses, and data. Built by Caleb Stallard as tool for organizing MOF and COF research and researcher's opinions."
+    author: Frameworked
     # googleAnalyticsID: "G-XXXXX"
     DateFormat: "January 2006"
     defaultTheme: light
