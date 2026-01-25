@@ -55,7 +55,7 @@ params:
     profileMode:
           enabled: true
           title: Frameworked
-          subtitle: "Test Paragraph for Frammeworked - Your hub for research papers, books, courses, and data. Built by Caleb Stallard as tool for organizing MOF and COF research and researcher's opinions."
+          subtitle: "Test Paragraph for Frameworked - Your hub for research papers, books, courses, and data. Built by Caleb Stallard as tool for organizing MOF and COF research and researcher's opinions."
           imageUrl: "picture.jpeg"
           imageWidth: 160
           imageHeight: 160
