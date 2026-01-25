@@ -59,6 +59,7 @@ params:
           imageUrl: "frameworked_logo.jpeg"
           imageWidth: 200
           imageHeight: 200
+          imageDisplay: "Square"
           buttons:
             - name: Papers
               url: papers/
@@ -105,8 +106,8 @@ params:
         hiddenInList: false
         hiddenInSingle: true
     label:
-      text: "Moritz-Maria von Igelfeld"
-      icon: favicon.ico
+      text: "Frameworked"
+      icon: fw_favicon.ico
       iconHeight: 18
 
 markup:
