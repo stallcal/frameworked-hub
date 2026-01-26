@@ -80,7 +80,7 @@ params:
         - name: CV
           url: cv.pdf
         - name: Email
-          url: mailto:igelfeld@regensburg.edu
+          url: mailto:caleb@frameworked.org
         - name: Zoom
           url: https://www.zoom.us/my/igelfeld
         - name: Location
@@ -90,9 +90,9 @@ params:
         - name: Google Scholar
           url: https://scholar.google.com/citations?user=cL23w-4AAAAJ
         - name: GitHub
-          url: https://github.com/pmichaillat
+          url: https://github.com/stallcal
         - name: Substack
-          url: https://pmichaillat.substack.com
+          url: https://frameworkedu.substack.com
         - name: YouTube
           url: https://www.youtube.com/@pmichaillat
         - name: Twitter
