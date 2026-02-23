@@ -24,7 +24,7 @@
 
 .profile img {
     border-radius: 20%;
-    border: 1px solid var(--tertiary);
+    border: 0px solid var(--tertiary);
 }
 
 .buttons {
