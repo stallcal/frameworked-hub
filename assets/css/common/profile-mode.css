@@ -23,7 +23,7 @@
 }
 
 .profile img {
-    border-radius: 50%;
+    border-radius: 0%;
     border: 1px solid var(--tertiary);
 }
 
