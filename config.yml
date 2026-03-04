@@ -24,12 +24,12 @@ menu:
         - name: Contact
           url: contact/
           weight: 4 
-        - name: BlogTest
-          url: https://en.wikipedia.org/wiki/Moritz-Maria_von_Igelfeld_(character)
+        - name: Wriedt Lab
+          url: https://www.Wriedt-Lab.com
           weight: 6
 
 params:
-    description: "Test Paragraph for Frameworked - Your hub for research papers, books, courses, and data. Built by Caleb Stallard as tool for organizing MOF and COF research and researcher's opinions."
+    description: "Thank you for visiting Frameworked.org. We are currently in the early stages of development, which means our site is a work in progress. We appreciate your patience as we finalize our layout, add features, and polish the experience. Ultimately, Frameworked is being built to serve as a Swiss Army Knife for Metal and Covalent-Organic Framework (MOFs/COFs) research. Frameworked will be comprised of research articles, data, tools, resources, links, learning tools, and opinions/reviews in relation to MOFs/COFs, as well as research areas that these materials may be applied to (such as Per- and Polyfluroalkyl substances (PFAS) remediation, gas seperations, etc.) Built by Caleb Stallard and the Wriedt Lab at UT Dallas."
     author: Frameworked
     # googleAnalyticsID: "G-XXXXX"
     DateFormat: "January 2006"
