@@ -68,14 +68,6 @@ params:
           buttons:
             - name: Papers
               url: papers/
-            - name: Data
-              url: data/
-            - name: Books
-              url: books/
-            - name: Courses
-              url: courses/
-            - name: Tags
-              url: tags/
             - name: Archive
               url: archive/
             - name: Wriedt Lab
@@ -84,12 +76,10 @@ params:
     socialIcons:
         - name: Email
           url: mailto:caleb@frameworked.org
+        - name: UTD Email
+          url: mailto: caleb.stallard@utdallas.edu
         - name: LinkedIn
           url: https://www.linkedin.com/in/calebstallard
-        - name: Location
-          url: location/
-        - name: Office Hours
-          url: officehours/
         - name: GitHub
           url: https://github.com/stallcal
         - name: Substack
