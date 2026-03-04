@@ -29,7 +29,7 @@ menu:
           weight: 6
 
 params:
-    description: "Thank you for visiting Frameworked.org. We are currently in the early stages of development, which means our site is a work in progress. We appreciate your patience as we finalize our layout, add features, and polish the experience. Ultimately, Frameworked is being built to serve as a Swiss Army Knife for Metal and Covalent-Organic Framework (MOFs/COFs) research. Frameworked will be comprised of research articles, data, tools, resources, links, learning tools, and opinions/reviews in relation to MOFs/COFs, as well as research areas that these materials may be applied to (such as Per- and Polyfluroalkyl substances (PFAS) remediation, gas seperations, etc.) Built by Caleb Stallard and the Wriedt Lab at UT Dallas."
+    description: "We are currently in the early stages of development. Frameworked is being built to serve as a Swiss Army Knife for Metal and Covalent-Organic Framework (MOFs/COFs) research."
     author: Frameworked
     # googleAnalyticsID: "G-XXXXX"
     DateFormat: "January 2006"
@@ -55,7 +55,7 @@ params:
     profileMode:
           enabled: true
           title: Frameworked
-          subtitle: "Test Paragraph for Frameworked - Your hub for research papers, books, courses, and data. Built by Caleb Stallard as tool for organizing MOF and COF research and researcher's opinions."
+          subtitle: "Thank you for visiting Frameworked.org. We are currently in the early stages of development, which means our site is a work in progress. We appreciate your patience as we finalize our layout, add features, and polish the experience. Ultimately, Frameworked is being built to serve as a Swiss Army Knife for Metal and Covalent-Organic Framework (MOFs/COFs) research. Frameworked will be comprised of research articles, data, tools, resources, links, learning tools, and opinions/reviews in relation to MOFs/COFs, as well as research areas that these materials may be applied to (such as Per- and Polyfluroalkyl substances (PFAS) remediation, gas seperations, etc.) Built by Caleb Stallard and the Wriedt Lab at UT Dallas."
           imageUrl: "frameworked_logo.jpeg"
           imageWidth: 200
           imageHeight: 200
@@ -73,32 +73,24 @@ params:
               url: tags/
             - name: Archive
               url: archive/
-            - name: Blog
-              url: https://en.wikipedia.org/wiki/Moritz-Maria_von_Igelfeld_(character)
+            - name: Wriedt Lab
+              url: https://www.Wriedt-Lab.com/
 
     socialIcons:
-        - name: CV
-          url: cv.pdf
         - name: Email
           url: mailto:caleb@frameworked.org
-        - name: Zoom
-          url: https://www.zoom.us/my/igelfeld
+        - name: LinkedIn
+          url: https://www.linkedin.com/in/calebstallard
         - name: Location
           url: location/
         - name: Office Hours
           url: officehours/
-        - name: Google Scholar
-          url: https://scholar.google.com/citations?user=cL23w-4AAAAJ
         - name: GitHub
           url: https://github.com/stallcal
         - name: Substack
           url: https://frameworkedu.substack.com
         - name: YouTube
-          url: https://www.youtube.com/@pmichaillat
-        - name: Twitter
-          url: https://x.com/pmichaillat
-        - name: Bluesky
-          url: https://bsky.app/profile/pmichaillat.bsky.social
+          url: https://www.youtube.com/@chemicaleb
 
     assets:
         disableScrollBarStyle: true
