@@ -56,9 +56,9 @@ params:
           enabled: true
           title: Frameworked
           subtitle: | 
-            Thank you for visiting Frameworked.org. We are currently in the early stages of development, which means our site is a work in progress. We appreciate your patience as we finalize our layout, add features, and polish the experience. 
+            Thank you for visiting Frameworked.org. We are currently in the early stages of development, which means our site is a work in progress. We appreciate your patience as we finalize our layout, add features, and polish the experience.  
             
-            Ultimately, Frameworked is being built to serve as a Swiss Army Knife for Metal and Covalent-Organic Framework (MOFs/COFs) research. Frameworked will be comprised of research articles, data, tools, resources, links, learning tools, and opinions/reviews in relation to MOFs/COFs, as well as research areas that these materials may be applied to (such as Per- and Polyfluroalkyl substances (PFAS) remediation, gas seperations, etc.) 
+            Ultimately, Frameworked is being built to serve as a Swiss Army Knife for Metal and Covalent-Organic Framework (MOFs/COFs) research. Frameworked will be comprised of research articles, data, tools, resources, links, learning tools, and opinions/reviews in relation to MOFs/COFs, as well as research areas that these materials may be applied to (such as Per- and Polyfluroalkyl substances (PFAS) remediation, gas seperations, etc.)  
 
             Built by Caleb Stallard and the Wriedt Lab at UT Dallas.
           imageUrl: "frameworked_logo.jpeg"
