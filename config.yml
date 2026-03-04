@@ -62,8 +62,8 @@ params:
 
             Built by Caleb Stallard and the Wriedt Lab at UT Dallas.
           imageUrl: "frameworked_logo.jpeg"
-          imageWidth: 200
-          imageHeight: 200
+          imageWidth: 300
+          imageHeight: 300
           imageDisplay: "Square"
           buttons:
             - name: Papers
