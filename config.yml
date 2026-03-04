@@ -77,7 +77,7 @@ params:
         - name: Email
           url: mailto:caleb@frameworked.org
         - name: UTD Email
-          url: mailto: caleb.stallard@utdallas.edu
+          url: mailto:caleb.stallard@utdallas.edu
         - name: LinkedIn
           url: https://www.linkedin.com/in/calebstallard
         - name: GitHub
