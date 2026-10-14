@@ -1,0 +1,1 @@
+{{ $id := .Get 0 }}{{ $matches := where .Page.Params.references "id" $id }}{{ if not $matches }}{{ errorf "Missing reference %q in %s" $id .Page.File.Path }}{{ end }}<a class="citation" href="#ref-{{ $id }}" aria-label="Reference {{ $id }}">[{{ $id }}]</a>

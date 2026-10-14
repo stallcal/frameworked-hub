@@ -1,108 +1,18 @@
-baseURL: "https://frameworked.org/" 
+baseURL: "https://frameworked.org/"
 title: Frameworked
+languageCode: en-us
 theme: PaperMod
-
-enableInlineShortcodes: true
+contentDir: site-content
 enableRobotsTXT: true
-pagination:
-  pagerSize: 20
-
-taxonomies:
-    tag: tags
-
-menu:
-    main:
-        - name: About
-          url: about/
-          weight: 5 
-        - name: Substack
-          url: https://frameworkedu.substack.com/
-          weight: 2
-        - name: Links
-          url: links/
-          weight: 3
-        - name: Contact
-          url: contact/
-          weight: 4 
-        - name: Wriedt Lab
-          url: https://www.Wriedt-Lab.com
-          weight: 6
-
+disableKinds: [taxonomy, term]
+buildDrafts: false
 params:
-    description: "We are currently in the early stages of development. Frameworked is being built to serve as a Swiss Army Knife for Metal and Covalent-Organic Framework (MOFs/COFs) research."
-    author: Frameworked
-    # googleAnalyticsID: "G-XXXXX"
-    DateFormat: "January 2006"
-    defaultTheme: light
-    hideFooter: false
-    disableThemeToggle: true
-    ShowShareButtons: false
-    ShowReadingTime: false
-    disableSpecial1stPost: true
-    disableAnchoredHeadings: true
-    ShowPostNavLinks: false
-    ShowBreadCrumbs: false
-    ShowCodeCopyButtons: true
-    ShowAllPagesInArchive: false
-    MainSections: ["books","courses","papers","data"]
-    ShowToc: false
-    disableScrollToTop: true
-    TocOpen: true
-    ShowWordCount: false
-    UseHugoToc: true
-    comments: false
-    math: true
-    profileMode:
-          enabled: true
-          title: Frameworked
-          subtitle: | 
-            Thank you for visiting Frameworked.org. We are currently in the early stages of development, which means our site is a work in progress. We appreciate your patience as we finalize our layout, add features, and polish the experience.<br><br>
-            Ultimately, Frameworked is being built to serve as a Swiss Army Knife for Metal and Covalent-Organic Framework (MOFs/COFs) research. Frameworked will be comprised of research articles, data, tools, resources, links, learning tools, and opinions/reviews in relation to MOFs/COFs, as well as research areas that these materials may be applied to (such as Per- and Polyfluroalkyl substances (PFAS) remediation, gas seperations, etc.)<br><br>
-            Built by Caleb Stallard as part of the Wriedt Lab at UT Dallas.
-          imageUrl: "frameworked_logo.jpeg"
-          imageWidth: 200
-          imageHeight: 200
-          imageDisplay: "Square"
-          buttons:
-            - name: Papers
-              url: papers/
-            - name: Archive
-              url: archive/
-            - name: Wriedt Lab
-              url: https://www.Wriedt-Lab.com/
-
-    socialIcons:
-        - name: Email
-          url: mailto:caleb@frameworked.org
-        - name: Email
-          url: mailto:caleb.stallard@utdallas.edu
-        - name: LinkedIn
-          url: https://www.linkedin.com/in/calebstallard
-        - name: GitHub
-          url: https://github.com/stallcal
-        - name: Substack
-          url: https://frameworkedu.substack.com
-        - name: YouTube
-          url: https://www.youtube.com/@chemicaleb
-
-    assets:
-        disableScrollBarStyle: true
-    cover:
-        hiddenInList: false
-        hiddenInSingle: true
-    label:
-      text: "Frameworked"
-      icon: fw_favicon.ico
-      iconHeight: 18
-
+  description: "A place to learn about metal-organic frameworks, explore their structures, and follow the research."
+  author: Frameworked
 markup:
-    goldmark:
-        renderer:
-            unsafe: true
-    highlight:
-        guessSyntax: true
-        style: autumn 
-    tableOfContents:
-        endLevel: 2
-        ordered: false
-        startLevel: 2
+  goldmark:
+    renderer:
+      unsafe: false
+  tableOfContents:
+    startLevel: 2
+    endLevel: 2

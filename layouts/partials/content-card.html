@@ -1,0 +1,4 @@
+<article class="reading-row">
+<div class="card-meta"><span>{{ .Params.format | default "Article" }}</span>{{ if .Params.example }}<span>Example draft</span>{{ else if .Draft }}<span>Working draft</span>{{ end }}</div>
+<div><h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2><p>{{ .Description }}</p></div>
+</article>

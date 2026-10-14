@@ -1,4 +1,6 @@
 # Hugo build artifacts
 public/
+public-production/
 resources/
 .hugo_build.lock
+.preview/

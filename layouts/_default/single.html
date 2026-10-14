@@ -1,60 +1,15 @@
-{{- define "main" }}
-
-<article class="post-single">
-  <header class="post-header">
-    {{ partial "breadcrumbs.html" . }}
-    <h1 class="post-title entry-hint-parent">
-      {{ .Title }}
-      {{- if .Draft }}
-      <span class="entry-hint" title="Draft">
-        <svg xmlns="http://www.w3.org/2000/svg" height="42" viewBox="0 -960 960 960" fill="currentColor">
-          <path
-            d="M160-410v-60h300v60H160Zm0-165v-60h470v60H160Zm0-165v-60h470v60H160Zm360 580v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q9 9 13 20t4 22q0 11-4.5 22.5T862.09-380L643-160H520Zm300-263-37-37 37 37ZM580-220h38l121-122-18-19-19-18-122 121v38Zm141-141-19-18 37 37-18-19Z" />
-        </svg>
-      </span>
-      {{- end }}
-    </h1>
-    {{- if not (.Param "hideMeta") }}
-    <div class="post-meta">
-      {{- partial "post_meta.html" . -}}
-      {{- partial "translation_list.html" . -}}
-      {{- partial "edit_post.html" . -}}
-      {{- partial "post_canonical.html" . -}}
-    </div>
-    {{- end }}
-  </header>
-  {{- $isHidden := (.Param "cover.hiddenInSingle") | default (.Param "cover.hidden") | default false }}
-  {{- partial "cover.html" (dict "cxt" . "IsSingle" true "isHidden" $isHidden) }}
-  {{- if (.Param "ShowToc") }}
-  {{- partial "toc.html" . }}
-  {{- end }}
-
-  {{- if .Content }}
-  <div class="post-content">
-    {{- if not (.Param "disableAnchoredHeadings") }}
-    {{- partial "anchored_headings.html" .Content -}}
-    {{- else }}{{ .Content }}{{ end }}
-  </div>
-  {{- end }}
-
-  <footer class="post-footer">
-    {{- $tags := .Language.Params.Taxonomies.tag | default "tags" }}
-    <ul class="post-tags">
-      {{- range ($.GetTerms $tags) }}
-      <li><a href="{{ .Permalink }}">{{ .LinkTitle }}</a></li>
-      {{- end }}
-    </ul>
-    {{- if (.Param "ShowPostNavLinks") }}
-    {{- partial "post_nav_links.html" . }}
-    {{- end }}
-    {{- if (and site.Params.ShowShareButtons (ne .Params.disableShare true)) }}
-    {{- partial "share_icons.html" . -}}
-    {{- end }}
-  </footer>
-
-  {{- if (.Param "comments") }}
-  {{- partial "comments.html" . }}
-  {{- end }}
-</article>
-
-{{- end }}{{/* end main */}}
+{{ define "main" }}
+<article class="article">
+<header class="article-heading">{{ if not .Params.isAbout }}<a class="back-link" href="{{ "/articles/" | relURL }}">← All articles</a>{{ end }}<p class="eyebrow">{{ .Params.format | default "FRAMEWORKED" }}</p><h1>{{ .Title }}</h1><p class="intro">{{ .Description }}</p>
+{{ if .Params.example }}<div class="draft-notice"><strong>Example draft</strong><span>An illustrative page to explore this format. Not a finished article or published research.</span></div>{{ else if .Draft }}<div class="draft-notice"><strong>Working draft</strong><span>A sourced first draft for editorial review. Not yet published.</span></div>{{ end }}</header>
+<div class="article-layout">
+{{ if not .Params.isAbout }}<details class="article-aside"><summary>On this page</summary>{{ if .Params.objectives }}<p class="eyebrow">IN THIS GUIDE</p><ul>{{ range .Params.objectives }}<li>{{ . }}</li>{{ end }}</ul>{{ end }}{{ if .TableOfContents }}<p class="eyebrow">ON THIS PAGE</p>{{ .TableOfContents }}{{ end }}{{ with .Params.level }}<p class="level">Starting point: {{ . }}</p>{{ end }}</details>{{ end }}
+<div class="article-body">
+{{ if .Params.structureImage }}{{ partial "mof-figure.html" (dict "hero" false) }}{{ end }}
+{{ with .Params.facts }}<dl class="facts">{{ range . }}<div><dt>{{ .label }}</dt><dd>{{ .value }}</dd></div>{{ end }}</dl>{{ end }}
+{{ with .Params.video_url }}<aside class="video-note"><h2>Watch the companion essay</h2><p><a href="{{ . }}">Watch the video</a></p>{{ with $.Params.transcript }}<p><a href="{{ . | relURL }}">Read the transcript</a></p>{{ end }}</aside>{{ end }}
+<div class="prose">{{ .Content }}</div>
+{{ with .Params.references }}<section class="references" aria-labelledby="references-title"><p class="eyebrow">GO TO THE SOURCE</p><h2 id="references-title">References & further reading</h2><ol>{{ range . }}<li id="ref-{{ .id }}"><span class="reference-kind">{{ .kind | default "Primary literature" }}</span><p>{{ .authors }} ({{ .year }}). <a href="{{ .url }}">{{ .title }}</a>. <em>{{ .publication }}</em>.</p>{{ with .access_url }}<a href="{{ . }}">Author-hosted full text (PDF) →</a>{{ end }}</li>{{ end }}</ol></section>{{ end }}
+{{ with .Params.related }}<section class="related"><p class="eyebrow">KEEP CONNECTING THE DOTS</p><h2>Explore next</h2>{{ range . }}{{ with site.GetPage . }}<a href="{{ .RelPermalink }}"><span>{{ .Title }}{{ if .Params.example }} <small>Example draft</small>{{ end }}</span><span aria-hidden="true">→</span></a>{{ end }}{{ end }}</section>{{ end }}
+</div></div></article>
+{{ end }}

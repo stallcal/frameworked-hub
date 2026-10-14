@@ -1,0 +1,9 @@
+{{ define "main" }}
+<h1 class="home-wordmark">frameworked.</h1>
+<section class="home-intro" aria-label="Welcome to Frameworked">
+<div class="home-copy"><p>Exploring metal–organic frameworks and related materials.</p><a class="browse-link" href="{{ "/articles/" | relURL }}">Browse articles <span aria-hidden="true">→</span></a></div>
+<div class="logo-panel">
+{{ $texture := (resources.Get "images/hero-halftone.png").Resize "1400x webp" }}<img class="panel-texture" src="{{ $texture.RelPermalink }}" width="{{ $texture.Width }}" height="{{ $texture.Height }}" alt="">
+{{ $logo := (resources.Get "images/frameworked-mark.png").Resize "900x png" }}<img class="hero-logo" src="{{ $logo.RelPermalink }}" width="{{ $logo.Width }}" height="{{ $logo.Height }}" alt="Frameworked cube and nodes logo">
+</div></section>
+{{ end }}

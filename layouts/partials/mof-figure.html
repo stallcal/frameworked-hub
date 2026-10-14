@@ -1,0 +1,4 @@
+{{ $image := (resources.Get "images/mof-5.png").Resize "1200x webp" }}<figure class="mof-figure">
+<img src="{{ $image.RelPermalink }}" width="{{ $image.Width }}" height="{{ $image.Height }}" {{ if not .hero }}loading="lazy"{{ end }} alt="MOF-5 structure illustration: zinc coordination polyhedra connected by organic linkers, with carbon, hydrogen, oxygen, and zinc identified in the image legend.">
+<figcaption>MOF-5 · Axs154 / <a href="https://commons.wikimedia.org/wiki/File:MOF-5_Crystal_Structure.png">Wikimedia Commons</a> · <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>. Resized; WebP conversion. Static illustration.</figcaption>
+</figure>
