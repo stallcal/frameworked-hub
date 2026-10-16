@@ -1,1 +1,2 @@
+{{ if not .Page.Draft }}{{ errorf "%s: resolve editorial notes before publication" .Page.File.Path }}{{ end }}
 <aside class="editorial-note"><p class="eyebrow">CONTENT TO DEVELOP</p>{{ .Inner | markdownify }}</aside>

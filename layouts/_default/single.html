@@ -1,7 +1,7 @@
 {{ define "main" }}
 <article class="article">
-<header class="article-heading">{{ if not .Params.isAbout }}<a class="back-link" href="{{ "/articles/" | relURL }}">← All articles</a>{{ end }}<p class="eyebrow">{{ .Params.format | default "FRAMEWORKED" }}</p><h1>{{ .Title }}</h1><p class="intro">{{ .Description }}</p>
-{{ if .Params.example }}<div class="draft-notice"><strong>Example draft</strong><span>An illustrative page to explore this format. Not a finished article or published research.</span></div>{{ else if .Draft }}<div class="draft-notice"><strong>Working draft</strong><span>A sourced first draft for editorial review. Not yet published.</span></div>{{ end }}</header>
+<header class="article-heading">{{ if not .Params.isAbout }}<a class="back-link" href="{{ if eq .Section "explore" }}{{ "/explore/" | relURL }}{{ else }}{{ "/articles/" | relURL }}{{ end }}">← {{ if eq .Section "explore" }}All structures{{ else }}All articles{{ end }}</a>{{ end }}<p class="eyebrow">{{ .Params.format | default "FRAMEWORKED" }}{{ range first 1 (.GetTerms "series") }}{{ $info := partial "series-info.html" .Data.Term }} · <a href="{{ .RelPermalink }}">{{ $info.title }}</a>{{ end }}</p><h1>{{ .Title }}</h1><p class="intro">{{ .Description }}</p>
+{{ if .Params.example }}<div class="draft-notice"><strong>Example draft</strong><span>An illustrative page to explore this format. Not a finished article or published research.</span></div>{{ else if .Draft }}<div class="draft-notice"><strong>Working draft</strong><span>A working page for editorial review. Not yet published.</span></div>{{ end }}</header>
 <div class="article-layout">
 {{ if not .Params.isAbout }}<details class="article-aside"><summary>On this page</summary>{{ if .Params.objectives }}<p class="eyebrow">IN THIS GUIDE</p><ul>{{ range .Params.objectives }}<li>{{ . }}</li>{{ end }}</ul>{{ end }}{{ if .TableOfContents }}<p class="eyebrow">ON THIS PAGE</p>{{ .TableOfContents }}{{ end }}{{ with .Params.level }}<p class="level">Starting point: {{ . }}</p>{{ end }}</details>{{ end }}
 <div class="article-body">
@@ -10,6 +10,13 @@
 {{ with .Params.video_url }}<aside class="video-note"><h2>Watch the companion essay</h2><p><a href="{{ . }}">Watch the video</a></p>{{ with $.Params.transcript }}<p><a href="{{ . | relURL }}">Read the transcript</a></p>{{ end }}</aside>{{ end }}
 <div class="prose">{{ .Content }}</div>
 {{ with .Params.references }}<section class="references" aria-labelledby="references-title"><p class="eyebrow">GO TO THE SOURCE</p><h2 id="references-title">References & further reading</h2><ol>{{ range . }}<li id="ref-{{ .id }}"><span class="reference-kind">{{ .kind | default "Primary literature" }}</span><p>{{ .authors }} ({{ .year }}). <a href="{{ .url }}">{{ .title }}</a>. <em>{{ .publication }}</em>.</p>{{ with .access_url }}<a href="{{ . }}">Author-hosted full text (PDF) →</a>{{ end }}</li>{{ end }}</ol></section>{{ end }}
-{{ with .Params.related }}<section class="related"><p class="eyebrow">KEEP CONNECTING THE DOTS</p><h2>Explore next</h2>{{ range . }}{{ with site.GetPage . }}<a href="{{ .RelPermalink }}"><span>{{ .Title }}{{ if .Params.example }} <small>Example draft</small>{{ end }}</span><span aria-hidden="true">→</span></a>{{ end }}{{ end }}</section>{{ end }}
+{{ partial "series-nav.html" . }}
+{{ $primerPages := slice }}
+{{ range .Params.primer }}{{ with site.GetPage . }}{{ $primerPages = $primerPages | append . }}{{ end }}{{ end }}
+{{ with $primerPages }}<aside class="primer-links"><h2>A little chemistry background</h2><ul>{{ range . }}<li><a href="{{ .RelPermalink }}">{{ .Title }}</a>{{ if .Draft }} <span class="eyebrow">Draft</span>{{ end }}</li>{{ end }}</ul></aside>{{ end }}
+{{ with .Params.substack_url }}<p class="syndication-link"><a href="{{ . }}">Read the companion essay on Substack →</a></p>{{ end }}
+{{ $relatedPages := slice }}
+{{ range .Params.related }}{{ with site.GetPage . }}{{ $relatedPages = $relatedPages | append . }}{{ end }}{{ end }}
+{{ with $relatedPages }}<section class="related"><p class="eyebrow">KEEP CONNECTING THE DOTS</p><h2>Explore next</h2>{{ range . }}<a href="{{ .RelPermalink }}"><span>{{ .Title }}{{ if .Params.example }} <small>Example draft</small>{{ else if .Draft }} <small>Working draft</small>{{ end }}</span><span aria-hidden="true">→</span></a>{{ end }}</section>{{ end }}
 </div></div></article>
 {{ end }}

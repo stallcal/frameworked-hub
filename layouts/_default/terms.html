@@ -1,19 +1,9 @@
-{{- define "main" }}
-
-<header class="page-header">
+{{ define "main" }}
+<header class="page-heading">
+  <p class="eyebrow">FOLLOW A QUESTION</p>
+  <h1>Series</h1>
+  <p class="intro">Connected stories, with room to take your own path.</p>
 </header>
-
-<ul class="terms-tags">
-    {{- $type := .Type }}
-    {{- range $key, $value := .Data.Terms.Alphabetical }}
-    {{- $name := .Name }}
-    {{- $count := .Count }}
-    {{- with site.GetPage (printf "/%s/%s" $type $name) }}
-    <li>
-        <a href="{{ .Permalink }}">{{ .Name }} <sup><strong><sup>{{ $count }}</sup></strong></sup> </a>
-    </li>
-    {{- end }}
-    {{- end }}
-</ul>
-
-{{- end }}
+{{ partial "series-cards.html" (dict "publishedOnly" false) }}
+{{ if not (partial "readings.html" .) }}<p class="empty-state">The first series is in preparation.</p>{{ end }}
+{{ end }}

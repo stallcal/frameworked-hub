@@ -1,0 +1,3 @@
+{{/* Hugo excludes drafts/future pages unless explicitly enabled. */}}
+{{ $pages := where site.RegularPages "Section" "in" (slice "articles" "learn") }}
+{{ return (where $pages "Params.example" "ne" true) }}

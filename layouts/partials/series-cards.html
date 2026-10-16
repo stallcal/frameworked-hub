@@ -1,0 +1,22 @@
+{{ $publishedOnly := .publishedOnly | default false }}
+{{ $readings := partial "readings.html" . }}
+{{ if $publishedOnly }}{{ $readings = where $readings "Draft" false }}{{ end }}
+{{ $cards := slice }}
+{{ range site.Data.series }}
+  {{ $info := . }}
+  {{ with site.GetPage (printf "/series/%s" .id) }}
+    {{ $pages := intersect .Pages $readings }}
+    {{ if $pages }}{{ $cards = $cards | append (dict "info" $info "page" . "count" (len $pages) "draftOnly" (eq (len (where $pages "Draft" false)) 0)) }}{{ end }}
+  {{ end }}
+{{ end }}
+{{ with $cards }}
+<div class="series-grid">
+  {{ range . }}
+  <article class="series-card">
+    <p class="eyebrow">{{ .count }} {{ if eq .count 1 }}story{{ else }}stories{{ end }}{{ if .draftOnly }} · Draft preview{{ end }}</p>
+    <h3><a href="{{ .page.RelPermalink }}">{{ .info.title }}</a></h3>
+    <p>{{ .info.description }}</p>
+  </article>
+  {{ end }}
+</div>
+{{ end }}

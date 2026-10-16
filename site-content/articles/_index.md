@@ -1,6 +1,6 @@
 ---
 title: "Articles"
-description: "A home for research explainers, thoughtful commentary, and video essays about framework materials."
+description: "Short stories, chemistry foundations, and a closer look at the research."
 eyebrow: "ARTICLES & VIDEOS"
 collectionTitle: "From the reading desk"
 ---

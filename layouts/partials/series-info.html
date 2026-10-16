@@ -1,0 +1,5 @@
+{{ $info := dict "id" . "title" (humanize .) "description" "" }}
+{{ range site.Data.series }}
+  {{ if eq .id $info.id }}{{ $info = . }}{{ end }}
+{{ end }}
+{{ return $info }}

@@ -1,0 +1,21 @@
+{{ $known := slice }}
+{{ range site.Data.series }}{{ $known = $known | append .id }}{{ end }}
+{{ $orders := dict }}
+{{ range partial "readings.html" . }}
+  {{ $page := . }}
+  {{ if and (not .Draft) (ne .Params.editorial_status "approved") }}
+    {{ errorf "%s: published stories require editorial_status: approved" .File.Path }}
+  {{ end }}
+  {{ if and (not .Draft) .Date.IsZero }}{{ errorf "%s: published stories require a publication date" .File.Path }}{{ end }}
+  {{ with .Params.series }}
+    {{ if ne (len .) 1 }}{{ errorf "%s: use one primary series for reading-order navigation" $page.File.Path }}{{ end }}
+    {{ range . }}
+      {{ if not (in $known .) }}{{ errorf "%s: unknown series %q" $page.File.Path . }}{{ end }}
+      {{ $order := $page.Params.series_order | default 0 }}
+      {{ if or (lt (int $order) 1) (ne (float $order) (float (int $order))) }}{{ errorf "%s: series_order must be a positive integer" $page.File.Path }}{{ end }}
+      {{ $key := printf "%s/%v" . $order }}
+      {{ if isset $orders $key }}{{ errorf "%s: duplicate series_order %v in %s" $page.File.Path $order . }}{{ end }}
+      {{ $orders = merge $orders (dict $key true) }}
+    {{ end }}
+  {{ end }}
+{{ end }}

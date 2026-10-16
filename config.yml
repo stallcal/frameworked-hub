@@ -4,11 +4,13 @@ languageCode: en-us
 theme: PaperMod
 contentDir: site-content
 enableRobotsTXT: true
-disableKinds: [taxonomy, term]
+taxonomies:
+  series: series
 buildDrafts: false
 params:
   description: "A place to learn about metal-organic frameworks, explore their structures, and follow the research."
   author: Frameworked
+  startSeries: introduction-to-mofs
 markup:
   goldmark:
     renderer:

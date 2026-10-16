@@ -1,0 +1,15 @@
+{{ define "main" }}
+{{ $info := partial "series-info.html" .Data.Term }}
+{{ $pages := intersect .Pages (partial "readings.html" .) }}
+<header class="page-heading">
+  <a class="back-link" href="{{ "/articles/" | relURL }}">← All articles</a>
+  <p class="eyebrow">A FRAMEWORKED SERIES</p>
+  <h1>{{ $info.title }}</h1>
+  <p class="intro">{{ $info.description }}</p>
+  <p class="reading-guidance">A suggested reading order. Every story also stands on its own.</p>
+  {{ if and $pages (eq (len (where $pages "Draft" false)) 0) }}<p class="draft-notice">Draft preview · These stories are not yet published.</p>{{ end }}
+</header>
+<section class="reading-list" aria-label="Suggested reading order">
+  {{ range sort $pages "Params.series_order" "asc" }}{{ partial "content-card.html" . }}{{ else }}<p class="empty-state">The first stories are in preparation.</p>{{ end }}
+</section>
+{{ end }}

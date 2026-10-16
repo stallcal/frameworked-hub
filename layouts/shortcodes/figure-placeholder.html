@@ -1,0 +1,5 @@
+{{ if not .Page.Draft }}{{ errorf "%s: replace figure placeholders before publication" .Page.File.Path }}{{ end }}
+<figure class="figure-placeholder">
+  <p class="eyebrow">Figure {{ .Get "number" }} · In preparation</p>
+  <figcaption><strong>{{ .Get "title" }}</strong>{{ .Inner | markdownify }}</figcaption>
+</figure>

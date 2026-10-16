@@ -1,1 +1,18 @@
-<figure class="content-figure"><img src="{{ .Get "src" | relURL }}" alt="{{ .Get "alt" }}" loading="lazy"><figcaption>{{ .Get "caption" }} {{ with .Get "source" }}<a href="{{ . }}">Source</a>{{ end }} {{ with .Get "credit" }}· {{ . }}{{ end }} {{ with .Get "licenseURL" }}· <a href="{{ . }}">{{ $.Get "license" }}</a>{{ end }}</figcaption></figure>
+{{ $src := .Get "src" }}
+{{ $alt := .Get "alt" }}
+{{ if not $src }}{{ errorf "%s: figure requires src" .Page.File.Path }}{{ end }}
+{{ if not $alt }}{{ errorf "%s: figure requires descriptive alt text" .Page.File.Path }}{{ end }}
+{{ $width := .Get "width" }}{{ $height := .Get "height" }}
+{{ $url := $src | relURL }}
+{{ with .Page.Resources.GetMatch $src }}
+  {{ $url = .RelPermalink }}
+  {{ if ne .MediaType.SubType "svg" }}{{ $width = .Width }}{{ $height = .Height }}{{ end }}
+{{ else }}
+  {{ if and (not (hasPrefix $src "/")) (not (hasPrefix $src "https://")) (not (hasPrefix $src "http://")) }}
+    {{ errorf "%s: local figure resource %q not found" .Page.File.Path $src }}
+  {{ end }}
+{{ end }}
+<figure class="content-figure">
+  <img src="{{ $url }}" alt="{{ $alt }}" loading="lazy" decoding="async"{{ with $width }} width="{{ . }}"{{ end }}{{ with $height }} height="{{ . }}"{{ end }}>
+  <figcaption>{{ .Get "caption" }}{{ with .Get "source" }} · <a href="{{ . }}">Source</a>{{ end }}{{ with .Get "credit" }} · {{ . }}{{ end }}{{ with .Get "licenseURL" }} · <a href="{{ . }}">{{ $.Get "license" }}</a>{{ end }}</figcaption>
+</figure>

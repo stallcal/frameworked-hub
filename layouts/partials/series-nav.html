@@ -1,0 +1,24 @@
+{{ $current := . }}
+{{ with .GetTerms "series" }}
+  {{ range first 1 . }}
+    {{ $info := partial "series-info.html" .Data.Term }}
+    {{ $pages := sort (intersect .Pages (partial "readings.html" .)) "Params.series_order" "asc" }}
+    {{ $previous := false }}{{ $next := false }}
+    {{ range $index, $page := $pages }}
+      {{ if eq $page.RelPermalink $current.RelPermalink }}
+        {{ if gt $index 0 }}{{ $previous = index $pages (sub $index 1) }}{{ end }}
+        {{ if lt $index (sub (len $pages) 1) }}{{ $next = index $pages (add $index 1) }}{{ end }}
+      {{ end }}
+    {{ end }}
+    <nav class="series-navigation" aria-label="Series reading order">
+      <p class="eyebrow">PART OF <a href="{{ .RelPermalink }}">{{ $info.title }}</a></p>
+      <p class="reading-guidance">Read in order, or follow your curiosity.</p>
+      {{ if or $previous $next }}
+      <div class="series-neighbors">
+        {{ with $previous }}<a rel="prev" href="{{ .RelPermalink }}"><span class="eyebrow">← Previous{{ if .Draft }} · Draft{{ end }}</span><span>{{ .Title }}</span></a>{{ end }}
+        {{ with $next }}<a rel="next" href="{{ .RelPermalink }}"><span class="eyebrow">Next →{{ if .Draft }} · Draft{{ end }}</span><span>{{ .Title }}</span></a>{{ end }}
+      </div>
+      {{ end }}
+    </nav>
+  {{ end }}
+{{ end }}

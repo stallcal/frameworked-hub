@@ -2,6 +2,9 @@
 title: "PFAS capture: why the water matters"
 description: "A groundwater study asks how framework structure, contaminant chemistry, and competing substances affect adsorption."
 draft: true
+editorial_status: needs-review
+series: ["paper-notes"]
+series_order: 2
 featured: true
 format: "Paper spotlight"
 weight: 6

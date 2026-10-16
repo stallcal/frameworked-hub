@@ -1,9 +1,31 @@
 {{ define "main" }}
 <h1 class="home-wordmark">frameworked.</h1>
 <section class="home-intro" aria-label="Welcome to Frameworked">
-<div class="home-copy"><p>Exploring metal–organic frameworks and related materials.</p><a class="browse-link" href="{{ "/articles/" | relURL }}">Browse articles <span aria-hidden="true">→</span></a></div>
+<div class="home-copy"><p>Understanding materials, one building block at a time.</p><p class="home-description">Explore the chemistry behind molecular frameworks, the science of designing materials, and the research shaping their future.</p><a class="browse-link" href="{{ "/articles/" | relURL }}">Browse articles <span aria-hidden="true">→</span></a></div>
 <div class="logo-panel">
-{{ $texture := (resources.Get "images/hero-halftone.png").Resize "1400x webp" }}<img class="panel-texture" src="{{ $texture.RelPermalink }}" width="{{ $texture.Width }}" height="{{ $texture.Height }}" alt="">
 {{ $logo := (resources.Get "images/frameworked-mark.png").Resize "900x png" }}<img class="hero-logo" src="{{ $logo.RelPermalink }}" width="{{ $logo.Width }}" height="{{ $logo.Height }}" alt="Frameworked cube and nodes logo">
 </div></section>
+{{ $published := where (partial "readings.html" .) "Draft" false }}
+{{ with first 1 (where $published "Params.featured" true) }}
+<section class="home-section" aria-labelledby="featured-title"><p class="eyebrow">A GOOD PLACE TO BEGIN</p><h2 id="featured-title">Featured story</h2>
+{{ range . }}{{ partial "content-card.html" . }}{{ end }}</section>
+{{ end }}
+{{ with site.GetPage (printf "/series/%s" site.Params.startSeries) }}
+  {{ $stories := sort (intersect .Pages $published) "Params.series_order" "asc" }}
+  {{ with $stories }}
+  <section class="home-section" aria-labelledby="start-title"><h2 id="start-title">Start here</h2><p class="section-intro">An introduction to MOFs, one question at a time.</p>
+    {{ range first 3 . }}{{ partial "content-card.html" . }}{{ end }}
+  </section>
+  {{ end }}
+{{ end }}
+{{ with $published }}
+<section class="home-section" aria-labelledby="latest-title"><h2 id="latest-title">Latest stories</h2>
+  {{ range first 3 .ByDate.Reverse }}{{ partial "content-card.html" . }}{{ end }}
+</section>
+{{ end }}
+{{ with where (where site.RegularPages "Section" "explore") "Draft" false }}
+<section class="home-section" aria-labelledby="explore-title"><h2 id="explore-title">Explore the structures</h2>
+  {{ range first 2 .ByTitle }}{{ partial "content-card.html" . }}{{ end }}
+</section>
+{{ end }}
 {{ end }}

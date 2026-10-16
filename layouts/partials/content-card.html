@@ -1,4 +1,4 @@
 <article class="reading-row">
-<div class="card-meta"><span>{{ .Params.format | default "Article" }}</span>{{ if .Params.example }}<span>Example draft</span>{{ else if .Draft }}<span>Working draft</span>{{ end }}</div>
+<div class="card-meta"><span>{{ .Params.format | default "Article" }}</span>{{ range first 1 (.GetTerms "series") }}{{ $info := partial "series-info.html" .Data.Term }}<span><a href="{{ .RelPermalink }}">{{ $info.title }}</a></span>{{ end }}{{ if .Params.example }}<span>Example draft</span>{{ else if .Draft }}<span>Working draft</span>{{ else if not .Date.IsZero }}<span><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2, 2006" }}</time></span>{{ end }}</div>
 <div><h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2><p>{{ .Description }}</p></div>
 </article>

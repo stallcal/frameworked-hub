@@ -2,6 +2,9 @@
 title: "Can a framework collect water from air?"
 description: "A nickel-based framework offers a starting point for thinking about capture, release, and reuse."
 draft: true
+editorial_status: needs-review
+series: ["paper-notes"]
+series_order: 1
 featured: true
 format: "Paper spotlight"
 weight: 5

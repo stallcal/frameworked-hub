@@ -1,4 +1,5 @@
 <!doctype html>
+{{ partialCached "validate-editorial.html" .Site .Site.Language.Lang }}
 <html lang="en"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{{ if not .IsHome }}{{ .Title }} · {{ end }}Frameworked</title>
@@ -13,7 +14,8 @@
 <div class="site-shell">
 <header class="site-header"><nav aria-label="Main navigation">
 <a href="{{ "/" | relURL }}" {{ if .IsHome }}aria-current="page"{{ end }}>Home</a>
-<a href="{{ "/articles/" | relURL }}" {{ if in (slice "articles" "learn" "explore") .Section }}aria-current="page"{{ end }}>Articles</a>
+<a href="{{ "/articles/" | relURL }}" {{ if in (slice "articles" "learn" "series") .Section }}aria-current="page"{{ end }}>Articles</a>
+{{ if where (where site.RegularPages "Section" "explore") "Draft" false }}<a href="{{ "/explore/" | relURL }}" {{ if eq .Section "explore" }}aria-current="page"{{ end }}>Explore</a>{{ end }}
 <a href="{{ "/about/" | relURL }}" {{ if .Params.isAbout }}aria-current="page"{{ end }}>About</a>
 </nav>{{ if not .IsHome }}<a class="small-brand" href="{{ "/" | relURL }}">frameworked.</a>{{ end }}</header>
 <main id="main" tabindex="-1">{{ block "main" . }}{{ end }}</main>

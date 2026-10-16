@@ -1,0 +1,15 @@
+- id: introduction-to-mofs
+  title: Introduction to MOFs
+  description: Short stories about building blocks, connections, pores, and what framework materials can do.
+- id: mof-primer
+  title: MOF Primer
+  description: Optional chemistry foundations to dip into whenever a story needs a little more explanation.
+- id: tools-and-techniques
+  title: Tools & Techniques
+  description: How scientists measure, characterize, and understand materials.
+- id: paper-notes
+  title: Paper Notes
+  description: Questions, evidence, and limitations behind the research.
+- id: history-of-porous-materials
+  title: History of Porous Materials
+  description: The discoveries and changing ideas that brought porous materials into focus.

@@ -2,7 +2,9 @@
 title: "What does the name MOF actually mean?"
 description: "A short guide to the definition—and why a picture of a pore is only the beginning."
 draft: true
-featured: true
+editorial_status: needs-review
+series: ["mof-primer"]
+series_order: 1
 format: "Quick concept"
 level: "No MOF experience needed"
 weight: 4
