@@ -17,7 +17,7 @@
 <a href="{{ "/articles/" | relURL }}" {{ if in (slice "articles" "learn" "series") .Section }}aria-current="page"{{ end }}>Articles</a>
 {{ if where (where site.RegularPages "Section" "explore") "Draft" false }}<a href="{{ "/explore/" | relURL }}" {{ if eq .Section "explore" }}aria-current="page"{{ end }}>Explore</a>{{ end }}
 <a href="{{ "/about/" | relURL }}" {{ if .Params.isAbout }}aria-current="page"{{ end }}>About</a>
-</nav>{{ if not .IsHome }}<a class="small-brand" href="{{ "/" | relURL }}">frameworked.</a>{{ end }}</header>
+</nav>{{ if not .IsHome }}<a class="small-brand" href="{{ "/" | relURL }}">Frameworked.</a>{{ end }}</header>
 <main id="main" tabindex="-1">{{ block "main" . }}{{ end }}</main>
 <footer class="site-footer"><a href="{{ "/" | relURL }}">frameworked.org</a></footer>
 </div></body></html>
