@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#F7F9FC">
+  <meta name="description" content="Explore PXRD patterns, fit diffraction peaks, and transparently estimate coherent crystallite domain sizes with the Scherrer equation. A Frameworked scientific tool.">
+  <title>Scherrer Lab — PXRD Crystallite Size Calculator | Frameworked</title>
+  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="./brand.css">
+  <script type="module" src="./app.mjs"></script>
+</head>
+<body>
+  <div class="top-accent" aria-hidden="true"></div>
+  <a class="skip-link" href="#calculator">Skip to calculator</a>
+  <header class="site-header">
+    <div class="shell header-inner">
+      <a class="brand" href="/" aria-label="Frameworked home"><img class="brand-symbol" src="/images/frameworked-mark.png" alt=""><span>Frameworked<span class="brand-dot">.</span></span></a>
+      <nav class="primary-nav" aria-label="Frameworked navigation"><a href="/">Home</a><a href="/articles/">Articles</a><a href="/tools/" aria-current="page">Tools</a><a href="/about/">About</a></nav>
+    </div>
+  </header>
+  <nav class="tool-subnav shell" aria-label="On this page"><span>SCHERRER LAB / 001</span><div><a href="#calculator">Calculator</a><a href="#method">The method</a><a href="#history">History</a></div></nav>
+
+  <main id="top">
+    <section class="hero shell">
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="eyebrow-line"></span> FRAMEWORKED / SCIENTIFIC TOOLS <span class="eyebrow-sep">—</span> 01</p>
+        <h1>Go beyond<br><em>the peaks.</em></h1>
+        <p class="hero-lead">Upload a powder X-ray diffraction pattern. Explore its reflections. Estimate coherent crystallite domain size with a transparent, interactive Scherrer analysis.</p>
+        <div class="hero-actions"><a class="primary-btn" href="#calculator">Open the calculator <span aria-hidden="true">↗</span></a><a class="text-link" href="#method">Understand the science <span aria-hidden="true">↓</span></a></div>
+        <div class="hero-foot"><span class="status-dot"></span> Free to use <span class="foot-divider"></span> Runs in your browser <span class="foot-divider"></span> Research beta</div>
+      </div>
+      <div class="hero-graphic" aria-label="Scherrer formula and illustrated diffraction lines">
+        <div class="graphic-stamp">A CLOSER LOOK<br>AT CRYSTAL ORDER</div>
+        <svg class="hero-diffraction" viewBox="0 0 450 300" role="img" aria-label="Illustrative diffraction curve with narrow and broad peaks">
+          <defs><linearGradient id="peakfade" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#91b9e7" stop-opacity=".42"/><stop offset="1" stop-color="#91b9e7" stop-opacity="0"/></linearGradient></defs>
+          <g stroke="#bacde4" stroke-width="1" opacity=".65"><path d="M25 40H430 M25 100H430 M25 160H430 M25 220H430" stroke-dasharray="2 5"/><path d="M25 24V258 M106 24V258 M188 24V258 M270 24V258 M352 24V258 M430 24V258" stroke-dasharray="2 5"/></g>
+          <path d="M25 245 C55 245 62 242 70 240 C85 228 97 73 108 47 C119 85 130 223 145 241 C158 245 174 242 185 231 C197 217 206 131 220 119 C235 145 244 216 259 239 C271 245 291 239 302 233 C313 216 322 153 333 150 C345 168 349 224 361 239 C379 245 403 243 430 245 V258 H25Z" fill="url(#peakfade)"/>
+          <path d="M25 245 C55 245 62 242 70 240 C85 228 97 73 108 47 C119 85 130 223 145 241 C158 245 174 242 185 231 C197 217 206 131 220 119 C235 145 244 216 259 239 C271 245 291 239 302 233 C313 216 322 153 333 150 C345 168 349 224 361 239 C379 245 403 243 430 245" fill="none" stroke="#084b9e" stroke-width="3" stroke-linecap="round"/>
+          <path d="M85 143H129" stroke="#9e382e" stroke-width="2.5"/><path d="M85 136V150 M129 136V150" stroke="#9e382e" stroke-width="1.6"/><path d="M108 47V245" stroke="#9e382e" stroke-dasharray="4 5" opacity=".7"/>
+          <g fill="#4f719c" font-size="11" font-family="Arial, sans-serif"><text x="135" y="143">FWHM</text><text x="34" y="285">2θ</text><text x="400" y="285">2θ</text><text x="34" y="19">INTENSITY</text></g>
+        </svg>
+        <div class="equation-card"><span>THE SCHERRER EQUATION</span><div class="formula"><i>D</i> = <span class="fraction"><span><i>Kλ</i></span><span><i>β</i> cos <i>θ</i></span></span></div><p>From peak width to coherent domain size.</p></div>
+        <div class="graphic-index">FIG 01 / POWDER DIFFRACTION</div>
+      </div>
+    </section>
+
+    <section class="calculator-wrap" id="calculator">
+      <div class="shell">
+        <div class="section-heading"><div><p class="eyebrow">01 / THE WORKBENCH</p><h2>Your PXRD,<br><em>explored.</em></h2></div><p>Choose a reflection, inspect its fitted width, and see every quantity used in your calculation.</p></div>
+        <div class="workspace">
+          <aside class="tool-sidebar" aria-label="Analysis controls">
+            <div class="sidebar-head"><span class="tool-step">01</span><div><h3>Load your pattern</h3><p>XY data · 2θ / intensity</p></div></div>
+            <label class="dropzone" id="dropzone" for="fileInput" tabindex="0"><input type="file" id="fileInput" accept=".xy,.xye,.txt,.csv,.dat,text/plain,text/csv"><span class="upload-icon" aria-hidden="true">↑</span><strong>Drop PXRD data here</strong><small>or click to choose an XY / XYE file</small><span class="drop-extensions">.xy &nbsp; .xye &nbsp; .txt &nbsp; .csv &nbsp; .dat</span></label>
+            <p class="import-footnote">XYE uncertainty columns are not yet included in fitting. Bruker .brml files are not yet supported; export an XYE file to analyze the scan. Verify that the wavelength matches your instrument settings; Cu Kα1 is the starting assumption.</p>
+            <button class="demo-link" type="button" id="demoButton">Try a simulated PXRD pattern <span aria-hidden="true">↗</span></button>
+            <div class="file-info" id="fileInfo" hidden></div>
+            <div class="sidebar-rule"></div>
+            <div class="sidebar-head"><span class="tool-step">02</span><div><h3>Configure analysis</h3><p>Adjust your measurement settings</p></div></div>
+            <div class="field"><label for="materialMode">Material context</label><div class="segmented" id="materialMode" role="group" aria-label="Material context"><button type="button" data-mode="mof" class="active" aria-pressed="true">MOFs</button><button type="button" data-mode="general" aria-pressed="false">General</button></div></div>
+            <div class="field-grid"><div class="field"><label for="wavelength">Wavelength <span>Å · Cu Kα1</span></label><input id="wavelength" type="number" step="0.0001" min="0.001" max="20" value="1.5406"></div><div class="field"><label for="shapeFactor">Shape factor <span>K</span></label><input id="shapeFactor" type="number" step="0.01" min="0.1" max="3" value="0.90"></div></div>
+            <div class="field"><label for="profile">Peak profile</label><select id="profile"><option value="pseudo-voigt">Pseudo-Voigt (exploratory)</option><option value="gaussian">Gaussian</option><option value="lorentzian">Lorentzian</option></select></div>
+            <div class="field"><label for="windowSize">Fitting half-window <output id="windowOutput">±0.65°</output></label><input id="windowSize" type="range" min="0.2" max="2.0" step="0.05" value="0.65"><small>Click a peak to fit within this local region.</small></div>
+            <div class="sidebar-rule"></div>
+            <div class="sidebar-head"><span class="tool-step">03</span><div><h3>Instrument correction</h3><p>Optional until a standard is available</p></div></div>
+            <div class="field"><label for="correction">Width correction assumption</label><select id="correction"><option value="none">None — uncorrected estimate</option><option value="gaussian">Gaussian — quadratic subtraction</option><option value="lorentzian">Lorentzian — linear subtraction</option></select></div>
+            <div class="field" id="instrumentField" hidden><label for="instrumentWidth">Instrument FWHM <span>° 2θ</span></label><input id="instrumentWidth" type="number" step="0.001" min="0" value="0.10"><small>Constant-width approximation across peaks. Only use measured/calibrated values at matching settings; real instrument width varies with angle.</small></div>
+            <div class="caution-note"><span aria-hidden="true">!</span><p><strong id="correctionStatus">Uncorrected analysis</strong><br><span id="correctionHelp">Instrumental and strain broadening may inflate FWHM. Treat sizes as preliminary estimates.</span></p></div>
+          </aside>
+
+          <div class="analysis-panel">
+            <div class="analysis-top"><div><p class="overline">LIVE DIFFRACTOGRAM</p><h3 id="patternName">Waiting for PXRD data</h3></div><span id="plotStatus" class="pill">NO DATA</span></div>
+            <div class="plot-toolbar"><span id="plotDescriptor">Select a file or load the example to begin.</span><div class="plot-actions"><button type="button" id="zoomIn" title="Zoom in" aria-label="Zoom in">+</button><button type="button" id="zoomOut" title="Zoom out" aria-label="Zoom out">−</button><button type="button" id="resetZoom" title="Reset zoom" aria-label="Reset zoom">↺</button></div></div>
+            <div class="chart-container" id="chartContainer"><canvas id="pxrdCanvas" role="img" aria-label="Interactive PXRD intensity versus two theta plot. Click a reflection to analyze it."></canvas><div class="empty-state" id="emptyState"><span class="empty-wave">⌁</span><strong>Your pattern starts here.</strong><p>Load an XY file, or try a simulated scan to explore how peak fitting works.</p><button type="button" id="emptyDemo">Load example data <span aria-hidden="true">↗</span></button></div><div class="chart-tooltip" id="chartTooltip" hidden></div></div>
+            <div class="chart-legend"><div><span class="legend-key trace"></span> Measured intensity</div><div><span class="legend-key fitted"></span> Selected fit</div><div><span class="legend-key width"></span> FWHM</div><span>Wheel to zoom · drag to pan · click to select</span></div>
+            <div class="analysis-results-head"><div><p class="overline">REFLECTION ANALYSIS</p><h3>Detected peaks <span id="peakCount">0</span></h3></div><button class="outline-btn" id="downloadButton" type="button" disabled>Export results <span aria-hidden="true">↓</span></button></div>
+            <div class="peak-table-scroll"><table class="peak-table"><thead><tr><th>Peak</th><th>2θ</th><th>FWHM</th><th>Fit R²</th><th>Size (nm)</th><th></th></tr></thead><tbody id="peakTableBody"><tr><td colspan="6" class="no-peaks">Your fitted peaks will appear here.</td></tr></tbody></table></div>
+            <div class="results-footer" id="resultsFooter">Automatic detection proposes candidate peaks. Review each fitting interval and exclude overlapping or poorly fitted reflections.</div>
+          </div>
+        </div>
+
+        <div class="inspector" id="inspector"><div class="inspector-copy"><p class="eyebrow">04 / THE NUMBERS</p><h3>Every step,<br><em>visible.</em></h3><p id="inspectorText">Choose a fitted reflection above to inspect its Scherrer calculation. We convert measured FWHM from degrees of 2θ to radians, then apply the equation.</p></div><div class="inspector-values"><div class="inspector-result"><span>ESTIMATED COHERENT DOMAIN SIZE</span><strong id="sizeValue">— <small>nm</small></strong><p id="sizeQualifier">No reflection selected</p></div><div class="variable-grid"><div><small>BRAGG ANGLE, θ</small><strong id="thetaValue">—</strong></div><div><small>FWHM, β</small><strong id="betaValue">—</strong></div><div><small>WAVELENGTH, λ</small><strong id="lambdaValue">1.5406 Å</strong></div><div><small>SHAPE FACTOR, K</small><strong id="kValue">0.90</strong></div></div><p class="formula-caption" id="formulaDetail">D = K × λ / (β × cos θ) · width in radians, length in nm.</p></div></div>
+      </div>
+    </section>
+
+    <section class="learning shell" id="method">
+      <div class="section-heading teaching-heading"><div><p class="eyebrow">02 / UNDERSTAND THE METHOD</p><h2>Why width<br><em>matters.</em></h2></div><p>A diffraction peak tells us more than where a crystal scatters X-rays. Its shape contains information about the material's microstructure.</p></div>
+      <div class="principle-grid"><article class="principle-card"><span class="card-number">01 / THE PRINCIPLE</span><div class="mini-visual narrow"><svg viewBox="0 0 300 105" aria-hidden="true"><path d="M10 95H290" stroke="#c5ccc8"/><path d="M25 95 C108 95 130 94 141 22 C149 3 155 90 168 95 C215 95 260 95 275 95" fill="none" stroke="#2c706c" stroke-width="3"/><path d="M132 56H158" stroke="#d08052" stroke-width="2"/></svg></div><h3>Sharper peaks, larger domains</h3><p>When coherent scattering extends across more lattice planes, the size-related contribution to diffraction peak width decreases.</p></article><article class="principle-card"><span class="card-number">02 / THE MEASUREMENT</span><div class="mini-visual broad"><svg viewBox="0 0 300 105" aria-hidden="true"><path d="M10 95H290" stroke="#c5ccc8"/><path d="M20 95 C65 95 78 84 103 49 C120 23 145 17 151 17 C180 17 193 58 217 83 C235 95 260 95 280 95" fill="none" stroke="#2c706c" stroke-width="3"/><path d="M100 56H203" stroke="#d08052" stroke-width="2"/><path d="M100 50V62 M203 50V62" stroke="#d08052"/></svg></div><h3>FWHM, not half-width</h3><p>The full width at half maximum is measured across the peak at half its height above an estimated local background.</p></article><article class="principle-card"><span class="card-number">03 / THE INTERPRETATION</span><div class="mini-visual blocks" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div><h3>Domain size ≠ particle size</h3><p>The calculation estimates coherent scattering lengths along a diffraction direction. A particle can contain several distinct coherent domains.</p></article></div>
+      <div class="method-footnote"><div class="method-icon">i</div><div><h3>A useful estimate, not an automatic ground truth.</h3><p>Measured width also contains instrument response, lattice strain, defects, and potentially overlapping peaks. For anisotropic frameworks, different reflections may produce different domain-size estimates. Report the assumptions and review fits; consider whole-pattern methods for rigorous microstructural analysis.</p></div></div>
+    </section>
+
+    <section class="history" id="history"><div class="shell history-inner"><div class="history-intro"><p class="eyebrow">03 / A LITTLE HISTORY</p><h2>A century of<br><em>looking closer.</em></h2><p>From the first powder diffraction experiments to today's framework materials, the story of the Scherrer equation is a story of extracting structure from scattered light.</p></div><div class="timeline"><div class="timeline-item"><span>1916</span><div><h3>Powder X-ray diffraction emerges</h3><p>Peter Debye and Paul Scherrer describe diffraction from randomly oriented crystallites, providing the basis of the powder method.</p></div></div><div class="timeline-item"><span>1918</span><div><h3>Paul Scherrer's size relationship</h3><p>Scherrer relates diffraction-line broadening to the finite size of coherent crystalline domains.</p></div></div><div class="timeline-item"><span>TODAY</span><div><h3>Understanding framework materials</h3><p>PXRD supports characterization of MOFs and many other crystalline materials, while careful profile analysis remains essential for credible size estimates.</p></div></div></div></div></section>
+
+    <section class="sources shell"><div><p class="eyebrow">04 / SOURCES & TRANSPARENCY</p><h2>Built to be<br><em>checked.</em></h2></div><div class="source-list"><p><strong>Girolami, G. S.</strong> <em>X-ray Crystallography</em>, Chapter 41.3, pp. 444–446 (equations and worked example).</p><p><a href="https://onlinelibrary.wiley.com/iucr/itc/Ha/ch5o1v0001/" target="_blank" rel="noopener noreferrer">International Tables for Crystallography — Domain size and domain-size distributions ↗</a></p><p><a href="https://www.nist.gov/publications/certification-standard-reference-material-1979-powder-diffraction-line-profile-standard" target="_blank" rel="noopener noreferrer">NIST — Powder diffraction line-profile reference material ↗</a></p><p><a href="https://www.iucr.org/what-we-do/publications/books/Fifty-Years-of-X-ray-Diffraction/scherrer" target="_blank" rel="noopener noreferrer">Paul Scherrer — Personal Reminiscences (IUCr) ↗</a></p><div class="source-notice"><strong>Research beta · v0.1</strong><p>Peak fits are preliminary mathematical estimates, not certified particle-size measurements. Only local browser processing is used; no PXRD files are transmitted by this application.</p></div></div></section>
+  </main>
+  <footer class="site-footer"><div class="shell footer-inner"><a class="brand" href="/"><img class="brand-symbol" src="/images/frameworked-mark.png" alt=""><span>Frameworked<span class="brand-dot">.</span></span></a><p>Curiosity deserves a closer look.</p><a class="footer-back" href="/tools/">← All Frameworked tools</a></div></footer>
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+</body>
+</html>

@@ -2,22 +2,25 @@
 {{ partialCached "validate-editorial.html" .Site .Site.Language.Lang }}
 <html lang="en"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#F7F9FC">
 <title>{{ if not .IsHome }}{{ .Title }} · {{ end }}Frameworked</title>
 <meta name="description" content="{{ .Description | default site.Params.description }}">
 {{ if or hugo.IsServer (eq hugo.Environment "preview") .Draft }}<meta name="robots" content="noindex,nofollow">{{ end }}
 <link rel="canonical" href="{{ .Permalink }}">
 <link rel="preload" href="{{ "fonts/libron/Libron-Regular.woff2" | relURL }}" as="font" type="font/woff2" crossorigin>
 {{ $css := resources.Get "css/frameworked.css" | minify | fingerprint }}<link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
+{{ $design := resources.Get "css/editorial-redesign.css" | minify | fingerprint }}<link rel="stylesheet" href="{{ $design.RelPermalink }}" integrity="{{ $design.Data.Integrity }}">
 {{ $mark := (resources.Get "images/frameworked-mark.png").Resize "160x png" }}<link rel="icon" type="image/png" href="{{ $mark.RelPermalink }}">
-</head><body class="{{ if .IsHome }}home{{ else }}interior{{ end }}">
+</head><body class="{{ if .IsHome }}home{{ else }}interior{{ end }}{{ if .Params.isAbout }} about-page{{ end }}{{ if eq .Section "tools" }} tools-page{{ end }}">
 <a class="skip-link" href="#main">Skip to content</a>
 <div class="site-shell">
-<header class="site-header"><nav aria-label="Main navigation">
+<header class="site-header"><a class="site-brand" href="{{ "/" | relURL }}" aria-label="Frameworked home"><img src="{{ $mark.RelPermalink }}" alt="" width="36" height="36"><span>Frameworked<span class="brand-period">.</span></span></a><nav aria-label="Main navigation">
 <a href="{{ "/" | relURL }}" {{ if .IsHome }}aria-current="page"{{ end }}>Home</a>
 <a href="{{ "/articles/" | relURL }}" {{ if in (slice "articles" "learn" "series") .Section }}aria-current="page"{{ end }}>Articles</a>
 {{ if where (where site.RegularPages "Section" "explore") "Draft" false }}<a href="{{ "/explore/" | relURL }}" {{ if eq .Section "explore" }}aria-current="page"{{ end }}>Explore</a>{{ end }}
+<a href="{{ "/tools/" | relURL }}" {{ if eq .Section "tools" }}aria-current="page"{{ end }}>Tools</a>
 <a href="{{ "/about/" | relURL }}" {{ if .Params.isAbout }}aria-current="page"{{ end }}>About</a>
-</nav>{{ if not .IsHome }}<a class="small-brand" href="{{ "/" | relURL }}">Frameworked.</a>{{ end }}</header>
+</nav></header>
 <main id="main" tabindex="-1">{{ block "main" . }}{{ end }}</main>
-<footer class="site-footer"><a href="{{ "/" | relURL }}">frameworked.org</a></footer>
+<footer class="site-footer"><div class="footer-top"><div><a class="footer-wordmark" href="{{ "/" | relURL }}">Frameworked<span>.</span></a><p>Exploring chemistry, one building block at a time.</p></div><p class="footer-statement">Good science begins with<br><em>better questions.</em></p></div><div class="footer-bottom"><span>© {{ now.Year }} Frameworked · An independent science communication project</span><nav aria-label="Footer navigation"><a href="{{ "/articles/" | relURL }}">Articles</a><a href="{{ "/tools/" | relURL }}">Tools</a><a href="{{ "/about/" | relURL }}">About</a></nav><a href="#main">Back to top ↑</a></div></footer>
 </div></body></html>
