@@ -1,0 +1,165 @@
+/* Frameworked brand adaptation — sourced from the current frameworked.org
+ * visual language, while preserving the calculator's editorial layout.
+ * Brand tokens: paper #f7f9fc, blue #084b9e, navy #1c3049,
+ * ink #404040, green #089e4b, red #9e382e.
+ */
+@font-face{font-family:Libron;src:url('/fonts/libron/Libron-Regular.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:Libron;src:url('/fonts/libron/Libron-Italic.woff2') format('woff2');font-weight:400;font-style:italic;font-display:swap}
+@font-face{font-family:Libron;src:url('/fonts/libron/Libron-Bold.woff2') format('woff2');font-weight:700;font-style:normal;font-display:swap}
+@font-face{font-family:Libron;src:url('/fonts/libron/Libron-BoldItalic.woff2') format('woff2');font-weight:700;font-style:italic;font-display:swap}
+:root{
+  --ink:#1c3049;
+  --ink-soft:#404040;
+  --green:#084b9e;
+  --green-dark:#073a79;
+  --amber:#9e382e;
+  --cream:#f7f9fc;
+  --paper:#ffffff;
+  --line:#d2dce8;
+  --muted:#eff4fa;
+  --brand-blue:#084b9e;
+  --brand-navy:#1c3049;
+  --brand-green:#089e4b;
+  --brand-red:#9e382e;
+  --shadow:0 23px 65px rgba(28,48,73,.075);
+}
+body{font-family:Libron,Georgia,serif;color:var(--ink-soft)}
+.shell{max-width:1260px}
+.top-accent{background:linear-gradient(90deg,#084b9e 0 67%,#089e4b 67% 81%,#9e382e 81% 100%)}
+.site-header{background:#f7f9fcef;border-color:#cbd8e8}
+.brand{font-family:Libron,Georgia,serif;font-size:25px;font-weight:700;letter-spacing:-.07em;color:var(--brand-blue);gap:10px}
+.brand-symbol{display:block;width:31px;height:31px;object-fit:contain;flex:none}
+.brand-dot{color:var(--brand-red)}
+.primary-nav{font-family:Libron,Georgia,serif;color:#1c4d8d;font-size:15px;font-weight:700;letter-spacing:.015em}
+.primary-nav a:hover,.header-link:hover,.text-link:hover{color:var(--brand-red)}
+.header-link{font-family:Libron,Georgia,serif;color:var(--brand-blue);font-size:14px;font-weight:700}
+.hero{min-height:570px}
+.eyebrow{font-family:"Courier New",monospace;color:#3f6d9c;font-size:10px;letter-spacing:.15em}
+.eyebrow-line{background:var(--brand-red)}
+.eyebrow-sep{color:#899db9}
+.hero h1,.section-heading h2,.learning h2,.history h2,.sources h2{font-family:Libron,Georgia,serif;font-weight:700;letter-spacing:-.062em;color:var(--brand-blue)}
+.hero h1{font-size:clamp(68px,6.1vw,94px)}
+.hero h1 em,.section-heading h2 em,.inspector h3 em,.history h2 em,.sources h2 em{font-family:"Iowan Old Style","Baskerville",Georgia,serif;font-style:italic;font-weight:400;letter-spacing:-.07em;color:var(--brand-green)}
+.hero-lead{color:#58687f;font-size:19px;line-height:1.65}
+.primary-btn{font-family:Libron,Georgia,serif;background:var(--brand-blue);font-size:15px;font-weight:700;box-shadow:0 10px 21px #084b9e26}
+.primary-btn:hover{background:#063a7c}
+.text-link{font-family:Libron,Georgia,serif;color:var(--brand-blue);font-size:15px}
+.hero-foot{font-family:"Courier New",monospace;color:#607890;letter-spacing:0;font-size:10px}
+.status-dot{background:var(--brand-green);box-shadow:0 0 0 3px #dbefdf}
+.foot-divider{background:#b9cbe0}
+.hero-graphic{background:linear-gradient(145deg,#e3edf9 5%,#f0f5fb 65%,#e3efea 100%);box-shadow:inset 0 0 48px #c6d8ec80}
+.graphic-stamp,.graphic-index{color:#6e8fb7;font-family:"Courier New",monospace}
+.hero-diffraction{filter:none}
+.equation-card{background:#fff;border-color:#d1dceb;box-shadow:0 24px 58px #1c30491a}
+.equation-card>span{color:#5776a0;font-family:"Courier New",monospace}
+.equation-card .formula{color:#0b376b}
+.equation-card p{font-family:Libron,Georgia,serif;color:#6c7a8b;font-size:12px}
+.calculator-wrap{background:#edf2f8;border-color:#dce5f0}
+.section-heading>p{color:#6a7b8e;font-size:17px;line-height:1.65}
+.workspace{background:#fff;border-color:#d4dfec}
+.tool-sidebar{background:#f9fbff;border-color:#dce4ef}
+.sidebar-head h3{color:#1c3049}
+.sidebar-head p{color:#74879e}
+.tool-step{background:#e9f0fb;border-color:#ccdbed;color:#084b9e;font-family:"Courier New",monospace}
+.sidebar-rule{background:#dde5f0}
+.dropzone{background:#f0f6fc;border-color:#9fb9d9}
+.dropzone:hover,.dropzone.dragover{background:#e4eefb;border-color:#084b9e}
+.upload-icon,.dropzone strong,.drop-extensions,.demo-link{color:#084b9e}
+.dropzone small{color:#6785a8}
+.file-info{background:#e4f5e9;color:#146c3e}
+.field label{color:#344f74}
+.field label span,.field small{color:#8092a8}
+.field input[type=number],.field select{border-color:#d1dfef;color:#1c3049;outline-color:#7d9fc9}
+.field select{background-color:#fff}
+.segmented{background:#e7eef8}
+.segmented button{color:#6583aa}
+.segmented button.active{color:#084b9e}
+.field input[type=range]{accent-color:#084b9e}
+.field output{color:#084b9e}
+.caution-note{background:#fff9ef;border-color:#e9d4c1;color:#8c5a38}
+.caution-note>span{border-color:#c58b69}
+.analysis-top h3,.analysis-results-head h3{color:#1c3049}
+.analysis-panel,.tool-sidebar,.inspector-values{font-family:Inter,"Avenir Next",system-ui,sans-serif}
+.overline{color:#6588b0;font-family:"Courier New",monospace}
+.pill{background:#e9eff7;color:#4e719e}
+.pill.ready{background:#e3f5e9;color:#16713f}
+.pill.warning{background:#fdf0e6;color:#a25142}
+.plot-actions button{border-color:#d1dff0;color:#084b9e}
+.plot-actions button:hover{background:#edf3fc}
+.chart-container{border-color:#e0e9f3}
+.chart-legend{color:#607994}
+.legend-key.trace{border-color:#084b9e}
+.legend-key.fitted{border-color:#089e4b}
+.legend-key.width{border-color:#9e382e}
+.analysis-results-head{border-color:#e4eaf2}
+.outline-btn{border-color:#cbdbea;color:#084b9e}
+.outline-btn:hover:not(:disabled){background:#eef4fc}
+.peak-table th{border-color:#dbe7f2;color:#6b819d}
+.peak-table td{border-color:#edf1f6;color:#4f647e}
+.peak-table tr.active td{background:#e9f1fb;color:#084b9e}
+.peak-table tr:hover td{background:#f2f6fd}
+.peak-table .peak-number,.peak-table .value-strong{color:#084b9e}
+.peak-table .fit-poor{color:#9e382e}
+.peak-table .row-button{border-color:#cddaea;color:#084b9e}
+.peak-table tr.active .row-button{background:#dfeafa}
+.results-footer{color:#74889e}
+.inspector{background:#1c3049}
+.inspector .eyebrow{color:#a9c9ee}
+.inspector h3{font-family:Libron,Georgia,serif;font-size:43px;font-weight:700}
+.inspector h3 em{color:#b9d5f8}
+.inspector-copy p:not(.eyebrow){color:#c3d6ec;font-family:Libron,Georgia,serif;font-size:14px;line-height:1.7}
+.inspector-result>span,.variable-grid>div small{color:#a9c2df}
+.inspector-result p{color:#c1d1e4}
+.formula-caption{color:#d2e3f3}
+.principle-card{background:#fff;border-color:#d8e2ed}
+.card-number{color:#5f83ae;font-family:"Courier New",monospace}
+.principle-card h3{font-family:Libron,Georgia,serif;font-size:25px;font-weight:700;color:#084b9e}
+.principle-card p{font-size:15px;color:#5d7185;line-height:1.65}
+.mini-visual svg path[stroke="#2c706c"]{stroke:#084b9e}
+.mini-visual svg path[stroke="#d08052"]{stroke:#9e382e}
+.mini-visual.blocks span{background:#bad3ef;border-color:#477bbb}
+.mini-visual.blocks span:nth-child(2),.mini-visual.blocks span:nth-child(3),.mini-visual.blocks span:nth-child(6){background:#e0edfa}
+.mini-visual.blocks span:nth-child(4),.mini-visual.blocks span:nth-child(7){border-color:#9e382e;background:#f0d8d4}
+.method-footnote{background:#e6eef9;border-color:#ccdbed}
+.method-icon{background:#084b9e}
+.method-footnote h3{color:#084b9e}
+.method-footnote p{font-size:14px;color:#506b88}
+.history{background:#e8f0f9;border-color:#d4e2f2}
+.history-intro p:not(.eyebrow),.timeline-item p{color:#5f7995;font-size:15px}
+.timeline{border-color:#aac4e4}
+.timeline-item:before{background:#084b9e;box-shadow:0 0 0 5px #e8f0f9}
+.timeline-item>span{font-family:Libron,Georgia,serif;color:#084b9e}
+.timeline-item h3{font-family:Libron,Georgia,serif;color:#1c3049;font-size:17px}
+.source-list p{border-color:#d8e3ee;color:#536f8a;font-size:15px}
+.source-list a{text-decoration-color:#91accb}
+.source-list a:hover{color:#9e382e}
+.source-notice{background:#e7eff9;border-color:#d2e0ef}
+.source-notice strong{color:#084b9e}
+.source-notice p{color:#587593;font-size:13px}
+.site-footer{background:#1c3049}
+.site-footer .brand{color:#f2f7fd}
+.site-footer .brand-symbol{filter:brightness(0) invert(1);width:30px;height:30px}
+.site-footer .brand-dot{color:#ffbaa9}
+.site-footer p{font-family:"Iowan Old Style","Baskerville",Georgia,serif;color:#c8dcf0}
+.footer-inner>span{color:#9ab8d8}
+.toast{background:#084b9e}
+.toast.error{background:#9e382e}
+.skip-link{position:absolute;left:18px;top:-100px;z-index:20;background:#fff;padding:10px;color:#084b9e}.skip-link:focus{top:8px}
+.site-header{border-top:0}
+.header-inner{min-height:92px;position:relative}
+.brand{font-size:29px}
+.primary-nav{font-size:15px;gap:32px;position:absolute;left:50%;transform:translateX(-50%)}
+.primary-nav a{padding:34px 1px 31px;position:relative}
+.primary-nav a[aria-current]:after{content:"";position:absolute;bottom:0;left:0;right:0;border-bottom:2px solid #9e382e}
+.header-link{border:1px solid #084b9e;padding:11px 15px}
+.header-link:hover{background:#084b9e;color:#fff}
+.tool-subnav{display:flex;align-items:center;justify-content:space-between;gap:20px;padding-block:17px;border-bottom:1px solid #cfdded;color:#58779c;font:700 10px/1.5 'Courier New',monospace;letter-spacing:.1em}
+.tool-subnav div{display:flex;gap:25px}
+.tool-subnav a{text-decoration:none;color:#084b9e}
+.tool-subnav a:hover{color:#9e382e}
+.import-footnote{font-size:12px;line-height:1.5;color:#607c9a;margin:10px 0 14px}
+.footer-back{font-family:Libron,Georgia,serif;color:#c9def3;text-decoration:none}
+.footer-back:hover{color:#fff}
+@media(max-width:840px){.hero h1{font-size:72px}}
+@media(max-width:840px){.primary-nav{position:static;transform:none;margin-left:auto}}
+@media(max-width:600px){.header-inner{min-height:0;flex-wrap:wrap;justify-content:flex-start;gap:5px 15px;padding-top:17px}.brand{font-size:25px;width:100%;margin-bottom:4px}.brand-symbol{width:26px;height:26px}.primary-nav{font-size:14px;gap:22px;overflow-x:auto;width:100%;margin-left:0}.primary-nav a{padding:9px 0 15px}.tool-subnav{flex-wrap:wrap}.tool-subnav div{gap:17px}.hero h1{font-size:clamp(53px,13vw,73px)}.hero-lead{font-size:16px}.section-heading h2,.history h2,.sources h2{font-size:50px}.inspector h3{font-size:39px}}

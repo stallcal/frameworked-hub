@@ -10,6 +10,12 @@ hugo server --buildDrafts --environment preview --bind 127.0.0.1 --port 1313
 ```
 Open http://localhost:1313/.
 
+## Editorial redesign and Scherrer Lab review (October 2026)
+
+The review branch includes the redesigned homepage, reading pages, About page, and Tools navigation. The Scherrer Lab lives at `/tools/scherrer/` within **the same** Netlify/Hugo deployment, without a second hosting provider. See [the review handoff](docs/editorial-redesign-review.md) before considering a merge to production.
+
+The calculator currently accepts XY/XYE text data (plus text, CSV, and DAT variants), fits individual peaks and reports exploratory Scherrer coherent-domain estimates. The third XYE uncertainty column is not used for weighting; direct BRML import is not yet supported. Until a measured line-profile standard is available, displayed sizes are uncorrected. Test the scientific routines with `node --test tests/scherrer-analysis.test.mjs`.
+
 ## Build and check
 ```powershell
 hugo --buildDrafts --environment preview --destination public --cleanDestinationDir
