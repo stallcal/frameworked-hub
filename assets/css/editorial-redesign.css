@@ -42,10 +42,9 @@ body { color:var(--navy); font:18px/1.55 'Libron',Georgia,serif; background:var(
 .framework-bonds { stroke:var(--blue); stroke-width:8; stroke-linejoin:round; stroke-linecap:round; fill:none; opacity:.75; }
 .framework-secondary { stroke:var(--blue); stroke-width:4; stroke-linecap:round; opacity:.3; fill:none; }
 .framework-nodes { fill:var(--red); stroke:var(--blue); stroke-width:7; }
-.framework-open-space { fill:#FFFFFF; fill-opacity:.74; }
-.framework-depth { fill:none; stroke:var(--blue); stroke-width:5; stroke-linecap:round; opacity:.43; }
-.framework-inner-ring { fill:none; stroke:var(--blue); stroke-width:6; stroke-linejoin:round; opacity:.58; }
-.framework-inner-nodes { fill:var(--red); stroke:var(--blue); stroke-width:4; opacity:.78; }
+.pore-ball-shadow { fill:#6489B5; opacity:.12; }
+.pore-ball { fill:url(#pore-space-gradient); stroke:#6D99BE; stroke-width:1.8; }
+.pore-ball-highlight { fill:#FFFFFF; opacity:.46; }
 .framework-labels { stroke:var(--red); stroke-width:2; fill:none; }
 .framework-labels text { stroke:none; fill:var(--red); font:700 13px 'Courier New',monospace; letter-spacing:1px; }
 .framework-labels .pore-label { font-size:11px; letter-spacing:.35px; }
