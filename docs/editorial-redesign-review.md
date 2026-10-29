@@ -1,15 +1,15 @@
 # Frameworked editorial redesign — review handoff
 
-**Status:** Prepared for Caleb's review; do not merge into the production branch or publish without his approval.
+**Status:** The initial redesign was deployed to Frameworked.org on October 28, 2026. A follow-up simplification is prepared for Caleb's review and has **not** been deployed.
 
-**Branch:** `feat/editorial-redesign-scherrer`
+**Current review branch:** `feat/scherrer-tool-simplify-pore`
 
 ## What changed
 
-- A new homepage with Frameworked's blue/white/navy/graphite/green/oxide-red palette, Libron typography, and contrasting calligraphic italic accents.
+- A new homepage with Frameworked's blue/white/navy/graphite/green/oxide-red palette and Libron typography.
 - Original vector concept art and a clearly labeled illustrative PXRD plot. Neither represents experimental data or a specific crystallographic structure.
 - Consistent navigation, reading-page typography, About treatment, and footer.
-- A dedicated `/tools/` index and a static Scherrer Lab at `/tools/scherrer/` served by the existing Hugo/Netlify website.
+- A dedicated `/tools/` index and a static Scherrer calculator at `/tools/scherrer/` served by the existing Hugo/Netlify website.
 - The calculator's imported scientific analysis core and interface, reusing Frameworked's existing Libron files and OFL license notices. No external font hosting or separate calculator domain is required.
 - Explicit XYE support and a note that the third uncertainty column is not used in the fitting routine. Bruker BRML direct import is not implemented.
 
@@ -19,10 +19,19 @@
 - Removed the prominent Scherrer Lab header button. The calculator remains discoverable through **Tools** and homepage calls to action.
 - Replaced the word **journal** with the provisional eyebrow “MOFs / Materials Science / Research,” so Frameworked is not framed as a formal journal.
 - Rephrased the hero description to call Frameworked a *place* to explore research and evidence.
-- Made the diagram's nodes solid oxide red, removed the faint background grid, and added a dotted open-space marker within the conceptual network.
-- Moved the “PORE / VOID” label into the right margin, reduced the distracting lower-right panel curve, and replaced the decorative slogan with a factual diagram caption.
+- Made the diagram's nodes solid oxide red, removed the faint background grid, and refined the conceptual network to emphasize its open channel.
+- Kept the pore label to the right, reduced the distracting lower-right panel curve, and replaced the decorative slogan with a factual diagram caption.
 
 These are review edits; the new eyebrow and hero description remain open for Caleb's approval.
+
+### Follow-up: tool-first layout and editorial restraint (pending review)
+
+- Removed the Scherrer page's large promotional hero, three teaching cards, history timeline, and sources section. The upload/fitting workspace is now the primary content; a compact equation and essential scientific caution remain next to the tool.
+- Restyled the calculator using the main site's blue, oxide red, navy, pale paper, and Libron. Red is used sparingly as a visual accent; green retains a role for fit/status data.
+- Replaced the small dashed pore marker with a stylized *open central channel*, shown through two linked hexagonal rings in perspective. This is a conceptual diagram, **not** a validated MOF topology.
+- Replaced several decorative page slogans with explicit headings: “Scientific tools,” “Scherrer calculator,” and “Explore Frameworked.” Reduced italics to the main homepage expression.
+- Removed the extra footer slogan and redundant homepage manifesto block. The chosen tagline remains once in the site's identity treatment.
+- Set aside the science/history narrative for a future standalone article; see `docs/scherrer-article-backlog.md`.
 
 ### Tagline and scope decision
 
@@ -62,8 +71,8 @@ node --test tests/scherrer-analysis.test.mjs
 - [ ] Calculator appears integrated, not as a separate brand or host.
 - [ ] Upload a real XYE file, inspect at least two clean peaks, and cross-check manual fits.
 - [ ] Confirm scientific caveats and the instrument's wavelength before release.
-- [ ] Decide whether the active Scherrer Lab should carry an explicit public **beta** label after launch.
-- [ ] Approve a staged merge/deploy to Netlify only after review.
+- [x] Retain an explicit **research beta** label on the calculator.
+- [ ] Review the new open-channel concept and simplified typography before merging the follow-up.
 
 ## Licensing
 

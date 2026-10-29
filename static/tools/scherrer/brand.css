@@ -1,5 +1,5 @@
-/* Frameworked brand adaptation — sourced from the current frameworked.org
- * visual language, while preserving the calculator's editorial layout.
+/* Frameworked brand adaptation — sourced from the main frameworked.org
+ * visual language, now with the calculator as the primary page content.
  * Brand tokens: paper #f7f9fc, blue #084b9e, navy #1c3049,
  * ink #404040, green #089e4b, red #9e382e.
  */
@@ -39,7 +39,7 @@ body{font-family:Libron,Georgia,serif;color:var(--ink-soft)}
 .eyebrow-sep{color:#899db9}
 .hero h1,.section-heading h2,.learning h2,.history h2,.sources h2{font-family:Libron,Georgia,serif;font-weight:700;letter-spacing:-.062em;color:var(--brand-blue)}
 .hero h1{font-size:clamp(68px,6.1vw,94px)}
-.hero h1 em,.section-heading h2 em,.inspector h3 em,.history h2 em,.sources h2 em{font-family:"Iowan Old Style","Baskerville",Georgia,serif;font-style:italic;font-weight:400;letter-spacing:-.07em;color:var(--brand-green)}
+.hero h1 em,.section-heading h2 em,.inspector h3 em,.history h2 em,.sources h2 em{font-family:"Iowan Old Style","Baskerville",Georgia,serif;font-style:italic;font-weight:400;letter-spacing:-.07em;color:var(--brand-red)}
 .hero-lead{color:#58687f;font-size:19px;line-height:1.65}
 .primary-btn{font-family:Libron,Georgia,serif;background:var(--brand-blue);font-size:15px;font-weight:700;box-shadow:0 10px 21px #084b9e26}
 .primary-btn:hover{background:#063a7c}
@@ -68,6 +68,7 @@ body{font-family:Libron,Georgia,serif;color:var(--ink-soft)}
 .dropzone small{color:#6785a8}
 .file-info{background:#e4f5e9;color:#146c3e}
 .field label{color:#344f74}
+.field .field-label{display:block;color:#344f74;font-size:11px;font-weight:800;margin-bottom:8px}
 .field label span,.field small{color:#8092a8}
 .field input[type=number],.field select{border-color:#d1dfef;color:#1c3049;outline-color:#7d9fc9}
 .field select{background-color:#fff}
@@ -163,3 +164,44 @@ body{font-family:Libron,Georgia,serif;color:var(--ink-soft)}
 @media(max-width:840px){.hero h1{font-size:72px}}
 @media(max-width:840px){.primary-nav{position:static;transform:none;margin-left:auto}}
 @media(max-width:600px){.header-inner{min-height:0;flex-wrap:wrap;justify-content:flex-start;gap:5px 15px;padding-top:17px}.brand{font-size:25px;width:100%;margin-bottom:4px}.brand-symbol{width:26px;height:26px}.primary-nav{font-size:14px;gap:22px;overflow-x:auto;width:100%;margin-left:0}.primary-nav a{padding:9px 0 15px}.tool-subnav{flex-wrap:wrap}.tool-subnav div{gap:17px}.hero h1{font-size:clamp(53px,13vw,73px)}.hero-lead{font-size:16px}.section-heading h2,.history h2,.sources h2{font-size:50px}.inspector h3{font-size:39px}}
+
+/* Focused calculator view. The essay/history material will become a separate article. */
+body{background:#f7f9fc;color:var(--brand-navy)}
+.shell{width:calc(100% - clamp(44px,8.4vw,152px));max-width:1490px}
+.site-header{background:#f7f9fc;border-bottom:0}
+.header-inner{border-bottom:1px solid #c8d6e5}
+.primary-nav{color:var(--brand-navy)}
+.calculator-wrap{padding:47px 0 86px;background:transparent;border:0}
+.calculator-intro{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(250px,.65fr);align-items:center;gap:36px;margin-bottom:25px}
+.calculator-title .eyebrow{margin-bottom:13px;color:var(--brand-blue)}
+.calculator-title h1{font:700 clamp(42px,4.85vw,76px)/1.04 Libron,Georgia,serif;letter-spacing:-.064em;color:var(--brand-blue);margin:0 0 14px}
+.title-period{color:var(--brand-red)}
+.calculator-title>p:last-child{color:#536c85;font:18px/1.5 Libron,Georgia,serif;max-width:760px;margin:0}
+.calculator-equation{border-left:2px solid var(--brand-red);padding:10px 0 12px 25px;justify-self:end;min-width:265px;color:var(--brand-navy)}
+.calculator-equation>span{font:700 10px/1.5 "Courier New",monospace;letter-spacing:.12em;color:#597895}
+.calculator-equation .formula{font:normal 32px/1.12 Libron,Georgia,serif;display:flex;gap:13px;align-items:center;margin:7px 0 5px}
+.calculator-equation .fraction{font-size:24px}
+.calculator-equation small{font:11px/1.5 "Courier New",monospace;color:#647f98}
+.calculator-disclaimer{background:#ecf2f9;border-left:3px solid var(--brand-red);padding:12px 16px;margin:0 0 24px;color:#4c647c;font:13px/1.6 Inter,"Avenir Next",system-ui,sans-serif}
+.calculator-disclaimer strong{color:var(--brand-blue)}
+.calculator-disclaimer span{white-space:nowrap}
+.workspace{box-shadow:0 14px 34px #1c304910;border-radius:5px}
+.tool-sidebar{background:#f7faff}
+.inspector{margin-top:22px;border-radius:5px}
+.inspector:before{display:none}
+.inspector h3{font:700 35px/1.1 Libron,Georgia,serif;letter-spacing:-.045em}
+.empty-wave{color:#b9cde4}
+.empty-state strong{font-family:Libron,Georgia,serif;color:var(--brand-navy)}
+.empty-state button{background:#e9f1fb;border-color:#c3d6ed;color:var(--brand-blue)}
+.empty-state button:hover{background:#dceafa}
+.chart-tooltip{background:var(--brand-navy)}
+.tool-footer{background:#f7f9fc;border-top:2px solid var(--brand-blue);padding:43px 0 20px;color:var(--brand-navy)}
+.tool-footer .footer-top{display:block;padding-bottom:34px}
+.tool-footer .footer-wordmark{font:700 clamp(38px,5.6vw,70px)/1 Libron,Georgia,serif;letter-spacing:-.07em;color:var(--brand-blue)}
+.tool-footer .footer-wordmark span{color:var(--brand-red)}
+.tool-footer .footer-top p{font:16px/1.5 Libron,Georgia,serif;color:#6b7f96;margin:12px 0 0}
+.tool-footer .footer-bottom{display:flex;justify-content:space-between;gap:22px;flex-wrap:wrap;border-top:1px solid #c8d6e5;padding-top:17px;font:12px/1.6 "Courier New",monospace;color:#617890}
+.tool-footer .footer-bottom nav{display:flex;gap:24px}
+.tool-footer .footer-bottom a:hover{color:var(--brand-blue)}
+@media(max-width:900px){.calculator-intro{grid-template-columns:1fr;gap:20px}.calculator-equation{justify-self:start;min-width:0}}
+@media(max-width:600px){.shell{width:calc(100% - 36px)}.calculator-wrap{padding:28px 0 60px}.calculator-title h1{font-size:clamp(39px,10vw,55px)}.calculator-title>p:last-child{font-size:16px}.calculator-equation{padding:5px 0 5px 16px}.calculator-disclaimer{font-size:12px}.primary-nav a:last-child{display:block}.tool-footer .footer-bottom{flex-direction:column;gap:15px}}
