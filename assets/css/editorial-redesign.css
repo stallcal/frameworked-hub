@@ -42,9 +42,9 @@ body { color:var(--navy); font:18px/1.55 'Libron',Georgia,serif; background:var(
 .framework-bonds { stroke:var(--blue); stroke-width:8; stroke-linejoin:round; stroke-linecap:round; fill:none; opacity:.75; }
 .framework-secondary { stroke:var(--blue); stroke-width:4; stroke-linecap:round; opacity:.3; fill:none; }
 .framework-nodes { fill:var(--red); stroke:var(--blue); stroke-width:7; }
-.pore-ball-shadow { fill:#39875B; opacity:.12; }
-.pore-ball { fill:url(#pore-space-gradient); stroke:#479E6B; stroke-width:1.8; }
-.pore-ball-highlight { fill:#FFFFFF; opacity:.34; }
+.pore-ball-shadow { fill:#1B7951; opacity:.065; }
+.pore-ball { fill:url(#pore-space-gradient); stroke:#469E70; stroke-width:1.5; }
+.pore-ball-highlight { fill:#FFFFFF; opacity:.22; }
 .framework-labels { stroke:var(--red); stroke-width:2; fill:none; }
 .framework-labels text { stroke:none; fill:var(--red); font:700 13px 'Courier New',monospace; letter-spacing:1px; }
 .framework-labels .pore-label { font-size:11px; letter-spacing:.35px; }
