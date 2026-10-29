@@ -39,7 +39,9 @@ body { color:var(--navy); font:18px/1.55 'Libron',Georgia,serif; background:var(
 .illustration-bottom span:first-child { font:700 10px/1.5 'Courier New',monospace; color:#526F92; text-transform:uppercase; letter-spacing:.04em; }
 .schematic-note { font:10px/1.4 'Courier New',monospace; text-align:right; }
 .molecular-art { width:100%; max-height:520px; flex:1; }
-.framework-bonds { stroke:var(--blue); stroke-width:8; stroke-linejoin:round; stroke-linecap:round; fill:none; opacity:.75; }
+.framework-rear-bonds { stroke:var(--blue); stroke-width:7; stroke-linejoin:round; stroke-linecap:round; fill:none; opacity:.34; }
+.framework-rear-nodes { fill:var(--red); stroke:var(--blue); stroke-width:7; opacity:.50; }
+.framework-bonds { stroke:var(--blue); stroke-width:8; stroke-linejoin:round; stroke-linecap:round; fill:none; opacity:.85; }
 .framework-secondary { stroke:var(--blue); stroke-width:4; stroke-linecap:round; opacity:.3; fill:none; }
 .framework-nodes { fill:var(--red); stroke:var(--blue); stroke-width:7; }
 .pore-ball-shadow { fill:#1B7951; opacity:.065; }
