@@ -350,7 +350,7 @@ function downloadCSV() {
   if(!state.data.length)return;
   const cfg=currentSettings();
   const headers=['Peak','Status','2theta_deg','theta_deg','Observed_FWHM_deg_2theta','Corrected_FWHM_deg_2theta','Beta_rad','Size_nm','Fit_R_squared','Profile','PseudoVoigt_Lorentzian_fraction','Wavelength_A','Shape_factor_K','Correction_assumption','Instrument_FWHM_deg_2theta'];
-  const rows=[['# Frameworked Scherrer Lab v0.1 — exploratory, verify all fitted reflections'],['# Input file',state.source],['# Dataset',state.simulated?'SIMULATED':'USER PXRD FILE'],['# Instrumental broadening and microstrain must be evaluated before interpreting domain size'],headers];
+  const rows=[['# Frameworked Scherrer Calculator v0.1 — exploratory, verify all fitted reflections'],['# Input file',state.source],['# Dataset',state.simulated?'SIMULATED':'USER PXRD FILE'],['# Instrumental broadening and microstrain must be evaluated before interpreting domain size'],headers];
   state.peaks.forEach((peak,i)=>{
     const f=peak.fit,r=calculate(peak);
     rows.push([i+1,(!f?'unfitted':f.fitted&&f.rSquared>=.94?'review':'poor-fit-review'),f?.center,r?.thetaDeg,f?.fwhmDeg,r?.sampleWidthDeg,r?.betaRad,r?.valid?r.sizeNm:null,f?.rSquared,f?.model,f?.eta,cfg.wavelengthA,cfg.shapeFactor,cfg.correction,cfg.instrumentalFwhmDeg]);
