@@ -9,17 +9,16 @@
   </div>
   <div class="hero-illustration">
     <div class="illustration-caption"><span>FRAMEWORK STUDIES</span><span>FIGURE 001 — CONCEPTUAL</span></div>
-    <svg class="molecular-art" viewBox="0 0 570 610" role="img" aria-label="Conceptual node–linker framework with blue connecting bonds, red nodes, and a large translucent green sphere centered in the main framework opening, between faded rear connections and crisp front edges to indicate pore volume. The pore-space sphere is a visualization aid, not an atom. Not a crystallographic model of a specific MOF.">
+    <svg class="molecular-art" viewBox="0 0 570 610" role="img" aria-label="Conceptual node–linker framework with blue connecting bonds, red nodes, and a large translucent green sphere centered in the main framework opening, behind three strong foreground spokes and in front of three faded rear spokes, indicating depth in the conceptual pore volume. The pore-space sphere is a visualization aid, not an atom. Not a crystallographic model of a specific MOF.">
       <defs><radialGradient id="pore-space-gradient" cx="34%" cy="29%" r="74%"><stop offset="0" stop-color="#F3FFF6" stop-opacity=".86"/><stop offset=".43" stop-color="#9BDAB4" stop-opacity=".70"/><stop offset=".83" stop-color="#52AC7D" stop-opacity=".65"/><stop offset="1" stop-color="#248C59" stop-opacity=".57"/></radialGradient></defs>
-      <!-- Subtle depth: rear node and intersecting connections sit behind the pore volume. -->
-      <g class="framework-rear-bonds"><path d="M285 82V438 M145 172L425 348 M425 172L145 348"/></g>
-      <g class="framework-rear-nodes"><circle cx="285" cy="260" r="21"/></g>
+      <!-- Three rear spokes recede behind the pore volume. -->
+      <g class="framework-rear-bonds"><path d="M285 82L285 260 M145 348L285 260 M425 348L285 260"/></g>
       <!-- The sphere visualizes empty volume, not an atom or an occupied guest site. -->
       <g class="framework-pore-ball" aria-hidden="true"><circle class="pore-ball-shadow" cx="289" cy="265" r="132"/><circle class="pore-ball" cx="285" cy="260" r="132"/><ellipse class="pore-ball-highlight" cx="238" cy="208" rx="32" ry="19" transform="rotate(-28 238 208)"/></g>
-      <!-- Foreground outline and nodes stay crisp, visually wrapping the sphere. -->
-      <g class="framework-bonds"><path d="M285 82L425 172V348L285 438L145 348V172Z"/></g>
+      <!-- Outer framework and the three front spokes remain visible over the sphere. -->
+      <g class="framework-bonds"><path d="M285 82L425 172V348L285 438L145 348V172Z M145 172L285 260 M425 172L285 260 M285 260L285 438"/></g>
       <g class="framework-secondary"><path d="M145 172L92 137 M425 172L476 138 M145 348L94 383 M425 348L478 390 M285 82V26 M285 438V494"/></g>
-      <g class="framework-nodes"><circle cx="285" cy="82" r="19"/><circle cx="425" cy="172" r="19"/><circle cx="425" cy="348" r="19"/><circle cx="285" cy="438" r="19"/><circle cx="145" cy="348" r="19"/><circle cx="145" cy="172" r="19"/></g>
+      <g class="framework-nodes"><circle cx="285" cy="82" r="19"/><circle cx="425" cy="172" r="19"/><circle cx="425" cy="348" r="19"/><circle cx="285" cy="438" r="19"/><circle cx="145" cy="348" r="19"/><circle cx="145" cy="172" r="19"/><circle cx="285" cy="260" r="21"/></g>
       <g class="framework-labels"><path d="M302 75L362 54H425"/><text x="367" y="43">NODE</text><path d="M203 209L136 239H76"/><text x="78" y="228">LINKER</text><path d="M408 294L442 312H544"/><text class="pore-label" x="460" y="300">PORE SPACE</text></g>
     </svg>
     <div class="illustration-bottom"><span>Conceptual porous network</span><span class="schematic-note">Schematic only · not crystallographic data</span></div>
