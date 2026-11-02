@@ -51,22 +51,23 @@
             <div class="caution-note"><span aria-hidden="true">!</span><p><strong id="correctionStatus">Uncorrected analysis</strong><br><span id="correctionHelp">Instrumental and strain broadening may inflate FWHM. Treat sizes as preliminary estimates.</span></p></div>
           </aside>
 
-          <div class="analysis-panel"><div class="analysis-workbench"><div class="analysis-flow">
+          <div class="analysis-panel"><div class="analysis-workbench"><div class="analysis-flow"><section class="plot-section" aria-label="Diffraction plot">
             <div class="analysis-top"><div><p class="overline">LIVE DIFFRACTOGRAM</p><h3 id="patternName">Waiting for PXRD data</h3></div><span id="plotStatus" class="pill">NO DATA</span></div>
             <div class="plot-toolbar"><span id="plotDescriptor">Select a file or load the example to begin.</span><div class="plot-actions"><button type="button" id="zoomIn" title="Zoom in" aria-label="Zoom in">+</button><button type="button" id="zoomOut" title="Zoom out" aria-label="Zoom out">−</button><button type="button" id="resetZoom" title="Reset zoom" aria-label="Reset zoom">↺</button></div></div>
             <div class="chart-container" id="chartContainer"><canvas id="pxrdCanvas" role="img" aria-label="Interactive PXRD intensity versus two theta plot. Click a reflection to analyze it."></canvas><div class="empty-state" id="emptyState"><span class="empty-wave">⌁</span><strong>Your pattern starts here.</strong><p>Load an XY file, or try a simulated scan to explore how peak fitting works.</p><button type="button" id="emptyDemo">Load example data <span aria-hidden="true">↗</span></button></div><div class="chart-tooltip" id="chartTooltip" hidden></div></div>
             <div class="chart-legend"><div><span class="legend-key trace"></span> Loaded traces</div><div><span class="legend-key fitted"></span> Accepted selected fit</div><div><span class="legend-key width"></span> FWHM</div><span>Blue ring: selected · Red ring: review fit · Wheel: zoom</span></div><div class="overlay-legend" id="overlayLegend"></div>
             <div class="manual-peak-toolbar" aria-label="Manual peak selection"><label for="manualPeakAngle">Missed a reflection?</label><div class="manual-peak-controls"><input type="number" id="manualPeakAngle" min="0" max="180" step="any" inputmode="decimal" placeholder="2θ (degrees)" aria-label="Manual 2θ peak position in degrees"><button type="button" id="addManualPeak">Add peak</button></div><small>Enter its approximate 2θ position to bypass automatic suggestions. Close or overlapping peaks may need a smaller fitting window or multi-peak analysis.</small></div>
-            <div class="analysis-results-head"><div><p class="overline">REFLECTION ANALYSIS</p><h3>Detected peaks <span id="peakCount">0</span></h3></div><button class="outline-btn" id="downloadButton" type="button" disabled>Export results <span aria-hidden="true">↓</span></button></div>
+            </section><section class="analysis-peaks" aria-label="Reflection list"><div class="analysis-results-head"><div><p class="overline">REFLECTION ANALYSIS</p><h3>Detected peaks <span id="peakCount">0</span></h3></div><button class="outline-btn" id="downloadButton" type="button" disabled>Export results <span aria-hidden="true">↓</span></button></div>
             <div class="peak-table-scroll"><table class="peak-table"><thead><tr><th title="Choose reflections for the domain-size summary">Average</th><th>Peak</th><th>2θ (°)</th><th>FWHM (° 2θ)</th><th>Fit R²</th><th>Domain (nm)</th><th></th></tr></thead><tbody id="peakTableBody"><tr><td colspan="7" class="no-peaks">Your fitted peaks will appear here.</td></tr></tbody></table></div>
             <div class="results-footer" id="resultsFooter">Automatic detection proposes candidate peaks. Review each fitting interval and exclude overlapping or poorly fitted reflections.</div>
+              </section>
 
               </div>
               <aside class="results-rail" aria-label="Live Scherrer readouts">
                 <div class="inspector" id="inspector">
   <div class="inspector-copy"><p class="eyebrow">LIVE / SELECTED REFLECTION</p><h3>Scherrer results</h3><p id="inspectorText">Select a fitted reflection to inspect its coherent-domain-size estimate.</p></div>
   <div class="inspector-values">
-    <div class="inspector-result"><span>COHERENT DOMAIN SIZE</span><strong id="sizeValue">— <small>nm</small></strong><p id="sizeQualifier">No reflection selected</p></div>
+    <div class="inspector-result" aria-live="polite"><span>COHERENT DOMAIN SIZE</span><strong id="sizeValue">— <small>nm</small></strong><p id="sizeQualifier">No reflection selected</p></div>
     <div class="variable-grid">
       <div><small>Bragg angle, θ</small><strong id="thetaValue">—</strong></div>
       <div><small>FWHM, β</small><strong id="betaValue">—</strong></div>
@@ -76,7 +77,7 @@
     <details class="calculation-breakdown"><summary>Show calculation steps</summary><p class="formula-caption" id="formulaDetail">D = K × λ / (β × cos θ) · width in radians, length in nm.</p></details>
   </div>
 </div>
-                <div class="domain-summary domain-summary-rail" aria-label="Selected reflection domain-size summary">
+                <div class="domain-summary domain-summary-rail" aria-label="Selected reflection domain-size summary" aria-live="polite">
               <div class="domain-summary-header"><strong>Selected reflections: <span id="summaryCount">0</span></strong><small>Coherent-domain size, not particle diameter</small></div>
               <div class="domain-summary-stats"><div><small>Arithmetic mean</small><strong id="summaryMean">— nm</strong></div><div><small>Sample SD</small><strong id="summarySD">—</strong></div><div><small>SEM</small><strong id="summarySEM">—</strong></div></div>
               <p id="summaryNote">Check two or more reviewed, isolated reflections to calculate an average, sample standard deviation, and standard error. These are not a fully propagated measurement uncertainty.</p>
