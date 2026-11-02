@@ -342,17 +342,18 @@ function draw() {
   if (!state.data.length || !state.view) return;
   const p = { left: 58, right: width - 17, top: 20, bottom: height - 45 };
   const xMin = state.view.min, xMax = state.view.max;
-  const visible = state.data.filter(pt => pt.x >= xMin && pt.x <= xMax);
-  if (!visible.length) return;
-  let rawMinY = Infinity, rawMaxY = -Infinity;
-  for(const pt of visible){rawMinY=Math.min(rawMinY,pt.y);rawMaxY=Math.max(rawMaxY,pt.y);}
-  const spanY = Math.max(rawMaxY - rawMinY, Math.abs(rawMaxY)*.01, 1);
-  const yMin = Math.min(0,rawMinY - spanY*.08);
-  const yMax = rawMaxY + spanY*.12;
-  const fx = x => p.left+(x-xMin)/(xMax-xMin)*(p.right-p.left);
-  const fy = y => p.bottom-(y-yMin)/(yMax-yMin)*(p.bottom-p.top);
-  state.plotGeometry = { p, xMin, xMax, yMin, yMax, fx, fy, width, height };
-
+  const visibleByPattern=state.patterns.map(record=>({
+    record,points:record.data.filter(pt=>pt.x>=xMin&&pt.x<=xMax)
+  }));
+  const displayed=visibleByPattern.flatMap(entry=>entry.points.map(pt=>plotY(pt.y,entry.record)));
+  if(!displayed.length)return;
+  const rawMinY=Math.min(...displayed),rawMaxY=Math.max(...displayed);
+  const spanY=Math.max(rawMaxY-rawMinY,Math.abs(rawMaxY)*.01,1);
+  const yMin=Math.min(0,rawMinY-spanY*.08);
+  const yMax=rawMaxY+spanY*.12;
+  const fx=x=>p.left+(x-xMin)/(xMax-xMin)*(p.right-p.left);
+  const fy=y=>p.bottom-(y-yMin)/(yMax-yMin)*(p.bottom-p.top);
+  state.plotGeometry={p,xMin,xMax,yMin,yMax,fx,fy,width,height};
   ctx.fillStyle='#fff'; ctx.fillRect(0,0,width,height);
   ctx.font='10px system-ui, sans-serif'; ctx.lineWidth=1; ctx.strokeStyle='#e4eaf4'; ctx.fillStyle='#7289a6';
   const xStep = niceStep(xMax-xMin,7), yStep = niceStep(yMax-yMin,5);
@@ -366,27 +367,42 @@ function draw() {
   }
   ctx.fillStyle='#536f91';ctx.font='10px system-ui, sans-serif';ctx.textAlign='center';
   ctx.fillText('2θ (degrees)',(p.left+p.right)/2,height-8);
-  ctx.save();ctx.translate(13,(p.top+p.bottom)/2);ctx.rotate(-Math.PI/2);ctx.fillText('Intensity (a.u.)',0,0);ctx.restore();
+  ctx.save();ctx.translate(13,(p.top+p.bottom)/2);ctx.rotate(-Math.PI/2);ctx.fillText(state.normalizeOverlay?'Relative intensity (% max)':'Intensity (a.u.)',0,0);ctx.restore();
   ctx.save();ctx.beginPath();ctx.rect(p.left,p.top,p.right-p.left,p.bottom-p.top);ctx.clip();
-  ctx.lineWidth=1.4;ctx.strokeStyle='#084b9e';ctx.beginPath();
-  visible.forEach((pt,i)=>{ const x=fx(pt.x),y=fy(pt.y);if(i===0)ctx.moveTo(x,y);else ctx.lineTo(x,y); });ctx.stroke();
+  for(const entry of visibleByPattern){
+    if(!entry.points.length)continue;
+    ctx.strokeStyle=entry.record.color;
+    ctx.lineWidth=entry.record.id===state.activePatternId?2:1.3;
+    ctx.globalAlpha=entry.record.id===state.activePatternId?1:.74;
+    ctx.beginPath();
+    entry.points.forEach((pt,i)=>{
+      const x=fx(pt.x),y=fy(plotY(pt.y,entry.record));
+      if(i===0)ctx.moveTo(x,y);else ctx.lineTo(x,y);
+    });
+    ctx.stroke();
+  }
+  ctx.globalAlpha=1;
   const peak=selected(),fit=peak?.fit;
   for(const pp of state.peaks){
     const marker = peakMarkerPosition(pp);
     if(!marker || marker.x<xMin || marker.x>xMax) continue;
-    ctx.fillStyle = !pp.fit ? '#9e382e' : pp.id === state.selectedId ? '#9e382e' : '#63a781';
-    ctx.beginPath();ctx.arc(fx(marker.x), fy(marker.y), pp.id===state.selectedId?4.5:3,0,Math.PI*2);ctx.fill();
+    const active=pp.id===state.selectedId;
+    ctx.beginPath();ctx.arc(fx(marker.x),fy(plotY(marker.y,activePattern())),active?5:3.2,0,Math.PI*2);
+    ctx.fillStyle=fitUsable(pp)?'#089e4b':'#fff';
+    ctx.fill();
+    ctx.strokeStyle=active?'#084b9e':fitUsable(pp)?'#089e4b':'#9e382e';
+    ctx.lineWidth=active?2.4:1.5;ctx.stroke();
   }
-  if(fit){
+  if(fit && fitUsable(peak)){
     ctx.strokeStyle='#089e4b';ctx.lineWidth=2.2;ctx.setLineDash([6,4]);ctx.beginPath();
     let started=false;
     for(let i=0;i<=250;i++){
       const x=fit.startX+(fit.endX-fit.startX)*i/250;
       if(x<xMin||x>xMax)continue;
-      const y=predictIntensity(x,fit);
+      const y=plotY(predictIntensity(x,fit),activePattern());
       if(!started){ctx.moveTo(fx(x),fy(y));started=true;}else ctx.lineTo(fx(x),fy(y));
     }ctx.stroke();ctx.setLineDash([]);
-    const yHalf=fit.intercept+fit.amplitude/2;
+    const yHalf=plotY(fit.intercept+fit.amplitude/2,activePattern());
     ctx.strokeStyle='#9e382e';ctx.lineWidth=2.4;ctx.beginPath();ctx.moveTo(fx(fit.center-fit.fwhmDeg/2),fy(yHalf));ctx.lineTo(fx(fit.center+fit.fwhmDeg/2),fy(yHalf));ctx.stroke();
     ctx.setLineDash([4,5]);ctx.strokeStyle='#9e382e80';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(fx(fit.center),p.top);ctx.lineTo(fx(fit.center),p.bottom);ctx.stroke();ctx.setLineDash([]);
   }
@@ -404,13 +420,12 @@ function addPeakAt(hint) {
     return toast(`Enter a 2θ position within the loaded range (${round(state.data[0].x, 2)}–${round(state.data.at(-1).x, 2)}°).`, true);
   const duplicate = state.peaks.find(p => Math.abs(p.hint - hint) < 1e-6);
   if (duplicate) return selectPeak(duplicate.id);
-  const fit = fitPeak(state.data, hint, n(form.window), form.profile.value);
-  const peak = { id: state.nextId++, hint, fit, automatic: false };
+  const peak={id:state.nextId++,hint,fit:null,automatic:false,included:false};
   state.peaks.push(peak);
-  state.peaks.sort((a, b) => a.hint - b.hint);
-  selectPeak(peak.id);
-  if (!fit) toast('Peak added, but a single-peak fit was unavailable. Try a different fitting window.', true);
-  else if (hasCenterDrift(fit, hint)) toast('Peak added, but the fit center shifted away from the chosen reflection. Check for a nearby stronger peak or overlap.', true);
+  state.peaks.sort((a,b)=>a.hint-b.hint);
+  saveActive();refitAll();selectPeak(peak.id);updateSummary();
+  if(!fitUsable(state.peaks.find(p=>p.id===peak.id)))
+    toast('Reflection marked, but the fit is not reliable. Adjust the window or inspect overlapping peaks.',true);
 }
 
 function choosePeakAt(x, clientX, clientY) {
@@ -486,8 +501,9 @@ canvas.addEventListener('wheel',e=>{
 
 function zoom(factor,pivot){
   if(!state.data.length || !state.view)return;
-  const minSpan=Math.max((state.data.at(-1).x-state.data[0].x)/500,0.06);
-  const maxSpan=(state.data.at(-1).x-state.data[0].x)*2.4;
+  const bounds=allScanBounds();
+  const minSpan=Math.max((bounds.max-bounds.min)/500,0.06);
+  const maxSpan=(bounds.max-bounds.min)*2.4;
   const oldSpan=state.view.max-state.view.min;
   const newSpan=Math.max(minSpan,Math.min(maxSpan,oldSpan*factor));
   const anchor=pivot??(state.view.min+state.view.max)/2;
@@ -497,7 +513,7 @@ function zoom(factor,pivot){
 }
 byId('zoomIn').addEventListener('click',()=>zoom(.75));
 byId('zoomOut').addEventListener('click',()=>zoom(1.3));
-byId('resetZoom').addEventListener('click',()=>{if(state.data.length){state.view={min:state.data[0].x,max:state.data.at(-1).x};draw();}});
+byId('resetZoom').addEventListener('click',()=>{if(state.data.length){state.view=allScanBounds();draw();}});
 if('ResizeObserver' in window)new ResizeObserver(draw).observe(byId('chartContainer'));
 else window.addEventListener('resize',draw);
 
@@ -508,12 +524,19 @@ function csvCell(value) {
 function downloadCSV() {
   if(!state.data.length)return;
   const cfg=currentSettings();
-  const headers=['Peak','Status','Requested_2theta_deg','2theta_deg','theta_deg','Observed_FWHM_deg_2theta','Corrected_FWHM_deg_2theta','Beta_rad','Size_nm','Fit_R_squared','Profile','PseudoVoigt_Lorentzian_fraction','Wavelength_A','Shape_factor_K','Correction_assumption','Instrument_FWHM_deg_2theta'];
+  const headers=['Peak','Included_in_mean','Status','Requested_2theta_deg','2theta_deg','theta_deg','Observed_FWHM_deg_2theta','Corrected_FWHM_deg_2theta','Beta_rad','Size_nm','Fit_R_squared','Profile','PseudoVoigt_Lorentzian_fraction','Wavelength_A','Shape_factor_K','Correction_assumption','Instrument_FWHM_deg_2theta'];
   const rows=[['# Frameworked Scherrer Calculator v0.1 — exploratory, verify all fitted reflections'],['# Input file',state.source],['# Dataset',state.simulated?'SIMULATED':'USER PXRD FILE'],['# Instrumental broadening and microstrain must be evaluated before interpreting domain size'],headers];
   state.peaks.forEach((peak,i)=>{
     const f=peak.fit,r=calculate(peak);
-    rows.push([i+1,(!f?'unfitted':f.fitted&&f.rSquared>=.94&&!hasCenterDrift(f,peak.hint)?'review':'poor-fit-review'),peak.hint,f?.center,r?.thetaDeg,f?.fwhmDeg,r?.sampleWidthDeg,r?.betaRad,r?.valid?r.sizeNm:null,f?.rSquared,f?.model,f?.eta,cfg.wavelengthA,cfg.shapeFactor,cfg.correction,cfg.instrumentalFwhmDeg]);
+    rows.push([i+1,peak.included&&fitUsable(peak)?'yes':'no',(!f?'unfitted':fitUsable(peak)?'review':'poor-fit-review'),peak.hint,f?.center,r?.thetaDeg,f?.fwhmDeg,r?.sampleWidthDeg,r?.betaRad,r?.valid?r.sizeNm:null,f?.rSquared,f?.model,f?.eta,cfg.wavelengthA,cfg.shapeFactor,cfg.correction,cfg.instrumentalFwhmDeg]);
   });
+  const includedSizes=state.peaks.filter(p=>p.included&&fitUsable(p))
+    .map(calculate).filter(x=>x?.valid).map(x=>x.sizeNm);
+  const summary=summarizeDomainSizes(includedSizes);
+  rows.push(['# Selected-peak mean (nm)',summary?.mean??'']);
+  rows.push(['# Sample SD (nm)',summary?.sd??'']);
+  rows.push(['# Standard error of mean (nm)',summary?.sem??'']);
+  rows.push(['# These spread statistics omit instrument/profile/strain/K uncertainty']);
   const output=rows.map(row=>row.map(csvCell).join(',')).join('\r\n');
   const url=URL.createObjectURL(new Blob([output],{type:'text/csv;charset=utf-8'}));
   const a=document.createElement('a');a.href=url;a.download='frameworked-scherrer-results.csv';document.body.append(a);a.click();a.remove();
@@ -521,5 +544,4 @@ function downloadCSV() {
   toast('Results exported, including method settings and fit-quality flags.');
 }
 byId('downloadButton').addEventListener('click',downloadCSV);
-updateGuidance();
-draw();
+updateAll();
