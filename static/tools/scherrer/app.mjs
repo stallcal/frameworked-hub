@@ -214,21 +214,22 @@ function updateTable() {
   const tbody = byId('peakTableBody');
   byId('peakCount').textContent = state.peaks.length;
   if (!state.peaks.length) {
-    tbody.innerHTML = '<tr><td colspan="6" class="no-peaks">No peaks yet. Load a pattern, then click a reflection to fit it.</td></tr>';
+    tbody.innerHTML = '<tr><td colspan="7" class="no-peaks">No peaks yet. Load a pattern, then click a reflection to fit it.</td></tr>';
     return;
   }
   tbody.innerHTML = state.peaks.map((p,i) => {
     const fit = p.fit;
     const result = calculate(p);
-    const poor = fit && (!fit.fitted || fit.rSquared < .94 || hasCenterDrift(fit, p.hint));
+    const poor = fit && !fitUsable(p);
     return `<tr data-peak-id="${p.id}" class="${p.id === state.selectedId ? 'active' : ''}" tabindex="0" aria-selected="${p.id === state.selectedId}">
+      <td><input type="checkbox" data-include-peak="${p.id}" aria-label="Include peak ${round(p.hint,3)} degrees in mean" ${p.included&&fitUsable(p)?'checked':''} ${fitUsable(p)?'':'disabled'}></td>
       <td class="peak-number">${String(i+1).padStart(2,'0')}${p.automatic ? '' : ' ✳'}</td>
       <td>${fit ? round(fit.center,3)+'°' : '—'}</td><td>${fit ? round(fit.fwhmDeg,3)+'°' : '—'}</td>
       <td class="${poor ? 'fit-poor' : ''}">${fit ? round(fit.rSquared,3)+(poor?' ⚠':'') : '—'}</td>
       <td class="value-strong">${result?.valid ? round(result.sizeNm,1) : '—'}</td>
       <td><button type="button" class="row-button">Inspect ↗</button></td></tr>`;
   }).join('');
-  const poorCount = state.peaks.filter(p => !p.fit?.fitted || p.fit.rSquared < .94 || hasCenterDrift(p.fit, p.hint)).length;
+  const poorCount = state.peaks.filter(p => !fitUsable(p)).length;
   const shiftedCount = state.peaks.filter(p => hasCenterDrift(p.fit, p.hint)).length;
   byId('resultsFooter').textContent = poorCount
     ? `${poorCount} fit(s) need review (quality, width bounds, or fit center). ${shiftedCount ? shiftedCount + ' fit(s) moved more than 0.07° from the selected reflection. ' : ''}Overlapping peaks require special attention; these are independent single-peak fits.`
@@ -236,6 +237,7 @@ function updateTable() {
 }
 
 byId('peakTableBody').addEventListener('click', event => {
+  if(event.target.closest('[data-include-peak]'))return;
   const tr = event.target.closest('tr[data-peak-id]');
   if (tr) selectPeak(Number(tr.dataset.peakId));
 });
@@ -245,8 +247,28 @@ byId('peakTableBody').addEventListener('keydown', event => {
   if (tr) { event.preventDefault(); selectPeak(Number(tr.dataset.peakId)); }
 });
 function selectPeak(id) {
-  state.selectedId = id;
-  updateTable(); updateInspector(); draw();
+  state.selectedId=id;saveActive();
+  updateTable();updateInspector();draw();
+}
+byId('peakTableBody').addEventListener('change',event=>{
+  const box=event.target.closest('[data-include-peak]');
+  if(!box)return;
+  const peak=state.peaks.find(p=>p.id===Number(box.dataset.includePeak));
+  if(!peak)return;
+  peak.included=box.checked&&fitUsable(peak);
+  saveActive();updateSummary();
+});
+function updateSummary(){
+  const sizes=state.peaks.filter(p=>p.included&&fitUsable(p)).map(calculate)
+    .filter(v=>v?.valid).map(v=>v.sizeNm);
+  const summary=summarizeDomainSizes(sizes);
+  byId('summaryCount').textContent=String(summary?.n||0);
+  byId('summaryMean').textContent=summary?`${round(summary.mean,1)} nm`:'— nm';
+  byId('summarySD').textContent=summary?.sd==null?'—':`${round(summary.sd,1)} nm`;
+  byId('summarySEM').textContent=summary?.sem==null?'—':`${round(summary.sem,1)} nm`;
+  byId('summaryNote').textContent=summary?.n>=2
+    ? 'SD measures variation between selected reflections; SEM = SD / √n. Neither covers instrument broadening, width-fitting uncertainty, strain, or shape-factor uncertainty. These are not particle dimensions.'
+    : 'Select at least two well-fitted, isolated reflections for a mean, sample SD and SEM. These are not complete measurement error bars or particle-size estimates.';
 }
 
 function updateInspector() {
@@ -266,7 +288,9 @@ function updateInspector() {
   byId('betaValue').textContent = result?.valid ? `${round(result.betaRad,6)} rad` : 'Not resolved';
   if (!result?.valid) {
     byId('sizeValue').innerHTML = '— <small>nm</small>';
-    byId('sizeQualifier').textContent = result?.error || 'Invalid measurement settings';
+    byId('sizeQualifier').textContent = !fitUsable(peak)
+      ? 'Fit rejected (R², width, or center drift). Try a narrower fitting window or inspect overlap.'
+      : result?.error || 'Invalid measurement settings';
     byId('formulaDetail').textContent = `Observed FWHM: ${round(fit.fwhmDeg,4)}° 2θ. Review instrument FWHM and correction mode.`;
     return;
   }
@@ -278,7 +302,21 @@ function updateInspector() {
   byId('formulaDetail').textContent = `2θ = ${round(fit.center,3)}° → θ = ${round(result.thetaDeg,3)}° · FWHM = ${round(fit.fwhmDeg,4)}° → β = ${round(result.betaRad,7)} rad (${instrumentPart}). D = (${round(n(form.shapeFactor),2)} × ${round(result.wavelengthNm,5)} nm) / (${round(result.betaRad,7)} × cos ${round(result.thetaDeg,3)}°).`;
 }
 
-function updateAll() { updateGuidance(); updateTable(); updateInspector(); draw(); }
+function updateAll(){
+  saveActive();
+  const active=activePattern(),bounds=state.patterns.length?allScanBounds():null;
+  const pointCount=state.patterns.reduce((a,p)=>a+p.data.length,0);
+  byId('patternName').textContent=active?.nickname||'Waiting for PXRD data';
+  byId('plotStatus').textContent=active?`${state.patterns.length} LOADED`:'NO DATA';
+  byId('plotStatus').className='pill '+(active?.simulated?'warning':active?'ready':'');
+  byId('plotDescriptor').textContent=bounds?`${state.patterns.length} scan(s) · ${pointCount.toLocaleString()} points · ${round(bounds.min)}–${round(bounds.max)}° 2θ`:'Select a file or load the example to begin.';
+  byId('fileInfo').hidden=!active;
+  byId('fileInfo').textContent=active?`Active: ${active.source} · ${active.data.length.toLocaleString()} XY points · processed locally`:'';
+  byId('emptyState').hidden=Boolean(active);
+  byId('chartContainer').classList.toggle('has-data',Boolean(active));
+  byId('downloadButton').disabled=!active;
+  renderPatterns();updateGuidance();updateTable();updateInspector();updateSummary();draw();
+}
 
 const niceStep = (range, goal = 6) => {
   if (!Number.isFinite(range) || range <= 0) return 1;
