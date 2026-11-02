@@ -1,11 +1,12 @@
-import { parseXY, findCandidates, findMarkerHit, hasCenterDrift, fitPeak, predictIntensity, scherrer, syntheticPattern } from './analysis.mjs';
+import { parseXY, findCandidates, findMarkerHit, hasCenterDrift, fitPeak, predictIntensity, scherrer, summarizeDomainSizes, syntheticPattern } from './analysis.mjs';
 
 const byId = id => document.getElementById(id);
 const canvas = byId('pxrdCanvas');
 const ctx = canvas.getContext('2d');
 const state = {
   data: [], peaks: [], selectedId: null, nextId: 1, source: '', simulated: false,
-  mode: 'mof', view: null, plotGeometry: null, drag: null, statusTimer: null
+  mode: 'mof', view: null, plotGeometry: null, drag: null, statusTimer: null,
+  patterns: [], activePatternId: null, nextPatternId: 1, normalizeOverlay: false
 };
 const form = {
   wavelength: byId('wavelength'), shapeFactor: byId('shapeFactor'), profile: byId('profile'),
@@ -13,10 +14,20 @@ const form = {
 };
 
 const round = (v, dp = 2) => Number.isFinite(v) ? Number(v).toFixed(dp) : '—';
-const n = el => Number(el.value);
+const n = el => el.value.trim() === '' ? NaN : Number(el.value);
+const escapeHTML = value => String(value).replace(/[&<>"']/g, ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+const palette=['#084b9e','#9e382e','#089e4b','#8559bc','#c0851d','#347e93'];
+const activePattern = () => state.patterns.find(p=>p.id===state.activePatternId)||null;
+const fitUsable = peak => Boolean(peak?.fit?.fitted && peak.fit.rSquared>=.94 && !hasCenterDrift(peak.fit,peak.hint));
+const allScanBounds = () => state.patterns.reduce((v,p)=>({min:Math.min(v.min,p.data[0].x),max:Math.max(v.max,p.data.at(-1).x)}),{min:Infinity,max:-Infinity});
+const plotY = (value,pattern) => state.normalizeOverlay ? 100*value/(pattern?.maxIntensity||1):value;
+function saveActive() {
+  const p=activePattern();
+  if(p){p.peaks=state.peaks;p.selectedId=state.selectedId;}
+}
 const selected = () => state.peaks.find(p => p.id === state.selectedId) || null;
 const currentSettings = () => ({ wavelengthA: n(form.wavelength), shapeFactor: n(form.shapeFactor), correction: form.correction.value, instrumentalFwhmDeg: n(form.instrument) });
-const calculate = peak => peak?.fit ? scherrer({ twoTheta: peak.fit.center, fwhmDeg: peak.fit.fwhmDeg, ...currentSettings() }) : null;
+const calculate = peak => fitUsable(peak) ? scherrer({ twoTheta: peak.fit.center, fwhmDeg: peak.fit.fwhmDeg, ...currentSettings() }) : null;
 
 function toast(message, error = false) {
   const element = byId('toast');
@@ -27,63 +38,135 @@ function toast(message, error = false) {
   state.statusTimer = setTimeout(() => { element.hidden = true; }, 4700);
 }
 
-function prepareData(data, source, simulated = false) {
-  state.data = data;
-  state.source = source;
-  state.simulated = simulated;
-  state.selectedId = null;
-  state.peaks = [];
-  state.view = { min: data[0].x, max: data.at(-1).x };
-  const suggestions = findCandidates(data);
-  for (const candidate of suggestions) state.peaks.push({ id: state.nextId++, hint: candidate.x, fit: null, automatic: true });
-  refitAll();
-  const strongest = [...state.peaks].filter(p => p.fit?.fitted).sort((a,b) => b.fit.amplitude - a.fit.amplitude)[0];
-  if (strongest) state.selectedId = strongest.id;
-  else if (state.peaks.length) state.selectedId = state.peaks[0].id;
-  byId('patternName').textContent = source;
-  byId('plotStatus').textContent = simulated ? 'SIMULATED' : 'LOADED';
-  byId('plotStatus').className = 'pill ' + (simulated ? 'warning' : 'ready');
-  byId('plotDescriptor').textContent = `${data.length.toLocaleString()} points · ${round(data[0].x)}–${round(data.at(-1).x)}° 2θ`;
-  byId('fileInfo').hidden = false;
-  byId('fileInfo').textContent = simulated ? 'Simulated teaching dataset — not a measured MOF or calibration standard.' : `${source} · ${data.length.toLocaleString()} XY points · processed locally`;
-  byId('emptyState').hidden = true;
-  byId('chartContainer').classList.add('has-data');
-  byId('downloadButton').disabled = false;
-  updateAll();
-  if (suggestions.length === 0) toast('Data loaded. No distinct candidate peaks found; click the graph to select one manually.');
+function fitWindowFor(peaks,hint){
+  const ds=peaks.filter(p=>Math.abs(p.hint-hint)>1e-6).map(p=>Math.abs(p.hint-hint));
+  return ds.length?Math.min(n(form.window),Math.max(0.10,Math.min(...ds)*0.48)):n(form.window);
 }
-
-function refitAll() {
-  const halfWindow = n(form.window);
-  const model = form.profile.value;
-  state.peaks = state.peaks.map(p => ({ ...p, fit: fitPeak(state.data, p.hint, halfWindow, model) }));
-}
-
-async function loadFile(file) {
-  if (!file) return;
-  if (/\.brml$/i.test(file.name)) return toast('BRML archives are not yet supported. Export the diffraction data as XYE or XY to analyze it here.', true);
-  if (file.size > 20 * 1024 * 1024) return toast('Maximum file size is 20 MB for this browser-based version.', true);
-  try {
-    const text = await file.text();
-    const data = parseXY(text);
-    prepareData(data, file.name, false);
-    toast(`Loaded ${data.length.toLocaleString()} PXRD points. Review the proposed peak fits.`);
-  } catch (error) {
-    toast(error.message || 'Could not read the file.', true);
+function refitAll(){
+  saveActive();
+  for(const record of state.patterns){
+    record.peaks=record.peaks.map(p=>({
+      ...p,fit:fitPeak(record.data,p.hint,fitWindowFor(record.peaks,p.hint),form.profile.value)
+    }));
   }
+  const active=activePattern();
+  if(active){state.peaks=active.peaks;state.selectedId=active.selectedId;}
 }
-
-function loadDemo() {
-  prepareData(syntheticPattern(), 'Simulated MOF-like pattern', true);
-  toast('Teaching example loaded. These are synthetic peaks, not experimental data.');
+function renderPatterns(){
+  const wrap=byId('loadedPatterns');
+  byId('removeAllPatterns').disabled=!state.patterns.length;
+  byId('removeActivePattern').disabled=!state.patterns.length;
+  byId('normalizeOverlay').disabled=state.patterns.length<2;
+  byId('normalizeOverlay').checked=state.normalizeOverlay;
+  wrap.innerHTML=state.patterns.map(p=>`
+    <div class="pattern-entry ${p.id===state.activePatternId?'is-active':''}">
+      <div class="pattern-head">
+        <input type="color" data-pattern-color="${p.id}" value="${p.color}" aria-label="Trace color for ${escapeHTML(p.source)}">
+        <button type="button" class="pattern-activate" data-activate-pattern="${p.id}" aria-pressed="${p.id===state.activePatternId}">${p.id===state.activePatternId?'Active':'Analyze'}</button>
+        <button type="button" class="pattern-remove" data-remove-pattern="${p.id}" aria-label="Remove ${escapeHTML(p.source)}">×</button>
+      </div>
+      <label class="pattern-label">Plot nickname<input data-nickname-pattern="${p.id}" type="text" maxlength="60" value="${escapeHTML(p.nickname)}"></label>
+      <small class="pattern-filename" title="${escapeHTML(p.source)}">${escapeHTML(p.source)}</small>
+    </div>`).join('');
+  renderTraceLegend();
 }
-
-byId('fileInput').addEventListener('change', e => loadFile(e.target.files?.[0]));
+function renderTraceLegend(){
+  byId('overlayLegend').innerHTML=state.patterns.map(p=>`<span><i style="background:${p.color}"></i>${escapeHTML(p.nickname)}</span>`).join('');
+}
+function activatePattern(id){
+  if(state.activePatternId===id)return;
+  saveActive();
+  const p=state.patterns.find(item=>item.id===id);
+  if(!p)return;
+  state.activePatternId=id;state.data=p.data;state.peaks=p.peaks;state.selectedId=p.selectedId;
+  state.source=p.source;state.simulated=p.simulated;
+  updateAll();
+}
+function addPattern(data,source,simulated=false){
+  if(state.patterns.length>=6){toast('Maximum six overlaid patterns. Remove one to continue.',true);return;}
+  saveActive();
+  const peaks=findCandidates(data).map(candidate=>({id:state.nextId++,hint:candidate.x,fit:null,automatic:true,included:false}));
+  const record={id:state.nextPatternId++,source,nickname:source.replace(/\.[^.]+$/,'').slice(0,60),
+    color:palette[state.patterns.length%palette.length],data,simulated,peaks,selectedId:peaks[0]?.id??null,
+    maxIntensity:Math.max(1,...data.map(pt=>pt.y))};
+  state.patterns.push(record);
+  state.activePatternId=record.id;state.data=record.data;state.source=source;state.simulated=simulated;
+  state.peaks=peaks;state.selectedId=record.selectedId;
+  state.view=allScanBounds();
+  refitAll();
+  const strongest=state.peaks.filter(fitUsable).sort((a,b)=>b.fit.amplitude-a.fit.amplitude)[0];
+  if(strongest)state.selectedId=strongest.id;
+  updateAll();
+}
+function removePattern(id){
+  saveActive();
+  const index=state.patterns.findIndex(p=>p.id===id);
+  if(index<0)return;
+  state.patterns.splice(index,1);
+  if(!state.patterns.length){clearPatterns();return;}
+  const p=state.patterns[Math.min(index,state.patterns.length-1)];
+  state.activePatternId=null;activatePattern(p.id);
+  state.view=allScanBounds();updateAll();
+}
+function clearPatterns(){
+  state.patterns=[];state.activePatternId=null;state.data=[];state.peaks=[];
+  state.selectedId=null;state.source='';state.simulated=false;state.view=null;state.plotGeometry=null;
+  state.normalizeOverlay=false;state.nextId=1;state.nextPatternId=1;
+  byId('fileInput').value='';byId('manualPeakAngle').value='';byId('chartTooltip').hidden=true;
+  updateAll();
+}
+async function loadFiles(files){
+  for(const file of files||[]){
+    if(/\.brml$/i.test(file.name)){toast('BRML import is not supported. Export XY or XYE.',true);continue;}
+    if(file.size>20*1024*1024){toast('Maximum file size: 20 MB per pattern.',true);continue;}
+    if(state.patterns.length>=6){toast('Limit of six patterns reached.',true);break;}
+    try{addPattern(parseXY(await file.text()),file.name,false);}
+    catch(err){toast(err.message||'Could not parse PXRD data.',true);}
+  }
+  byId('fileInput').value='';
+}
+function loadDemo(){
+  addPattern(syntheticPattern(),'Simulated teaching pattern',true);
+  toast('Teaching example added — not measured PXRD data.');
+}
+function resetSettings(){
+  for(const c of Object.values(form))c.value=c.defaultValue;
+  state.mode='mof';
+  for(const b of byId('materialMode').querySelectorAll('button')){
+    const active=b.dataset.mode==='mof';
+    b.classList.toggle('active',active);b.setAttribute('aria-pressed',String(active));
+  }
+  byId('instrumentField').hidden=true;
+  byId('windowOutput').textContent=`±${round(n(form.window),2)}° 2θ`;
+  if(state.patterns.length)refitAll();
+  updateAll();
+  toast('Settings reset. Uploaded patterns and reviewed reflections retained.');
+}
+byId('resetSettings').addEventListener('click',resetSettings);
+byId('removeActivePattern').addEventListener('click',()=>{if(activePattern())removePattern(state.activePatternId);});
+byId('removeAllPatterns').addEventListener('click',()=>{clearPatterns();toast('All scans removed; settings retained.');});
+byId('normalizeOverlay').addEventListener('change',e=>{state.normalizeOverlay=e.target.checked;draw();});
+byId('loadedPatterns').addEventListener('click',e=>{
+  const activate=e.target.closest('[data-activate-pattern]');
+  const remove=e.target.closest('[data-remove-pattern]');
+  if(activate)activatePattern(Number(activate.dataset.activatePattern));
+  if(remove)removePattern(Number(remove.dataset.removePattern));
+});
+byId('loadedPatterns').addEventListener('input',e=>{
+  const target=e.target, colorId=target.dataset.patternColor,nicknameId=target.dataset.nicknamePattern;
+  const record=state.patterns.find(p=>p.id===Number(colorId||nicknameId));
+  if(!record)return;
+  if(colorId)record.color=target.value;
+  if(nicknameId)record.nickname=target.value.trim()||record.source;
+  byId('patternName').textContent=activePattern()?.nickname||'Waiting for PXRD data';
+  renderTraceLegend();draw();
+});
+byId('fileInput').addEventListener('change', e => loadFiles(Array.from(e.target.files||[])));
 for (const id of ['demoButton', 'emptyDemo']) byId(id).addEventListener('click', loadDemo);
 const dropzone = byId('dropzone');
 for (const name of ['dragenter', 'dragover']) dropzone.addEventListener(name, e => { e.preventDefault(); dropzone.classList.add('dragover'); });
 for (const name of ['dragleave', 'drop']) dropzone.addEventListener(name, e => { e.preventDefault(); dropzone.classList.remove('dragover'); });
-dropzone.addEventListener('drop', e => loadFile(e.dataTransfer?.files?.[0]));
+dropzone.addEventListener('drop', e => loadFiles(Array.from(e.dataTransfer?.files||[])));
 dropzone.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); byId('fileInput').click(); } });
 
 for (const button of byId('materialMode').querySelectorAll('button')) {
@@ -99,8 +182,8 @@ for (const button of byId('materialMode').querySelectorAll('button')) {
 }
 for (const el of [form.wavelength, form.shapeFactor, form.instrument]) el.addEventListener('input', () => { updateGuidance(); updateTable(); updateInspector(); });
 for (const el of [form.profile, form.window]) el.addEventListener('input', () => {
-  byId('windowOutput').textContent = `±${round(n(form.window), 2)}°`;
-  if (state.data.length) refitAll();
+  byId('windowOutput').textContent = `±${round(n(form.window), 2)}° 2θ`;
+  if (state.patterns.length) refitAll();
   updateAll();
 });
 form.correction.addEventListener('change', () => {
