@@ -43,7 +43,7 @@ const median = values => {
   return sorted.length % 2 ? sorted[mid] : (sorted[mid - 1] + sorted[mid]) / 2;
 };
 
-export function findCandidates(data, maxCount = 14) {
+export function findCandidates(data, maxCount = 32) {
   if (data.length < 15) return [];
   const smoothed = data.map((p, i) => {
     let total = 0, weight = 0;
