@@ -165,7 +165,7 @@ body{font-family:Libron,Georgia,serif;color:var(--ink-soft)}
 @media(max-width:840px){.primary-nav{position:static;transform:none;margin-left:auto}}
 @media(max-width:600px){.header-inner{min-height:0;flex-wrap:wrap;justify-content:flex-start;gap:5px 15px;padding-top:17px}.brand{font-size:25px;width:100%;margin-bottom:4px}.brand-symbol{width:26px;height:26px}.primary-nav{font-size:14px;gap:22px;overflow-x:auto;width:100%;margin-left:0}.primary-nav a{padding:9px 0 15px}.tool-subnav{flex-wrap:wrap}.tool-subnav div{gap:17px}.hero h1{font-size:clamp(53px,13vw,73px)}.hero-lead{font-size:16px}.section-heading h2,.history h2,.sources h2{font-size:50px}.inspector h3{font-size:39px}}
 
-/* Focused calculator view. The essay/history material will become a separate article. */
+/* Calculator-first introduction; concise scientific background restored below the workbench. */
 body{background:#f7f9fc;color:var(--brand-navy)}
 .shell{width:calc(100% - clamp(44px,8.4vw,152px));max-width:1490px}
 .site-header{background:#f7f9fc;border-bottom:0}
@@ -259,7 +259,7 @@ body{background:#f7f9fc;color:var(--brand-navy)}
 .calculator-page-links{display:flex;align-items:center;gap:18px;flex-wrap:wrap;margin:-3px 0 15px;font:700 12px/1.5 Inter,system-ui,sans-serif;color:#53769e}
 .calculator-page-links a{padding:3px 0;border-bottom:1px solid transparent}
 .calculator-page-links a:hover{border-color:#9e382e;color:#084b9e}
-.workspace{grid-template-columns:340px minmax(0,1fr);overflow:visible;align-items:stretch}
+.workspace{grid-template-columns:clamp(340px,27vw,390px) minmax(0,1fr);overflow:visible;align-items:stretch}
 .tool-sidebar{padding:27px 25px;background:#f7faff;border-right:1px solid #dbe5f0;min-width:0}
 .tool-sidebar .field-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
 .tool-sidebar .field{min-width:0;margin-bottom:16px}
