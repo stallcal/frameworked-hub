@@ -82,6 +82,26 @@ export function findCandidates(data, maxCount = 14) {
   return selected.sort((a, b) => a.x - b.x);
 }
 
+/** Hit-test visible peak markers in two-dimensional plot pixels, not a broad 2θ tolerance. */
+export function findMarkerHit(peaks, pixelX, pixelY, project, radiusPx = 9) {
+  if (![pixelX, pixelY, radiusPx].every(Number.isFinite) || radiusPx <= 0) return null;
+  let closest = null;
+  let distanceSquared = radiusPx * radiusPx;
+  for (const peak of peaks) {
+    const point = project(peak);
+    if (!point || !Number.isFinite(point.x) || !Number.isFinite(point.y)) continue;
+    const d2 = (point.x - pixelX) ** 2 + (point.y - pixelY) ** 2;
+    if (d2 <= distanceSquared) { closest = peak; distanceSquared = d2; }
+  }
+  return closest;
+}
+
+/** Flag peak identity ambiguity rather than silently treating a shifted fit as the requested reflection. */
+export function hasCenterDrift(fit, requestedTwoTheta, toleranceDeg = 0.07) {
+  return Boolean(fit && Number.isFinite(requestedTwoTheta) &&
+    Number.isFinite(fit.center) && Math.abs(fit.center - requestedTwoTheta) > toleranceDeg);
+}
+
 function solve3(matrix, rhs) {
   const a = matrix.map((row, i) => [...row, rhs[i]]);
   for (let col = 0; col < 3; col++) {
