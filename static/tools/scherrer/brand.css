@@ -205,3 +205,13 @@ body{background:#f7f9fc;color:var(--brand-navy)}
 .tool-footer .footer-bottom a:hover{color:var(--brand-blue)}
 @media(max-width:900px){.calculator-intro{grid-template-columns:1fr;gap:20px}.calculator-equation{justify-self:start;min-width:0}}
 @media(max-width:600px){.shell{width:calc(100% - 36px)}.calculator-wrap{padding:28px 0 60px}.calculator-title h1{font-size:clamp(39px,10vw,55px)}.calculator-title>p:last-child{font-size:16px}.calculator-equation{padding:5px 0 5px 16px}.calculator-disclaimer{font-size:12px}.primary-nav a:last-child{display:block}.tool-footer .footer-bottom{flex-direction:column;gap:15px}}
+
+/* Explicit manual selection: avoids the broad x-only peak snapping behavior. */
+.manual-peak-toolbar{display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px;margin-top:17px;padding:13px 15px;background:#f0f5fb;border:1px solid #d5e2ef;border-radius:5px}
+.manual-peak-toolbar label{font-size:12px;font-weight:750;color:#1c3049}
+.manual-peak-controls{display:flex;align-items:center;gap:7px;min-width:0}
+.manual-peak-controls input{width:148px;max-width:100%;min-height:35px;border:1px solid #c8d8ea;border-radius:4px;padding:7px 9px;color:#1c3049;background:#fff;font-size:12px}
+.manual-peak-controls button{min-height:35px;border:0;border-radius:4px;padding:7px 12px;background:#084b9e;color:#fff;font-size:12px;font-weight:700}
+.manual-peak-controls button:hover{background:#073a79}
+.manual-peak-toolbar small{flex-basis:100%;font-size:11px;line-height:1.45;color:#607994}
+@media(max-width:600px){.manual-peak-toolbar{align-items:flex-start}.manual-peak-controls{flex-wrap:wrap}.manual-peak-toolbar label{flex-basis:100%}}
