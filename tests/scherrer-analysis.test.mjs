@@ -70,3 +70,16 @@ test('a neighboring stronger reflection can shift a single-peak fit and is flagg
   assert.equal(hasCenterDrift(fit,8.64), true);
   assert.equal(hasCenterDrift({center:8.64},8.64), false);
 });
+
+test('default automatic detection does not silently truncate 18 qualifying separated reflections', () => {
+  const data = Array.from({length:1001}, (_, i) => {
+    const x = 5 + i * 0.02;
+    const intensity = Array.from({length:18}, (_, j) =>
+      20 * profileShape(x, 6 + j * 0.9, 0.10, 0.15)
+    ).reduce((a,b) => a+b,0);
+    return {x, y:intensity};
+  });
+  const suggestions = findCandidates(data);
+  assert.equal(suggestions.length, 18);
+  assert.equal(findCandidates(data,14).length,14, 'Explicit caller cap must still be respected');
+});
