@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { parseXY, findCandidates, fitPeak, profileShape, scherrer, syntheticPattern } from '../static/tools/scherrer/analysis.mjs';
+import { parseXY, findCandidates, findMarkerHit, hasCenterDrift, fitPeak, profileShape, scherrer, syntheticPattern } from '../static/tools/scherrer/analysis.mjs';
 
 test('parses XY with whitespace headers, and comma separators', () => {
   const rows = Array.from({length: 20}, (_,i) => `${i+5}, ${i*i}`).join('\n');
@@ -49,4 +49,24 @@ test('fits synthetic pseudo-Voigt peak with sensible FWHM and center', () => {
   assert.ok(Math.abs(fit.center - 8.45) < 0.02, `center=${fit.center}`);
   assert.ok(Math.abs(fit.fwhmDeg - 0.27) < 0.04, `width=${fit.fwhmDeg}`);
   assert.ok(fit.rSquared > .95);
+});
+
+test('marker hit-testing selects a visible marker only within a small 2D pixel radius', () => {
+  const peaks = [{id:1, marker:{x:100,y:100}}, {id:2, marker:{x:140,y:100}}];
+  const project = p => p.marker;
+  assert.equal(findMarkerHit(peaks, 104, 102, project)?.id, 1);
+  assert.equal(findMarkerHit(peaks, 139, 101, project)?.id, 2);
+  assert.equal(findMarkerHit(peaks, 120, 100, project), null);
+  assert.equal(findMarkerHit(peaks, 100, 130, project), null);
+});
+
+test('a neighboring stronger reflection can shift a single-peak fit and is flagged', () => {
+  const data = Array.from({length:1701}, (_,i) => {
+    const x = 5 + i*0.01;
+    return {x, y:80 + 650*profileShape(x,8.45,0.09,0.25) + 590*profileShape(x,8.64,0.09,0.25)};
+  });
+  const fit = fitPeak(data, 8.64, 0.65, 'pseudo-voigt');
+  assert.ok(fit);
+  assert.equal(hasCenterDrift(fit,8.64), true);
+  assert.equal(hasCenterDrift({center:8.64},8.64), false);
 });
