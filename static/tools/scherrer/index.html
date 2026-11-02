@@ -34,9 +34,9 @@
             <details class="sidebar-help"><summary>File formats & assumptions</summary><p class="import-footnote">XYE uncertainty columns are not yet included in fitting. Bruker .brml files are not yet supported; export an XYE file to analyze the scan. Verify that the wavelength matches your instrument settings; Cu Kα1 is the starting assumption.</p></details>
             <button class="demo-link" type="button" id="demoButton">Try a simulated PXRD pattern <span aria-hidden="true">↗</span></button>
             <div class="file-info" id="fileInfo" hidden></div>
-            <div class="scan-controls"><button type="button" id="removeActivePattern" disabled>Remove active scan</button><button type="button" id="removeAllPatterns" disabled>Clear all scans</button></div>
-            <div class="pattern-management"><strong>Loaded patterns</strong><div id="loadedPatterns" aria-label="Uploaded scans, nicknames and trace colors"></div></div>
-            <label class="overlay-checkbox"><input type="checkbox" id="normalizeOverlay" disabled> Normalize each overlaid trace to its own maximum (100%)</label>
+            <div class="scan-controls" id="scanControls" hidden><button type="button" id="removeActivePattern" disabled>Remove active scan</button><button type="button" id="removeAllPatterns" disabled>Clear all scans</button></div>
+            <div class="pattern-management" id="patternManagement" hidden><strong>Loaded patterns</strong><div id="loadedPatterns" aria-label="Uploaded scans, nicknames and trace colors"></div></div>
+            <label class="overlay-checkbox" id="overlayNormalization" hidden><input type="checkbox" id="normalizeOverlay" disabled> Normalize each overlaid trace to its own maximum (100%)</label>
             <div class="sidebar-rule"></div>
             <div class="sidebar-head"><span class="tool-step">02</span><div><h3>Measurement & fit</h3><p>Parameters for your scan</p></div></div>
             <button type="button" id="resetSettings" class="reset-settings-btn">Reset settings to defaults</button>
