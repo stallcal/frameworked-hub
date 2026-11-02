@@ -88,7 +88,7 @@ function addPattern(data,source,simulated=false){
   const peaks=findCandidates(data).map(candidate=>({id:state.nextId++,hint:candidate.x,fit:null,automatic:true,included:false}));
   const record={id:state.nextPatternId++,source,nickname:source.replace(/\.[^.]+$/,'').slice(0,60),
     color:palette[state.patterns.length%palette.length],data,simulated,peaks,selectedId:peaks[0]?.id??null,
-    maxIntensity:Math.max(1,...data.map(pt=>pt.y))};
+    maxIntensity:data.reduce((v,pt)=>Math.max(v,pt.y),1)};
   state.patterns.push(record);
   state.activePatternId=record.id;state.data=record.data;state.source=source;state.simulated=simulated;
   state.peaks=peaks;state.selectedId=record.selectedId;
@@ -102,10 +102,14 @@ function removePattern(id){
   saveActive();
   const index=state.patterns.findIndex(p=>p.id===id);
   if(index<0)return;
+  const wasActive=state.activePatternId===id;
   state.patterns.splice(index,1);
   if(!state.patterns.length){clearPatterns();return;}
-  const p=state.patterns[Math.min(index,state.patterns.length-1)];
-  state.activePatternId=null;activatePattern(p.id);
+  if(state.patterns.length<2)state.normalizeOverlay=false;
+  if(wasActive){
+    const next=state.patterns[Math.min(index,state.patterns.length-1)];
+    state.activePatternId=null;activatePattern(next.id);
+  }
   state.view=allScanBounds();updateAll();
 }
 function clearPatterns(){
@@ -180,7 +184,7 @@ for (const button of byId('materialMode').querySelectorAll('button')) {
     updateGuidance();
   });
 }
-for (const el of [form.wavelength, form.shapeFactor, form.instrument]) el.addEventListener('input', () => { updateGuidance(); updateTable(); updateInspector(); });
+for (const el of [form.wavelength, form.shapeFactor, form.instrument]) el.addEventListener('input', () => { updateGuidance(); updateTable(); updateInspector(); updateSummary(); });
 for (const el of [form.profile, form.window]) el.addEventListener('input', () => {
   byId('windowOutput').textContent = `±${round(n(form.window), 2)}° 2θ`;
   if (state.patterns.length) refitAll();
@@ -188,7 +192,7 @@ for (const el of [form.profile, form.window]) el.addEventListener('input', () =>
 });
 form.correction.addEventListener('change', () => {
   byId('instrumentField').hidden = form.correction.value === 'none';
-  updateGuidance(); updateTable(); updateInspector();
+  updateGuidance(); updateTable(); updateInspector(); updateSummary();
 });
 
 function updateGuidance() {
@@ -347,7 +351,8 @@ function draw() {
   }));
   const displayed=visibleByPattern.flatMap(entry=>entry.points.map(pt=>plotY(pt.y,entry.record)));
   if(!displayed.length)return;
-  const rawMinY=Math.min(...displayed),rawMaxY=Math.max(...displayed);
+  const rawMinY=displayed.reduce((v,y)=>Math.min(v,y),Infinity);
+  const rawMaxY=displayed.reduce((v,y)=>Math.max(v,y),-Infinity);
   const spanY=Math.max(rawMaxY-rawMinY,Math.abs(rawMaxY)*.01,1);
   const yMin=Math.min(0,rawMinY-spanY*.08);
   const yMax=rawMaxY+spanY*.12;
