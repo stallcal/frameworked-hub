@@ -1,4 +1,4 @@
-import { parseXY, findCandidates, fitPeak, predictIntensity, scherrer, syntheticPattern } from './analysis.mjs';
+import { parseXY, findCandidates, findMarkerHit, hasCenterDrift, fitPeak, predictIntensity, scherrer, syntheticPattern } from './analysis.mjs';
 
 const byId = id => document.getElementById(id);
 const canvas = byId('pxrdCanvas');
@@ -137,7 +137,7 @@ function updateTable() {
   tbody.innerHTML = state.peaks.map((p,i) => {
     const fit = p.fit;
     const result = calculate(p);
-    const poor = fit && (!fit.fitted || fit.rSquared < .94);
+    const poor = fit && (!fit.fitted || fit.rSquared < .94 || hasCenterDrift(fit, p.hint));
     return `<tr data-peak-id="${p.id}" class="${p.id === state.selectedId ? 'active' : ''}" tabindex="0" aria-selected="${p.id === state.selectedId}">
       <td class="peak-number">${String(i+1).padStart(2,'0')}${p.automatic ? '' : ' ✳'}</td>
       <td>${fit ? round(fit.center,3)+'°' : '—'}</td><td>${fit ? round(fit.fwhmDeg,3)+'°' : '—'}</td>
@@ -145,10 +145,11 @@ function updateTable() {
       <td class="value-strong">${result?.valid ? round(result.sizeNm,1) : '—'}</td>
       <td><button type="button" class="row-button">Inspect ↗</button></td></tr>`;
   }).join('');
-  const poorCount = state.peaks.filter(p => !p.fit?.fitted || p.fit.rSquared < .94).length;
+  const poorCount = state.peaks.filter(p => !p.fit?.fitted || p.fit.rSquared < .94 || hasCenterDrift(p.fit, p.hint)).length;
+  const shiftedCount = state.peaks.filter(p => hasCenterDrift(p.fit, p.hint)).length;
   byId('resultsFooter').textContent = poorCount
-    ? `${poorCount} fit(s) need particular review (low R², overly narrow/broad profile, or incomplete peak). Peak overlap and background can also affect high-R² fits.`
-    : 'All detected peaks have plausible numerical fits, but each still requires scientific review for overlap, background, strain, and instrument effects.';
+    ? `${poorCount} fit(s) need review (quality, width bounds, or fit center). ${shiftedCount ? shiftedCount + ' fit(s) moved more than 0.07° from the selected reflection. ' : ''}Overlapping peaks require special attention; these are independent single-peak fits.`
+    : 'Fits pass preliminary numerical checks, but each reflection still requires scientific review for overlap, background, strain, and instrument effects.';
 }
 
 byId('peakTableBody').addEventListener('click', event => {
@@ -187,7 +188,9 @@ function updateInspector() {
     return;
   }
   byId('sizeValue').innerHTML = `${round(result.sizeNm,1)} <small>nm</small>`;
-  byId('sizeQualifier').textContent = `${form.correction.value === 'none' ? 'Uncorrected' : 'Assumption-corrected'} · ${fit.fitted && fit.rSquared >= .94 ? 'review fit before reporting' : 'fit requires attention'}`;
+  byId('sizeQualifier').textContent = hasCenterDrift(fit, peak.hint)
+    ? `Fit shifted ${round(Math.abs(fit.center - peak.hint), 3)}° from selected 2θ. Verify peak identity; do not report this size without review.`
+    : `${form.correction.value === 'none' ? 'Uncorrected' : 'Assumption-corrected'} · ${fit.fitted && fit.rSquared >= .94 ? 'review fit before reporting' : 'fit requires attention'}`;
   const instrumentPart = form.correction.value === 'none' ? 'no instrumental correction' : `${form.correction.value} subtraction of ${round(n(form.instrument),3)}°`;
   byId('formulaDetail').textContent = `2θ = ${round(fit.center,3)}° → θ = ${round(result.thetaDeg,3)}° · FWHM = ${round(fit.fwhmDeg,4)}° → β = ${round(result.betaRad,7)} rad (${instrumentPart}). D = (${round(n(form.shapeFactor),2)} × ${round(result.wavelengthNm,5)} nm) / (${round(result.betaRad,7)} × cos ${round(result.thetaDeg,3)}°).`;
 }
@@ -200,6 +203,13 @@ const niceStep = (range, goal = 6) => {
   const mag = 10 ** Math.floor(Math.log10(raw));
   return [1, 2, 2.5, 5, 10].map(v => v*mag).find(v => v >= raw) || 10*mag;
 };
+
+function peakMarkerPosition(peak) {
+  if (peak.fit) return { x: peak.fit.center, y: peak.fit.intercept + peak.fit.amplitude };
+  const point = state.data.reduce((nearest, candidate) =>
+    !nearest || Math.abs(candidate.x - peak.hint) < Math.abs(nearest.x - peak.hint) ? candidate : nearest, null);
+  return point ? { x: peak.hint, y: point.y } : null;
+}
 
 function draw() {
   const bounds = canvas.getBoundingClientRect();
@@ -241,9 +251,10 @@ function draw() {
   visible.forEach((pt,i)=>{ const x=fx(pt.x),y=fy(pt.y);if(i===0)ctx.moveTo(x,y);else ctx.lineTo(x,y); });ctx.stroke();
   const peak=selected(),fit=peak?.fit;
   for(const pp of state.peaks){
-    const ff=pp.fit;if(!ff||ff.center<xMin||ff.center>xMax)continue;
-    ctx.fillStyle=pp.id===state.selectedId?'#9e382e':'#63a781';
-    ctx.beginPath();ctx.arc(fx(ff.center),fy(ff.intercept+ff.amplitude),pp.id===state.selectedId?4:2.5,0,Math.PI*2);ctx.fill();
+    const marker = peakMarkerPosition(pp);
+    if(!marker || marker.x<xMin || marker.x>xMax) continue;
+    ctx.fillStyle = !pp.fit ? '#9e382e' : pp.id === state.selectedId ? '#9e382e' : '#63a781';
+    ctx.beginPath();ctx.arc(fx(marker.x), fy(marker.y), pp.id===state.selectedId?4.5:3,0,Math.PI*2);ctx.fill();
   }
   if(fit){
     ctx.strokeStyle='#089e4b';ctx.lineWidth=2.2;ctx.setLineDash([6,4]);ctx.beginPath();
@@ -266,21 +277,48 @@ function clientXToDataX(clientX) {
   const px=clientX-canvas.getBoundingClientRect().left;
   return g.xMin + (px-g.p.left)/(g.p.right-g.p.left)*(g.xMax-g.xMin);
 }
-function choosePeakAt(x) {
-  if(!state.data.length || !Number.isFinite(x))return;
-  const existing=state.peaks.reduce((best,p)=>best===null || Math.abs(p.hint-x)<Math.abs(best.hint-x)?p:best,null);
-  if(existing && Math.abs(existing.hint-x)<Math.max(0.12,(state.view.max-state.view.min)/80)){
-    selectPeak(existing.id);return;
-  }
-  const neighborhood=state.data.filter(p=>Math.abs(p.x-x)<=Math.min(.22,n(form.window)*.45));
-  const peakPoint=neighborhood.sort((a,b)=>b.y-a.y)[0] || state.data.reduce((a,b)=>Math.abs(b.x-x)<Math.abs(a.x-x)?b:a);
-  const hint=peakPoint.x;
-  const fit=fitPeak(state.data,hint,n(form.window),form.profile.value);
-  const peak={id:state.nextId++,hint,fit,automatic:false};
-  state.peaks.push(peak);state.peaks.sort((a,b)=>a.hint-b.hint);
+function addPeakAt(hint) {
+  if (!state.data.length) return toast('Load a PXRD pattern before adding a peak.', true);
+  if (!Number.isFinite(hint) || hint < state.data[0].x || hint > state.data.at(-1).x)
+    return toast(`Enter a 2θ position within the loaded range (${round(state.data[0].x, 2)}–${round(state.data.at(-1).x, 2)}°).`, true);
+  const duplicate = state.peaks.find(p => Math.abs(p.hint - hint) < 1e-6);
+  if (duplicate) return selectPeak(duplicate.id);
+  const fit = fitPeak(state.data, hint, n(form.window), form.profile.value);
+  const peak = { id: state.nextId++, hint, fit, automatic: false };
+  state.peaks.push(peak);
+  state.peaks.sort((a, b) => a.hint - b.hint);
   selectPeak(peak.id);
-  if(!fit) toast('Insufficient data around this point. Increase the fitting window or choose a clearer reflection.',true);
+  if (!fit) toast('Peak added, but a single-peak fit was unavailable. Try a different fitting window.', true);
+  else if (hasCenterDrift(fit, hint)) toast('Peak added, but the fit center shifted away from the chosen reflection. Check for a nearby stronger peak or overlap.', true);
 }
+
+function choosePeakAt(x, clientX, clientY) {
+  if (!state.data.length || !Number.isFinite(x) || !state.plotGeometry) return;
+  const rect = canvas.getBoundingClientRect();
+  const g = state.plotGeometry;
+  const existing = findMarkerHit(state.peaks, clientX - rect.left, clientY - rect.top, peak => {
+    const point = peakMarkerPosition(peak);
+    return point ? { x: g.fx(point.x), y: g.fy(point.y) } : null;
+  });
+  if (existing) return selectPeak(existing.id);
+  const step = (state.data.at(-1).x - state.data[0].x) / (state.data.length - 1);
+  const radius = Math.min(0.09, Math.max(3 * step, (state.view.max - state.view.min) / 900));
+  const neighborhood = state.data.filter(p => Math.abs(p.x - x) <= radius);
+  const peakPoint = neighborhood.reduce((best, p) => !best || p.y > best.y ? p : best, null)
+    || state.data.reduce((a,b) => Math.abs(b.x-x) < Math.abs(a.x-x) ? b : a);
+  addPeakAt(peakPoint.x);
+}
+
+const manualPeakInput = byId('manualPeakAngle');
+function addManualPeak() {
+  const raw = manualPeakInput.value.trim();
+  if (!raw) return toast('Enter a 2θ position before adding a peak.', true);
+  addPeakAt(Number(raw));
+}
+byId('addManualPeak').addEventListener('click', addManualPeak);
+manualPeakInput.addEventListener('keydown', event => {
+  if (event.key === 'Enter') { event.preventDefault(); addManualPeak(); }
+});
 
 canvas.addEventListener('pointerdown',e=>{
   if(!state.data.length)return;
@@ -313,7 +351,7 @@ canvas.addEventListener('pointerup',e=>{
   if(!state.drag)return;
   const moved=state.drag.moved;
   state.drag=null;
-  if(!moved)choosePeakAt(clientXToDataX(e.clientX));
+  if(!moved)choosePeakAt(clientXToDataX(e.clientX), e.clientX, e.clientY);
 });
 canvas.addEventListener('pointercancel',()=>state.drag=null);
 canvas.addEventListener('pointerleave',()=>{byId('chartTooltip').hidden=true;});
@@ -349,11 +387,11 @@ function csvCell(value) {
 function downloadCSV() {
   if(!state.data.length)return;
   const cfg=currentSettings();
-  const headers=['Peak','Status','2theta_deg','theta_deg','Observed_FWHM_deg_2theta','Corrected_FWHM_deg_2theta','Beta_rad','Size_nm','Fit_R_squared','Profile','PseudoVoigt_Lorentzian_fraction','Wavelength_A','Shape_factor_K','Correction_assumption','Instrument_FWHM_deg_2theta'];
+  const headers=['Peak','Status','Requested_2theta_deg','2theta_deg','theta_deg','Observed_FWHM_deg_2theta','Corrected_FWHM_deg_2theta','Beta_rad','Size_nm','Fit_R_squared','Profile','PseudoVoigt_Lorentzian_fraction','Wavelength_A','Shape_factor_K','Correction_assumption','Instrument_FWHM_deg_2theta'];
   const rows=[['# Frameworked Scherrer Calculator v0.1 — exploratory, verify all fitted reflections'],['# Input file',state.source],['# Dataset',state.simulated?'SIMULATED':'USER PXRD FILE'],['# Instrumental broadening and microstrain must be evaluated before interpreting domain size'],headers];
   state.peaks.forEach((peak,i)=>{
     const f=peak.fit,r=calculate(peak);
-    rows.push([i+1,(!f?'unfitted':f.fitted&&f.rSquared>=.94?'review':'poor-fit-review'),f?.center,r?.thetaDeg,f?.fwhmDeg,r?.sampleWidthDeg,r?.betaRad,r?.valid?r.sizeNm:null,f?.rSquared,f?.model,f?.eta,cfg.wavelengthA,cfg.shapeFactor,cfg.correction,cfg.instrumentalFwhmDeg]);
+    rows.push([i+1,(!f?'unfitted':f.fitted&&f.rSquared>=.94&&!hasCenterDrift(f,peak.hint)?'review':'poor-fit-review'),peak.hint,f?.center,r?.thetaDeg,f?.fwhmDeg,r?.sampleWidthDeg,r?.betaRad,r?.valid?r.sizeNm:null,f?.rSquared,f?.model,f?.eta,cfg.wavelengthA,cfg.shapeFactor,cfg.correction,cfg.instrumentalFwhmDeg]);
   });
   const output=rows.map(row=>row.map(csvCell).join(',')).join('\r\n');
   const url=URL.createObjectURL(new Blob([output],{type:'text/csv;charset=utf-8'}));
