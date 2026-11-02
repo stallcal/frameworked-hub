@@ -43,7 +43,7 @@ const median = values => {
   return sorted.length % 2 ? sorted[mid] : (sorted[mid - 1] + sorted[mid]) / 2;
 };
 
-export function findCandidates(data, maxCount = 14) {
+export function findCandidates(data, maxCount = 32) {
   if (data.length < 15) return [];
   const smoothed = data.map((p, i) => {
     let total = 0, weight = 0;
@@ -80,6 +80,26 @@ export function findCandidates(data, maxCount = 14) {
     }
   }
   return selected.sort((a, b) => a.x - b.x);
+}
+
+/** Hit-test visible peak markers in two-dimensional plot pixels, not a broad 2θ tolerance. */
+export function findMarkerHit(peaks, pixelX, pixelY, project, radiusPx = 9) {
+  if (![pixelX, pixelY, radiusPx].every(Number.isFinite) || radiusPx <= 0) return null;
+  let closest = null;
+  let distanceSquared = radiusPx * radiusPx;
+  for (const peak of peaks) {
+    const point = project(peak);
+    if (!point || !Number.isFinite(point.x) || !Number.isFinite(point.y)) continue;
+    const d2 = (point.x - pixelX) ** 2 + (point.y - pixelY) ** 2;
+    if (d2 <= distanceSquared) { closest = peak; distanceSquared = d2; }
+  }
+  return closest;
+}
+
+/** Flag peak identity ambiguity rather than silently treating a shifted fit as the requested reflection. */
+export function hasCenterDrift(fit, requestedTwoTheta, toleranceDeg = 0.07) {
+  return Boolean(fit && Number.isFinite(requestedTwoTheta) &&
+    Number.isFinite(fit.center) && Math.abs(fit.center - requestedTwoTheta) > toleranceDeg);
 }
 
 function solve3(matrix, rhs) {
@@ -122,8 +142,11 @@ export function fitPeak(data, approximateCenter, halfWindowDeg = 0.65, model = '
   const dx = median(xs.slice(1).map((v, i) => v - xs[i]));
   const minWidth = Math.max(2 * dx, 0.0005);
   const maxWidth = Math.max(minWidth * 1.2, 1.8 * halfWindowDeg);
-  let crest = 0;
-  for (let i = 1; i < ys.length; i++) if (ys[i] > ys[crest]) crest = i;
+  // Start from the requested reflection rather than the strongest adjacent peak.
+  const crestRadius = Math.max(2 * dx, Math.min(0.09, halfWindowDeg * 0.32));
+  let crest = xs.reduce((best, x, i) =>
+    Math.abs(x - centerCandidate) <= crestRadius && (best < 0 || ys[i] > ys[best]) ? i : best, -1);
+  if (crest < 0) return null;
   const center0 = xs[crest];
   const edgeN = Math.max(2, Math.floor(points.length * 0.12));
   const leftBase = median(ys.slice(0, edgeN));
@@ -149,8 +172,10 @@ export function fitPeak(data, approximateCenter, halfWindowDeg = 0.65, model = '
     }
   }
   const width0 = Math.max(minWidth, Math.min(maxWidth, rightX - leftX));
-  const minCenter = Math.max(xStart, centerCandidate - halfWindowDeg * 0.35);
-  const maxCenter = Math.min(xEnd, centerCandidate + halfWindowDeg * 0.35);
+  // Prevent the optimizer from silently fitting the neighboring reflection.
+  const centerTolerance = Math.min(0.07, halfWindowDeg * 0.27);
+  const minCenter = Math.max(xStart, centerCandidate - centerTolerance);
+  const maxCenter = Math.min(xEnd, centerCandidate + centerTolerance);
   const fixedEta = model === 'gaussian' ? 0 : model === 'lorentzian' ? 1 : null;
   const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
   const totalMean = ys.reduce((a, b) => a + b, 0) / ys.length;
@@ -237,4 +262,16 @@ export function syntheticPattern() {
     data.push({ x, y: Math.max(0, base + signal + noise) });
   }
   return data;
+}
+
+/** SD measures reflection-to-reflection spread; SEM is not the total Scherrer uncertainty. */
+export function summarizeDomainSizes(values) {
+  if (!Array.isArray(values) || values.some(v => !Number.isFinite(v) || v <= 0)) return null;
+  const n = values.length;
+  if (!n) return null;
+  const mean = values.reduce((s, v) => s + v, 0) / n;
+  const sumSq = values.reduce((s, v) => s + (v - mean) ** 2, 0);
+  const sd = n < 2 ? null : Math.sqrt(sumSq / (n - 1));
+  return { n, mean, sd, sem: sd === null ? null : sd / Math.sqrt(n),
+    min: Math.min(...values), max: Math.max(...values) };
 }

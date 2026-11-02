@@ -18,7 +18,7 @@
 {{ $published := where $readings "Draft" false }}
 <section class="reading-list" aria-label="{{ if $isArticles }}Published stories{{ else }}Published pages{{ end }}">
   {{ if and $isArticles $published }}<h2 class="section-title">Latest stories</h2>{{ end }}
-  {{ range $published.ByDate.Reverse }}{{ partial "content-card.html" . }}{{ else }}<div class="empty-state"><p>{{ if eq $.Section "explore" }}The first structure profiles are in preparation.{{ else }}The first stories are in preparation.{{ end }}</p>{{ if $isArticles }}<a class="inline-link" href="{{ "/tools/scherrer/" | relURL }}">In the meantime, explore the Scherrer Lab <span aria-hidden="true">↗</span></a>{{ end }}</div>{{ end }}
+  {{ range $published.ByDate.Reverse }}{{ partial "content-card.html" . }}{{ else }}<div class="empty-state"><p>{{ if eq $.Section "explore" }}The first structure profiles are in preparation.{{ else }}The first stories are in preparation.{{ end }}</p>{{ if $isArticles }}<a class="inline-link" href="{{ "/tools/scherrer/" | relURL }}">Try the Scherrer calculator <span aria-hidden="true">↗</span></a>{{ end }}</div>{{ end }}
 </section>
 {{ with where $readings "Draft" true }}
 <section class="draft-collection" aria-labelledby="drafts-title">
