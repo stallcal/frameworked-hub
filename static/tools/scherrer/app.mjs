@@ -205,7 +205,7 @@ const niceStep = (range, goal = 6) => {
 };
 
 function peakMarkerPosition(peak) {
-  if (peak.fit) return { x: peak.fit.center, y: peak.fit.intercept + peak.fit.amplitude };
+  // Mark the measured candidate location, not a fitted center that may drift to a neighbor.
   const point = state.data.reduce((nearest, candidate) =>
     !nearest || Math.abs(candidate.x - peak.hint) < Math.abs(nearest.x - peak.hint) ? candidate : nearest, null);
   return point ? { x: peak.hint, y: point.y } : null;
