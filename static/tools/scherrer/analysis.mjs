@@ -142,8 +142,11 @@ export function fitPeak(data, approximateCenter, halfWindowDeg = 0.65, model = '
   const dx = median(xs.slice(1).map((v, i) => v - xs[i]));
   const minWidth = Math.max(2 * dx, 0.0005);
   const maxWidth = Math.max(minWidth * 1.2, 1.8 * halfWindowDeg);
-  let crest = 0;
-  for (let i = 1; i < ys.length; i++) if (ys[i] > ys[crest]) crest = i;
+  // Start from the requested reflection rather than the strongest adjacent peak.
+  const crestRadius = Math.max(2 * dx, Math.min(0.09, halfWindowDeg * 0.32));
+  let crest = xs.reduce((best, x, i) =>
+    Math.abs(x - centerCandidate) <= crestRadius && (best < 0 || ys[i] > ys[best]) ? i : best, -1);
+  if (crest < 0) return null;
   const center0 = xs[crest];
   const edgeN = Math.max(2, Math.floor(points.length * 0.12));
   const leftBase = median(ys.slice(0, edgeN));
@@ -169,8 +172,10 @@ export function fitPeak(data, approximateCenter, halfWindowDeg = 0.65, model = '
     }
   }
   const width0 = Math.max(minWidth, Math.min(maxWidth, rightX - leftX));
-  const minCenter = Math.max(xStart, centerCandidate - halfWindowDeg * 0.35);
-  const maxCenter = Math.min(xEnd, centerCandidate + halfWindowDeg * 0.35);
+  // Prevent the optimizer from silently fitting the neighboring reflection.
+  const centerTolerance = Math.min(0.07, halfWindowDeg * 0.27);
+  const minCenter = Math.max(xStart, centerCandidate - centerTolerance);
+  const maxCenter = Math.min(xEnd, centerCandidate + centerTolerance);
   const fixedEta = model === 'gaussian' ? 0 : model === 'lorentzian' ? 1 : null;
   const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
   const totalMean = ys.reduce((a, b) => a + b, 0) / ys.length;
@@ -257,4 +262,16 @@ export function syntheticPattern() {
     data.push({ x, y: Math.max(0, base + signal + noise) });
   }
   return data;
+}
+
+/** SD measures reflection-to-reflection spread; SEM is not the total Scherrer uncertainty. */
+export function summarizeDomainSizes(values) {
+  if (!Array.isArray(values) || values.some(v => !Number.isFinite(v) || v <= 0)) return null;
+  const n = values.length;
+  if (!n) return null;
+  const mean = values.reduce((s, v) => s + v, 0) / n;
+  const sumSq = values.reduce((s, v) => s + (v - mean) ** 2, 0);
+  const sd = n < 2 ? null : Math.sqrt(sumSq / (n - 1));
+  return { n, mean, sd, sem: sd === null ? null : sd / Math.sqrt(n),
+    min: Math.min(...values), max: Math.max(...values) };
 }
