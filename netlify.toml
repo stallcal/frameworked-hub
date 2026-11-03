@@ -1,5 +1,5 @@
 [build]
-  command = "hugo --environment production --minify"
+  command = "python3 scripts/stage_tools.py && hugo --environment production --minify"
   publish = "public"
 
 [build.environment]

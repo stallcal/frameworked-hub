@@ -163,7 +163,7 @@ body { color:var(--navy); font:18px/1.55 'Libron',Georgia,serif; background:var(
   .home-manifesto { grid-template-columns:1fr; padding:65px 0 75px; }
   .home-manifesto .design-eyebrow { grid-column:auto; }
   .footer-top { gap:20px; }
-  .tools-intro,.tools-feature { grid-template-columns:1fr; gap:30px; }
+  .tools-intro,.tools-feature { grid-template-columns:minmax(0,1fr); gap:30px; }
   .tools-intro { padding:70px 0 50px; }
   .tools-feature { padding:45px 0; }
   .tools-feature-art { min-height:320px; }
@@ -203,7 +203,18 @@ body { color:var(--navy); font:18px/1.55 'Libron',Georgia,serif; background:var(
   .tools-intro h1 { font-size:64px; }
   .tools-intro>p { font-size:20px; }
   .tools-feature-art { min-height:300px; padding:18px; }
-  .tools-feature-copy h2 { font-size:75px; }
+  .tools-feature-copy h2 { font-size:clamp(48px,17vw,75px); }
   .tools-caveat { padding:25px 22px; }
 }
 @media(prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } .editorial-button { transition:none; } }
+
+/* Standalone tools catalog. */
+.science-tools{padding:44px 0;border-top:1px solid var(--hair)}
+.science-tools>h2{font-size:clamp(32px,4vw,48px);margin-bottom:16px}
+.science-tools>p{max-width:780px;margin-bottom:26px}
+.science-tool-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px}
+.science-tool-grid article{border-top:3px solid #084b9e;padding:22px 0}
+.science-tool-grid h3{font-size:28px;margin:12px 0 18px;line-height:1.15}
+.science-tool-grid article>p{font-size:17px}
+.science-tool-link{display:inline-block;margin-top:20px}
+@media(max-width:800px){.science-tool-grid{grid-template-columns:1fr}}

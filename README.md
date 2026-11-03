@@ -1,23 +1,30 @@
 # Frameworked
 
-A local design foundation for frameworked.org: learning guides, research essays and videos, structure profiles, and an About & Research page.
+Frameworked.org is an independent chemistry education and research-tools website, built with Hugo and hosted on Netlify.
+
+**Start here:** [Roadmap](ROADMAP.md) · [Project map / agent handoff](docs/PROJECT-MAP.md) · [Sprint tracking issue #8](https://github.com/stallcal/frameworked-hub/issues/8).
+
+This review branch adds three standalone science-tool packages: [Bragg’s law explorer](projects/diffraction-explorer/), [adsorption unit converter](projects/adsorption-workbench/), and [pore-accessibility playground](projects/pore-accessibility-playground/). They await scientific/release review. Proposed separate repositories and a GitHub Project are tracked in [#7](https://github.com/stallcal/frameworked-hub/issues/7); current connection permissions prevent their creation. Each package includes source, tests, model documentation and agent instructions.
 
 ## Preview
 
-Use Hugo 0.154.5, matching the version pinned for Netlify in `netlify.toml`.
-```powershell
+Use Hugo Extended 0.154.5, Python 3 and Node 20+ (CI: 22). No npm install is required for the new tools. Initialize PaperMod with `git submodule update --init --recursive`. Stage the standalone tool sources before each website preview/build.
+```sh
+python3 scripts/stage_tools.py
 hugo server --buildDrafts --environment preview --bind 127.0.0.1 --port 1313
 ```
-Open http://localhost:1313/.
+Open http://localhost:1313/ on your development machine. In this cloud workspace, use `/workspace/.local/bin/hugo` (or add it to PATH) and set `HUGO_CACHEDIR=/workspace/.cache/hugo` for a writable cache. See the project map for standalone previews.
 
 ## Editorial redesign and Scherrer calculator (October 2026)
 
-The first redesign was merged into `main` and published to frameworked.org on October 28, 2026. The Scherrer calculator lives at `/tools/scherrer/` within **the same** Netlify/Hugo deployment, without a second hosting provider. A subsequent tool-first layout, less slogan-heavy page hierarchy, and revised conceptual pore graphic are being reviewed on `feat/scherrer-tool-simplify-pore`; see [the review handoff](docs/editorial-redesign-review.md). The explanatory/history content is reserved for a separate [future article](docs/scherrer-article-backlog.md).
+The first redesign was merged into `main` and published to frameworked.org on October 28, 2026. The Scherrer calculator lives at `/tools/scherrer/` within **the same** Netlify/Hugo deployment, without a second hosting provider. The tool-first layout is now on main. A separate [draft PR #3](https://github.com/stallcal/frameworked-hub/pull/3) reviews the live results rail and restored science sections; leave it independent from this sprint. The [earlier review handoff](docs/editorial-redesign-review.md) is historical. The explanatory/history content is reserved for a separate [future article](docs/scherrer-article-backlog.md).
 
 The calculator currently accepts XY/XYE text data (plus text, CSV, and DAT variants), fits individual peaks and reports exploratory Scherrer coherent-domain estimates. The third XYE uncertainty column is not used for weighting; direct BRML import is not yet supported. Until a measured line-profile standard is available, displayed sizes are uncorrected. Test the scientific routines with `node --test tests/scherrer-analysis.test.mjs`.
 
 ## Build and check
-```powershell
+```sh
+python3 scripts/stage_tools.py
+node --test projects/*/tests/*.test.mjs tests/scherrer-analysis.test.mjs
 hugo --buildDrafts --environment preview --destination public --cleanDestinationDir
 hugo --environment production --destination public-production --cleanDestinationDir
 python3 scripts/verify_site.py

@@ -1,0 +1,10 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {convertUptake as convert,convertPressure,UNITS} from '../web/model.mjs';
+const near=(a,b,t=1e-8)=>assert.ok(Math.abs(a-b)<t,`${a} != ${b}`);
+test('mmol/g and mol/kg are numerically equal',()=>near(convert({value:2,from:'mmol/g',to:'mol/kg'}).value,2));
+test('molar mass yields mg/g and g/g on the adsorbent mass basis',()=>{near(convert({value:1,from:'mmol/g',to:'mg/g',molarMass:44}).value,44);near(convert({value:1,from:'mmol/g',to:'g/g',molarMass:44}).value,.044);});
+test('gas reference presets differ: 1 atm vs 1 bar',()=>{near(convert({value:1,from:'mmol/g',to:'cm3/g'}).value,22.41396954,1e-7);near(convert({value:1,from:'mmol/g',to:'cm3/g',pressure:100}).value,22.71095464,1e-7);});
+test('all unit pairs round trip with explicit reference conditions',()=>{for(const from of Object.keys(UNITS))for(const to of Object.keys(UNITS)){const config={molarMass:28.0134,temperature:298.15,pressure:100,basis:'excess'};const a=convert({...config,value:1.234,from,to});near(convert({...config,value:a.value,from:to,to:from}).value,1.234);assert.equal(a.basis,'excess');}});
+test('zero uptake is valid; invalid mass, volume, and unit inputs fail',()=>{assert.equal(convert({value:0,from:'mmol/g',to:'mol/kg'}).value,0);for(const args of [{value:-1,from:'mmol/g',to:'mol/kg'},{value:1,from:'mg/g',to:'mmol/g'},{value:1,from:'cm3/g',to:'mmol/g',temperature:0},{value:1,from:'bad',to:'mmol/g'}])assert.throws(()=>convert(args));});
+test('pressure identities and exact atmosphere definition',()=>{near(convertPressure(1,'atm','Pa'),101325);near(convertPressure(760,'Torr','atm'),1);near(convertPressure(1,'bar','kPa'),100);assert.throws(()=>convertPressure(NaN,'bar','Pa'));});
