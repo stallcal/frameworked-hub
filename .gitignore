@@ -4,3 +4,8 @@ public-production/
 resources/
 .hugo_build.lock
 .preview/
+# Generated from projects/*/web by scripts/stage_tools.py
+static/tools/bragg/
+static/tools/adsorption/
+static/tools/pore-accessibility/
+**/node_modules/

@@ -1,0 +1,67 @@
+import test from "node:test";
+import assert from "node:assert/strict";
+import { analyze, PRESETS, clearance } from "../web/model.mjs";
+test("open domain connects left to right", () => {
+  const r = analyze({ radius: 2 });
+  assert.ok(r.through);
+  assert.equal(r.isolated, 0);
+  assert.ok(r.accessibleArea < 120 * 80);
+});
+test("solid wall closes all routes even for zero-radius probe", () => {
+  const r = analyze({ radius: 0, obstacles: [{ x: 59, y: 0, w: 2, h: 80 }] });
+  assert.equal(r.through, false);
+  assert.ok(r.connected > 0 && r.isolated > 0);
+});
+test("wide channel admits a small probe and excludes a large one", () => {
+  assert.equal(
+    analyze({ radius: 3, obstacles: PRESETS.channel.obstacles }).through,
+    true,
+  );
+  assert.equal(
+    analyze({ radius: 10, obstacles: PRESETS.channel.obstacles }).through,
+    false,
+  );
+});
+test("closed pocket fits a probe without inlet connectivity", () => {
+  const r = analyze({ radius: 2, obstacles: PRESETS.isolated.obstacles });
+  assert.equal(r.mask[40 * r.nx + 60], 1);
+  assert.ok(r.isolated > 0);
+});
+test("increasing radius cannot increase admitted or connected area on a fixed grid", () => {
+  for (const p of Object.values(PRESETS)) {
+    let previous = analyze({ radius: 0, obstacles: p.obstacles });
+    for (const radius of [1, 3, 5, 10, 20]) {
+      const next = analyze({ radius, obstacles: p.obstacles });
+      assert.ok(next.fits <= previous.fits);
+      assert.ok(next.connected <= previous.connected);
+      previous = next;
+    }
+  }
+});
+test("fine grid resolves some narrow passages missed conservatively by coarse grid", () => {
+  const obstacles = PRESETS.channel.obstacles;
+  assert.equal(analyze({ radius: 8.5, step: 2, obstacles }).through, false);
+  assert.equal(analyze({ radius: 8.5, step: 0.5, obstacles }).through, true);
+});
+test("all admitted cells have the stated conservative clearance", () => {
+  const obstacles = PRESETS.bottleneck.obstacles,
+    r = analyze({ radius: 2, obstacles });
+  for (let y = 0; y < r.ny; y++)
+    for (let x = 0; x < r.nx; x++)
+      if (r.mask[y * r.nx + x])
+        assert.ok(
+          clearance((x + 0.5) * r.dx, (y + 0.5) * r.dy, obstacles) >
+            r.radius + r.margin,
+        );
+});
+test("invalid grids and excessive allocation are rejected", () => {
+  for (const args of [
+    { radius: -1 },
+    { step: 0 },
+    { step: 0.001 },
+    { radius: NaN },
+    { width: Infinity },
+    { obstacles: [{ x: 0, y: 0, w: -1, h: 1 }] },
+  ])
+    assert.throws(() => analyze(args));
+});

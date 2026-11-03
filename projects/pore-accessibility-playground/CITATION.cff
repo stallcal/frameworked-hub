@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+message: "Please acknowledge Frameworked and the specific tool version when reusing this software."
+title: "Frameworked Pore Accessibility Playground"
+version: 0.1.0
+type: software
+authors:
+  - family-names: Stallard
+    given-names: Caleb
+license: MIT
+url: "https://frameworked.org/"

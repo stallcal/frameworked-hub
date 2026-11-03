@@ -1,0 +1,40 @@
+name: Science tools and website
+on:
+  pull_request:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Scientific model tests
+        run: node --test projects/*/tests/*.test.mjs tests/scherrer-analysis.test.mjs
+      - name: Install verified Hugo release
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/hugo"
+          cd "$RUNNER_TEMP/hugo"
+          curl -fsSL --retry 2 https://github.com/gohugoio/hugo/releases/download/v0.154.5/hugo_extended_0.154.5_linux-amd64.tar.gz -o hugo.tar.gz
+          curl -fsSL --retry 2 https://github.com/gohugoio/hugo/releases/download/v0.154.5/hugo_0.154.5_checksums.txt -o checksums.txt
+          mv hugo.tar.gz hugo_extended_0.154.5_linux-amd64.tar.gz
+          grep ' hugo_extended_0.154.5_linux-amd64.tar.gz$' checksums.txt | sha256sum -c -
+          tar -xzf hugo_extended_0.154.5_linux-amd64.tar.gz hugo
+          echo "$RUNNER_TEMP/hugo" >> "$GITHUB_PATH"
+      - name: Build and validate both publication modes
+        run: |
+          set -e
+          export HUGO_CACHEDIR="$RUNNER_TEMP/hugo-cache"
+          python3 scripts/stage_tools.py
+          hugo --buildDrafts --environment preview --destination public --cleanDestinationDir
+          hugo --environment production --destination public-production --cleanDestinationDir
+          python3 scripts/verify_site.py
+          python3 scripts/test_editorial.py

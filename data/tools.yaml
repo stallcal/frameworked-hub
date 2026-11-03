@@ -1,0 +1,18 @@
+- title: Bragg’s law explorer
+  purpose: Learn
+  category: Diffraction geometry
+  description: Connect plane spacing, wavelength, 2θ, and q with a live ray diagram and transparent calculations.
+  url: /tools/bragg/
+  project: diffraction-explorer
+- title: Adsorption unit converter
+  purpose: Analyze
+  category: Adsorption quantities
+  description: Convert uptake and pressure with explicit mass bases, gas reference conditions, and downloadable calculation records.
+  url: /tools/adsorption/
+  project: adsorption-workbench
+- title: Pore accessibility playground
+  purpose: Learn
+  category: A 2D geometric model
+  description: Change a probe’s size to explore connected channels, narrow entrances, and isolated pockets.
+  url: /tools/pore-accessibility/
+  project: pore-accessibility-playground
