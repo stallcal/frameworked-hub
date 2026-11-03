@@ -2,6 +2,8 @@
 
 Updated 2026-11-03. This file describes the `feat/frameworked-science-tools` review branch. It does not claim that the new tools are published.
 
+Review implementation: [draft PR #9](https://github.com/stallcal/frameworked-hub/pull/9).
+
 Start with [the tracking issue](https://github.com/stallcal/frameworked-hub/issues/8). Read [the project map](docs/PROJECT-MAP.md) for architecture and [the review notes](docs/science-tools-review.md) for validation and limitations.
 
 ## Current work

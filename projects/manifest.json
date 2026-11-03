@@ -1,8 +1,29 @@
 {
   "schemaVersion": 1,
   "tools": [
-    {"id":"bragg","project":"diffraction-explorer","version":"0.1.0","purpose":"education","proposedRepository":"stallcal/diffraction-explorer","status":"review"},
-    {"id":"adsorption","project":"adsorption-workbench","version":"0.1.0","purpose":"research","proposedRepository":"stallcal/adsorption-workbench","status":"review"},
-    {"id":"pore-accessibility","project":"pore-accessibility-playground","version":"0.1.0","purpose":"education","proposedRepository":"stallcal/pore-accessibility-playground","status":"review"}
+    {
+      "id": "bragg",
+      "project": "diffraction-explorer",
+      "version": "0.1.0",
+      "purpose": "education",
+      "proposedRepository": "stallcal/diffraction-explorer",
+      "status": "review"
+    },
+    {
+      "id": "adsorption",
+      "project": "adsorption-workbench",
+      "version": "0.1.0",
+      "purpose": "research",
+      "proposedRepository": "stallcal/adsorption-workbench",
+      "status": "review"
+    },
+    {
+      "id": "pore-accessibility",
+      "project": "pore-accessibility-playground",
+      "version": "0.1.0",
+      "purpose": "education",
+      "proposedRepository": "stallcal/pore-accessibility-playground",
+      "status": "review"
+    }
   ]
 }

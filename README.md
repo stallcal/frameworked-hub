@@ -4,7 +4,7 @@ Frameworked.org is an independent chemistry education and research-tools website
 
 **Start here:** [Roadmap](ROADMAP.md) · [Project map / agent handoff](docs/PROJECT-MAP.md) · [Sprint tracking issue #8](https://github.com/stallcal/frameworked-hub/issues/8).
 
-This review branch adds three standalone science-tool packages: [Bragg’s law explorer](projects/diffraction-explorer/), [adsorption unit converter](projects/adsorption-workbench/), and [pore-accessibility playground](projects/pore-accessibility-playground/). They await scientific/release review. Proposed separate repositories and a GitHub Project are tracked in [#7](https://github.com/stallcal/frameworked-hub/issues/7); current connection permissions prevent their creation. Each package includes source, tests, model documentation and agent instructions.
+[Draft PR #9](https://github.com/stallcal/frameworked-hub/pull/9) adds three standalone science-tool packages: [Bragg’s law explorer](projects/diffraction-explorer/), [adsorption unit converter](projects/adsorption-workbench/), and [pore-accessibility playground](projects/pore-accessibility-playground/). They await scientific/release review. Proposed separate repositories and a GitHub Project are tracked in [#7](https://github.com/stallcal/frameworked-hub/issues/7); current connection permissions prevent their creation. Each package includes source, tests, model documentation and agent instructions.
 
 ## Preview
 

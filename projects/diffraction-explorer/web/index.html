@@ -1,9 +1,164 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Connect lattice spacing, wavelength, and diffraction angle. Change one quantity and follow what happens to the others."><title>Bragg’s law explorer · Frameworked</title><link rel="stylesheet" href="./style.css"><script type="module" src="./app.mjs"></script></head><body><a class="skip" href="#main">Skip to tool</a><div class="shell"><header><a class="brand" href="https://frameworked.org/">Frameworked.</a><a href="https://frameworked.org/tools/">All tools ↗</a></header><main id="main"><section class="intro"><p class="eyebrow">Learn / Diffraction</p><h1>Bragg’s law explorer<span>.</span></h1><p>Connect lattice spacing, wavelength, and diffraction angle. Change one quantity and follow what happens to the others.</p><span class="tag">v0.1 · Model &amp; assumptions below</span></section><div class="workspace"><section class="controls" aria-label="Bragg inputs"><h2>Set the geometry</h2>
-<div class="field"><label for="mode">Known quantity</label><select id="mode"><option value="spacing">Plane spacing d (Å)</option><option value="angle">Diffraction angle 2θ (°)</option><option value="q">Scattering vector q (Å⁻¹)</option></select></div>
-<div class="field"><label id="value-label" for="value">Plane spacing d (Å)</label><input id="value" type="number" value="3" step="any"><input id="spacing-slider" aria-label="Adjust plane spacing in angstroms" type="range" min="0.5" max="10" step="0.01" value="3"></div>
-<div class="field"><label for="preset">Wavelength preset</label><select id="preset"><option value="1.5406">Cu Kα₁ · 1.5406 Å</option><option value="0.7093">Mo Kα₁ · 0.7093 Å</option><option value="custom">Custom wavelength</option></select></div>
-<div class="field"><label for="wavelength">Wavelength λ (Å)</label><input id="wavelength" type="number" min="0" step="any" value="1.5406"><small>Verify the wavelength and optics used for your experiment.</small></div>
-<div class="field"><label for="order">Diffraction order n</label><input id="order" type="number" min="1" step="1" value="1"><small>Start with n = 1. For higher orders, d remains the selected plane spacing.</small></div>
-<div class="wide actions"><button id="reset" class="secondary">Reset example</button></div></section>
-<section class="visual" aria-label="Bragg calculation"><p class="formula">nλ = 2d sin θ</p><p id="error" class="error" role="alert"></p><div id="results" aria-live="polite"><div class="readouts"><div class="metric"><span class="label">2θ</span><strong id="angle-out"></strong><span class="unit">degrees</span></div><div class="metric"><span class="label">d</span><strong id="d-out"></strong><span class="unit">Å</span></div><div class="metric"><span class="label">q</span><strong id="q-out"></strong><span class="unit">Å⁻¹</span></div></div><figure class="figure"><svg id="geometry" viewBox="0 0 760 410" role="img" aria-label="Two parallel lattice planes and rays at the calculated Bragg angle"></svg><figcaption id="figure-caption">Schematic ray construction; plane separation is illustrated, not a crystallographic model.</figcaption></figure><p id="explanation"></p><div class="actions"><button id="export">Download calculation</button></div></div></section></div>
-<details class="notes" open><summary>What this model means</summary><p>θ is the angle between a ray and a lattice plane. A powder pattern normally reports <strong>2θ</strong>. Here q = 4π sin θ / λ = 2πn / d. Wavelength and spacing are in angstroms; q is in inverse angstroms.</p><p>This predicts a geometric diffraction condition. Atomic positions, scattering factors, and symmetry determine intensities and systematic absences. The diagram does not predict a complete diffraction pattern or identify a phase. Higher-order diffraction is often represented by different Miller indices with n = 1.</p><p>Preset wavelengths are rounded educational values. No wavelength uncertainty, refraction correction, or instrumental calibration is applied.</p><p>Reference: <a href="https://dictionary.iucr.org/Bragg%27s_law">IUCr Online Dictionary of Crystallography — Bragg’s law</a>.</p></details></main><footer><a href="https://frameworked.org/">Exploring chemistry, one building block at a time.</a><span>Runs locally in your browser · No file uploads</span></footer></div></body></html>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta
+      name="description"
+      content="Connect lattice spacing, wavelength, and diffraction angle. Change one quantity and follow what happens to the others."
+    />
+    <title>Bragg’s law explorer · Frameworked</title>
+    <link rel="stylesheet" href="./style.css" />
+    <script type="module" src="./app.mjs"></script>
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to tool</a>
+    <div class="shell">
+      <header>
+        <a class="brand" href="https://frameworked.org/">Frameworked.</a
+        ><a href="https://frameworked.org/tools/">All tools ↗</a>
+      </header>
+      <main id="main">
+        <section class="intro">
+          <p class="eyebrow">Learn / Diffraction</p>
+          <h1>Bragg’s law explorer<span>.</span></h1>
+          <p>
+            Connect lattice spacing, wavelength, and diffraction angle. Change
+            one quantity and follow what happens to the others.
+          </p>
+          <span class="tag">v0.1 · Model &amp; assumptions below</span>
+        </section>
+        <div class="workspace">
+          <section class="controls" aria-label="Bragg inputs">
+            <h2>Set the geometry</h2>
+            <div class="field">
+              <label for="mode">Known quantity</label
+              ><select id="mode">
+                <option value="spacing">Plane spacing d (Å)</option>
+                <option value="angle">Diffraction angle 2θ (°)</option>
+                <option value="q">Scattering vector q (Å⁻¹)</option>
+              </select>
+            </div>
+            <div class="field">
+              <label id="value-label" for="value">Plane spacing d (Å)</label
+              ><input id="value" type="number" value="3" step="any" /><input
+                id="spacing-slider"
+                aria-label="Adjust plane spacing in angstroms"
+                type="range"
+                min="0.5"
+                max="10"
+                step="0.01"
+                value="3"
+              />
+            </div>
+            <div class="field">
+              <label for="preset">Wavelength preset</label
+              ><select id="preset">
+                <option value="1.5406">Cu Kα₁ · 1.5406 Å</option>
+                <option value="0.7093">Mo Kα₁ · 0.7093 Å</option>
+                <option value="custom">Custom wavelength</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="wavelength">Wavelength λ (Å)</label
+              ><input
+                id="wavelength"
+                type="number"
+                min="0"
+                step="any"
+                value="1.5406"
+              /><small
+                >Verify the wavelength and optics used for your
+                experiment.</small
+              >
+            </div>
+            <div class="field">
+              <label for="order">Diffraction order n</label
+              ><input
+                id="order"
+                type="number"
+                min="1"
+                step="1"
+                value="1"
+              /><small
+                >Start with n = 1. For higher orders, d remains the selected
+                plane spacing.</small
+              >
+            </div>
+            <div class="wide actions">
+              <button id="reset" class="secondary">Reset example</button>
+            </div>
+          </section>
+          <section class="visual" aria-label="Bragg calculation">
+            <p class="formula">nλ = 2d sin θ</p>
+            <p id="error" class="error" role="alert"></p>
+            <div id="results" aria-live="polite">
+              <div class="readouts">
+                <div class="metric">
+                  <span class="label">2θ</span><strong id="angle-out"></strong
+                  ><span class="unit">degrees</span>
+                </div>
+                <div class="metric">
+                  <span class="label">d</span><strong id="d-out"></strong
+                  ><span class="unit">Å</span>
+                </div>
+                <div class="metric">
+                  <span class="label">q</span><strong id="q-out"></strong
+                  ><span class="unit">Å⁻¹</span>
+                </div>
+              </div>
+              <figure class="figure">
+                <svg
+                  id="geometry"
+                  viewBox="0 0 760 410"
+                  role="img"
+                  aria-label="Two parallel lattice planes and rays at the calculated Bragg angle"
+                ></svg>
+                <figcaption id="figure-caption">
+                  Schematic ray construction; plane separation is illustrated,
+                  not a crystallographic model.
+                </figcaption>
+              </figure>
+              <p id="explanation"></p>
+              <div class="actions">
+                <button id="export">Download calculation</button>
+              </div>
+            </div>
+          </section>
+        </div>
+        <details class="notes" open>
+          <summary>What this model means</summary>
+          <p>
+            θ is the angle between a ray and a lattice plane. A powder pattern
+            normally reports <strong>2θ</strong>. Here q = 4π sin θ / λ = 2πn /
+            d. Wavelength and spacing are in angstroms; q is in inverse
+            angstroms.
+          </p>
+          <p>
+            This predicts a geometric diffraction condition. Atomic positions,
+            scattering factors, and symmetry determine intensities and
+            systematic absences. The diagram does not predict a complete
+            diffraction pattern or identify a phase. Higher-order diffraction is
+            often represented by different Miller indices with n = 1.
+          </p>
+          <p>
+            Preset wavelengths are rounded educational values. No wavelength
+            uncertainty, refraction correction, or instrumental calibration is
+            applied.
+          </p>
+          <p>
+            Reference:
+            <a href="https://dictionary.iucr.org/Bragg%27s_law"
+              >IUCr Online Dictionary of Crystallography — Bragg’s law</a
+            >.
+          </p>
+        </details>
+      </main>
+      <footer>
+        <a href="https://frameworked.org/"
+          >Exploring chemistry, one building block at a time.</a
+        ><span>Runs locally in your browser · No file uploads</span>
+      </footer>
+    </div>
+  </body>
+</html>
