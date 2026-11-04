@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { bragg } from "../web/model.mjs";
+import { bragg, squareLatticeSpacing } from "../web/model.mjs";
 const near = (a, b) => assert.ok(Math.abs(a - b) < 1e-9, `${a} != ${b}`);
 test("known first-order geometry and scattering vector", () => {
   const r = bragg({ value: 1, wavelength: 1 });
@@ -39,4 +39,20 @@ test("rejects impossible, zero, nonfinite, and fractional-order inputs", () => {
     { mode: "bad" },
   ])
     assert.throws(() => bragg(args));
+});
+
+
+test("square lattice plane spacing is a for (10) and a/sqrt(2) for (11)", () => {
+  const side = squareLatticeSpacing({a:4,plane:"10"});
+  const diagonal = squareLatticeSpacing({a:4,plane:"11"});
+  near(side.d,4);
+  near(diagonal.d,4/Math.sqrt(2));
+  near(bragg({value:side.d,wavelength:1.5406}).twoTheta,2*180/Math.PI*Math.asin(1.5406/8));
+  assert.ok(bragg({value:diagonal.d,wavelength:1.5406}).twoTheta >
+            bragg({value:side.d,wavelength:1.5406}).twoTheta);
+});
+test("square lattice guided model validates the lattice and curated plane family", () => {
+  for (const config of [{a:0},{a:-1},{a:NaN},{a:Infinity},{a:4,plane:"21"}])
+    assert.throws(()=>squareLatticeSpacing(config));
+  assert.throws(()=>bragg({value:squareLatticeSpacing({a:0.5,plane:"11"}).d,wavelength:1.5406}));
 });
