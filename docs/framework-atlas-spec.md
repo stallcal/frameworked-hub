@@ -44,7 +44,7 @@ Help students distinguish **local node coordination**, **global network topology
 
 ## Reference starting points
 
-- Ockwig et al., *Reticular Chemistry: Occurrence and Taxonomy of Nets and Grammar for the Design of Frameworks*, Acc. Chem. Res. 2005, DOI 10.1021/ar050022l (confirm availability and geometry rights before copying).
+- Ockwig et al., *Reticular Chemistry: Occurrence and Taxonomy of Nets and Grammar for the Design of Frameworks*, Acc. Chem. Res. 2005, DOI 10.1021/ar020022l (confirm availability and geometry rights before copying).
 - Alexandrov et al., **Let's Talk about MOFs—Topology and Terminology of Metal-Organic Frameworks and Why We Need Them**, Crystals 2015: https://www.mdpi.com/2073-4352/5/1/154
 - MOF-5 pcu example: https://pmc.ncbi.nlm.nih.gov/articles/PMC11364505/
 - RCSR Topological Net Database (confirm exact record, graph definition and reuse rights before import).
