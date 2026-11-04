@@ -29,7 +29,7 @@ function renderLattice({a,h,k,d,plane}){
   }
   const n=h*h+k*k;
   const vx=h*step/n,vy=k*step/n;
-  const midX=cx+vx*.5,midY=cy+vy*.5;
+  const labelX=cx+vx*.5, labelY=cy+vy*.5-14;
   $("latticeGeometry").innerHTML=`
     <defs>
       <clipPath id="latticePlotClip"><rect x="35" y="50" width="690" height="303"/></clipPath>
@@ -43,12 +43,14 @@ function renderLattice({a,h,k,d,plane}){
       <g stroke="#9e382e" stroke-width="3.1" opacity=".94">${highlight}</g>
       <g fill="#084b9e">${dots}</g>
       <line x1="${cx}" y1="${cy}" x2="${cx+vx}" y2="${cy+vy}"
-        stroke="#9e382e" stroke-width="2.3" marker-end="url(#latticeSpacingTip)"/>
+        stroke="#9e382e" stroke-width="3" marker-end="url(#latticeSpacingTip)"/>
+      <text x="${labelX}" y="${labelY}" font-family="system-ui,sans-serif" font-size="20" font-weight="700" text-anchor="middle" paint-order="stroke" stroke="#eff5fd" stroke-width="5" fill="#9e382e">d</text>
     </g>
-    <rect x="47" y="61" width="255" height="38" rx="5" fill="#ffffff" opacity=".92"/>
-    <text x="58" y="85" font-family="system-ui,sans-serif" font-weight="700" font-size="17" fill="#1c3049">
+    <rect x="47" y="61" width="340" height="57" rx="5" fill="#ffffff" opacity=".95"/>
+    <text x="58" y="83" font-family="system-ui,sans-serif" font-weight="700" font-size="17" fill="#1c3049">
       Family (${h}${k}) · d = ${fmt(d)} Å
     </text>
+    <text x="58" y="105" font-family="system-ui,sans-serif" font-size="13" fill="#536c87">d = a / √(h² + k²)  ·  a = ${fmt(a)} Å</text>
     <rect x="44" y="355" width="670" height="40" fill="#ffffff" opacity=".92"/>
     <circle cx="67" cy="377" r="4" fill="#084b9e"/>
     <text x="81" y="381" font-family="system-ui,sans-serif" font-size="14" fill="#1c3049">Lattice points</text>
@@ -66,14 +68,19 @@ function renderRayDiagram(r){
   const path=(yy,color)=>`<path d="M${cx-length*Math.cos(angle)} ${yy-length*Math.sin(angle)} L${cx} ${yy} L${cx+length*Math.cos(angle)} ${yy-length*Math.sin(angle)}"
   fill="none" stroke="${color}" stroke-width="4" stroke-linecap="round"/>`;
   $("geometry").innerHTML=`
+    <defs>
+      <marker id="beamArrowBlue" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0 0L6 3L0 6Z" fill="#084b9e"/></marker>
+      <marker id="beamArrowRed" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0 0L6 3L0 6Z" fill="#9e382e"/></marker>
+    </defs>
     <g stroke="#839bb9" stroke-width="2.3"><path d="M45 ${y}H715 M45 ${y+gap}H715"/></g>
     ${path(y,"#084b9e")}${path(y+gap,"#9e382e")}
     <path d="M630 ${y}V${y+gap} M624 ${y}H636 M624 ${y+gap}H636" stroke="#1c3049" stroke-width="2"/>
     <g font-family="system-ui,sans-serif" fill="#1c3049">
       <text x="42" y="42" font-size="20" font-weight="700">Bragg ray construction</text>
-      <text x="42" y="73" font-size="16">θ = ${fmt(r.theta)}° · diffraction 2θ = ${fmt(r.twoTheta)}°</text>
+      <text x="42" y="73" font-size="16">θ = ${fmt(r.theta)}° to planes  ·  scattering angle 2θ = ${fmt(r.twoTheta)}°</text>
       <text x="646" y="${y+gap/2+6}" font-size="18">d</text>
-      <text x="43" y="379" font-size="14">Planes are rotated horizontally for illustration; not atomic mirrors.</text>
+      <text x="43" y="335" font-size="17" font-weight="700">Path difference: 2d sinθ = ${fmt(2*r.spacing*Math.sin(angle))} Å = ${r.order}λ</text>
+      <text x="43" y="379" font-size="13">Plane spacing in this drawing is not to scale. Scattering is not mirror reflection.</text>
     </g>`;
 }
 function updateFigureView(){
@@ -86,8 +93,8 @@ function updateFigureView(){
   $("rayView").classList.toggle("selected",!show);
   $("rayView").setAttribute("aria-pressed",String(!show));
   $("figure-caption").textContent=show
-    ? "Dots represent repeating lattice points, not individual atoms. Highlighted lines show the chosen 2D plane family; distances change with a."
-    : "The same plane family is rotated horizontally to illustrate the Bragg angle. This is a path-difference construction, not literal reflection from atomic mirrors.";
+    ? "Dots mark repeating lattice points, not individual atoms. The two thicker red lines are adjacent planes; the red arrow shows their perpendicular spacing d."
+    : "The same plane family is rotated horizontally for the Bragg construction. Drawn spacing is not to scale; atomic planes are not mirrors.";
 }
 function update(){
   guided=!$("advancedPanel").open;
@@ -125,13 +132,13 @@ function update(){
     $("results").hidden=!guided;
     $("angle-out").textContent="—";
     $("d-out").textContent=plane?fmt(plane.d):"—";
-    $("q-out").textContent=plane?fmt(2*Math.PI/plane.d):"—";
+    $("q-out").textContent="—";
     latestPlane=plane;
   }
   if(guided && plane){
     $("takeawayTitle").textContent=plane.plane==="10"?"Begin with the (10) planes":"Now compare the diagonal (11) planes";
     $("observation").textContent=result
-      ? `For a = ${fmt(plane.a)} Å, the (${plane.h}${plane.k}) plane spacing is d = ${fmt(plane.d)} Å. With λ = ${fmt(wavelength)} Å, first-order constructive interference is possible at 2θ = ${fmt(result.twoTheta)}°. Switch families or adjust a to compare.`
+      ? `For a = ${fmt(plane.a)} Å, the (${plane.h}${plane.k}) plane spacing is d = ${fmt(plane.d)} Å. At λ = ${fmt(wavelength)} Å, the first-order Bragg condition occurs at 2θ = ${fmt(result.twoTheta)}°. A smaller d at fixed λ means a larger 2θ. Bragg's law does not predict the reflection intensity.`
       : `The highlighted planes are d = ${fmt(plane.d)} Å apart. The chosen wavelength is too long for a first-order Bragg angle (λ must be no greater than 2d). Try a shorter wavelength or larger lattice parameter.`;
     $("explanation").textContent="The diagram shows lattice geometry. It does not predict diffraction peak intensity, structure factors, or a complete PXRD pattern.";
   }else{
