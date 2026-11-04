@@ -43,3 +43,17 @@ export function bragg({
     order,
   };
 }
+
+
+/**
+ * Spacing of selected reciprocal-lattice plane families in a 2D square lattice.
+ * a and d are in angstroms; 2D Miller-style indices are illustrative.
+ * The (10) and (11) cases are explicitly curated, not arbitrary plane indexing.
+ */
+export function squareLatticeSpacing({a = 4, plane = "10"} = {}) {
+  if (!Number.isFinite(a) || a <= 0) throw Error("Lattice parameter a must be a positive finite length (Å).");
+  if (!["10", "11"].includes(plane)) throw Error("Only the illustrated (10) and (11) plane families are available.");
+  const h = Number(plane[0]), k = Number(plane[1]);
+  const d = a / Math.hypot(h, k);
+  return { a, h, k, plane, d };
+}

@@ -23,33 +23,30 @@
           <p class="eyebrow">Learn / Diffraction</p>
           <h1>Bragg’s law explorer<span>.</span></h1>
           <p>
-            Connect lattice spacing, wavelength, and diffraction angle. Change
-            one quantity and follow what happens to the others.
+            Discover how families of planes arise from a repeating lattice
+            and why their spacing determines a Bragg diffraction angle.
           </p>
           <span class="tag">v0.1 · Model &amp; assumptions below</span>
         </section>
         <div class="workspace">
           <section class="controls" aria-label="Bragg inputs">
-            <h2>Set the geometry</h2>
-            <div class="field">
-              <label for="mode">Known quantity</label
-              ><select id="mode">
-                <option value="spacing">Plane spacing d (Å)</option>
-                <option value="angle">Diffraction angle 2θ (°)</option>
-                <option value="q">Scattering vector q (Å⁻¹)</option>
-              </select>
-            </div>
-            <div class="field">
-              <label id="value-label" for="value">Plane spacing d (Å)</label
-              ><input id="value" type="number" value="3" step="any" /><input
-                id="spacing-slider"
-                aria-label="Adjust plane spacing in angstroms"
-                type="range"
-                min="0.5"
-                max="10"
-                step="0.01"
-                value="3"
-              />
+            <h2>Explore the lattice</h2>
+            <div class="guided-controls" id="guidedControls">
+              <p class="activity-label">GUIDED ACTIVITY · SQUARE LATTICE</p>
+              <p class="activity-prompt">Change the distance between lattice points, then select another family of planes. Watch how the Bragg angle responds.</p>
+              <div class="field">
+                <label for="latticeA">1 · Lattice parameter a (Å)</label>
+                <input id="latticeA" type="number" min="2" max="12" step="0.1" value="4" />
+                <input id="latticeSlider" type="range" min="2" max="12" step="0.1" value="4" aria-label="Adjust square lattice parameter a in angstroms" />
+              </div>
+              <div class="field">
+                <label for="planeFamily">2 · Highlight a plane family</label>
+                <select id="planeFamily">
+                  <option value="10">(10) · Parallel vertical planes</option>
+                  <option value="11">(11) · Diagonal planes</option>
+                </select>
+                <small>A two-dimensional square-lattice example; the dots are lattice points, not individual atoms.</small>
+              </div>
             </div>
             <div class="field">
               <label for="preset">Wavelength preset</label
@@ -72,6 +69,29 @@
                 experiment.</small
               >
             </div>
+            <details class="advanced-panel" id="advancedPanel">
+              <summary>Advanced calculation · input d, 2θ or q</summary>
+              <p class="advanced-note">This switches from the lattice activity to the original numerical Bragg calculator. Higher diffraction orders can be explored here.</p>
+            <div class="field">
+              <label for="mode">Known quantity</label
+              ><select id="mode">
+                <option value="spacing">Plane spacing d (Å)</option>
+                <option value="angle">Diffraction angle 2θ (°)</option>
+                <option value="q">Scattering vector q (Å⁻¹)</option>
+              </select>
+            </div>
+            <div class="field">
+              <label id="value-label" for="value">Plane spacing d (Å)</label
+              ><input id="value" type="number" value="3" step="any" /><input
+                id="spacing-slider"
+                aria-label="Adjust plane spacing in angstroms"
+                type="range"
+                min="0.5"
+                max="10"
+                step="0.01"
+                value="3"
+              />
+            </div>
             <div class="field">
               <label for="order">Diffraction order n</label
               ><input
@@ -85,6 +105,7 @@
                 plane spacing.</small
               >
             </div>
+            </details>
             <div class="wide actions">
               <button id="reset" class="secondary">Reset example</button>
             </div>
@@ -108,17 +129,26 @@
                 </div>
               </div>
               <figure class="figure">
+                <div class="visual-toggle" role="group" aria-label="Choose lattice or ray diagram">
+                  <button type="button" id="latticeView" class="selected" aria-pressed="true">Lattice points &amp; planes</button>
+                  <button type="button" id="rayView" aria-pressed="false">Ray construction</button>
+                </div>
+                <svg id="latticeGeometry" viewBox="0 0 760 410" role="img" aria-label="Two-dimensional square lattice dots with selected (10) or (11) lattice planes"></svg>
                 <svg
-                  id="geometry"
+                  id="geometry" hidden
                   viewBox="0 0 760 410"
                   role="img"
                   aria-label="Two parallel lattice planes and rays at the calculated Bragg angle"
                 ></svg>
                 <figcaption id="figure-caption">
-                  Schematic ray construction; plane separation is illustrated,
-                  not a crystallographic model.
+                  A square array of lattice points with an illustrative plane family.
+                  The dots indicate periodic positions, not a complete atomic crystal structure.
                 </figcaption>
               </figure>
+              <div class="teaching-takeaway" aria-live="polite">
+                <strong id="takeawayTitle">Why does the angle change?</strong>
+                <p id="observation">The lattice spacing determines the plane spacing, which sets the Bragg angle.</p>
+              </div>
               <p id="explanation"></p>
               <div class="actions">
                 <button id="export">Download calculation</button>
@@ -129,13 +159,19 @@
         <details class="notes" open>
           <summary>What this model means</summary>
           <p>
+            <strong>Guided lattice view:</strong> the (10) and (11) families are drawn in a
+            two-dimensional square lattice with parameter a. Their separations are
+            d(10) = a and d(11) = a / √2. The illustrated dots are translational
+            lattice points, not individual atoms or a real MOF structure.
+          </p>
+          <p>
             θ is the angle between a ray and a lattice plane. A powder pattern
             normally reports <strong>2θ</strong>. Here q = 4π sin θ / λ = 2πn /
             d. Wavelength and spacing are in angstroms; q is in inverse
             angstroms.
           </p>
           <p>
-            This predicts a geometric diffraction condition. Atomic positions,
+            This predicts a geometric diffraction condition, not reflection intensity. Atomic positions,
             scattering factors, and symmetry determine intensities and
             systematic absences. The diagram does not predict a complete
             diffraction pattern or identify a phase. Higher-order diffraction is
