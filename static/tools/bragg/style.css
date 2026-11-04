@@ -518,3 +518,21 @@ footer {
 .primer-points{padding-left:19px;margin:8px 0 0}
 .primer-points li{font:15px/1.48 Libron,Georgia,serif;margin:5px 0}
 .primer-points strong{color:#084b9e}
+
+
+/* Keep both diagrams visible together on laptop and landscape-tablet widths. */
+@media(max-width:1290px){
+  .workspace{grid-template-columns:minmax(0,1fr)}
+  .controls{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 18px;border-right:0;border-bottom:1px solid var(--line)}
+  .controls>h2,.controls>.guided-controls,.controls>.advanced-panel,.controls>.wide{grid-column:1/-1}
+  .visuals-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .readouts-bragg{grid-template-columns:repeat(4,minmax(0,1fr))}
+}
+@media(max-width:900px){
+  .visuals-grid{grid-template-columns:1fr}
+  .readouts-bragg{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:620px){
+  .controls{display:block}
+  .readouts-bragg{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
