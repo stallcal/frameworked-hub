@@ -26,7 +26,7 @@
             Discover how families of planes arise from a repeating lattice
             and why their spacing determines a Bragg diffraction angle.
           </p>
-          <span class="tag">v0.1 · Model &amp; assumptions below</span>
+          <span class="tag">Educational preview · Guided lattice model</span>
         </section>
         <div class="workspace">
           <section class="controls" aria-label="Bragg inputs">
@@ -117,7 +117,7 @@
               <div class="readouts">
                 <div class="metric">
                   <span class="label">2θ</span><strong id="angle-out"></strong
-                  ><span class="unit">degrees</span>
+                  ><span class="unit">degrees · possible reflection position</span>
                 </div>
                 <div class="metric">
                   <span class="label">d</span><strong id="d-out"></strong
@@ -141,8 +141,8 @@
                   aria-label="Two parallel lattice planes and rays at the calculated Bragg angle"
                 ></svg>
                 <figcaption id="figure-caption">
-                  A square array of lattice points with an illustrative plane family.
-                  The dots indicate periodic positions, not a complete atomic crystal structure.
+                  A square array of lattice points, not atoms. Red lines identify
+                  planes, and a red arrow marks their perpendicular spacing d.
                 </figcaption>
               </figure>
               <div class="teaching-takeaway" aria-live="polite">
@@ -176,6 +176,12 @@
             systematic absences. The diagram does not predict a complete
             diffraction pattern or identify a phase. Higher-order diffraction is
             often represented by different Miller indices with n = 1.
+          </p>
+          <p>
+            The ray diagram uses a mirror-like construction only to explain path difference;
+            actual diffraction results from interference among scattered waves, not specular
+            reflection from atomically flat mirrors. No intensities, structure factors,
+            detector peaks or complete PXRD patterns are computed.
           </p>
           <p>
             Preset wavelengths are rounded educational values. No wavelength
