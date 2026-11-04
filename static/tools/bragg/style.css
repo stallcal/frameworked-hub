@@ -514,3 +514,7 @@ footer {
   .readouts-bragg .metric .label{font-size:9px}
   .primer-copy p{font-size:16px}
 }
+
+.primer-points{padding-left:19px;margin:8px 0 0}
+.primer-points li{font:15px/1.48 Libron,Georgia,serif;margin:5px 0}
+.primer-points strong{color:#084b9e}
