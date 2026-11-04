@@ -101,6 +101,9 @@ import { bragg, squareLatticeSpacing, VERSION } from "./model.mjs";
   function update(){
     guided=!$("advancedPanel").open;
     $("guidedControls").hidden=!guided;
+    $("experimentHelper").textContent=guided
+      ?"Adjust the square lattice or switch plane families. The Bragg-angle arc changes alongside the lattice."
+      :"Enter a known spacing, 2θ or q. Only the ray construction is shown: the numerical calculation is independent of the guided square lattice.";
     $("latticePane").hidden=!guided;
     $("diagramPair").classList.toggle("advanced-layout",!guided);
     $("value-label").textContent={
