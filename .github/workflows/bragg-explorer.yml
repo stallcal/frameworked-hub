@@ -1,0 +1,25 @@
+name: Bragg explorer validation
+on:
+  pull_request:
+    paths:
+      - 'static/tools/bragg/**'
+      - 'tests/bragg-explorer.test.mjs'
+      - '.github/workflows/bragg-explorer.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'static/tools/bragg/**'
+      - 'tests/bragg-explorer.test.mjs'
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node --test tests/bragg-explorer.test.mjs tests/scherrer-analysis.test.mjs
