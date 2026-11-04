@@ -2,7 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { runInNewContext } from "node:vm";
-import { bragg, squareLatticeSpacing, VERSION } from "../static/tools/bragg/model.mjs";
+import { bragg, squareLatticeSpacing, compareTwoPlaneInterference, VERSION } from "../static/tools/bragg/model.mjs";
 
 const file = new URL("../static/tools/bragg/app.mjs", import.meta.url);
 const source = readFileSync(file, "utf8").replace(/^import [^\n]+\n/, "");
@@ -33,7 +33,7 @@ function createActivity() {
     return nodes.get(id);
   }
   const document = { getElementById: get };
-  runInNewContext(source, { document, bragg, squareLatticeSpacing, VERSION });
+  runInNewContext(source, { document, bragg, squareLatticeSpacing, compareTwoPlaneInterference, VERSION });
   return {
     el: get,
     change(id, value, event = "input") {
@@ -113,4 +113,34 @@ test("reset returns from advanced mode to the original guided example", () => {
   assert.equal(ui.el("advancedPanel").open, false);
   near(ui.el("d-out").textContent, 4);
   near(ui.el("angle-out").textContent.replace("°", ""), 22.20619);
+});
+
+test("wave comparison updates live at Bragg and an illustrative off-Bragg angle",()=>{
+  const ui=createActivity();
+  assert.match(ui.el("constructiveWaves").innerHTML,/Same phase/);
+  assert.match(ui.el("destructiveWaves").innerHTML,/Half-cycle offset/);
+  assert.match(ui.el("onBraggPath").textContent,/1\.5406 Å = 1λ/);
+  assert.match(ui.el("offBraggPath").textContent,/0\.7703 Å = \(1 − ½\)λ/);
+  const oldOff=ui.el("offBraggAngle").textContent;
+  ui.change("latticeA",5);
+  assert.notEqual(ui.el("offBraggAngle").textContent,oldOff);
+  near(ui.el("mobileTwoTheta").textContent.replace("°",""),17.72457);
+  assert.match(ui.el("mobileMiniAngle").innerHTML,/2θ/);
+});
+test("invalid Bragg conditions suppress phase comparison and mobile angle",()=>{
+  const ui=createActivity();
+  ui.change("wavelength",20);
+  assert.equal(ui.el("interferenceComparison").hidden,true);
+  assert.equal(ui.el("mobileTwoTheta").textContent,"No Bragg angle");
+  ui.reset();
+  assert.equal(ui.el("interferenceComparison").hidden,false);
+  near(ui.el("mobileTwoTheta").textContent.replace("°",""),22.20619);
+});
+test("advanced mode hides guided mobile quick preview",()=>{
+  const ui=createActivity();
+  ui.toggleAdvanced(true);
+  assert.equal(ui.el("mobileLive").hidden,true);
+  assert.equal(ui.el("interferenceComparison").hidden,false);
+  ui.toggleAdvanced(false);
+  assert.equal(ui.el("mobileLive").hidden,false);
 });
