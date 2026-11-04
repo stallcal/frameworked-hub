@@ -414,3 +414,26 @@ footer {
     overflow-wrap: anywhere;
   }
 }
+
+
+/* Guided Bragg lesson — share the same restrained Frameworked visual language. */
+.guided-controls { padding: 16px 16px 0; margin: 0 -8px 18px; background: #edf4fc; border: 1px solid #d0deee; border-left: 3px solid var(--blue); }
+.activity-label { margin: 0 0 5px; color: var(--blue); font: 700 11px/1.5 monospace; letter-spacing: .09em; }
+.activity-prompt { margin: 0 0 17px; color: var(--navy); font: 15px/1.55 Libron,Georgia,serif; }
+.guided-controls .field { margin-bottom: 17px; }
+.guided-controls label { font-weight: 700; font-size: 15px; }
+.guided-controls input[type=number] { background: #fff; }
+.advanced-panel { border-block: 1px solid #cedceb; margin: 10px 0 18px; padding: 8px 0; }
+.advanced-panel summary { font: 700 13px/1.5 sans-serif; padding: 6px 0; cursor: pointer; color: var(--blue); }
+.advanced-panel[open] { padding-bottom: 0; }
+.advanced-note { font-size: 12px; line-height: 1.5; color: #5f7288; margin: 10px 0; }
+.visual-toggle { display: flex; align-items: center; gap: 4px; border-bottom: 1px solid var(--line); background: #fff; padding: 9px; flex-wrap: wrap; }
+.visual-toggle button { min-height: 38px; border: 1px solid transparent; border-radius: 4px; background: transparent; color: var(--blue); font: 700 12px/1.4 sans-serif; padding: 7px 10px; }
+.visual-toggle button.selected { background: #eaf2fd; border-color: #b7cde7; color: #084b9e; }
+.figure svg { background: #f5f8fd; }
+.teaching-takeaway { background: #eaf2fd; border-left: 3px solid var(--blue); padding: 13px 16px; margin: 14px 0; }
+.teaching-takeaway strong { color: var(--navy); font: 700 18px/1.4 Libron,Georgia,serif; display: block; }
+.teaching-takeaway p { font: 15px/1.6 Libron,Georgia,serif; margin: 5px 0 0; color: #405a76; }
+#explanation { font-size: 14px; color: #566e88; line-height: 1.6; }
+@media(max-width:850px){ .controls > .guided-controls, .controls > .advanced-panel { grid-column:1/-1; } }
+@media(max-width:500px){ .guided-controls { margin:0 0 16px; } .visual-toggle button { flex:1; } }
