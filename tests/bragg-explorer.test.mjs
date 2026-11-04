@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { bragg, squareLatticeSpacing } from "../static/tools/bragg/model.mjs";
+import { bragg, squareLatticeSpacing, twoPlaneInterference, compareTwoPlaneInterference } from "../static/tools/bragg/model.mjs";
 const near = (a, b) => assert.ok(Math.abs(a - b) < 1e-9, `${a} != ${b}`);
 test("known first-order geometry and scattering vector", () => {
   const r = bragg({ value: 1, wavelength: 1 });
@@ -55,4 +55,34 @@ test("square lattice guided model validates the lattice and curated plane family
   for (const config of [{a:0},{a:-1},{a:NaN},{a:Infinity},{a:4,plane:"21"}])
     assert.throws(()=>squareLatticeSpacing(config));
   assert.throws(()=>bragg({value:squareLatticeSpacing({a:0.5,plane:"11"}).d,wavelength:1.5406}));
+});
+
+test("equal-amplitude two-plane interference reinforces on-Bragg and cancels for a half-cycle path difference", () => {
+  const {on,off}=compareTwoPlaneInterference({spacing:4,wavelength:1.5406,order:1});
+  near(on.pathDifference,1.5406);
+  near(off.pathDifference,0.7703);
+  near(on.cycles,1);
+  near(off.cycles,0.5);
+  near(on.relativeIntensity,1);
+  near(off.relativeIntensity,0);
+  assert.ok(off.twoTheta<on.twoTheta);
+});
+test("two-plane illustration follows current plane spacing and diffraction order",()=>{
+  const a=compareTwoPlaneInterference({spacing:4,wavelength:1.5406,order:1});
+  const b=compareTwoPlaneInterference({spacing:5,wavelength:1.5406,order:1});
+  assert.ok(b.on.twoTheta<a.on.twoTheta);
+  assert.ok(b.off.twoTheta<a.off.twoTheta);
+  const higher=compareTwoPlaneInterference({spacing:4,wavelength:1.5406,order:2});
+  near(higher.off.cycles,1.5);
+  near(higher.off.relativeIntensity,0);
+  near(higher.on.relativeIntensity,1);
+});
+test("two-plane phase calculation rejects invalid values and does not claim unreachable higher-order reflection",()=>{
+  for(const args of [
+    {spacing:0,wavelength:1,twoTheta:20},
+    {spacing:4,wavelength:0,twoTheta:20},
+    {spacing:4,wavelength:1,twoTheta:181},
+    {spacing:4,wavelength:1,twoTheta:NaN}
+  ])assert.throws(()=>twoPlaneInterference(args));
+  assert.throws(()=>compareTwoPlaneInterference({spacing:1,wavelength:2,order:2}));
 });

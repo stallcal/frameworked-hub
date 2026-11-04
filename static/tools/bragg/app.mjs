@@ -1,4 +1,4 @@
-import { bragg, squareLatticeSpacing, VERSION } from "./model.mjs";
+import { bragg, squareLatticeSpacing, compareTwoPlaneInterference, VERSION } from "./model.mjs";
 
   const $=id=>document.getElementById(id);
   const number=id=>$(id).value.trim()===""?NaN:Number($(id).value);
@@ -98,6 +98,65 @@ import { bragg, squareLatticeSpacing, VERSION } from "./model.mjs";
       </g>`;
   }
 
+
+  function wavePath(base,fn){
+    const pts=[];
+    for(let i=0;i<=140;i++){
+      const q=i/140, x=38+q*342;
+      pts.push((i===0?"M":"L")+x.toFixed(2)+" "+(base-fn(2*Math.PI*3.15*q)).toFixed(2));
+    }
+    return pts.join(" ");
+  }
+  function drawWavePair(id,phase){
+    // Two equal-amplitude contributions: resultant is the field sum, not PXRD intensity.
+    const w1=wavePath(79,t=>18*Math.sin(t));
+    const w2=wavePath(79,t=>18*Math.sin(t-phase));
+    const sum=wavePath(169,t=>16*(Math.sin(t)+Math.sin(t-phase)));
+    $(id).innerHTML=`
+      <rect x="9" y="8" width="402" height="208" rx="8" fill="#f5f8fc"/>
+      <path d="M36 79H384 M36 169H384" stroke="#c5d3e3" stroke-width="1.3" stroke-dasharray="4 5"/>
+      <path d="${w1}" stroke="#084b9e" stroke-width="2.4" fill="none"/>
+      <path d="${w2}" stroke="#9e382e" stroke-width="2.1" stroke-dasharray="5 3" fill="none"/>
+      <path d="${sum}" stroke="#1c3049" stroke-width="3.1" fill="none"/>
+      <g font-family="system-ui,sans-serif">
+        <text x="30" y="30" font-weight="700" font-size="12" fill="#084b9e">Wave 1</text>
+        <text x="108" y="30" font-weight="700" font-size="12" fill="#9e382e">Wave 2</text>
+        <text x="31" y="120" font-weight="700" font-size="12" fill="#1c3049">Resulting wave = wave 1 + wave 2</text>
+        <text x="31" y="204" font-size="11.5" fill="#58728e">${Math.abs(phase)<0.1?"Same phase: amplitudes add":"Half-cycle offset: equal amplitudes cancel"}</text>
+      </g>`;
+  }
+  function drawInterference(r){
+    $("interferenceComparison").hidden=!r;
+    if(!r)return;
+    const c=compareTwoPlaneInterference({spacing:r.spacing,wavelength:r.wavelength,order:r.order});
+    drawWavePair("constructiveWaves",c.on.relativePhase);
+    drawWavePair("destructiveWaves",c.off.relativePhase);
+    $("onBraggAngle").textContent="2θ = "+fmt(c.on.twoTheta)+"°";
+    $("offBraggAngle").textContent="2θ = "+fmt(c.off.twoTheta)+"°";
+    $("onBraggPath").textContent="Δpath = "+fmt(c.on.pathDifference)+" Å = "+c.order+"λ";
+    $("offBraggPath").textContent="Δpath = "+fmt(c.off.pathDifference)+" Å = ("+c.order+" − ½)λ";
+  }
+  function drawMobileAngle(r,plane){
+    $("mobileLive").hidden=!guided;
+    $("mobileTwoTheta").textContent=r?fmt(r.twoTheta)+"°":"No Bragg angle";
+    $("mobileSpacing").textContent=plane?"d = "+fmt(plane.d)+" Å":(r?"d = "+fmt(r.spacing)+" Å":"—");
+    if(!r){
+      $("mobileMiniAngle").innerHTML='<path d="M10 60H132" stroke="#9badc4" stroke-width="2"/><text x="71" y="44" text-anchor="middle" font-size="14" font-family="sans-serif" fill="#9e382e">No angle</text>';
+      return;
+    }
+    const t=r.theta*Math.PI/180,cx=62,cy=56,len=54;
+    const incx=cx-len*Math.cos(t),incy=cy-len*Math.sin(t);
+    const outx=cx+len*Math.cos(t),outy=cy-len*Math.sin(t);
+    const rr=22;
+    const arc=`M${(cx+rr*Math.cos(t)).toFixed(1)} ${(cy+rr*Math.sin(t)).toFixed(1)} A${rr} ${rr} 0 0 0 ${(cx+rr*Math.cos(t)).toFixed(1)} ${(cy-rr*Math.sin(t)).toFixed(1)}`;
+    $("mobileMiniAngle").innerHTML=`
+      <path d="M6 ${cy}H136" stroke="#b5c6da" stroke-width="1.6"/>
+      <path d="M${incx.toFixed(1)} ${incy.toFixed(1)}L${cx} ${cy}" stroke="#084b9e" stroke-width="3" stroke-linecap="round"/>
+      <path d="M${cx} ${cy}L${outx.toFixed(1)} ${outy.toFixed(1)}" stroke="#9e382e" stroke-width="3" stroke-linecap="round"/>
+      <path d="${arc}" fill="none" stroke="#9e382e" stroke-width="3"/>
+      <text x="94" y="52" font-size="15" font-weight="700" font-family="system-ui,sans-serif" fill="#9e382e">2θ</text>`;
+  }
+
   function update(){
     guided=!$("advancedPanel").open;
     $("guidedControls").hidden=!guided;
@@ -172,6 +231,8 @@ import { bragg, squareLatticeSpacing, VERSION } from "./model.mjs";
       $("explanation").textContent="Advanced spacing, 2θ and q inputs are not attached to the schematic square lattice. Reflection intensities and structural absences are outside this model.";
     }
     drawRay(result);
+    drawMobileAngle(result,plane);
+    drawInterference(result);
     $("export").disabled=!result;
   }
 
