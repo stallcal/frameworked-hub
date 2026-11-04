@@ -57,3 +57,39 @@ export function squareLatticeSpacing({a = 4, plane = "10"} = {}) {
   const d = a / Math.hypot(h, k);
   return { a, h, k, plane, d };
 }
+
+
+/**
+ * Phase-only demonstration for TWO equally weighted contributions from adjacent planes.
+ * This is not a structure-factor or full-crystal scattering intensity calculation.
+ * Input spacing and wavelength use the same length unit (Å in the UI).
+ * twoTheta is the scattering angle in degrees.
+ */
+export function twoPlaneInterference({spacing,wavelength,twoTheta}={}){
+  if(![spacing,wavelength,twoTheta].every(Number.isFinite)||spacing<=0||wavelength<=0||twoTheta<0||twoTheta>180)
+    throw Error("Two-plane interference requires positive lengths and a 2θ angle from 0° to 180°.");
+  const theta=twoTheta*Math.PI/360;
+  const pathDifference=2*spacing*Math.sin(theta);
+  const cycles=pathDifference/wavelength;
+  if(!Number.isFinite(cycles))throw Error("Interference ratio exceeds supported numerical range.");
+  // Sum two unit phasors: |1+exp(iφ)|²/4 = cos²(φ/2).
+  const reducedCycles=cycles-Math.round(cycles);
+  const relativePhase=2*Math.PI*reducedCycles;
+  const relativeIntensity=Math.pow(Math.cos(relativePhase/2),2);
+  return {twoTheta,theta:theta*180/Math.PI,pathDifference,cycles,relativePhase,relativeIntensity};
+}
+
+/**
+ * Compare the n-th Bragg condition to an intentionally half-cycle-shifted
+ * off-Bragg direction: Δpath=(n-0.5)λ. Both conditions are physically possible
+ * whenever the n-th Bragg condition is possible. Two-plane cancellation is an
+ * illustrative limit; real finite crystals can still scatter off-Bragg.
+ */
+export function compareTwoPlaneInterference({spacing,wavelength,order=1}={}){
+  const valid=bragg({mode:"spacing",value:spacing,wavelength,order});
+  const on=twoPlaneInterference({spacing,wavelength,twoTheta:valid.twoTheta});
+  const offCycles=order-0.5;
+  const offTheta=Math.asin(offCycles*wavelength/(2*spacing));
+  const off=twoPlaneInterference({spacing,wavelength,twoTheta:2*offTheta*180/Math.PI});
+  return {on,off,order,spacing,wavelength,assumptions:"Two equal-amplitude plane contributions; no crystal-size, atomic basis, or instrument model"};
+}
