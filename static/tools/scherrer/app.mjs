@@ -5,7 +5,7 @@ const canvas = byId('pxrdCanvas');
 const ctx = canvas.getContext('2d');
 const state = {
   data: [], peaks: [], selectedId: null, nextId: 1, source: '', simulated: false,
-  mode: 'mof', view: null, plotGeometry: null, drag: null, statusTimer: null,
+  view: null, plotGeometry: null, drag: null, statusTimer: null,
   patterns: [], activePatternId: null, nextPatternId: 1, normalizeOverlay: false
 };
 const form = {
@@ -54,6 +54,9 @@ function refitAll(){
 }
 function renderPatterns(){
   const wrap=byId('loadedPatterns');
+  byId('scanControls').hidden=!state.patterns.length;
+  byId('patternManagement').hidden=!state.patterns.length;
+  byId('overlayNormalization').hidden=state.patterns.length<2;
   byId('removeAllPatterns').disabled=!state.patterns.length;
   byId('removeActivePattern').disabled=!state.patterns.length;
   byId('normalizeOverlay').disabled=state.patterns.length<2;
@@ -135,11 +138,6 @@ function loadDemo(){
 }
 function resetSettings(){
   for(const c of Object.values(form))c.value=c.defaultValue;
-  state.mode='mof';
-  for(const b of byId('materialMode').querySelectorAll('button')){
-    const active=b.dataset.mode==='mof';
-    b.classList.toggle('active',active);b.setAttribute('aria-pressed',String(active));
-  }
   byId('instrumentField').hidden=true;
   byId('windowOutput').textContent=`±${round(n(form.window),2)}° 2θ`;
   if(state.patterns.length)refitAll();
@@ -173,17 +171,6 @@ for (const name of ['dragleave', 'drop']) dropzone.addEventListener(name, e => {
 dropzone.addEventListener('drop', e => loadFiles(Array.from(e.dataTransfer?.files||[])));
 dropzone.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); byId('fileInput').click(); } });
 
-for (const button of byId('materialMode').querySelectorAll('button')) {
-  button.addEventListener('click', () => {
-    state.mode = button.dataset.mode;
-    for (const b of byId('materialMode').querySelectorAll('button')) {
-      const active = b === button;
-      b.classList.toggle('active', active);
-      b.setAttribute('aria-pressed', String(active));
-    }
-    updateGuidance();
-  });
-}
 for (const el of [form.wavelength, form.shapeFactor, form.instrument]) el.addEventListener('input', () => { updateGuidance(); updateTable(); updateInspector(); updateSummary(); });
 for (const el of [form.profile, form.window]) el.addEventListener('input', () => {
   byId('windowOutput').textContent = `±${round(n(form.window), 2)}° 2θ`;
@@ -196,22 +183,15 @@ form.correction.addEventListener('change', () => {
 });
 
 function updateGuidance() {
-  const mode = state.mode;
-  const correction = form.correction.value;
-  if (correction === 'none') {
-    byId('correctionStatus').textContent = 'Uncorrected analysis';
-    byId('correctionHelp').textContent = mode === 'mof'
-      ? 'For MOFs, disorder, strain, and anisotropic domains may broaden peaks. Size estimates are preliminary.'
-      : 'Instrument, strain, and defect broadening are not removed. Size estimates are preliminary.';
-  } else {
-    byId('correctionStatus').textContent = `Assumed ${correction} correction`;
-    byId('correctionHelp').textContent = 'Use only a measured standard at matching settings. A single FWHM is an approximation, especially with pseudo-Voigt fits.';
+  const correction=form.correction.value;
+  if(correction==='none'){
+    byId('correctionStatus').textContent='Uncorrected analysis';
+    byId('correctionHelp').textContent='Instrument and strain broadening remain. Domain-size estimates are preliminary.';
+  }else{
+    byId('correctionStatus').textContent=`Assumed ${correction} correction`;
+    byId('correctionHelp').textContent='Use a measured line-profile standard under matching instrumental conditions. This is a simplified width correction.';
   }
-  if (state.mode === 'mof') {
-    byId('inspectorText').textContent = 'MOF reflection widths may also reflect lattice strain, defects, guest effects, and anisotropic coherent domains. Review each fit and compare reflections before drawing conclusions.';
-  } else {
-    byId('inspectorText').textContent = 'The Scherrer equation estimates coherent scattering domain length, not particle diameter. Review the fit and broadening assumptions before reporting a result.';
-  }
+  byId('inspectorText').textContent='Selected reflection · coherent-domain estimate, not particle size.';
 }
 
 function updateTable() {
