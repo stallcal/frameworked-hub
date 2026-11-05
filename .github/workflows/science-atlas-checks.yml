@@ -24,3 +24,5 @@ jobs:
         run: python3 scripts/atlas/sync_events.py --check
       - name: Compile utility
         run: python3 -m py_compile scripts/atlas/sync_events.py
+      - name: Test calendar access filters and restricted-date inclusion
+        run: node scripts/atlas/test_calendar_access.mjs
