@@ -48,7 +48,7 @@ import { bragg, squareLatticeSpacing, compareTwoPlaneInterference, VERSION } fro
         <path d="M${cx} ${cy}L${cx+vx} ${cy+vy}" stroke="#9e382e" stroke-width="2.7" marker-end="url(#braggDtip)"/>
         <text x="${labelX}" y="${labelY}" font-family="system-ui,sans-serif" font-size="21" font-weight="700" text-anchor="middle" fill="#9e382e" stroke="#eff5fd" stroke-width="5" paint-order="stroke">d</text>
         <!-- a is measured horizontally between two actual neighboring lattice points. -->
-        <g class="lattice-a-bracket" stroke="#084b9e" fill="none" stroke-linecap="round">
+        <g class="lattice-a-bracket" data-distance-px="${step}" stroke="#084b9e" fill="none" stroke-linecap="round">
           <path d="M${aX1} ${cy+5}V${aBracketY-8} M${aX2} ${cy+5}V${aBracketY-8}" stroke-width="1.25" stroke-dasharray="3 3" opacity=".8"/>
           <path d="M${aX1} ${aBracketY-7}V${aBracketY+7} M${aX1} ${aBracketY}H${aX2} M${aX2} ${aBracketY-7}V${aBracketY+7}" stroke-width="2.5"/>
         </g>
@@ -180,6 +180,7 @@ import { bragg, squareLatticeSpacing, compareTwoPlaneInterference, VERSION } fro
   function update(){
     guided=!$("advancedPanel").open;
     $("guidedControls").hidden=!guided;
+    $("relationshipChain").hidden=!guided;
     $("qMetric").hidden=guided;
     $("readouts").classList.toggle("advanced-readouts",!guided);
     $("experimentHelper").textContent=guided
