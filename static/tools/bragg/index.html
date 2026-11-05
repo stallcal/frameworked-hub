@@ -103,7 +103,7 @@
             </div>
             <div class="guided-controls" id="guidedControls">
               <p class="activity-label">GUIDED ACTIVITY · SQUARE LATTICE</p>
-              <p class="activity-prompt">Try changing a or switching plane families. Watch the highlighted plane spacing and ray angle update together.</p>
+              <p class="activity-prompt">Change the lattice spacing or select a plane family. Watch the diffraction angle respond.</p>
               <div class="field">
                 <label for="latticeA">1 · Lattice parameter a (Å)</label>
                 <input id="latticeA" type="number" min="2" max="12" step="0.1" value="4" />
@@ -141,7 +141,7 @@
             </div>
             <details class="advanced-panel" id="advancedPanel">
               <summary>Advanced calculation · input d, 2θ or q</summary>
-              <p class="advanced-note">This switches from the lattice activity to the original numerical Bragg calculator. Higher diffraction orders can be explored here.</p>
+              <p class="advanced-note">Use this to interpret a diffraction measurement or explore a known plane spacing. Enter d, 2θ, or q at a chosen X-ray wavelength.</p><button id="tryMeasuredPeak" type="button" class="advanced-example-button">Try a PXRD peak at 2θ = 30°</button>
             <div class="field">
               <label for="mode">Known quantity</label
               ><select id="mode">
@@ -150,7 +150,7 @@
                 <option value="q">Scattering vector q (Å⁻¹)</option>
               </select>
             </div>
-            <div class="field">
+            <div class="advanced-purpose" role="note"><strong id="advancedQuestion">Why enter a known value?</strong><p id="advancedAnswer">Predict where a reflection could occur if you know the plane spacing d.</p></div><div class="field">
               <label id="value-label" for="value">Plane spacing d (Å)</label
               ><input id="value" type="number" value="3" step="any" /><input
                 id="spacing-slider"
@@ -188,11 +188,11 @@
             <p class="experiment-helper" id="experimentHelper">Adjust the square lattice or switch plane families. The red Bragg-angle arc on the right changes automatically, alongside the lattice on the left.</p>
             <p id="error" class="error" role="alert"></p>
             <div id="results">
-              <div class="readouts readouts-bragg" aria-live="polite">
+              <div class="readouts readouts-bragg" id="readouts" aria-live="polite">
                 <div class="metric"><span class="label">Plane spacing · d</span><strong id="d-out">—</strong><span class="unit">Å</span></div>
                 <div class="metric"><span class="label">Bragg angle · θ</span><strong id="theta-out">—</strong><span class="unit">degrees to lattice plane</span></div>
                 <div class="metric featured-metric"><span class="label">Diffraction angle · 2θ</span><strong id="angle-out">—</strong><span class="unit">degrees · possible reflection position</span></div>
-                <div class="metric compact-metric"><span class="label">Scattering-vector magnitude · q</span><strong id="q-out">—</strong><span class="unit">Å⁻¹</span></div>
+                <div class="metric compact-metric" id="qMetric" hidden><span class="label">Scattering-vector magnitude · q</span><strong id="q-out">—</strong><span class="unit">Å⁻¹</span></div>
               </div>
               <div class="visuals-grid" id="diagramPair">
                 <figure class="figure lattice-pane" id="latticePane">
@@ -247,7 +247,7 @@
           </div>
           <p class="interference-caveat">Scientific scope: this is a two-wave phase illustration, not a simulated diffraction pattern. Real crystalline scattering depends on many planes, finite-size broadening, atomic structure factors, and the instrument. <a href="https://www.iucr.org/what-we-do/education/pamphlets/introduction-calculation-of-structure-factors">IUCr explanation of phase and Bragg diffraction</a>.</p>
         </section>
-        <details class="notes" open>
+        <details class="notes">
           <summary>What this model means</summary>
           <p>
             <strong>Guided lattice view:</strong> the (10) and (11) families are drawn in a
