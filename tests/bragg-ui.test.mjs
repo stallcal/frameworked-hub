@@ -183,3 +183,40 @@ test("measured PXRD example explains why advanced controls matter",()=>{
   assert.match(ui.el("advancedAnswer").textContent,/experimental 2θ/);
   near(ui.el("d-out").textContent,2.98,0.01);
 });
+
+test("diagram-local a slider changes lattice and synchronizes exact numeric input and readout", () => {
+  const ui = createActivity();
+  assert.equal(ui.el("latticeSliderControl").hidden, false);
+  assert.equal(ui.el("advancedSliderControl").hidden, true);
+  assert.equal(ui.el("latticeSliderValue").textContent, "4.00 Å");
+  ui.change("latticeSlider", "5");
+  assert.equal(ui.el("latticeA").value, "5");
+  assert.equal(ui.el("latticeSliderValue").textContent, "5.00 Å");
+  near(ui.el("d-out").textContent, 5);
+  near(ui.el("angle-out").textContent.replace("°", ""), 17.72);
+  ui.change("latticeA", "4.5");
+  assert.equal(ui.el("latticeSlider").value, "4.5");
+  assert.equal(ui.el("latticeSliderValue").textContent, "4.50 Å");
+});
+
+test("advanced spacing slider sits alongside ray and hides for angle/q inputs", () => {
+  const ui = createActivity();
+  ui.toggleAdvanced(true);
+  assert.equal(ui.el("latticeSliderControl").hidden, true);
+  assert.equal(ui.el("advancedSliderControl").hidden, false);
+  assert.equal(ui.el("advancedSliderValue").textContent, "3.00 Å");
+  ui.change("spacing-slider", "4");
+  assert.equal(ui.el("value").value, "4");
+  assert.equal(ui.el("advancedSliderValue").textContent, "4.00 Å");
+  near(ui.el("d-out").textContent, 4);
+  near(ui.el("angle-out").textContent.replace("°", ""), 22.21);
+  ui.change("mode", "angle", "change");
+  assert.equal(ui.el("advancedSliderControl").hidden, true);
+  ui.change("mode", "q", "change");
+  assert.equal(ui.el("advancedSliderControl").hidden, true);
+  ui.change("mode", "spacing", "change");
+  assert.equal(ui.el("advancedSliderControl").hidden, false);
+  ui.reset();
+  assert.equal(ui.el("advancedSliderControl").hidden, true);
+  assert.equal(ui.el("latticeSliderControl").hidden, false);
+});
