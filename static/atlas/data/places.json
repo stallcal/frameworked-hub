@@ -1,0 +1,3911 @@
+{
+  "version": "0.4.0",
+  "states": {
+    "TX": {
+      "status": "mapping",
+      "status_updated_at": "2026-11-04",
+      "verification_scope": "Statewide discovery catalog seeded in Dallas–Fort Worth, Central Texas, Houston/Gulf Coast, East and West Texas, Panhandle and South Texas. Not a comprehensive census or verified visitor directory.",
+      "criteria": [
+        "Each listing has a primary institutional source",
+        "Access is labeled and checked",
+        "Coordinates are validated",
+        "Descriptions are reviewed for accuracy"
+      ],
+      "verification": {
+        "scope_signed_off": false,
+        "approved_at": null,
+        "approved_by": null,
+        "notes": null
+      }
+    }
+  },
+  "places": [
+    {
+      "id": "river-legacy",
+      "state": "TX",
+      "name": "River Legacy Nature Center",
+      "city": "Arlington",
+      "category": "nature_center",
+      "address": "703 NW Green Oaks Blvd, Arlington, TX 76006",
+      "coordinates": {
+        "lat": 32.785,
+        "lng": -97.123,
+        "accuracy": "approximate",
+        "source_url": "https://riverlegacy.org/visit"
+      },
+      "summary": "Public nature education center with wildlife exhibits and programs beside River Legacy Park.",
+      "topics": [
+        "Ecology",
+        "Conservation",
+        "Field trips"
+      ],
+      "access": {
+        "level": "public_venue",
+        "label": "Public visitor venue",
+        "notes": "Free atrium and trails; some exhibitions and programs ticketed"
+      },
+      "links": {
+        "official_url": "https://riverlegacy.org/visit"
+      },
+      "review": {
+        "status": "pending",
+        "reviewed_at": null,
+        "reviewed_by": null,
+        "checks": {
+          "organization_source": false,
+          "access_source": false,
+          "coordinate_source": false
+        },
+        "sources": [
+          {
+            "url": "https://riverlegacy.org/visit",
+            "purpose": "official institution information (awaiting editorial review)",
+            "checked_at": null
+          }
+        ]
+      },
+      "region": "dfw"
+    },
+    {
+      "id": "uta",
+      "state": "TX",
+      "name": "The University of Texas at Arlington",
+      "city": "Arlington",
+      "category": "university",
+      "address": "701 S Nedderman Dr, Arlington, TX 76019",
+      "coordinates": {
+        "lat": 32.729,
+        "lng": -97.114,
+        "accuracy": "approximate",
+        "source_url": "https://www.uta.edu/"
+      },
+      "summary": "Research university with natural science, engineering and other STEM disciplines.",
+      "topics": [
+        "Research",
+        "Engineering",
+        "Physical sciences"
+      ],
+      "access": {
+        "level": "research_campus",
+        "label": "Research campus — no public lab access",
+        "notes": "Labs and departmental facilities are not general drop-in attractions"
+      },
+      "links": {
+        "official_url": "https://www.uta.edu/"
+      },
+      "review": {
+        "status": "pending",
+        "reviewed_at": null,
+        "reviewed_by": null,
+        "checks": {
+          "organization_source": false,
+          "access_source": false,
+          "coordinate_source": false
+        },
+        "sources": [
+          {
+            "url": "https://www.uta.edu/",
+            "purpose": "official institution information (awaiting editorial review)",
+            "checked_at": null
+          }
+        ]
+      },
+      "region": "dfw"
+    },
+    {
+      "id": "uta-planetarium",
+      "state": "TX",
+      "name": "UTA Planetarium",
+      "city": "Arlington",
+      "category": "observatory",
+      "address": "700 Planetarium Pl, Arlington, TX 76019",
+      "coordinates": {
+        "lat": 32.728,
+        "lng": -97.115,
+        "accuracy": "approximate",
+        "source_url": "https://www.uta.edu/planetarium/"
+      },
+      "summary": "University planetarium hosting astronomy presentations and public shows.",
+      "topics": [
+        "Astronomy",
+        "Physics",
+        "Space"
+      ],
+      "access": {
+        "level": "scheduled_public",
+        "label": "Scheduled / limited public access",
+        "notes": "Public shows by published schedule; see official ticket information"
+      },
+      "links": {
+        "official_url": "https://www.uta.edu/planetarium/"
+      },
+      "review": {
+        "status": "pending",
+        "reviewed_at": null,
+        "reviewed_by": null,
+        "checks": {
+          "organization_source": false,
+          "access_source": false,
+          "coordinate_source": false
+        },
+        "sources": [
+          {
+            "url": "https://www.uta.edu/planetarium/",
+            "purpose": "official institution information (awaiting editorial review)",
+            "checked_at": null
+          }
+        ]
+      },
+      "region": "dfw"
+    },
+    {
+      "id": "john-bunker",
+      "state": "TX",
+      "region": "dfw",
+      "name": "John Bunker Sands Wetland Center",
+      "city": "Combine",
+      "category": "nature_center",
+      "address": "655 Martin Lane, Combine, TX 75159",
+      "coordinates": {
+        "lat": 32.615,
+        "lng": -96.542,
+        "accuracy": "approximate",
+        "source_url": "https://wetlandcenter.com/prepare/"
+      },
+      "summary": "Wetland ecology and water-quality learning through exhibits, trails and public programs.",
+      "topics": [
+        "Wetlands",
+        "Water treatment",
+        "Birds"
+      ],
+      "access": {
+        "level": "public_venue",
+        "label": "Public visitor venue",
+        "notes": "Public visiting hours; group and guided programs may require booking."
+      },
+      "links": {
+        "official_url": "https://wetlandcenter.com/prepare/"
+      },
+      "review": {
+        "status": "pending",
+        "reviewed_at": null,
+        "reviewed_by": null,
+        "checks": {
+          "organization_source": false,
+          "access_source": false,
+          "coordinate_source": false
+        },
+        "sources": [
+          {
+            "url": "https://wetlandcenter.com/prepare/",
+            "purpose": "Official institution information — editorial review pending",
+            "checked_at": null
+          }
+        ]
+      }
+    },
+    {
+      "id": "dallas-zoo",
+      "state": "TX",
+      "name": "Dallas Zoo",
+      "city": "Dallas",
+      "category": "zoo_aquarium",
+      "address": "650 S R L Thornton Fwy, Dallas, TX 75203",
+      "coordinates": {
+        "lat": 32.748,
+        "lng": -96.818,
+        "accuracy": "approximate",
+        "source_url": "https://www.dallaszoo.com/education-programs/"
+      },
+      "summary": "Zoo with conservation education, youth programs, guided experiences and animal sciences outreach.",
+      "topics": [
+        "Biology",
+        "Conservation",
+        "Wildlife"
+      ],
+      "access": {
+        "level": "public_venue",
+        "label": "Public visitor venue",
+        "notes": "Ticketed zoo; educational programs may have separate requirements"
+      },
+      "links": {
+        "official_url": "https://www.dallaszoo.com/education-programs/"
+      },
+      "review": {
+        "status": "pending",
+        "reviewed_at": null,
+        "reviewed_by": null,
+        "checks": {
+          "organization_source": false,
+          "access_source": false,
+          "coordinate_source": false
+        },
+        "sources": [
+          {
+            "url": "https://www.dallaszoo.com/education-programs/",
+            "purpose": "official institution information (awaiting editorial review)",
+            "checked_at": null
+          }
+        ]
+      },
+      "region": "dfw"
+    },
+    {
+      "id": "frontiers-flight",
+      "state": "TX",
+      "name": "Frontiers of Flight Museum",
+      "city": "Dallas",
+      "category": "museum",
+      "address": "6911 Lemmon Ave, Dallas, TX 75209",
+      "coordinates": {
+        "lat": 32.834,
+        "lng": -96.833,
+        "accuracy": "approximate",
+        "source_url": "https://flightmuseum.com/visit/"
+      },
+      "summary": "Aviation and space-flight history exhibits with STEM education and school programs.",
+      "topics": [
+        "Aviation",
+        "Space",
+        "Engineering"
+      ],
+      "access": {
+        "level": "public_venue",
+        "label": "Public visitor venue",
+        "notes": "Ticketed public museum; confirm special closures"
+      },
+      "links": {
+        "official_url": "https://flightmuseum.com/visit/"
+      },
+      "review": {
+        "status": "pending",
+        "reviewed_at": null,
+        "reviewed_by": null,
+        "checks": {
+          "organization_source": false,
+          "access_source": false,
+          "coordinate_source": false
+        },
+        "sources": [
+          {
+            "url": "https://flightmuseum.com/visit/",
+            "purpose": "official institution information (awaiting editorial review)",
+            "checked_at": null
+          }
+        ]
+      },
+      "region": "dfw"
+    },
+    {
+      "id": "perot",
+      "state": "TX",
+      "name": "Perot Museum of Nature and Science",
+      "city": "Dallas",
+      "category": "museum",
+      "address": "2201 N Field St, Dallas, TX 75201",
+      "coordinates": {
+        "lat": 32.78692,
+        "lng": -96.80637,
+        "accuracy": "approximate",
+        "source_url": "https://mapcarta.com/W618964796"
+      },
+      "summary": "Science and natural history museum with exhibits spanning engineering, Earth science, astronomy, biology and paleontology.",
+      "topics": [
+        "Natural history",
+        "Engineering",
+        "Astronomy"
+      ],
+      "access": {
+        "level": "public_venue",
+        "label": "Public visitor venue",
+        "notes": "Public museum · ticketed admission"
+      },
+      "links": {
+        "official_url": "https://www.perotmuseum.org/exhibits/"
+      },
+      "review": {
+        "status": "pending",
+        "reviewed_at": null,
+        "reviewed_by": null,
+        "checks": {
+          "organization_source": false,
+          "access_source": false,
+          "coordinate_source": false
+        },
+        "sources": [
+          {
+            "url": "https://www.perotmuseum.org/exhibits/",
+            "purpose": "institution details",
+            "checked_at": null
+          },
+          {
+            "url": "https://mapcarta.com/W618964796",
+            "purpose": "coordinate reference",
+            "checked_at": null
+          }
+        ]
+      },
+      "region": "dfw"
+    },
+    {
+      "id": "rory-garden",
+      "state": "TX",
+      "name": "Rory Meyers Children’s Adventure Garden",
+      "city": "Dallas",
+      "category": "botanical_garden",
+      "address": "8525 Garland Rd, Dallas, TX 75218",
+      "coordinates": {
+        "lat": 32.822,
+        "lng": -96.721,
+        "accuracy": "approximate",
+        "source_url": "https://www.dallasarboretum.org/visitor-information/gardens-and-pavilions/childrens-adventure-garden/"
+      },
+      "summary": "Hands-on outdoor science galleries and nature activities within the Dallas Arboretum.",
+      "topics": [
+        "Earth science",
+        "STEM",
+        "Botany"
+      ],
+      "access": {
+        "level": "public_venue",
+        "label": "Public visitor venue",
+        "notes": "Inside Dallas Arboretum; garden admission applies"
+      },
+      "links": {
+        "official_url": "https://www.dallasarboretum.org/visitor-information/gardens-and-pavilions/childrens-adventure-garden/"
+      },
+      "review": {
+        "status": "pending",
+        "reviewed_at": null,
+        "reviewed_by": null,
+        "checks": {
+          "organization_source": false,
+          "access_source": false,
+          "coordinate_source": false
+        },
+        "sources": [
+          {
+            "url": "https://www.dallasarboretum.org/visitor-information/gardens-and-pavilions/childrens-adventure-garden/",
+            "purpose": "official institution information (awaiting editorial review)",
+            "checked_at": null
+          }
+        ]
+      },
+      "region": "dfw"
+    },
+    {
+      "id": "smu",
+      "state": "TX",
+      "name": "Southern Methodist University",
+      "city": "Dallas",
+      "category": "university",
+      "address": "6425 Boaz Ln, Dallas, TX 75205",
+      "coordinates": {
+        "lat": 32.842,
+        "lng": -96.783,
+        "accuracy": "approximate",
+        "source_url": "https://www.smu.edu/research"
+      },
+      "summary": "Research university supporting science, technology, mathematics and interdisciplinary research.",
+      "topics": [
+        "Research",
+        "Engineering",
+        "Physical sciences"
+      ],
+      "access": {
+        "level": "research_campus",
+        "label": "Research campus — no public lab access",
+        "notes": "Research campus; public events require checking organizers"
+      },
+      "links": {
+        "official_url": "https://www.smu.edu/research"
+      },
+      "review": {
+        "status": "pending",
+        "reviewed_at": null,
+        "reviewed_by": null,
+        "checks": {
+          "organization_source": false,
+          "access_source": false,
+          "coordinate_source": false
+        },
+        "sources": [
+          {
+            "url": "https://www.smu.edu/research",
+            "purpose": "official institution information (awaiting editorial review)",
+            "checked_at": null
+          }
+        ]
+      },
+      "region": "dfw"
+    },
+    {
+      "id": "agrilife-dallas",
+      "state": "TX",
+      "name": "Texas A&M AgriLife Research and Extension Center at Dallas",
+      "city": "Dallas",
+      "category": "research_center",
+      "address": "17360 Coit Rd, Dallas, TX 75252",
+      "coordinates": {
+        "lat": 32.993,
+        "lng": -96.771,
+        "accuracy": "approximate",
+        "source_url": "https://dallas.tamu.edu/"
+      },
+      "summary": "Research and extension center studying urban agriculture, land and water resources, and healthy living.",
+      "topics": [
+        "Environmental science",
+        "Agriculture",
+        "Research"
+      ],
+      "access": {
+        "level": "research_campus",
+        "label": "Research campus — no public lab access",
+        "notes": "Research campus; public education is through organized extension activities"
+      },
+      "links": {
+        "official_url": "https://dallas.tamu.edu/"
+      },
+      "review": {
+        "status": "pending",
+        "reviewed_at": null,
+        "reviewed_by": null,
+        "checks": {
+          "organization_source": false,
+          "access_source": false,
+          "coordinate_source": false
+        },
+        "sources": [
+          {
+            "url": "https://dallas.tamu.edu/",
+            "purpose": "official institution information (awaiting editorial review)",
+            "checked_at": null
+          }
+        ]
+      },
+      "region": "dfw"
+    },
+    {
+      "id": "discovery-gardens",
+      "state": "TX",
+      "name": "Texas Discovery Gardens",
+      "city": "Dallas",
+      "category": "botanical_garden",
+      "address": "3601 Martin Luther King Jr Blvd, Dallas, TX 75210",
+      "coordinates": {
+        "lat": 32.779,
+        "lng": -96.763,
+        "accuracy": "approximate",
+        "source_url": "https://txdg.org/plan-your-visit/"
+      },
+      "summary": "Urban organic garden with butterfly house, native plants and environmental education activities.",
+      "topics": [
+        "Pollinators",
+        "Botany",
+        "Sustainability"
+      ],
+      "access": {
+        "level": "public_venue",
+        "label": "Public visitor venue",
+        "notes": "Ticketed public garden in Fair Park; check special event requirements"
+      },
+      "links": {
+        "official_url": "https://txdg.org/plan-your-visit/"
+      },
+      "review": {
+        "status": "pending",
+        "reviewed_at": null,
+        "reviewed_by": null,
+        "checks": {
+          "organization_source": false,
+          "access_source": false,
+          "coordinate_source": false
+        },
+        "sources": [
+          {
+            "url": "https://txdg.org/plan-your-visit/",
+            "purpose": "official institution information (awaiting editorial review)",
+            "checked_at": null
+          }
+        ]
+      },
+      "region": "dfw"
+    },
+    {
+      "id": "trinity-audubon",
+      "state": "TX",
+      "name": "Trinity River Audubon Center",
+      "city": "Dallas",
+      "category": "nature_center",
+      "address": "6500 Great Trinity Forest Way, Dallas, TX 75217",
+      "coordinates": {
+        "lat": 32.695,
+        "lng": -96.717,
+        "accuracy": "approximate",
+        "source_url": "https://www.audubon.org/trinity-river/visit"
+      },
+      "summary": "Environmental learning center with prairie, forest and wetland habitats and community-science activities.",
+      "topics": [
+        "Ecology",
+        "Birds",
+        "Community science"
+      ],
+      "access": {
+        "level": "public_venue",
+        "label": "Public visitor venue",
+        "notes": "Advance registration required for trail access per official visitor guidance"
+      },
+      "links": {
+        "official_url": "https://www.audubon.org/trinity-river/visit"
+      },
+      "review": {
+        "status": "pending",
+        "reviewed_at": null,
+        "reviewed_by": null,
+        "checks": {
+          "organization_source": false,
+          "access_source": false,
+          "coordinate_source": false
+        },
+        "sources": [
+          {
+            "url": "https://www.audubon.org/trinity-river/visit",
+            "purpose": "official institution information (awaiting editorial review)",
+            "checked_at": null
+          }
+        ]
+      },
+      "region": "dfw"
+    },
+    {
+      "id": "utsw",
+      "state": "TX",
+      "name": "UT Southwestern Medical Center",
+      "city": "Dallas",
+      "category": "research_center",
+      "address": "5323 Harry Hines Blvd, Dallas, TX 75390",
+      "coordinates": {
+        "lat": 32.813,
+        "lng": -96.841,
+        "accuracy": "approximate",
+        "source_url": "https://www.utsouthwestern.edu/research/"
+      },
+      "summary": "Academic medical research center with biomedical sciences and research training.",
+      "topics": [
+        "Biomedical research",
+        "Medicine",
+        "Biology"
+      ],
+      "access": {
+        "level": "research_campus",
+        "label": "Research campus — no public lab access",
+        "notes": "Research buildings and laboratories are not open to walk-in visitors"
+      },
+      "links": {
+        "official_url": "https://www.utsouthwestern.edu/research/"
+      },
+      "review": {
+        "status": "pending",
+        "reviewed_at": null,
+        "reviewed_by": null,
+        "checks": {
+          "organization_source": false,
+          "access_source": false,
+          "coordinate_source": false
+        },
+        "sources": [
+          {
+            "url": "https://www.utsouthwestern.edu/research/",
+            "purpose": "official institution information (awaiting editorial review)",
+            "checked_at": null
+          }
+        ]
+      },
+      "region": "dfw"
+    },
+    {
+      "id": "elm-fork",
+      "state": "TX",
+      "region": "dfw",
+      "name": "Elm Fork Education Center (UNT)",
+      "city": "Denton",
+      "category": "nature_center",
+      "address": "UNT campus, Denton, TX (confirm building entrance)",
+      "coordinates": {
+        "lat": 33.211,
+        "lng": -97.147,
+        "accuracy": "approximate",
+        "source_url": "https://cos.unt.edu/elm-fork-education-center/field-trips.html"
+      },
+      "summary": "UNT-run environmental science field trips and appointment-based hands-on science programs.",
+      "topics": [
+        "Environmental science",
+        "Field trips",
+        "STEM education"
+      ],
+      "access": {
+        "level": "scheduled_public",
+        "label": "Scheduled / limited public access",
+        "notes": "School programs and SciClub days require booking; not a drop-in museum."
+      },
+      "links": {
+        "official_url": "https://cos.unt.edu/elm-fork-education-center/field-trips.html"
+      },
+      "review": {
+        "status": "pending",
+        "reviewed_at": null,
+        "reviewed_by": null,
+        "checks": {
+          "organization_source": false,
+          "access_source": false,
+          "coordinate_source": false
+        },
+        "sources": [
+          {
+            "url": "https://cos.unt.edu/elm-fork-education-center/field-trips.html",
+            "purpose": "Official institution information — editorial review pending",
+            "checked_at": null
+          }
+        ]
+      }
+    },
+    {
+      "id": "twu",
+      "state": "TX",
+      "name": "Texas Woman’s University",
+      "city": "Denton",
+      "category": "university",
+      "address": "304 Administration Dr, Denton, TX 76204",
+      "coordinates": {
+        "lat": 33.225,
+        "lng": -97.129,
+        "accuracy": "approximate",
+        "source_url": "https://twu.edu/"
+      },
+      "summary": "University with research and programs spanning health sciences and other scientific disciplines.",
+      "topics": [
+        "Health sciences",
+        "Research",
+        "Biology"
+      ],
+      "access": {
+        "level": "research_campus",
+        "label": "Research campus — no public lab access",
+        "notes": "Research spaces require permission; check public program listings"
+      },
+      "links": {
+        "official_url": "https://twu.edu/"
+      },
+      "review": {
+        "status": "pending",
+        "reviewed_at": null,
+        "reviewed_by": null,
+        "checks": {
+          "organization_source": false,
+          "access_source": false,
+          "coordinate_source": false
+        },
+        "sources": [
+          {
+            "url": "https://twu.edu/",
+            "purpose": "official institution information (awaiting editorial review)",
+            "checked_at": null
+          }
+        ]
+      },
+      "region": "dfw"
+    },
+    {
+      "id": "unt",
+      "state": "TX",
+      "name": "University of North Texas",
+      "city": "Denton",
+      "category": "university",
+      "address": "1155 Union Cir, Denton, TX 76203",
+      "coordinates": {
+        "lat": 33.21,
+        "lng": -97.15,
+        "accuracy": "approximate",
+        "source_url": "https://engineering.unt.edu/connect/outreach.html"
+      },
+      "summary": "Public research university with science programs and engineering outreach.",
+      "topics": [
+        "Research",
+        "Engineering",
+        "STEM education"
+      ],
+      "access": {
+        "level": "research_campus",
+        "label": "Research campus — no public lab access",
+        "notes": "Lab access restricted; separate public planetarium and outreach programs listed"
+      },
+      "links": {
+        "official_url": "https://engineering.unt.edu/connect/outreach.html"
+      },
+      "review": {
+        "status": "pending",
+        "reviewed_at": null,
+        "reviewed_by": null,
+        "checks": {
+          "organization_source": false,
+          "access_source": false,
+          "coordinate_source": false
+        },
+        "sources": [
+          {
+            "url": "https://engineering.unt.edu/connect/outreach.html",
+            "purpose": "official institution information (awaiting editorial review)",
+            "checked_at": null
+          }
+        ]
+      },
+      "region": "dfw"
+    },
+    {
+      "id": "unt-sky",
+      "state": "TX",
+      "name": "UNT Sky Theater Planetarium",
+      "city": "Denton",
+      "category": "observatory",
+      "address": "1704 W Mulberry St, Denton, TX 76201",
+      "coordinates": {
+        "lat": 33.211,
+        "lng": -97.151,
+        "accuracy": "approximate",
+        "source_url": "https://astronomy.unt.edu/sky-theater/index.html"
+      },
+      "summary": "University of North Texas domed planetarium featuring astronomy and educational programming.",
+      "topics": [
+        "Astronomy",
+        "Space",
+        "STEM education"
+      ],
+      "access": {
+        "level": "scheduled_public",
+        "label": "Scheduled / limited public access",
+        "notes": "Tickets or scheduled public showtimes; located on campus"
+      },
+      "links": {
+        "official_url": "https://astronomy.unt.edu/sky-theater/index.html"
+      },
+      "review": {
+        "status": "pending",
+        "reviewed_at": null,
+        "reviewed_by": null,
+        "checks": {
+          "organization_source": false,
+          "access_source": false,
+          "coordinate_source": false
+        },
+        "sources": [
+          {
+            "url": "https://astronomy.unt.edu/sky-theater/index.html",
+            "purpose": "official institution information (awaiting editorial review)",
+            "checked_at": null
+          }
+        ]
+      },
+      "region": "dfw"
+    },
+    {
+      "id": "brit",
+      "state": "TX",
+      "name": "Botanical Research Institute of Texas (BRIT)",
+      "city": "Fort Worth",
+      "category": "research_center",
+      "address": "1700 University Dr, Fort Worth, TX 76107",
+      "coordinates": {
+        "lat": 32.748,
+        "lng": -97.361,
+        "accuracy": "approximate",
+        "source_url": "https://fwbg.org/plan-a-visit/interactive-map/"
+      },
+      "summary": "Botanical research institute associated with the Fort Worth Botanic Garden, including plant collections and exhibits.",
+      "topics": [
+        "Botany",
+        "Research",
+        "Conservation"
+      ],
+      "access": {
+        "level": "scheduled_public",
+        "label": "Scheduled / limited public access",
+        "notes": "Research spaces restricted; specified exhibits and tours may be available"
+      },
+      "links": {
+        "official_url": "https://fwbg.org/plan-a-visit/interactive-map/"
+      },
+      "review": {
+        "status": "pending",
+        "reviewed_at": null,
+        "reviewed_by": null,
+        "checks": {
+          "organization_source": false,
+          "access_source": false,
+          "coordinate_source": false
+        },
+        "sources": [
+          {
+            "url": "https://fwbg.org/plan-a-visit/interactive-map/",
+            "purpose": "official institution information (awaiting editorial review)",
+            "checked_at": null
+          }
+        ]
+      },
+      "region": "dfw"
+    },
+    {
+      "id": "fw-botanic",
+      "state": "TX",
+      "name": "Fort Worth Botanic Garden",
+      "city": "Fort Worth",
+      "category": "botanical_garden",
+      "address": "3220 Botanic Garden Blvd, Fort Worth, TX 76107",
+      "coordinates": {
+        "lat": 32.743,
+        "lng": -97.362,
+        "accuracy": "approximate",
+        "source_url": "https://fwbg.org/"
+      },
+      "summary": "Living botanical collections, science education and horticulture programming.",
+      "topics": [
+        "Botany",
+        "Conservation",
+        "Plant science"
+      ],
+      "access": {
+        "level": "public_venue",
+        "label": "Public visitor venue",
+        "notes": "Ticketed public garden; review current program information"
+      },
+      "links": {
+        "official_url": "https://fwbg.org/"
+      },
+      "review": {
+        "status": "pending",
+        "reviewed_at": null,
+        "reviewed_by": null,
+        "checks": {
+          "organization_source": false,
+          "access_source": false,
+          "coordinate_source": false
+        },
+        "sources": [
+          {
+            "url": "https://fwbg.org/",
+            "purpose": "official institution information (awaiting editorial review)",
+            "checked_at": null
+          }
+        ]
+      },
+      "region": "dfw"
+    },
+    {
+      "id": "fwmuseum",
+      "state": "TX",
+      "name": "Fort Worth Museum of Science and History",
+      "city": "Fort Worth",
+      "category": "museum",
+      "address": "1600 Gendy St, Fort Worth, TX 76107",
+      "coordinates": {
+        "lat": 32.74541,
+        "lng": -97.36918,
+        "accuracy": "approximate",
+        "source_url": "https://mapcarta.com/21729572"
+      },
+      "summary": "Hands-on science and history exhibits, with interactive learning spaces and natural-science displays.",
+      "topics": [
+        "Interactive exhibits",
+        "Natural history",
+        "Family learning"
+      ],
+      "access": {
+        "level": "public_venue",
+        "label": "Public visitor venue",
+        "notes": "Public museum · check current entrance and hours"
+      },
+      "links": {
+        "official_url": "https://www.fwmuseum.org/visit/"
+      },
+      "review": {
+        "status": "pending",
+        "reviewed_at": null,
+        "reviewed_by": null,
+        "checks": {
+          "organization_source": false,
+          "access_source": false,
+          "coordinate_source": false
+        },
+        "sources": [
+          {
+            "url": "https://www.fwmuseum.org/visit/",
+            "purpose": "institution details",
+            "checked_at": null
+          },
+          {
+            "url": "https://mapcarta.com/21729572",
+            "purpose": "coordinate reference",
+            "checked_at": null
+          }
+        ]
+      },
+      "region": "dfw"
+    },
+    {
+      "id": "fw-nature",
+      "state": "TX",
+      "name": "Fort Worth Nature Center & Refuge",
+      "city": "Fort Worth",
+      "category": "nature_center",
+      "address": "9601 Fossil Ridge Rd, Fort Worth, TX 76135",
+      "coordinates": {
+        "lat": 32.842,
+        "lng": -97.482,
+        "accuracy": "approximate",
+        "source_url": "https://www.fwnaturecenter.org/visit/"
+      },
+      "summary": "Protected habitats, interpretive exhibits, trails and seasonal naturalist-led programs.",
+      "topics": [
+        "Ecology",
+        "Conservation",
+        "Wildlife"
+      ],
+      "access": {
+        "level": "public_venue",
+        "label": "Public visitor venue",
+        "notes": "Admission and seasonal access vary; review visit information"
+      },
+      "links": {
+        "official_url": "https://www.fwnaturecenter.org/visit/"
+      },
+      "review": {
+        "status": "pending",
+        "reviewed_at": null,
+        "reviewed_by": null,
+        "checks": {
+          "organization_source": false,
+          "access_source": false,
+          "coordinate_source": false
+        },
+        "sources": [
+          {
+            "url": "https://www.fwnaturecenter.org/visit/",
+            "purpose": "official institution information (awaiting editorial review)",
+            "checked_at": null
+          }
+        ]
+      },
+      "region": "dfw"
+    },
+    {
+      "id": "tcu",
+      "state": "TX",
+      "name": "Texas Christian University",
+      "city": "Fort Worth",
+      "category": "university",
+      "address": "2800 S University Dr, Fort Worth, TX 76129",
+      "coordinates": {
+        "lat": 32.708,
+        "lng": -97.364,
+        "accuracy": "approximate",
+        "source_url": "https://www.tcu.edu/"
+      },
+      "summary": "University with science and engineering programs, laboratories and research activities.",
+      "topics": [
+        "Research",
+        "Chemistry",
+        "Biology"
+      ],
+      "access": {
+        "level": "research_campus",
+        "label": "Research campus — no public lab access",
+        "notes": "Campus is not blanket permission to visit research labs"
+      },
+      "links": {
+        "official_url": "https://www.tcu.edu/"
+      },
+      "review": {
+        "status": "pending",
+        "reviewed_at": null,
+        "reviewed_by": null,
+        "checks": {
+          "organization_source": false,
+          "access_source": false,
+          "coordinate_source": false
+        },
+        "sources": [
+          {
+            "url": "https://www.tcu.edu/",
+            "purpose": "official institution information (awaiting editorial review)",
+            "checked_at": null
+          }
+        ]
+      },
+      "region": "dfw"
+    },
+    {
+      "id": "unthsc",
+      "state": "TX",
+      "name": "UNT Health Fort Worth",
+      "city": "Fort Worth",
+      "category": "university",
+      "address": "3500 Camp Bowie Blvd, Fort Worth, TX 76107",
+      "coordinates": {
+        "lat": 32.75,
+        "lng": -97.364,
+        "accuracy": "approximate",
+        "source_url": "https://www.unthsc.edu/"
+      },
+      "summary": "Health-sciences university with biomedical research and community-health education.",
+      "topics": [
+        "Biomedical research",
+        "Public health",
+        "Research"
+      ],
+      "access": {
+        "level": "research_campus",
+        "label": "Research campus — no public lab access",
+        "notes": "Research campus; consult institution for public events"
+      },
+      "links": {
+        "official_url": "https://www.unthsc.edu/"
+      },
+      "review": {
+        "status": "pending",
+        "reviewed_at": null,
+        "reviewed_by": null,
+        "checks": {
+          "organization_source": false,
+          "access_source": false,
+          "coordinate_source": false
+        },
+        "sources": [
+          {
+            "url": "https://www.unthsc.edu/",
+            "purpose": "official institution information (awaiting editorial review)",
+            "checked_at": null
+          }
+        ]
+      },
+      "region": "dfw"
+    },
+    {
+      "id": "scitech",
+      "state": "TX",
+      "name": "Sci-Tech Discovery Center",
+      "city": "Frisco",
+      "category": "museum",
+      "address": "8004 Dallas Pkwy, Suite 100, Frisco, TX 75034",
+      "coordinates": {
+        "lat": 33.143645,
+        "lng": -96.835016,
+        "accuracy": "approximate",
+        "source_url": "https://midcities.kidsoutandabout.com/content/sci-tech-discovery-center"
+      },
+      "summary": "Hands-on discovery experiences in science, mathematics and technology, with exhibits and educational programming for young learners.",
+      "topics": [
+        "Hands-on STEM",
+        "Children & families",
+        "Field trips"
+      ],
+      "access": {
+        "level": "public_venue",
+        "label": "Public visitor venue",
+        "notes": "Public science museum · check ticketing and hours"
+      },
+      "links": {
+        "official_url": "https://mindstretchingfun.org/hours-location/"
+      },
+      "review": {
+        "status": "pending",
+        "reviewed_at": null,
+        "reviewed_by": null,
+        "checks": {
+          "organization_source": false,
+          "access_source": false,
+          "coordinate_source": false
+        },
+        "sources": [
+          {
+            "url": "https://mindstretchingfun.org/hours-location/",
+            "purpose": "institution details",
+            "checked_at": null
+          },
+          {
+            "url": "https://midcities.kidsoutandabout.com/content/sci-tech-discovery-center",
+            "purpose": "coordinate reference",
+            "checked_at": null
+          }
+        ]
+      },
+      "region": "dfw"
+    },
+    {
+      "id": "fossil-rim",
+      "state": "TX",
+      "region": "dfw",
+      "name": "Fossil Rim Wildlife Center",
+      "city": "Glen Rose",
+      "category": "zoo_aquarium",
+      "address": "2299 County Road 2008, Glen Rose, TX 76043",
+      "coordinates": {
+        "lat": 32.238,
+        "lng": -97.799,
+        "accuracy": "approximate",
+        "source_url": "https://fossilrim.org/directions/"
+      },
+      "summary": "Wildlife conservation center with guided and self-drive educational visitor experiences.",
+      "topics": [
+        "Conservation",
+        "Wildlife",
+        "Ecology"
+      ],
+      "access": {
+        "level": "public_venue",
+        "label": "Public visitor venue",
+        "notes": "Advance tickets recommended; follow wildlife viewing guidelines."
+      },
+      "links": {
+        "official_url": "https://fossilrim.org/directions/"
+      },
+      "review": {
+        "status": "pending",
+        "reviewed_at": null,
+        "reviewed_by": null,
+        "checks": {
+          "organization_source": false,
+          "access_source": false,
+          "coordinate_source": false
+        },
+        "sources": [
+          {
+            "url": "https://fossilrim.org/directions/",
+            "purpose": "Official institution information — editorial review pending",
+            "checked_at": null
+          }
+        ]
+      }
+    },
+    {
+      "id": "llela",
+      "state": "TX",
+      "name": "Lewisville Lake Environmental Learning Area",
+      "city": "Lewisville",
+      "category": "nature_center",
+      "address": "201 E Jones St, Lewisville, TX 75057",
+      "coordinates": {
+        "lat": 33.048,
+        "lng": -96.969,
+        "accuracy": "approximate",
+        "source_url": "https://www.llela.org/visit"
+      },
+      "summary": "Protected river, woodland and prairie habitats used for outdoor environmental learning.",
+      "topics": [
+        "Ecology",
+        "Water",
+        "Field education"
+      ],
+      "access": {
+        "level": "public_venue",
+        "label": "Public visitor venue",
+        "notes": "Outdoor preserve; entry conditions and program access vary"
+      },
+      "links": {
+        "official_url": "https://www.llela.org/visit"
+      },
+      "review": {
+        "status": "pending",
+        "reviewed_at": null,
+        "reviewed_by": null,
+        "checks": {
+          "organization_source": false,
+          "access_source": false,
+          "coordinate_source": false
+        },
+        "sources": [
+          {
+            "url": "https://www.llela.org/visit",
+            "purpose": "official institution information (awaiting editorial review)",
+            "checked_at": null
+          }
+        ]
+      },
+      "region": "dfw"
+    },
+    {
+      "id": "heard",
+      "state": "TX",
+      "name": "Heard Natural Science Museum & Wildlife Sanctuary",
+      "city": "McKinney",
+      "category": "museum",
+      "address": "1 Nature Pl, McKinney, TX 75069",
+      "coordinates": {
+        "lat": 33.151,
+        "lng": -96.611,
+        "accuracy": "approximate",
+        "source_url": "https://www.heardmuseum.org/"
+      },
+      "summary": "Museum, wildlife sanctuary and environmental education programs in a protected natural landscape.",
+      "topics": [
+        "Natural history",
+        "Ecology",
+        "Wildlife"
+      ],
+      "access": {
+        "level": "public_venue",
+        "label": "Public visitor venue",
+        "notes": "Museum and trails; check hours and event-specific access"
+      },
+      "links": {
+        "official_url": "https://www.heardmuseum.org/"
+      },
+      "review": {
+        "status": "pending",
+        "reviewed_at": null,
+        "reviewed_by": null,
+        "checks": {
+          "organization_source": false,
+          "access_source": false,
+          "coordinate_source": false
+        },
+        "sources": [
+          {
+            "url": "https://www.heardmuseum.org/",
+            "purpose": "official institution information (awaiting editorial review)",
+            "checked_at": null
+          }
+        ]
+      },
+      "region": "dfw"
+    },
+    {
+      "id": "utd",
+      "state": "TX",
+      "name": "The University of Texas at Dallas",
+      "city": "Richardson",
+      "category": "university",
+      "address": "800 W Campbell Rd, Richardson, TX 75080",
+      "coordinates": {
+        "lat": 32.98769,
+        "lng": -96.74905,
+        "accuracy": "approximate",
+        "source_url": "https://mapcarta.com/W598197630"
+      },
+      "summary": "Research university with programs in chemistry, physics, biology, engineering and other scientific disciplines. Explore official university pages for public events.",
+      "topics": [
+        "Research",
+        "Chemistry & materials",
+        "STEM education"
+      ],
+      "access": {
+        "level": "research_campus",
+        "label": "Research campus — limited access",
+        "notes": "Research campus · labs are not generally open for drop-in visits"
+      },
+      "links": {
+        "official_url": "https://www.utdallas.edu/visitors/directions/"
+      },
+      "review": {
+        "status": "pending",
+        "reviewed_at": null,
+        "reviewed_by": null,
+        "checks": {
+          "organization_source": false,
+          "access_source": false,
+          "coordinate_source": false
+        },
+        "sources": [
+          {
+            "url": "https://www.utdallas.edu/visitors/directions/",
+            "purpose": "institution details",
+            "checked_at": null
+          },
+          {
+            "url": "https://mapcarta.com/W598197630",
+            "purpose": "coordinate reference",
+            "checked_at": null
+          }
+        ]
+      },
+      "region": "dfw"
+    },
+    {
+      "id": "bob-jones",
+      "state": "TX",
+      "name": "Bob Jones Nature Center & Preserve",
+      "city": "Southlake",
+      "category": "nature_center",
+      "address": "355 E Bob Jones Rd, Southlake, TX 76092",
+      "coordinates": {
+        "lat": 32.981,
+        "lng": -97.133,
+        "accuracy": "approximate",
+        "source_url": "https://www.experiencesouthlaketexas.com/583/Nature-Programs"
+      },
+      "summary": "Preserve and outdoor environmental education site with guided nature programs.",
+      "topics": [
+        "Ecology",
+        "Conservation",
+        "Nature education"
+      ],
+      "access": {
+        "level": "scheduled_public",
+        "label": "Scheduled / limited public access",
+        "notes": "Trails open on posted schedule; center building for scheduled programs"
+      },
+      "links": {
+        "official_url": "https://www.experiencesouthlaketexas.com/583/Nature-Programs"
+      },
+      "review": {
+        "status": "pending",
+        "reviewed_at": null,
+        "reviewed_by": null,
+        "checks": {
+          "organization_source": false,
+          "access_source": false,
+          "coordinate_source": false
+        },
+        "sources": [
+          {
+            "url": "https://www.experiencesouthlaketexas.com/583/Nature-Programs",
+            "purpose": "official institution information (awaiting editorial review)",
+            "checked_at": null
+          }
+        ]
+      },
+      "region": "dfw"
+    },
+    {
+      "id": "austin-nature",
+      "state": "TX",
+      "region": "central",
+      "name": "Austin Nature & Science Center",
+      "city": "Austin",
+      "category": "nature_center",
+      "address": "2389 Stratford Drive, Austin, TX 78746",
+      "coordinates": {
+        "lat": 30.273,
+        "lng": -97.775,
+        "accuracy": "approximate",
+        "source_url": "https://www.austintexas.gov/parks/plan-your-visit-austin-nature-science-center"
+      },
+      "summary": "City science center with natural history, wildlife exhibits, fossil exploration and environmental programs.",
+      "topics": [
+        "Ecology",
+        "Natural history",
+        "Field trips"
+      ],
+      "access": {
+        "level": "public_venue",
+        "label": "Public visitor venue",
+        "notes": "Public family exhibits have free admission; group programs need arrangements."
+      },
+      "links": {
+        "official_url": "https://www.austintexas.gov/parks/plan-your-visit-austin-nature-science-center"
+      },
+      "review": {
+        "status": "pending",
+        "reviewed_at": null,
+        "reviewed_by": null,
+        "checks": {
+          "organization_source": false,
+          "access_source": false,
+          "coordinate_source": false
+        },
+        "sources": [
+          {
+            "url": "https://www.austintexas.gov/parks/plan-your-visit-austin-nature-science-center",
+            "purpose": "Official institution information — editorial review pending",
+            "checked_at": null
+          }
+        ]
+      }
+    },
+    {
+      "id": "wildflower",
+      "state": "TX",
+      "region": "central",
+      "name": "Lady Bird Johnson Wildflower Center",
+      "city": "Austin",
+      "category": "botanical_garden",
+      "address": "4801 La Crosse Avenue, Austin, TX 78739",
+      "coordinates": {
+        "lat": 30.182,
+        "lng": -97.874,
+        "accuracy": "approximate",
+        "source_url": "https://www.wildflower.org/"
+      },
+      "summary": "University-affiliated public native-plant garden and conservation research center.",
+      "topics": [
+        "Botany",
+        "Native plants",
+        "Conservation"
+      ],
+      "access": {
+        "level": "public_venue",
+        "label": "Public visitor venue",
+        "notes": "Public garden admissions and seasonal activities; research spaces not open for drop-in."
+      },
+      "links": {
+        "official_url": "https://www.wildflower.org/"
+      },
+      "review": {
+        "status": "pending",
+        "reviewed_at": null,
+        "reviewed_by": null,
+        "checks": {
+          "organization_source": false,
+          "access_source": false,
+          "coordinate_source": false
+        },
+        "sources": [
+          {
+            "url": "https://www.wildflower.org/",
+            "purpose": "Official institution information — editorial review pending",
+            "checked_at": null
+          }
+        ]
+      }
+    },
+    {
+      "id": "texas-natural-history",
+      "state": "TX",
+      "name": "Texas Science & Natural History Museum",
+      "city": "Austin",
+      "category": "museum",
+      "address": "2400 Trinity St, Austin, TX 78712",
+      "coordinates": {
+        "lat": 30.286992,
+        "lng": -97.732366,
+        "accuracy": "approximate",
+        "source_url": "https://austin.kidsoutandabout.com/content/texas-science-natural-history-museum"
+      },
+      "summary": "A University of Texas at Austin museum connecting Texas natural history, fossils, biological collections and current research.",
+      "topics": [
+        "Paleontology",
+        "Natural history",
+        "University collections"
+      ],
+      "access": {
+        "level": "public_venue",
+        "label": "Public visitor venue",
+        "notes": "University museum open to the public"
+      },
+      "links": {
+        "official_url": "https://sciencemuseum.utexas.edu/"
+      },
+      "review": {
+        "status": "pending",
+        "reviewed_at": null,
+        "reviewed_by": null,
+        "checks": {
+          "organization_source": false,
+          "access_source": false,
+          "coordinate_source": false
+        },
+        "sources": [
+          {
+            "url": "https://sciencemuseum.utexas.edu/",
+            "purpose": "institution details",
+            "checked_at": null
+          },
+          {
+            "url": "https://austin.kidsoutandabout.com/content/texas-science-natural-history-museum",
+            "purpose": "coordinate reference",
+            "checked_at": null
+          }
+        ]
+      },
+      "region": "central"
+    },
+    {
+      "id": "thinkery",
+      "state": "TX",
+      "name": "Thinkery",
+      "city": "Austin",
+      "category": "museum",
+      "address": "1830 Simond Ave, Austin, TX 78723",
+      "coordinates": {
+        "lat": 30.29757,
+        "lng": -97.70493,
+        "accuracy": "approximate",
+        "source_url": "https://mapcarta.com/W294770154"
+      },
+      "summary": "An interactive children’s museum encouraging curiosity and exploration through playful STEAM learning.",
+      "topics": [
+        "STEAM",
+        "Early learners",
+        "Hands-on activities"
+      ],
+      "access": {
+        "level": "public_venue",
+        "label": "Public visitor venue",
+        "notes": "Public museum · advance tickets may be needed"
+      },
+      "links": {
+        "official_url": "https://thinkeryaustin.org/visit-us/"
+      },
+      "review": {
+        "status": "pending",
+        "reviewed_at": null,
+        "reviewed_by": null,
+        "checks": {
+          "organization_source": false,
+          "access_source": false,
+          "coordinate_source": false
+        },
+        "sources": [
+          {
+            "url": "https://thinkeryaustin.org/visit-us/",
+            "purpose": "institution details",
+            "checked_at": null
+          },
+          {
+            "url": "https://mapcarta.com/W294770154",
+            "purpose": "coordinate reference",
+            "checked_at": null
+          }
+        ]
+      },
+      "region": "central"
+    },
+    {
+      "id": "ut-austin",
+      "state": "TX",
+      "region": "central",
+      "name": "University of Texas at Austin",
+      "city": "Austin",
+      "category": "university",
+      "address": "Austin, TX 78712 (main campus)",
+      "coordinates": {
+        "lat": 30.285,
+        "lng": -97.74,
+        "accuracy": "approximate",
+        "source_url": "https://www.utexas.edu/"
+      },
+      "summary": "Major research university spanning chemistry, physics, engineering, biology and environmental science.",
+      "topics": [
+        "Research",
+        "Chemistry",
+        "Environmental science"
+      ],
+      "access": {
+        "level": "research_campus",
+        "label": "Research campus — limited access",
+        "notes": "Campus may be accessible but research laboratories require authorization."
+      },
+      "links": {
+        "official_url": "https://www.utexas.edu/"
+      },
+      "review": {
+        "status": "pending",
+        "reviewed_at": null,
+        "reviewed_by": null,
+        "checks": {
+          "organization_source": false,
+          "access_source": false,
+          "coordinate_source": false
+        },
+        "sources": [
+          {
+            "url": "https://www.utexas.edu/",
+            "purpose": "Official institution information — editorial review pending",
+            "checked_at": null
+          }
+        ]
+      }
+    },
+    {
+      "id": "ut-astronomy",
+      "state": "TX",
+      "region": "central",
+      "name": "UT Austin Astronomy Public Star Parties",
+      "city": "Austin",
+      "category": "observatory",
+      "address": "University of Texas at Austin campus, Austin, TX",
+      "coordinates": {
+        "lat": 30.286,
+        "lng": -97.736,
+        "accuracy": "approximate",
+        "source_url": "https://astronomy.utexas.edu/outreach"
+      },
+      "summary": "University astronomy department offers public telescope viewing and educational events.",
+      "topics": [
+        "Astronomy",
+        "Physics",
+        "Public observing"
+      ],
+      "access": {
+        "level": "scheduled_public",
+        "label": "Scheduled / limited public access",
+        "notes": "Only designated viewing nights and venues are public; check departmental schedule."
+      },
+      "links": {
+        "official_url": "https://astronomy.utexas.edu/outreach"
+      },
+      "review": {
+        "status": "pending",
+        "reviewed_at": null,
+        "reviewed_by": null,
+        "checks": {
+          "organization_source": false,
+          "access_source": false,
+          "coordinate_source": false
+        },
+        "sources": [
+          {
+            "url": "https://astronomy.utexas.edu/outreach",
+            "purpose": "Official institution information — editorial review pending",
+            "checked_at": null
+          }
+        ]
+      }
+    },
+    {
+      "id": "brazos-valley",
+      "state": "TX",
+      "region": "central",
+      "name": "Brazos Valley Museum of Natural History",
+      "city": "Bryan",
+      "category": "museum",
+      "address": "3232 Briarcrest Drive, Bryan, TX 77802",
+      "coordinates": {
+        "lat": 30.678,
+        "lng": -96.341,
+        "accuracy": "approximate",
+        "source_url": "https://www.brazosvalleymuseum.org/visit"
+      },
+      "summary": "Regional museum with natural history collections and educational exhibitions.",
+      "topics": [
+        "Natural history",
+        "Fossils",
+        "Conservation"
+      ],
+      "access": {
+        "level": "public_venue",
+        "label": "Public visitor venue",
+        "notes": "Ticketed public museum; check exhibition schedule."
+      },
+      "links": {
+        "official_url": "https://www.brazosvalleymuseum.org/visit"
+      },
+      "review": {
+        "status": "pending",
+        "reviewed_at": null,
+        "reviewed_by": null,
+        "checks": {
+          "organization_source": false,
+          "access_source": false,
+          "coordinate_source": false
+        },
+        "sources": [
+          {
+            "url": "https://www.brazosvalleymuseum.org/visit",
+            "purpose": "Official institution information — editorial review pending",
+            "checked_at": null
+          }
+        ]
+      }
+    },
+    {
+      "id": "tamu",
+      "state": "TX",
+      "region": "central",
+      "name": "Texas A&M University",
+      "city": "College Station",
+      "category": "university",
+      "address": "College Station, TX 77843 (main campus)",
+      "coordinates": {
+        "lat": 30.618,
+        "lng": -96.339,
+        "accuracy": "approximate",
+        "source_url": "https://www.tamu.edu/"
+      },
+      "summary": "Research university active in agriculture, chemistry, engineering, materials and environmental science.",
+      "topics": [
+        "Research",
+        "Agricultural science",
+        "Chemistry"
+      ],
+      "access": {
+        "level": "research_campus",
+        "label": "Research campus — limited access",
+        "notes": "Do not interpret campus listing as public laboratory access."
+      },
+      "links": {
+        "official_url": "https://www.tamu.edu/"
+      },
+      "review": {
+        "status": "pending",
+        "reviewed_at": null,
+        "reviewed_by": null,
+        "checks": {
+          "organization_source": false,
+          "access_source": false,
+          "coordinate_source": false
+        },
+        "sources": [
+          {
+            "url": "https://www.tamu.edu/",
+            "purpose": "Official institution information — editorial review pending",
+            "checked_at": null
+          }
+        ]
+      }
+    },
+    {
+      "id": "science-mill",
+      "state": "TX",
+      "name": "Science Mill",
+      "city": "Johnson City",
+      "category": "museum",
+      "address": "101 S Lady Bird Ln, Johnson City, TX 78636",
+      "coordinates": {
+        "lat": 30.274965,
+        "lng": -98.411374,
+        "accuracy": "approximate",
+        "source_url": "https://maps.roadtrippers.com/us/johnson-city-tx/attractions/science-mill"
+      },
+      "summary": "Hands-on STEM experiences in a historic mill, including technology-focused and interactive exhibits.",
+      "topics": [
+        "STEM exhibits",
+        "Engineering",
+        "Family learning"
+      ],
+      "access": {
+        "level": "public_venue",
+        "label": "Public visitor venue",
+        "notes": "Public museum · check seasonal hours"
+      },
+      "links": {
+        "official_url": "https://www.sciencemill.org/exhibits/"
+      },
+      "review": {
+        "status": "pending",
+        "reviewed_at": null,
+        "reviewed_by": null,
+        "checks": {
+          "organization_source": false,
+          "access_source": false,
+          "coordinate_source": false
+        },
+        "sources": [
+          {
+            "url": "https://www.sciencemill.org/exhibits/",
+            "purpose": "institution details",
+            "checked_at": null
+          },
+          {
+            "url": "https://maps.roadtrippers.com/us/johnson-city-tx/attractions/science-mill",
+            "purpose": "coordinate reference",
+            "checked_at": null
+          }
+        ]
+      },
+      "region": "central"
+    },
+    {
+      "id": "sa-botanic",
+      "state": "TX",
+      "region": "central",
+      "name": "San Antonio Botanical Garden",
+      "city": "San Antonio",
+      "category": "botanical_garden",
+      "address": "555 Funston Place, San Antonio, TX 78209",
+      "coordinates": {
+        "lat": 29.455,
+        "lng": -98.457,
+        "accuracy": "approximate",
+        "source_url": "https://www.sabot.org/"
+      },
+      "summary": "Living collections and environmental learning programs on plants and ecosystems.",
+      "topics": [
+        "Botany",
+        "Plant science",
+        "Ecology"
+      ],
+      "access": {
+        "level": "public_venue",
+        "label": "Public visitor venue",
+        "notes": "Ticketed public garden; program availability may vary."
+      },
+      "links": {
+        "official_url": "https://www.sabot.org/"
+      },
+      "review": {
+        "status": "pending",
+        "reviewed_at": null,
+        "reviewed_by": null,
+        "checks": {
+          "organization_source": false,
+          "access_source": false,
+          "coordinate_source": false
+        },
+        "sources": [
+          {
+            "url": "https://www.sabot.org/",
+            "purpose": "Official institution information — editorial review pending",
+            "checked_at": null
+          }
+        ]
+      }
+    },
+    {
+      "id": "scobee",
+      "state": "TX",
+      "region": "central",
+      "name": "Scobee Education Center & Planetarium",
+      "city": "San Antonio",
+      "category": "observatory",
+      "address": "San Antonio College campus; use 1198 San Pedro Ave entrance, San Antonio, TX",
+      "coordinates": {
+        "lat": 29.45,
+        "lng": -98.498,
+        "accuracy": "approximate",
+        "source_url": "https://www.alamo.edu/collegecontainer/sac/about-sac/college-offices/scobee-education-center/scobee-planetarium/"
+      },
+      "summary": "College planetarium with scheduled public astronomy shows and reservation-based STEAM programming.",
+      "topics": [
+        "Astronomy",
+        "Space",
+        "STEM outreach"
+      ],
+      "access": {
+        "level": "scheduled_public",
+        "label": "Scheduled / limited public access",
+        "notes": "Public planetarium performances are scheduled, mainly Friday evenings; check tickets."
+      },
+      "links": {
+        "official_url": "https://www.alamo.edu/collegecontainer/sac/about-sac/college-offices/scobee-education-center/scobee-planetarium/"
+      },
+      "review": {
+        "status": "pending",
+        "reviewed_at": null,
+        "reviewed_by": null,
+        "checks": {
+          "organization_source": false,
+          "access_source": false,
+          "coordinate_source": false
+        },
+        "sources": [
+          {
+            "url": "https://www.alamo.edu/collegecontainer/sac/about-sac/college-offices/scobee-education-center/scobee-planetarium/",
+            "purpose": "Official institution information — editorial review pending",
+            "checked_at": null
+          }
+        ]
+      }
+    },
+    {
+      "id": "doseum",
+      "state": "TX",
+      "region": "central",
+      "name": "The DoSeum",
+      "city": "San Antonio",
+      "category": "museum",
+      "address": "2800 Broadway Street, San Antonio, TX 78209",
+      "coordinates": {
+        "lat": 29.454,
+        "lng": -98.471,
+        "accuracy": "approximate",
+        "source_url": "https://www.thedoseum.org/plan-your-visit"
+      },
+      "summary": "Interactive children’s museum combining science, technology, engineering, arts and mathematics.",
+      "topics": [
+        "Hands-on STEM",
+        "Engineering",
+        "Children & families"
+      ],
+      "access": {
+        "level": "public_venue",
+        "label": "Public visitor venue",
+        "notes": "Ticketed public family venue; check operating days."
+      },
+      "links": {
+        "official_url": "https://www.thedoseum.org/plan-your-visit"
+      },
+      "review": {
+        "status": "pending",
+        "reviewed_at": null,
+        "reviewed_by": null,
+        "checks": {
+          "organization_source": false,
+          "access_source": false,
+          "coordinate_source": false
+        },
+        "sources": [
+          {
+            "url": "https://www.thedoseum.org/plan-your-visit",
+            "purpose": "Official institution information — editorial review pending",
+            "checked_at": null
+          }
+        ]
+      }
+    },
+    {
+      "id": "utsa",
+      "state": "TX",
+      "region": "central",
+      "name": "University of Texas at San Antonio",
+      "city": "San Antonio",
+      "category": "university",
+      "address": "One UTSA Circle, San Antonio, TX 78249",
+      "coordinates": {
+        "lat": 29.584,
+        "lng": -98.619,
+        "accuracy": "approximate",
+        "source_url": "https://www.utsa.edu/"
+      },
+      "summary": "Public research university with science, engineering and interdisciplinary research programs.",
+      "topics": [
+        "Research",
+        "Engineering",
+        "Environmental science"
+      ],
+      "access": {
+        "level": "research_campus",
+        "label": "Research campus — limited access",
+        "notes": "University campus is not blanket permission to visit research labs."
+      },
+      "links": {
+        "official_url": "https://www.utsa.edu/"
+      },
+      "review": {
+        "status": "pending",
+        "reviewed_at": null,
+        "reviewed_by": null,
+        "checks": {
+          "organization_source": false,
+          "access_source": false,
+          "coordinate_source": false
+        },
+        "sources": [
+          {
+            "url": "https://www.utsa.edu/",
+            "purpose": "Official institution information — editorial review pending",
+            "checked_at": null
+          }
+        ]
+      }
+    },
+    {
+      "id": "witte",
+      "state": "TX",
+      "region": "central",
+      "name": "Witte Museum",
+      "city": "San Antonio",
+      "category": "museum",
+      "address": "3801 Broadway, San Antonio, TX 78209",
+      "coordinates": {
+        "lat": 29.461,
+        "lng": -98.468,
+        "accuracy": "approximate",
+        "source_url": "https://www.wittemuseum.org/plan-your-visit/"
+      },
+      "summary": "Natural history and science museum with Texas geology, paleontology and ecology exhibits.",
+      "topics": [
+        "Paleontology",
+        "Natural history",
+        "Science education"
+      ],
+      "access": {
+        "level": "public_venue",
+        "label": "Public visitor venue",
+        "notes": "Ticketed public museum; confirm special exhibitions and hours."
+      },
+      "links": {
+        "official_url": "https://www.wittemuseum.org/plan-your-visit/"
+      },
+      "review": {
+        "status": "pending",
+        "reviewed_at": null,
+        "reviewed_by": null,
+        "checks": {
+          "organization_source": false,
+          "access_source": false,
+          "coordinate_source": false
+        },
+        "sources": [
+          {
+            "url": "https://www.wittemuseum.org/plan-your-visit/",
+            "purpose": "Official institution information — editorial review pending",
+            "checked_at": null
+          }
+        ]
+      }
+    },
+    {
+      "id": "texas-state",
+      "state": "TX",
+      "region": "central",
+      "name": "Texas State University",
+      "city": "San Marcos",
+      "category": "university",
+      "address": "601 University Drive, San Marcos, TX 78666",
+      "coordinates": {
+        "lat": 29.888,
+        "lng": -97.938,
+        "accuracy": "approximate",
+        "source_url": "https://www.txst.edu/"
+      },
+      "summary": "University research in aquatic science, biology and environmental management.",
+      "topics": [
+        "Research",
+        "Aquatic ecology",
+        "Environmental science"
+      ],
+      "access": {
+        "level": "research_campus",
+        "label": "Research campus — limited access",
+        "notes": "University laboratories require authorization; Spring Lake public programs are listed separately."
+      },
+      "links": {
+        "official_url": "https://www.txst.edu/"
+      },
+      "review": {
+        "status": "pending",
+        "reviewed_at": null,
+        "reviewed_by": null,
+        "checks": {
+          "organization_source": false,
+          "access_source": false,
+          "coordinate_source": false
+        },
+        "sources": [
+          {
+            "url": "https://www.txst.edu/",
+            "purpose": "Official institution information — editorial review pending",
+            "checked_at": null
+          }
+        ]
+      }
+    },
+    {
+      "id": "meadows",
+      "state": "TX",
+      "region": "central",
+      "name": "The Meadows Center / Spring Lake",
+      "city": "San Marcos",
+      "category": "nature_center",
+      "address": "201 San Marcos Springs Drive, San Marcos, TX 78666",
+      "coordinates": {
+        "lat": 29.891,
+        "lng": -97.93,
+        "accuracy": "approximate",
+        "source_url": "https://www.meadowscenter.txst.edu/explorespringlake.html"
+      },
+      "summary": "Research and public education site for freshwater ecology and springs, with glass-bottom boat tours.",
+      "topics": [
+        "Water resources",
+        "Ecology",
+        "Conservation"
+      ],
+      "access": {
+        "level": "public_venue",
+        "label": "Public visitor venue",
+        "notes": "Public boat tours subject to conditions and tickets; some boardwalk areas may close."
+      },
+      "links": {
+        "official_url": "https://www.meadowscenter.txst.edu/explorespringlake.html"
+      },
+      "review": {
+        "status": "pending",
+        "reviewed_at": null,
+        "reviewed_by": null,
+        "checks": {
+          "organization_source": false,
+          "access_source": false,
+          "coordinate_source": false
+        },
+        "sources": [
+          {
+            "url": "https://www.meadowscenter.txst.edu/explorespringlake.html",
+            "purpose": "Official institution information — editorial review pending",
+            "checked_at": null
+          }
+        ]
+      }
+    },
+    {
+      "id": "dallas-isd-eec",
+      "state": "TX",
+      "name": "Dallas ISD Environmental Education Center",
+      "city": "Seagoville",
+      "category": "nature_center",
+      "address": "1600 Bowers Rd, Seagoville, TX 75159",
+      "coordinates": {
+        "lat": 32.65,
+        "lng": -96.529,
+        "accuracy": "approximate",
+        "source_url": "https://www.dallasisd.org/departments/environmental-education-center"
+      },
+      "summary": "School-focused ecology teaching facility with laboratories, nature trails and field instruction.",
+      "topics": [
+        "Ecology",
+        "Field trips",
+        "STEM education"
+      ],
+      "access": {
+        "level": "scheduled_public",
+        "label": "Scheduled / limited public access",
+        "notes": "Primarily educational programs; not a general drop-in visitor attraction"
+      },
+      "links": {
+        "official_url": "https://www.dallasisd.org/departments/environmental-education-center"
+      },
+      "review": {
+        "status": "pending",
+        "reviewed_at": null,
+        "reviewed_by": null,
+        "checks": {
+          "organization_source": false,
+          "access_source": false,
+          "coordinate_source": false
+        },
+        "sources": [
+          {
+            "url": "https://www.dallasisd.org/departments/environmental-education-center",
+            "purpose": "official institution information (awaiting editorial review)",
+            "checked_at": null
+          }
+        ]
+      },
+      "region": "central"
+    },
+    {
+      "id": "mayborn",
+      "state": "TX",
+      "region": "central",
+      "name": "Mayborn Museum (Baylor University)",
+      "city": "Waco",
+      "category": "museum",
+      "address": "1300 S. University Parks Drive, Waco, TX 76706",
+      "coordinates": {
+        "lat": 31.551,
+        "lng": -97.113,
+        "accuracy": "approximate",
+        "source_url": "https://mayborn.web.baylor.edu/visit"
+      },
+      "summary": "University museum combining natural history collections and hands-on exploration of science.",
+      "topics": [
+        "Natural history",
+        "Hands-on science",
+        "Paleontology"
+      ],
+      "access": {
+        "level": "public_venue",
+        "label": "Public visitor venue",
+        "notes": "Ticketed museum; check Baylor football-related closures."
+      },
+      "links": {
+        "official_url": "https://mayborn.web.baylor.edu/visit"
+      },
+      "review": {
+        "status": "pending",
+        "reviewed_at": null,
+        "reviewed_by": null,
+        "checks": {
+          "organization_source": false,
+          "access_source": false,
+          "coordinate_source": false
+        },
+        "sources": [
+          {
+            "url": "https://mayborn.web.baylor.edu/visit",
+            "purpose": "Official institution information — editorial review pending",
+            "checked_at": null
+          }
+        ]
+      }
+    },
+    {
+      "id": "nature-discovery",
+      "state": "TX",
+      "region": "houston",
+      "name": "Nature Discovery Center",
+      "city": "Bellaire",
+      "category": "nature_center",
+      "address": "7112 Newcastle Street, Bellaire, TX 77401",
+      "coordinates": {
+        "lat": 29.692,
+        "lng": -95.453,
+        "accuracy": "approximate",
+        "source_url": "https://naturediscoverycenter.org/visit/"
+      },
+      "summary": "Neighborhood nature education center with discovery rooms, habitat programs and outdoor activities.",
+      "topics": [
+        "Ecology",
+        "Children & families",
+        "Natural history"
+      ],
+      "access": {
+        "level": "public_venue",
+        "label": "Public visitor venue",
+        "notes": "Public access to park; Discovery Room hours change seasonally."
+      },
+      "links": {
+        "official_url": "https://naturediscoverycenter.org/visit/"
+      },
+      "review": {
+        "status": "pending",
+        "reviewed_at": null,
+        "reviewed_by": null,
+        "checks": {
+          "organization_source": false,
+          "access_source": false,
+          "coordinate_source": false
+        },
+        "sources": [
+          {
+            "url": "https://naturediscoverycenter.org/visit/",
+            "purpose": "Official institution information — editorial review pending",
+            "checked_at": null
+          }
+        ]
+      }
+    },
+    {
+      "id": "childrens-museum-houston",
+      "state": "TX",
+      "region": "houston",
+      "name": "Children’s Museum Houston",
+      "city": "Houston",
+      "category": "museum",
+      "address": "1500 Binz Street, Houston, TX 77004",
+      "coordinates": {
+        "lat": 29.723,
+        "lng": -95.384,
+        "accuracy": "approximate",
+        "source_url": "https://www.cmhouston.org/"
+      },
+      "summary": "Children’s museum with hands-on STEM exhibits, experimentation and maker activities.",
+      "topics": [
+        "Hands-on STEM",
+        "Engineering",
+        "Families"
+      ],
+      "access": {
+        "level": "public_venue",
+        "label": "Public visitor venue",
+        "notes": "Ticketed family museum; look up current access hours."
+      },
+      "links": {
+        "official_url": "https://www.cmhouston.org/"
+      },
+      "review": {
+        "status": "pending",
+        "reviewed_at": null,
+        "reviewed_by": null,
+        "checks": {
+          "organization_source": false,
+          "access_source": false,
+          "coordinate_source": false
+        },
+        "sources": [
+          {
+            "url": "https://www.cmhouston.org/",
+            "purpose": "Official institution information — editorial review pending",
+            "checked_at": null
+          }
+        ]
+      }
+    },
+    {
+      "id": "houston-arboretum",
+      "state": "TX",
+      "region": "houston",
+      "name": "Houston Arboretum & Nature Center",
+      "city": "Houston",
+      "category": "nature_center",
+      "address": "4501 Woodway Drive, Houston, TX 77024",
+      "coordinates": {
+        "lat": 29.771,
+        "lng": -95.45,
+        "accuracy": "approximate",
+        "source_url": "https://houstonarboretum.org/plan-your-visit/"
+      },
+      "summary": "Public nature center with trails, native habitats and environmental education.",
+      "topics": [
+        "Ecology",
+        "Botany",
+        "Conservation"
+      ],
+      "access": {
+        "level": "public_venue",
+        "label": "Public visitor venue",
+        "notes": "Nature center and trail admission free; parking may be charged."
+      },
+      "links": {
+        "official_url": "https://houstonarboretum.org/plan-your-visit/"
+      },
+      "review": {
+        "status": "pending",
+        "reviewed_at": null,
+        "reviewed_by": null,
+        "checks": {
+          "organization_source": false,
+          "access_source": false,
+          "coordinate_source": false
+        },
+        "sources": [
+          {
+            "url": "https://houstonarboretum.org/plan-your-visit/",
+            "purpose": "Official institution information — editorial review pending",
+            "checked_at": null
+          }
+        ]
+      }
+    },
+    {
+      "id": "hmns",
+      "state": "TX",
+      "name": "Houston Museum of Natural Science",
+      "city": "Houston",
+      "category": "museum",
+      "address": "5555 Hermann Park Dr, Houston, TX 77030",
+      "coordinates": {
+        "lat": 29.72211,
+        "lng": -95.38973,
+        "accuracy": "approximate",
+        "source_url": "https://mapcarta.com/21743952"
+      },
+      "summary": "Public natural science museum featuring permanent collections, educational exhibits and science programming.",
+      "topics": [
+        "Earth & space",
+        "Natural sciences",
+        "Museum learning"
+      ],
+      "access": {
+        "level": "public_venue",
+        "label": "Public visitor venue",
+        "notes": "Public museum · check exhibits, admission and hours"
+      },
+      "links": {
+        "official_url": "https://www.hmns.org/visit/directions-parking/"
+      },
+      "review": {
+        "status": "pending",
+        "reviewed_at": null,
+        "reviewed_by": null,
+        "checks": {
+          "organization_source": false,
+          "access_source": false,
+          "coordinate_source": false
+        },
+        "sources": [
+          {
+            "url": "https://www.hmns.org/visit/directions-parking/",
+            "purpose": "institution details",
+            "checked_at": null
+          },
+          {
+            "url": "https://mapcarta.com/21743952",
+            "purpose": "coordinate reference",
+            "checked_at": null
+          }
+        ]
+      },
+      "region": "houston"
+    },
+    {
+      "id": "houston-zoo",
+      "state": "TX",
+      "region": "houston",
+      "name": "Houston Zoo",
+      "city": "Houston",
+      "category": "zoo_aquarium",
+      "address": "6200 Hermann Park Drive, Houston, TX 77030",
+      "coordinates": {
+        "lat": 29.716,
+        "lng": -95.389,
+        "accuracy": "approximate",
+        "source_url": "https://www.houstonzoo.org/plan-your-visit/directions-parking/"
+      },
+      "summary": "Wildlife conservation and public biology education through animal exhibits and school programs.",
+      "topics": [
+        "Zoology",
+        "Conservation",
+        "Biology"
+      ],
+      "access": {
+        "level": "public_venue",
+        "label": "Public visitor venue",
+        "notes": "Ticketed zoo; animal care facilities are not publicly accessible."
+      },
+      "links": {
+        "official_url": "https://www.houstonzoo.org/plan-your-visit/directions-parking/"
+      },
+      "review": {
+        "status": "pending",
+        "reviewed_at": null,
+        "reviewed_by": null,
+        "checks": {
+          "organization_source": false,
+          "access_source": false,
+          "coordinate_source": false
+        },
+        "sources": [
+          {
+            "url": "https://www.houstonzoo.org/plan-your-visit/directions-parking/",
+            "purpose": "Official institution information — editorial review pending",
+            "checked_at": null
+          }
+        ]
+      }
+    },
+    {
+      "id": "nasa-jsc",
+      "state": "TX",
+      "region": "houston",
+      "name": "NASA Johnson Space Center",
+      "city": "Houston",
+      "category": "research_center",
+      "address": "2101 E NASA Parkway, Houston, TX 77058",
+      "coordinates": {
+        "lat": 29.558,
+        "lng": -95.089,
+        "accuracy": "approximate",
+        "source_url": "https://www.nasa.gov/johnson/"
+      },
+      "summary": "NASA human-spaceflight research and mission operations site near its separate public visitor center.",
+      "topics": [
+        "Space",
+        "Engineering",
+        "Research"
+      ],
+      "access": {
+        "level": "research_campus",
+        "label": "Research campus — limited access",
+        "notes": "Active NASA campus is restricted; public tours are arranged through Space Center Houston."
+      },
+      "links": {
+        "official_url": "https://www.nasa.gov/johnson/"
+      },
+      "review": {
+        "status": "pending",
+        "reviewed_at": null,
+        "reviewed_by": null,
+        "checks": {
+          "organization_source": false,
+          "access_source": false,
+          "coordinate_source": false
+        },
+        "sources": [
+          {
+            "url": "https://www.nasa.gov/johnson/",
+            "purpose": "Official institution information — editorial review pending",
+            "checked_at": null
+          }
+        ]
+      }
+    },
+    {
+      "id": "rice",
+      "state": "TX",
+      "region": "houston",
+      "name": "Rice University",
+      "city": "Houston",
+      "category": "university",
+      "address": "6100 Main Street, Houston, TX 77005",
+      "coordinates": {
+        "lat": 29.717,
+        "lng": -95.401,
+        "accuracy": "approximate",
+        "source_url": "https://www.rice.edu/"
+      },
+      "summary": "Research university with major work in chemistry, materials, nanoscience and engineering.",
+      "topics": [
+        "Materials science",
+        "Chemistry",
+        "Research"
+      ],
+      "access": {
+        "level": "research_campus",
+        "label": "Research campus — limited access",
+        "notes": "Research laboratories are not open for casual public visits."
+      },
+      "links": {
+        "official_url": "https://www.rice.edu/"
+      },
+      "review": {
+        "status": "pending",
+        "reviewed_at": null,
+        "reviewed_by": null,
+        "checks": {
+          "organization_source": false,
+          "access_source": false,
+          "coordinate_source": false
+        },
+        "sources": [
+          {
+            "url": "https://www.rice.edu/",
+            "purpose": "Official institution information — editorial review pending",
+            "checked_at": null
+          }
+        ]
+      }
+    },
+    {
+      "id": "spacecenter",
+      "state": "TX",
+      "name": "Space Center Houston",
+      "city": "Houston",
+      "category": "museum",
+      "address": "1601 E NASA Pkwy, Houston, TX 77058",
+      "coordinates": {
+        "lat": 29.55113,
+        "lng": -95.09733,
+        "accuracy": "approximate",
+        "source_url": "https://mapcarta.com/21812564"
+      },
+      "summary": "Science learning center highlighting space exploration, spacecraft and the history of human spaceflight.",
+      "topics": [
+        "Space science",
+        "NASA",
+        "STEM learning"
+      ],
+      "access": {
+        "level": "public_venue",
+        "label": "Public visitor venue",
+        "notes": "Public visitor attraction · ticketing and tour access vary"
+      },
+      "links": {
+        "official_url": "https://spacecenter.org/"
+      },
+      "review": {
+        "status": "pending",
+        "reviewed_at": null,
+        "reviewed_by": null,
+        "checks": {
+          "organization_source": false,
+          "access_source": false,
+          "coordinate_source": false
+        },
+        "sources": [
+          {
+            "url": "https://spacecenter.org/",
+            "purpose": "institution details",
+            "checked_at": null
+          },
+          {
+            "url": "https://mapcarta.com/21812564",
+            "purpose": "coordinate reference",
+            "checked_at": null
+          }
+        ]
+      },
+      "region": "houston"
+    },
+    {
+      "id": "health-museum",
+      "state": "TX",
+      "region": "houston",
+      "name": "The Health Museum",
+      "city": "Houston",
+      "category": "museum",
+      "address": "1515 Hermann Drive, Houston, TX 77004",
+      "coordinates": {
+        "lat": 29.723,
+        "lng": -95.384,
+        "accuracy": "approximate",
+        "source_url": "https://thehealthmuseum.org/visit/"
+      },
+      "summary": "Interactive science museum presenting human biology, health and medical science topics.",
+      "topics": [
+        "Biology",
+        "Medicine",
+        "Health science"
+      ],
+      "access": {
+        "level": "public_venue",
+        "label": "Public visitor venue",
+        "notes": "Public admissions apply; confirm exhibitions and activities."
+      },
+      "links": {
+        "official_url": "https://thehealthmuseum.org/visit/"
+      },
+      "review": {
+        "status": "pending",
+        "reviewed_at": null,
+        "reviewed_by": null,
+        "checks": {
+          "organization_source": false,
+          "access_source": false,
+          "coordinate_source": false
+        },
+        "sources": [
+          {
+            "url": "https://thehealthmuseum.org/visit/",
+            "purpose": "Official institution information — editorial review pending",
+            "checked_at": null
+          }
+        ]
+      }
+    },
+    {
+      "id": "uh",
+      "state": "TX",
+      "region": "houston",
+      "name": "University of Houston",
+      "city": "Houston",
+      "category": "university",
+      "address": "4800 Calhoun Road, Houston, TX 77004",
+      "coordinates": {
+        "lat": 29.72,
+        "lng": -95.344,
+        "accuracy": "approximate",
+        "source_url": "https://www.uh.edu/"
+      },
+      "summary": "Public research university in physical sciences, engineering and energy research.",
+      "topics": [
+        "Physics",
+        "Energy",
+        "Research"
+      ],
+      "access": {
+        "level": "research_campus",
+        "label": "Research campus — limited access",
+        "notes": "Campus and lab visitor permissions vary by department."
+      },
+      "links": {
+        "official_url": "https://www.uh.edu/"
+      },
+      "review": {
+        "status": "pending",
+        "reviewed_at": null,
+        "reviewed_by": null,
+        "checks": {
+          "organization_source": false,
+          "access_source": false,
+          "coordinate_source": false
+        },
+        "sources": [
+          {
+            "url": "https://www.uh.edu/",
+            "purpose": "Official institution information — editorial review pending",
+            "checked_at": null
+          }
+        ]
+      }
+    },
+    {
+      "id": "george",
+      "state": "TX",
+      "region": "houston",
+      "name": "George Observatory",
+      "city": "Needville",
+      "category": "observatory",
+      "address": "21901 FM 762 Road, Needville, TX 77461",
+      "coordinates": {
+        "lat": 29.371,
+        "lng": -95.594,
+        "accuracy": "approximate",
+        "source_url": "https://george.hmns.org/visit/"
+      },
+      "summary": "Public astronomy observatory associated with the Houston Museum of Natural Science.",
+      "topics": [
+        "Astronomy",
+        "Physics",
+        "Night sky"
+      ],
+      "access": {
+        "level": "scheduled_public",
+        "label": "Scheduled / limited public access",
+        "notes": "Saturday stargazing requires advance tickets and Brazos Bend State Park access."
+      },
+      "links": {
+        "official_url": "https://george.hmns.org/visit/"
+      },
+      "review": {
+        "status": "pending",
+        "reviewed_at": null,
+        "reviewed_by": null,
+        "checks": {
+          "organization_source": false,
+          "access_source": false,
+          "coordinate_source": false
+        },
+        "sources": [
+          {
+            "url": "https://george.hmns.org/visit/",
+            "purpose": "Official institution information — editorial review pending",
+            "checked_at": null
+          }
+        ]
+      }
+    },
+    {
+      "id": "corpus-museum",
+      "state": "TX",
+      "region": "gulf",
+      "name": "Corpus Christi Museum of Science & History",
+      "city": "Corpus Christi",
+      "category": "museum",
+      "address": "1900 N. Chaparral Street, Corpus Christi, TX 78401",
+      "coordinates": {
+        "lat": 27.808,
+        "lng": -97.393,
+        "accuracy": "approximate",
+        "source_url": "https://www.ccmuseum.com/visit/"
+      },
+      "summary": "Museum with regional science and natural history exhibits and school programs.",
+      "topics": [
+        "Natural history",
+        "Coastal science",
+        "Education"
+      ],
+      "access": {
+        "level": "public_venue",
+        "label": "Public visitor venue",
+        "notes": "Ticketed museum; group visits are advance scheduled."
+      },
+      "links": {
+        "official_url": "https://www.ccmuseum.com/visit/"
+      },
+      "review": {
+        "status": "pending",
+        "reviewed_at": null,
+        "reviewed_by": null,
+        "checks": {
+          "organization_source": false,
+          "access_source": false,
+          "coordinate_source": false
+        },
+        "sources": [
+          {
+            "url": "https://www.ccmuseum.com/visit/",
+            "purpose": "Official institution information — editorial review pending",
+            "checked_at": null
+          }
+        ]
+      }
+    },
+    {
+      "id": "oso-bay",
+      "state": "TX",
+      "region": "gulf",
+      "name": "Oso Bay Wetlands Preserve & Learning Center",
+      "city": "Corpus Christi",
+      "category": "nature_center",
+      "address": "2446 N. Oso Parkway, Corpus Christi, TX 78414",
+      "coordinates": {
+        "lat": 27.677,
+        "lng": -97.354,
+        "accuracy": "approximate",
+        "source_url": "https://www.visitcorpuschristi.com/listing/oso-bay-wetlands-preserve-%26-learning-center/363/"
+      },
+      "summary": "Coastal wetlands reserve with environmental learning and interpretive trails.",
+      "topics": [
+        "Wetlands",
+        "Coastal ecology",
+        "Birds"
+      ],
+      "access": {
+        "level": "public_venue",
+        "label": "Public visitor venue",
+        "notes": "Trails and programs have their own opening schedules."
+      },
+      "links": {
+        "official_url": "https://www.visitcorpuschristi.com/listing/oso-bay-wetlands-preserve-%26-learning-center/363/"
+      },
+      "review": {
+        "status": "pending",
+        "reviewed_at": null,
+        "reviewed_by": null,
+        "checks": {
+          "organization_source": false,
+          "access_source": false,
+          "coordinate_source": false
+        },
+        "sources": [
+          {
+            "url": "https://www.visitcorpuschristi.com/listing/oso-bay-wetlands-preserve-%26-learning-center/363/",
+            "purpose": "Official institution information — editorial review pending",
+            "checked_at": null
+          }
+        ]
+      }
+    },
+    {
+      "id": "texas-sealife",
+      "state": "TX",
+      "region": "gulf",
+      "name": "Texas Sealife Center",
+      "city": "Corpus Christi",
+      "category": "nature_center",
+      "address": "14220 S. Padre Island Drive, Corpus Christi, TX 78418",
+      "coordinates": {
+        "lat": 27.625,
+        "lng": -97.222,
+        "accuracy": "approximate",
+        "source_url": "https://www.texassealifecenter.org/visit/"
+      },
+      "summary": "Nonprofit marine wildlife rescue and rehabilitation with educational visits.",
+      "topics": [
+        "Wildlife rescue",
+        "Coastal ecology",
+        "Turtles"
+      ],
+      "access": {
+        "level": "scheduled_public",
+        "label": "Scheduled / limited public access",
+        "notes": "Visitor tours may be scheduled; verify times directly."
+      },
+      "links": {
+        "official_url": "https://www.texassealifecenter.org/visit/"
+      },
+      "review": {
+        "status": "pending",
+        "reviewed_at": null,
+        "reviewed_by": null,
+        "checks": {
+          "organization_source": false,
+          "access_source": false,
+          "coordinate_source": false
+        },
+        "sources": [
+          {
+            "url": "https://www.texassealifecenter.org/visit/",
+            "purpose": "Official institution information — editorial review pending",
+            "checked_at": null
+          }
+        ]
+      }
+    },
+    {
+      "id": "state-aquarium",
+      "state": "TX",
+      "region": "gulf",
+      "name": "Texas State Aquarium",
+      "city": "Corpus Christi",
+      "category": "zoo_aquarium",
+      "address": "2710 N. Shoreline Boulevard, Corpus Christi, TX 78402",
+      "coordinates": {
+        "lat": 27.814,
+        "lng": -97.389,
+        "accuracy": "approximate",
+        "source_url": "https://www.texasstateaquarium.org/plan-your-visit/visitor-information/map-directions/"
+      },
+      "summary": "Aquarium with Gulf marine ecology exhibits, rescue and conservation education.",
+      "topics": [
+        "Marine biology",
+        "Conservation",
+        "Wildlife"
+      ],
+      "access": {
+        "level": "public_venue",
+        "label": "Public visitor venue",
+        "notes": "Public visitor venue; wildlife rescue hospital access may be restricted."
+      },
+      "links": {
+        "official_url": "https://www.texasstateaquarium.org/plan-your-visit/visitor-information/map-directions/"
+      },
+      "review": {
+        "status": "pending",
+        "reviewed_at": null,
+        "reviewed_by": null,
+        "checks": {
+          "organization_source": false,
+          "access_source": false,
+          "coordinate_source": false
+        },
+        "sources": [
+          {
+            "url": "https://www.texasstateaquarium.org/plan-your-visit/visitor-information/map-directions/",
+            "purpose": "Official institution information — editorial review pending",
+            "checked_at": null
+          }
+        ]
+      }
+    },
+    {
+      "id": "moody",
+      "state": "TX",
+      "region": "gulf",
+      "name": "Moody Gardens",
+      "city": "Galveston",
+      "category": "zoo_aquarium",
+      "address": "1 Hope Boulevard, Galveston, TX 77554",
+      "coordinates": {
+        "lat": 29.277,
+        "lng": -94.852,
+        "accuracy": "approximate",
+        "source_url": "https://www.moodygardens.com/attractions"
+      },
+      "summary": "Public aquarium and rainforest exhibits focused on ecosystems, animal biology and conservation.",
+      "topics": [
+        "Marine biology",
+        "Rainforests",
+        "Conservation"
+      ],
+      "access": {
+        "level": "public_venue",
+        "label": "Public visitor venue",
+        "notes": "Ticketed attractions; individual exhibits may have different operating schedules."
+      },
+      "links": {
+        "official_url": "https://www.moodygardens.com/attractions"
+      },
+      "review": {
+        "status": "pending",
+        "reviewed_at": null,
+        "reviewed_by": null,
+        "checks": {
+          "organization_source": false,
+          "access_source": false,
+          "coordinate_source": false
+        },
+        "sources": [
+          {
+            "url": "https://www.moodygardens.com/attractions",
+            "purpose": "Official institution information — editorial review pending",
+            "checked_at": null
+          }
+        ]
+      }
+    },
+    {
+      "id": "sea-center",
+      "state": "TX",
+      "region": "gulf",
+      "name": "Sea Center Texas",
+      "city": "Lake Jackson",
+      "category": "zoo_aquarium",
+      "address": "302 Medical Drive, Lake Jackson, TX 77566",
+      "coordinates": {
+        "lat": 29.01767,
+        "lng": -95.44489,
+        "accuracy": "approximate",
+        "source_url": "https://tpwd.texas.gov/fishing/sea-center-texas/"
+      },
+      "summary": "Texas Parks & Wildlife aquarium, fish hatchery and coastal ecology education center.",
+      "topics": [
+        "Marine ecology",
+        "Fish hatcheries",
+        "Conservation"
+      ],
+      "access": {
+        "level": "public_venue",
+        "label": "Public visitor venue",
+        "notes": "Free visitor center; hatchery tours require coordination. Fishing events suspended during 2026 works."
+      },
+      "links": {
+        "official_url": "https://tpwd.texas.gov/fishing/sea-center-texas/"
+      },
+      "review": {
+        "status": "pending",
+        "reviewed_at": null,
+        "reviewed_by": null,
+        "checks": {
+          "organization_source": false,
+          "access_source": false,
+          "coordinate_source": false
+        },
+        "sources": [
+          {
+            "url": "https://tpwd.texas.gov/fishing/sea-center-texas/",
+            "purpose": "Official institution information — editorial review pending",
+            "checked_at": null
+          }
+        ]
+      }
+    },
+    {
+      "id": "patton-center",
+      "state": "TX",
+      "region": "gulf",
+      "name": "Patton Center for Marine Science Education (UTMSI)",
+      "city": "Port Aransas",
+      "category": "museum",
+      "address": "855 E. Cotter Avenue, Port Aransas, TX 78373",
+      "coordinates": {
+        "lat": 27.834,
+        "lng": -97.054,
+        "accuracy": "approximate",
+        "source_url": "https://utmsi.utexas.edu/visit/port-aransas/patton-center/"
+      },
+      "summary": "Public marine science exhibits and aquaria connected to UT Austin marine research.",
+      "topics": [
+        "Marine science",
+        "Estuaries",
+        "Research outreach"
+      ],
+      "access": {
+        "level": "public_venue",
+        "label": "Public visitor venue",
+        "notes": "Free public education center; university research areas are separate."
+      },
+      "links": {
+        "official_url": "https://utmsi.utexas.edu/visit/port-aransas/patton-center/"
+      },
+      "review": {
+        "status": "pending",
+        "reviewed_at": null,
+        "reviewed_by": null,
+        "checks": {
+          "organization_source": false,
+          "access_source": false,
+          "coordinate_source": false
+        },
+        "sources": [
+          {
+            "url": "https://utmsi.utexas.edu/visit/port-aransas/patton-center/",
+            "purpose": "Official institution information — editorial review pending",
+            "checked_at": null
+          }
+        ]
+      }
+    },
+    {
+      "id": "bay-center",
+      "state": "TX",
+      "region": "gulf",
+      "name": "Bay Education Center (UTMSI)",
+      "city": "Rockport",
+      "category": "museum",
+      "address": "121 Seabreeze Drive, Rockport, TX 78382",
+      "coordinates": {
+        "lat": 28.024,
+        "lng": -97.055,
+        "accuracy": "approximate",
+        "source_url": "https://utmsi.utexas.edu/visit/rockport/bay-education-center/"
+      },
+      "summary": "Free estuarine science center with NOAA Science on a Sphere and guided learning.",
+      "topics": [
+        "Climate",
+        "Marine ecology",
+        "Earth science"
+      ],
+      "access": {
+        "level": "public_venue",
+        "label": "Public visitor venue",
+        "notes": "Free public exhibits; group programming may require reservation."
+      },
+      "links": {
+        "official_url": "https://utmsi.utexas.edu/visit/rockport/bay-education-center/"
+      },
+      "review": {
+        "status": "pending",
+        "reviewed_at": null,
+        "reviewed_by": null,
+        "checks": {
+          "organization_source": false,
+          "access_source": false,
+          "coordinate_source": false
+        },
+        "sources": [
+          {
+            "url": "https://utmsi.utexas.edu/visit/rockport/bay-education-center/",
+            "purpose": "Official institution information — editorial review pending",
+            "checked_at": null
+          }
+        ]
+      }
+    },
+    {
+      "id": "tffc",
+      "state": "TX",
+      "region": "east",
+      "name": "Texas Freshwater Fisheries Center",
+      "city": "Athens",
+      "category": "zoo_aquarium",
+      "address": "5550 FM 2495, Athens, TX 75752",
+      "coordinates": {
+        "lat": 32.213,
+        "lng": -95.789,
+        "accuracy": "approximate",
+        "source_url": "https://tpwd.texas.gov/fishing/tffc/"
+      },
+      "summary": "State fish hatchery and public aquarium presenting freshwater ecology and conservation.",
+      "topics": [
+        "Freshwater",
+        "Ecology",
+        "Fisheries"
+      ],
+      "access": {
+        "level": "public_venue",
+        "label": "Public visitor venue",
+        "notes": "Public visitor center; group programs available with booking."
+      },
+      "links": {
+        "official_url": "https://tpwd.texas.gov/fishing/tffc/"
+      },
+      "review": {
+        "status": "pending",
+        "reviewed_at": null,
+        "reviewed_by": null,
+        "checks": {
+          "organization_source": false,
+          "access_source": false,
+          "coordinate_source": false
+        },
+        "sources": [
+          {
+            "url": "https://tpwd.texas.gov/fishing/tffc/",
+            "purpose": "Official institution information — editorial review pending",
+            "checked_at": null
+          }
+        ]
+      }
+    },
+    {
+      "id": "longview-wow",
+      "state": "TX",
+      "region": "east",
+      "name": "Longview World of Wonders",
+      "city": "Longview",
+      "category": "museum",
+      "address": "112 E. Tyler Street, Longview, TX 75601",
+      "coordinates": {
+        "lat": 32.499,
+        "lng": -94.739,
+        "accuracy": "approximate",
+        "source_url": "https://longviewwow.org/visit-wow/"
+      },
+      "summary": "Hands-on discovery museum with interactive exploration and educational programs.",
+      "topics": [
+        "STEM",
+        "Hands-on learning",
+        "Children & families"
+      ],
+      "access": {
+        "level": "public_venue",
+        "label": "Public visitor venue",
+        "notes": "Ticketed public museum."
+      },
+      "links": {
+        "official_url": "https://longviewwow.org/visit-wow/"
+      },
+      "review": {
+        "status": "pending",
+        "reviewed_at": null,
+        "reviewed_by": null,
+        "checks": {
+          "organization_source": false,
+          "access_source": false,
+          "coordinate_source": false
+        },
+        "sources": [
+          {
+            "url": "https://longviewwow.org/visit-wow/",
+            "purpose": "Official institution information — editorial review pending",
+            "checked_at": null
+          }
+        ]
+      }
+    },
+    {
+      "id": "discovery-tyler",
+      "state": "TX",
+      "region": "east",
+      "name": "Discovery Science Place",
+      "city": "Tyler",
+      "category": "museum",
+      "address": "308 N. Broadway Avenue, Tyler, TX 75702",
+      "coordinates": {
+        "lat": 32.353,
+        "lng": -95.302,
+        "accuracy": "approximate",
+        "source_url": "https://www.discoveryscienceplace.org/"
+      },
+      "summary": "Hands-on children’s science museum offering exhibits and regional STEM learning.",
+      "topics": [
+        "Interactive science",
+        "Children & families",
+        "STEM"
+      ],
+      "access": {
+        "level": "public_venue",
+        "label": "Public visitor venue",
+        "notes": "Ticketed public venue; check operating times."
+      },
+      "links": {
+        "official_url": "https://www.discoveryscienceplace.org/"
+      },
+      "review": {
+        "status": "pending",
+        "reviewed_at": null,
+        "reviewed_by": null,
+        "checks": {
+          "organization_source": false,
+          "access_source": false,
+          "coordinate_source": false
+        },
+        "sources": [
+          {
+            "url": "https://www.discoveryscienceplace.org/",
+            "purpose": "Official institution information — editorial review pending",
+            "checked_at": null
+          }
+        ]
+      }
+    },
+    {
+      "id": "dhdc",
+      "state": "TX",
+      "name": "Don Harrington Discovery Center",
+      "city": "Amarillo",
+      "category": "museum",
+      "address": "1200 Streit Dr, Amarillo, TX 79106",
+      "coordinates": {
+        "lat": 35.20023,
+        "lng": -101.91333,
+        "accuracy": "approximate",
+        "source_url": "https://mapcarta.com/23386328"
+      },
+      "summary": "Interactive science and technology exhibits, an outdoor science park and a full-dome Space Theater in the Texas Panhandle.",
+      "topics": [
+        "Planetarium",
+        "Interactive science",
+        "Outreach"
+      ],
+      "access": {
+        "level": "public_venue",
+        "label": "Public visitor venue",
+        "notes": "Public science museum · check admission and programs"
+      },
+      "links": {
+        "official_url": "https://discoverycentercollective.org/don-harrington-discovery-center/visit/"
+      },
+      "review": {
+        "status": "pending",
+        "reviewed_at": null,
+        "reviewed_by": null,
+        "checks": {
+          "organization_source": false,
+          "access_source": false,
+          "coordinate_source": false
+        },
+        "sources": [
+          {
+            "url": "https://discoverycentercollective.org/don-harrington-discovery-center/visit/",
+            "purpose": "institution details",
+            "checked_at": null
+          },
+          {
+            "url": "https://mapcarta.com/23386328",
+            "purpose": "coordinate reference",
+            "checked_at": null
+          }
+        ]
+      },
+      "region": "panhandle"
+    },
+    {
+      "id": "panhandle-plains",
+      "state": "TX",
+      "region": "panhandle",
+      "name": "Panhandle-Plains Historical Museum",
+      "city": "Canyon",
+      "category": "museum",
+      "address": "2503 4th Avenue, Canyon, TX 79015",
+      "coordinates": {
+        "lat": 34.979,
+        "lng": -101.919,
+        "accuracy": "approximate",
+        "source_url": "https://www.panhandleplains.org/p/collections--exhibitions/permanent-exhibits/paleontology"
+      },
+      "summary": "Museum with Texas Panhandle paleontology, geology and natural history collections.",
+      "topics": [
+        "Paleontology",
+        "Geology",
+        "Natural history"
+      ],
+      "access": {
+        "level": "scheduled_public",
+        "label": "Museum building temporarily closed",
+        "notes": "Museum building temporarily closed as of Nov 4, 2026; offsite programs continue. Check official closure page before visiting.",
+        "advisory": "temporarily_closed",
+        "advisory_as_of": "2026-11-04"
+      },
+      "links": {
+        "official_url": "https://www.panhandleplains.org/p/about/pphm-temporary-closure-updates"
+      },
+      "review": {
+        "status": "pending",
+        "reviewed_at": null,
+        "reviewed_by": null,
+        "checks": {
+          "organization_source": false,
+          "access_source": false,
+          "coordinate_source": false
+        },
+        "sources": [
+          {
+            "url": "https://www.panhandleplains.org/p/about/pphm-temporary-closure-updates",
+            "purpose": "Current temporary closure notice (checked Nov 4, 2026)",
+            "checked_at": "2026-11-04"
+          },
+          {
+            "url": "https://www.panhandleplains.org/p/collections--exhibitions/permanent-exhibits/paleontology",
+            "purpose": "Official institution information — editorial review pending",
+            "checked_at": null
+          }
+        ]
+      }
+    },
+    {
+      "id": "science-spectrum",
+      "state": "TX",
+      "region": "panhandle",
+      "name": "Science Spectrum & OMNI Theater",
+      "city": "Lubbock",
+      "category": "museum",
+      "address": "2579 S. Loop 289, Lubbock, TX 79423",
+      "coordinates": {
+        "lat": 33.53,
+        "lng": -101.876,
+        "accuracy": "approximate",
+        "source_url": "https://sciencespectrum.org/visit/contact-us/"
+      },
+      "summary": "Hands-on science museum, educational programs and large-format science theater.",
+      "topics": [
+        "Interactive science",
+        "Engineering",
+        "Astronomy"
+      ],
+      "access": {
+        "level": "public_venue",
+        "label": "Public visitor venue",
+        "notes": "Ticketed public exhibits and theater shows; confirm schedules."
+      },
+      "links": {
+        "official_url": "https://sciencespectrum.org/visit/contact-us/"
+      },
+      "review": {
+        "status": "pending",
+        "reviewed_at": null,
+        "reviewed_by": null,
+        "checks": {
+          "organization_source": false,
+          "access_source": false,
+          "coordinate_source": false
+        },
+        "sources": [
+          {
+            "url": "https://sciencespectrum.org/visit/contact-us/",
+            "purpose": "Official institution information — editorial review pending",
+            "checked_at": null
+          }
+        ]
+      }
+    },
+    {
+      "id": "ttu",
+      "state": "TX",
+      "region": "panhandle",
+      "name": "Texas Tech University",
+      "city": "Lubbock",
+      "category": "university",
+      "address": "2500 Broadway, Lubbock, TX 79409",
+      "coordinates": {
+        "lat": 33.586,
+        "lng": -101.875,
+        "accuracy": "approximate",
+        "source_url": "https://www.ttu.edu/"
+      },
+      "summary": "Major university with research in science, engineering, agriculture and energy systems.",
+      "topics": [
+        "Research",
+        "Chemistry",
+        "Agricultural science"
+      ],
+      "access": {
+        "level": "research_campus",
+        "label": "Research campus — limited access",
+        "notes": "Labs and research facilities are not generally open to unarranged visitors."
+      },
+      "links": {
+        "official_url": "https://www.ttu.edu/"
+      },
+      "review": {
+        "status": "pending",
+        "reviewed_at": null,
+        "reviewed_by": null,
+        "checks": {
+          "organization_source": false,
+          "access_source": false,
+          "coordinate_source": false
+        },
+        "sources": [
+          {
+            "url": "https://www.ttu.edu/",
+            "purpose": "Official institution information — editorial review pending",
+            "checked_at": null
+          }
+        ]
+      }
+    },
+    {
+      "id": "spark",
+      "state": "TX",
+      "region": "west",
+      "name": "Spark Science Center",
+      "city": "Abilene",
+      "category": "museum",
+      "address": "1620 South 3rd Street, Abilene, TX 79602",
+      "coordinates": {
+        "lat": 32.444,
+        "lng": -99.734,
+        "accuracy": "approximate",
+        "source_url": "https://www.abileneheritagesquare.org/sparksciencecenter/"
+      },
+      "summary": "Interactive STEAM center operated as a science branch of The Grace Museum.",
+      "topics": [
+        "Hands-on STEM",
+        "Engineering",
+        "Astronomy"
+      ],
+      "access": {
+        "level": "public_venue",
+        "label": "Public visitor venue",
+        "notes": "Ticketed science exhibits with publicly posted visiting hours."
+      },
+      "links": {
+        "official_url": "https://www.abileneheritagesquare.org/sparksciencecenter/"
+      },
+      "review": {
+        "status": "pending",
+        "reviewed_at": null,
+        "reviewed_by": null,
+        "checks": {
+          "organization_source": false,
+          "access_source": false,
+          "coordinate_source": false
+        },
+        "sources": [
+          {
+            "url": "https://www.abileneheritagesquare.org/sparksciencecenter/",
+            "purpose": "Official institution information — editorial review pending",
+            "checked_at": null
+          }
+        ]
+      }
+    },
+    {
+      "id": "centennial",
+      "state": "TX",
+      "region": "west",
+      "name": "Centennial Museum & Chihuahuan Desert Gardens (UTEP)",
+      "city": "El Paso",
+      "category": "museum",
+      "address": "610 W. University Avenue, El Paso, TX 79968",
+      "coordinates": {
+        "lat": 31.774,
+        "lng": -106.505,
+        "accuracy": "approximate",
+        "source_url": "https://www.utep.edu/centennial-museum/"
+      },
+      "summary": "University museum and Chihuahuan Desert plant collections with regional science exhibits.",
+      "topics": [
+        "Botany",
+        "Geology",
+        "Desert ecology"
+      ],
+      "access": {
+        "level": "scheduled_public",
+        "label": "Temporarily closed until planned Nov 20 reopening",
+        "notes": "Official temporary closure May 18–Nov 20, 2026 for maintenance; check reopening.",
+        "advisory": "temporarily_closed",
+        "advisory_as_of": "2026-11-04"
+      },
+      "links": {
+        "official_url": "https://www.utep.edu/centennial-museum/"
+      },
+      "review": {
+        "status": "pending",
+        "reviewed_at": null,
+        "reviewed_by": null,
+        "checks": {
+          "organization_source": false,
+          "access_source": false,
+          "coordinate_source": false
+        },
+        "sources": [
+          {
+            "url": "https://www.utep.edu/centennial-museum/",
+            "purpose": "Official temporary closure May 18–Nov 20 2026",
+            "checked_at": "2026-11-04"
+          },
+          {
+            "url": "https://www.utep.edu/centennial-museum/",
+            "purpose": "Official institution information — editorial review pending",
+            "checked_at": null
+          }
+        ]
+      }
+    },
+    {
+      "id": "la-nube",
+      "state": "TX",
+      "region": "west",
+      "name": "La Nube STEAM Discovery Center",
+      "city": "El Paso",
+      "category": "museum",
+      "address": "201 W. Main Drive, El Paso, TX 79901",
+      "coordinates": {
+        "lat": 31.759,
+        "lng": -106.489,
+        "accuracy": "approximate",
+        "source_url": "https://la-nube.org/plan-your-day/hours-and-directions"
+      },
+      "summary": "Hands-on STEAM museum with maker, design and experimentation activities.",
+      "topics": [
+        "STEM",
+        "Engineering",
+        "Hands-on learning"
+      ],
+      "access": {
+        "level": "public_venue",
+        "label": "Public visitor venue",
+        "notes": "Ticketed public museum; confirm operating schedule."
+      },
+      "links": {
+        "official_url": "https://la-nube.org/plan-your-day/hours-and-directions"
+      },
+      "review": {
+        "status": "pending",
+        "reviewed_at": null,
+        "reviewed_by": null,
+        "checks": {
+          "organization_source": false,
+          "access_source": false,
+          "coordinate_source": false
+        },
+        "sources": [
+          {
+            "url": "https://la-nube.org/plan-your-day/hours-and-directions",
+            "purpose": "Official institution information — editorial review pending",
+            "checked_at": null
+          }
+        ]
+      }
+    },
+    {
+      "id": "utep",
+      "state": "TX",
+      "region": "west",
+      "name": "University of Texas at El Paso",
+      "city": "El Paso",
+      "category": "university",
+      "address": "500 W. University Avenue, El Paso, TX 79968",
+      "coordinates": {
+        "lat": 31.774,
+        "lng": -106.503,
+        "accuracy": "approximate",
+        "source_url": "https://www.utep.edu/"
+      },
+      "summary": "Public university with border-region research in engineering, science and health.",
+      "topics": [
+        "Research",
+        "Engineering",
+        "Environmental science"
+      ],
+      "access": {
+        "level": "research_campus",
+        "label": "Research campus — limited access",
+        "notes": "Research labs require authorization; museum is separate listing."
+      },
+      "links": {
+        "official_url": "https://www.utep.edu/"
+      },
+      "review": {
+        "status": "pending",
+        "reviewed_at": null,
+        "reviewed_by": null,
+        "checks": {
+          "organization_source": false,
+          "access_source": false,
+          "coordinate_source": false
+        },
+        "sources": [
+          {
+            "url": "https://www.utep.edu/",
+            "purpose": "Official institution information — editorial review pending",
+            "checked_at": null
+          }
+        ]
+      }
+    },
+    {
+      "id": "mcdonald",
+      "state": "TX",
+      "name": "McDonald Observatory",
+      "city": "Fort Davis area",
+      "category": "observatory",
+      "address": "3640 Dark Sky Dr, McDonald Observatory, TX 79734",
+      "coordinates": {
+        "lat": 30.6797,
+        "lng": -104.0247,
+        "accuracy": "approximate",
+        "source_url": "https://commons.wikimedia.org/wiki/Category:Frank_N._Bash_Visitors_Center"
+      },
+      "summary": "University of Texas at Austin astronomy research site offering public exhibits, tours, solar programs and star parties.",
+      "topics": [
+        "Astronomy",
+        "Research telescopes",
+        "Public tours"
+      ],
+      "access": {
+        "level": "scheduled_public",
+        "label": "Scheduled public programs",
+        "notes": "Visitor center and scheduled programs · book ahead"
+      },
+      "links": {
+        "official_url": "https://mcdonaldobservatory.org/visit/"
+      },
+      "review": {
+        "status": "pending",
+        "reviewed_at": null,
+        "reviewed_by": null,
+        "checks": {
+          "organization_source": false,
+          "access_source": false,
+          "coordinate_source": false
+        },
+        "sources": [
+          {
+            "url": "https://mcdonaldobservatory.org/visit/",
+            "purpose": "institution details",
+            "checked_at": null
+          },
+          {
+            "url": "https://commons.wikimedia.org/wiki/Category:Frank_N._Bash_Visitors_Center",
+            "purpose": "coordinate reference",
+            "checked_at": null
+          }
+        ]
+      },
+      "region": "west"
+    },
+    {
+      "id": "petroleum",
+      "state": "TX",
+      "region": "west",
+      "name": "Permian Basin Petroleum Museum",
+      "city": "Midland",
+      "category": "museum",
+      "address": "1500 Interstate 20 West, Midland, TX 79701",
+      "coordinates": {
+        "lat": 31.978,
+        "lng": -102.071,
+        "accuracy": "approximate",
+        "source_url": "https://petroleummuseum.org/visitors/"
+      },
+      "summary": "Museum of petroleum geology, energy technologies and drilling history with science programming.",
+      "topics": [
+        "Geology",
+        "Energy",
+        "Engineering"
+      ],
+      "access": {
+        "level": "public_venue",
+        "label": "Public visitor venue",
+        "notes": "Ticketed public museum; check special visiting arrangements."
+      },
+      "links": {
+        "official_url": "https://petroleummuseum.org/visitors/"
+      },
+      "review": {
+        "status": "pending",
+        "reviewed_at": null,
+        "reviewed_by": null,
+        "checks": {
+          "organization_source": false,
+          "access_source": false,
+          "coordinate_source": false
+        },
+        "sources": [
+          {
+            "url": "https://petroleummuseum.org/visitors/",
+            "purpose": "Official institution information — editorial review pending",
+            "checked_at": null
+          }
+        ]
+      }
+    },
+    {
+      "id": "utrgv",
+      "state": "TX",
+      "region": "south",
+      "name": "University of Texas Rio Grande Valley",
+      "city": "Edinburg",
+      "category": "university",
+      "address": "1201 W. University Drive, Edinburg, TX 78539",
+      "coordinates": {
+        "lat": 26.308,
+        "lng": -98.171,
+        "accuracy": "approximate",
+        "source_url": "https://www.utrgv.edu/"
+      },
+      "summary": "Regional public university with research across sciences and engineering.",
+      "topics": [
+        "Research",
+        "Environmental science",
+        "Engineering"
+      ],
+      "access": {
+        "level": "research_campus",
+        "label": "Research campus — limited access",
+        "notes": "Labs require prior permission; consult university outreach separately."
+      },
+      "links": {
+        "official_url": "https://www.utrgv.edu/"
+      },
+      "review": {
+        "status": "pending",
+        "reviewed_at": null,
+        "reviewed_by": null,
+        "checks": {
+          "organization_source": false,
+          "access_source": false,
+          "coordinate_source": false
+        },
+        "sources": [
+          {
+            "url": "https://www.utrgv.edu/",
+            "purpose": "Official institution information — editorial review pending",
+            "checked_at": null
+          }
+        ]
+      }
+    },
+    {
+      "id": "imas",
+      "state": "TX",
+      "region": "south",
+      "name": "International Museum of Art & Science",
+      "city": "McAllen",
+      "category": "museum",
+      "address": "1900 W. Nolana Avenue, McAllen, TX 78504",
+      "coordinates": {
+        "lat": 26.237,
+        "lng": -98.244,
+        "accuracy": "approximate",
+        "source_url": "https://theimasonline.org/explore-imas/visit-us/"
+      },
+      "summary": "Museum combining interactive science learning with arts and community programming.",
+      "topics": [
+        "Science exhibits",
+        "STEM education",
+        "Art & science"
+      ],
+      "access": {
+        "level": "public_venue",
+        "label": "Public visitor venue",
+        "notes": "Ticketed museum; check visitor information."
+      },
+      "links": {
+        "official_url": "https://theimasonline.org/explore-imas/visit-us/"
+      },
+      "review": {
+        "status": "pending",
+        "reviewed_at": null,
+        "reviewed_by": null,
+        "checks": {
+          "organization_source": false,
+          "access_source": false,
+          "coordinate_source": false
+        },
+        "sources": [
+          {
+            "url": "https://theimasonline.org/explore-imas/visit-us/",
+            "purpose": "Official institution information — editorial review pending",
+            "checked_at": null
+          }
+        ]
+      }
+    },
+    {
+      "id": "quinta",
+      "state": "TX",
+      "region": "south",
+      "name": "Quinta Mazatlan",
+      "city": "McAllen",
+      "category": "nature_center",
+      "address": "600 Sunset Drive, McAllen, TX 78503",
+      "coordinates": {
+        "lat": 26.194,
+        "lng": -98.233,
+        "accuracy": "approximate",
+        "source_url": "https://quintamazatlan.com/visit-explore/park-hours-admission"
+      },
+      "summary": "Public urban nature sanctuary providing birding, ecology and environmental education.",
+      "topics": [
+        "Birds",
+        "Ecology",
+        "Conservation"
+      ],
+      "access": {
+        "level": "public_venue",
+        "label": "Public visitor venue",
+        "notes": "Public nature center; parking may be limited during expansion."
+      },
+      "links": {
+        "official_url": "https://quintamazatlan.com/visit-explore/park-hours-admission"
+      },
+      "review": {
+        "status": "pending",
+        "reviewed_at": null,
+        "reviewed_by": null,
+        "checks": {
+          "organization_source": false,
+          "access_source": false,
+          "coordinate_source": false
+        },
+        "sources": [
+          {
+            "url": "https://quintamazatlan.com/visit-explore/park-hours-admission",
+            "purpose": "Official institution information — editorial review pending",
+            "checked_at": null
+          }
+        ]
+      }
+    },
+    {
+      "id": "sea-turtle-inc",
+      "state": "TX",
+      "region": "south",
+      "name": "Sea Turtle, Inc.",
+      "city": "South Padre Island",
+      "category": "zoo_aquarium",
+      "address": "6617 Padre Boulevard, South Padre Island, TX 78597",
+      "coordinates": {
+        "lat": 26.137,
+        "lng": -97.168,
+        "accuracy": "approximate",
+        "source_url": "https://seaturtleinc.org/visit/"
+      },
+      "summary": "Sea turtle rehabilitation, conservation and public science education.",
+      "topics": [
+        "Marine biology",
+        "Turtles",
+        "Conservation"
+      ],
+      "access": {
+        "level": "public_venue",
+        "label": "Public visitor venue",
+        "notes": "Public education facility; hospital and treatment access may be restricted."
+      },
+      "links": {
+        "official_url": "https://seaturtleinc.org/visit/"
+      },
+      "review": {
+        "status": "pending",
+        "reviewed_at": null,
+        "reviewed_by": null,
+        "checks": {
+          "organization_source": false,
+          "access_source": false,
+          "coordinate_source": false
+        },
+        "sources": [
+          {
+            "url": "https://seaturtleinc.org/visit/",
+            "purpose": "Official institution information — editorial review pending",
+            "checked_at": null
+          }
+        ]
+      }
+    }
+  ]
+}
