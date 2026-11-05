@@ -228,18 +228,22 @@ import { bragg, squareLatticeSpacing, compareTwoPlaneInterference, VERSION } fro
             "At the same plane spacing, a longer wavelength requires a larger Bragg angle.":
             "At the same plane spacing, a shorter wavelength requires a smaller Bragg angle.";
         }
-        $("observation").textContent=`${message} Current (${plane.plane}) family: d = ${fmt(plane.d)} Å, θ = ${fmt(result.theta)}°, 2θ = ${fmt(result.twoTheta)}°.`;
+        $("observation").textContent=message;
         previousGuided=now;
       }else{
         $("observation").textContent=`The (${plane.plane}) planes are ${fmt(plane.d)} Å apart, but nλ ≤ 2d is not satisfied. No possible first-order reflection angle is shown.`;
       }
-      $("explanation").textContent="This is a 2D lattice teaching model. The highlighted lines represent plane families, not actual mirrored surfaces. Bragg's law does not predict intensities or a complete PXRD pattern.";
+      $("explanation").textContent="Schematic 2D geometry; see model assumptions below.";
     }else{
       $("takeawayTitle").textContent="Advanced calculation";
-      $("observation").textContent=result?
-        `For d = ${fmt(result.spacing)} Å, order n = ${result.order}, and λ = ${fmt(result.wavelength)} Å, the condition occurs at θ = ${fmt(result.theta)}° and 2θ = ${fmt(result.twoTheta)}°.`
-        :"Choose physically allowed inputs; no diffraction angle is calculated for this combination.";
-      $("explanation").textContent="Advanced spacing, 2θ and q inputs are not attached to the schematic square lattice. Reflection intensities and structural absences are outside this model.";
+      const inputMode=$("mode").value;
+      $("observation").textContent=!result?"No valid Bragg condition for these inputs.":
+        inputMode==="angle"
+          ?`A peak at 2θ = ${fmt(result.twoTheta)}° implies d ≈ ${fmt(result.spacing)} Å for this wavelength and order. One peak cannot identify a phase.`
+          :inputMode==="q"
+          ?`At q = ${fmt(result.q)} Å⁻¹, the corresponding d-spacing is ${fmt(result.spacing)} Å for the selected order.`
+          :`For d = ${fmt(result.spacing)} Å, a reflection is geometrically possible near 2θ = ${fmt(result.twoTheta)}° at this wavelength.`;
+      $("explanation").textContent="Advanced inputs are independent of the guided square-lattice schematic.";
     }
     drawRay(result);
     drawMobileAngle(result,plane);
