@@ -180,12 +180,16 @@ import { bragg, squareLatticeSpacing, compareTwoPlaneInterference, VERSION } fro
   function update(){
     guided=!$("advancedPanel").open;
     $("guidedControls").hidden=!guided;
+    // The physical sliders live beside the diagrams; exact numeric fields stay in the sidebar.
+    const aInput=number("latticeA");
+    $("latticeSliderValue").textContent=Number.isFinite(aInput)?fmt(aInput)+" Å":"Enter a value";
+    $("latticeSliderControl").hidden=!guided;
     $("relationshipChain").hidden=!guided;
     $("qMetric").hidden=guided;
     $("readouts").classList.toggle("advanced-readouts",!guided);
     $("experimentHelper").textContent=guided
-      ?"Adjust the square lattice or switch plane families. The Bragg-angle arc changes alongside the lattice."
-      :"Enter a known spacing, 2θ or q. Only the ray construction is shown: the numerical calculation is independent of the guided square lattice.";
+      ?"Move the blue a slider directly above the lattice to see both diagrams respond, or switch plane families."
+      :"Enter a known spacing, 2θ or q. For spacing d, use the slider beside the ray construction; the calculation is independent of the guided square lattice.";
     const guides={
       spacing:["Known spacing → possible peak position","Enter d to find where this plane spacing may satisfy the Bragg condition for your X-ray wavelength."],
       angle:["Measured peak → estimated plane spacing","Enter an experimental 2θ position and known wavelength to calculate the associated d-spacing. This alone does not index or identify the reflection."],
@@ -199,8 +203,14 @@ import { bragg, squareLatticeSpacing, compareTwoPlaneInterference, VERSION } fro
     $("value-label").textContent={
       spacing:"Plane spacing d (Å)",angle:"Diffraction angle 2θ (°)",q:"Scattering vector q (Å⁻¹)"
     }[$("mode").value];
-    $("spacing-slider").hidden=$("mode").value!=="spacing";
-    if($("mode").value==="spacing")$("spacing-slider").value=$("value").value;
+    const spacingSliderActive=!guided&&$("mode").value==="spacing";
+    $("advancedSliderControl").hidden=!spacingSliderActive;
+    $("spacing-slider").hidden=!spacingSliderActive;
+    if($("mode").value==="spacing"){
+      const dInput=number("value");
+      $("advancedSliderValue").textContent=Number.isFinite(dInput)?fmt(dInput)+" Å":"Enter a value";
+      if(Number.isFinite(dInput))$("spacing-slider").value=dInput;
+    }
     const lambda=number("wavelength");
     let plane=null;
     try{
