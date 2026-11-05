@@ -2,7 +2,8 @@ import { bragg, squareLatticeSpacing, compareTwoPlaneInterference, VERSION } fro
 
   const $=id=>document.getElementById(id);
   const number=id=>$(id).value.trim()===""?NaN:Number($(id).value);
-  const fmt=x=>Number(x.toPrecision(7)).toString();
+  const fmt=x=>Number(x.toFixed(2)).toFixed(2);
+  const fmtPath=x=>Number(x.toFixed(4)).toString();
   let result=null, guided=true, latestPlane=null, previousGuided=null;
 
   function drawLattice(p){
@@ -133,8 +134,8 @@ import { bragg, squareLatticeSpacing, compareTwoPlaneInterference, VERSION } fro
     drawWavePair("destructiveWaves",c.off.relativePhase);
     $("onBraggAngle").textContent="2θ = "+fmt(c.on.twoTheta)+"°";
     $("offBraggAngle").textContent="2θ = "+fmt(c.off.twoTheta)+"°";
-    $("onBraggPath").textContent="Δpath = "+fmt(c.on.pathDifference)+" Å = "+c.order+"λ";
-    $("offBraggPath").textContent="Δpath = "+fmt(c.off.pathDifference)+" Å = ("+c.order+" − ½)λ";
+    $("onBraggPath").textContent="Δpath = "+fmtPath(c.on.pathDifference)+" Å = "+c.order+"λ";
+    $("offBraggPath").textContent="Δpath = "+fmtPath(c.off.pathDifference)+" Å = ("+c.order+" − ½)λ";
   }
   function drawMobileAngle(r,plane){
     $("mobileLive").hidden=!guided;
@@ -160,9 +161,19 @@ import { bragg, squareLatticeSpacing, compareTwoPlaneInterference, VERSION } fro
   function update(){
     guided=!$("advancedPanel").open;
     $("guidedControls").hidden=!guided;
+    $("qMetric").hidden=guided;
+    $("readouts").classList.toggle("advanced-readouts",!guided);
     $("experimentHelper").textContent=guided
       ?"Adjust the square lattice or switch plane families. The Bragg-angle arc changes alongside the lattice."
       :"Enter a known spacing, 2θ or q. Only the ray construction is shown: the numerical calculation is independent of the guided square lattice.";
+    const guides={
+      spacing:["Known spacing → possible peak position","Enter d to find where this plane spacing may satisfy the Bragg condition for your X-ray wavelength."],
+      angle:["Measured peak → estimated plane spacing","Enter an experimental 2θ position and known wavelength to calculate the associated d-spacing. This alone does not index or identify the reflection."],
+      q:["Scattering vector → plane spacing","Enter q to convert a scattering-vector magnitude into the corresponding spacing for the selected diffraction order."]
+    };
+    const topic=guides[$("mode").value];
+    $("advancedQuestion").textContent=topic[0];
+    $("advancedAnswer").textContent=topic[1];
     $("latticePane").hidden=!guided;
     $("diagramPair").classList.toggle("advanced-layout",!guided);
     $("value-label").textContent={
@@ -269,6 +280,28 @@ import { bragg, squareLatticeSpacing, compareTwoPlaneInterference, VERSION } fro
     if($("preset").value!=="custom")$("wavelength").value=$("preset").value;
     update();
   });
+  $("tryMeasuredPeak").addEventListener("click",()=>{
+    $("advancedPanel").open=true;
+    $("mode").value="angle";
+    $("value").value="30";
+    $("order").value="1";
+    update();
+  });
+  const palettes=[
+    {id:"paletteClassic",name:"classic"},
+    {id:"paletteWarm",name:"warm"},
+    {id:"paletteNavy",name:"navy"}
+  ];
+  for(const choice of palettes){
+    $(choice.id).addEventListener("click",()=>{
+      document.documentElement?.setAttribute("data-palette",choice.name);
+      for(const option of palettes){
+        const active=option.name===choice.name;
+        $(option.id).classList.toggle("selected",active);
+        $(option.id).setAttribute("aria-pressed",String(active));
+      }
+    });
+  }
   $("reset").addEventListener("click",()=>{
     $("advancedPanel").open=false;
     $("mode").value="spacing";$("value").value=3;
