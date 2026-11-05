@@ -169,3 +169,8 @@
 .atlas-page .atlas-cluster{background:#1C3049;color:white;border:2px solid white;box-shadow:0 1px 4px #172f4c77;font:700 13px/1 system-ui}
 .atlas-page .street-status{pointer-events:auto}
 .atlas-page .street-status button{margin-left:8px}
+.atlas-page .street-map .leaflet-tile-pane{filter:grayscale(1)}
+.atlas-page .venue-popup{font:14px/1.4 "Segoe UI",Arial,sans-serif;color:var(--ink)}
+.atlas-page .venue-popup strong{display:block;font:700 17px/1.22 var(--serif);color:var(--navy)}
+.atlas-page .venue-popup small{display:block;margin-top:4px;color:var(--quiet);font-size:12px}
+.atlas-page .venue-popup p{margin:8px 0;line-height:1.4}
