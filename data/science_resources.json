@@ -1,0 +1,664 @@
+{
+  "topics": [
+    {
+      "id": "mofs",
+      "label": "Metal–Organic Frameworks",
+      "short": "MOFs"
+    },
+    {
+      "id": "pfas",
+      "label": "PFAS & Water Quality",
+      "short": "PFAS"
+    },
+    {
+      "id": "climate",
+      "label": "Climate & Environment",
+      "short": "Climate"
+    },
+    {
+      "id": "crystallography",
+      "label": "Crystallography",
+      "short": "Crystallography"
+    },
+    {
+      "id": "chemistry",
+      "label": "Chemistry",
+      "short": "Chemistry"
+    },
+    {
+      "id": "physics",
+      "label": "Physics & General Science",
+      "short": "Physics"
+    }
+  ],
+  "kinds": [
+    {
+      "id": "channels",
+      "label": "YouTube channels",
+      "description": "Creators and educational channels"
+    },
+    {
+      "id": "videos",
+      "label": "Videos & playlists",
+      "description": "Individual lectures, demonstrations and explainers"
+    },
+    {
+      "id": "papers",
+      "label": "Research papers",
+      "description": "Foundational papers and useful reviews"
+    },
+    {
+      "id": "references",
+      "label": "Websites, tools & references",
+      "description": "External organizations, databases, guidance and learning material"
+    }
+  ],
+  "resources": [
+    {
+      "id": "nilered",
+      "title": "NileRed",
+      "kind": "channels",
+      "url": "https://www.youtube.com/@NileRed",
+      "topics": [
+        "chemistry"
+      ],
+      "description": "Chemistry experiments and synthesis."
+    },
+    {
+      "id": "apoptosis",
+      "title": "Apoptosis",
+      "kind": "channels",
+      "url": "https://www.youtube.com/@integral_chemistry",
+      "topics": [
+        "chemistry"
+      ],
+      "description": "Laboratory chemistry and organic synthesis."
+    },
+    {
+      "id": "professor-dave",
+      "title": "Professor Dave Explains",
+      "kind": "channels",
+      "url": "https://www.youtube.com/@ProfessorDaveExplains",
+      "topics": [
+        "chemistry",
+        "physics"
+      ],
+      "description": "Structured science and mathematics lessons."
+    },
+    {
+      "id": "veritasium",
+      "title": "Veritasium",
+      "kind": "channels",
+      "url": "https://www.youtube.com/@veritasium",
+      "topics": [
+        "physics",
+        "climate"
+      ],
+      "description": "Science experiments, demonstrations and explanations."
+    },
+    {
+      "id": "vsauce",
+      "title": "Vsauce",
+      "kind": "channels",
+      "url": "https://www.youtube.com/@Vsauce",
+      "topics": [
+        "physics"
+      ],
+      "description": "Explorations of science and curiosity."
+    },
+    {
+      "id": "steve-mould",
+      "title": "Steve Mould",
+      "kind": "channels",
+      "url": "https://www.youtube.com/@SteveMould",
+      "topics": [
+        "physics"
+      ],
+      "description": "Physical phenomena and hands-on demonstrations."
+    },
+    {
+      "id": "crash-course",
+      "title": "Crash Course",
+      "kind": "channels",
+      "url": "https://www.youtube.com/@crashcourse",
+      "topics": [
+        "chemistry",
+        "physics",
+        "climate"
+      ],
+      "description": "Short-form courses across science and other disciplines."
+    },
+    {
+      "id": "periodic-videos",
+      "title": "Periodic Videos",
+      "kind": "channels",
+      "url": "https://www.youtube.com/@periodicvideos",
+      "topics": [
+        "chemistry"
+      ],
+      "description": "Elements, reactions and laboratory chemistry from Nottingham."
+    },
+    {
+      "id": "what-is-a-mof-nobel",
+      "title": "What is a MOF? — Nobel Prize one-minute introduction",
+      "kind": "videos",
+      "url": "https://www.youtube.com/watch?v=MhUoInNztTo",
+      "topics": [
+        "mofs",
+        "chemistry"
+      ],
+      "meta": "Nobel Prize · 2025"
+    },
+    {
+      "id": "mof-nick-vukotic",
+      "title": "What are Metal–Organic Frameworks?",
+      "kind": "videos",
+      "url": "https://www.youtube.com/watch?v=SFcDlAxsBXI",
+      "topics": [
+        "mofs",
+        "chemistry"
+      ],
+      "meta": "Nick Vukotic · 2021"
+    },
+    {
+      "id": "ccdc-mof-pores",
+      "title": "Viewing MOF pores and voids in Mercury",
+      "kind": "videos",
+      "url": "https://www.youtube.com/watch?v=erqUXMzSSMI",
+      "topics": [
+        "mofs",
+        "crystallography"
+      ],
+      "meta": "CCDC · 2025"
+    },
+    {
+      "id": "wriedt-links",
+      "title": "Wriedt Lab — Important Texts, Documents, and Links",
+      "kind": "references",
+      "url": "https://labs.utdallas.edu/wriedt/internal/",
+      "topics": [
+        "mofs",
+        "crystallography"
+      ],
+      "description": "Crystallography, structure solution, software and reference links."
+    },
+    {
+      "id": "iucr-teaching",
+      "title": "IUCr — Crystallography Teaching Resources",
+      "kind": "references",
+      "url": "https://www.iucr.org/what-we-do/education/teaching-resources",
+      "topics": [
+        "crystallography"
+      ],
+      "description": "Practical resources for learning and teaching crystallography."
+    },
+    {
+      "id": "ccdc-training",
+      "title": "CCDC — Training Videos",
+      "kind": "references",
+      "url": "https://www.ccdc.cam.ac.uk/community/training-and-learning/ccdc-videos/",
+      "topics": [
+        "crystallography",
+        "mofs"
+      ],
+      "description": "Mercury and structural chemistry training."
+    },
+    {
+      "id": "nist-webbook",
+      "title": "NIST Chemistry WebBook",
+      "kind": "references",
+      "url": "https://webbook.nist.gov/chemistry/",
+      "topics": [
+        "chemistry"
+      ],
+      "description": "Physical, chemical and spectroscopic reference data."
+    },
+    {
+      "id": "itrc-pfas",
+      "title": "ITRC — PFAS Technical and Regulatory Guidance",
+      "kind": "references",
+      "url": "https://pfas-1.itrcweb.org/",
+      "topics": [
+        "pfas"
+      ],
+      "description": "Technical guidance and supporting PFAS resources."
+    },
+    {
+      "id": "epa-pfas",
+      "title": "EPA — PFAS Resources, Data and Tools",
+      "kind": "references",
+      "url": "https://www.epa.gov/pfas/pfas-resources-data-and-tools",
+      "topics": [
+        "pfas"
+      ],
+      "description": "Official research, monitoring, and treatment information."
+    },
+    {
+      "id": "epa-1633a",
+      "title": "EPA — PFAS Analytical Methods (Method 1633A)",
+      "kind": "references",
+      "url": "https://www.epa.gov/cwa-methods/cwa-analytical-methods-and-polyfluorinated-alkyl-substances-pfas",
+      "topics": [
+        "pfas",
+        "chemistry"
+      ],
+      "description": "Methods and current regulatory status; see EPA page for legal applicability."
+    },
+    {
+      "id": "nasa-climate",
+      "title": "NASA — Evidence of Climate Change",
+      "kind": "references",
+      "url": "https://science.nasa.gov/climate-change/evidence/",
+      "topics": [
+        "climate"
+      ],
+      "description": "Observed evidence and scientific explanation."
+    },
+    {
+      "id": "ipcc-ar6",
+      "title": "IPCC — AR6 Synthesis Report",
+      "kind": "references",
+      "url": "https://www.ipcc.ch/report/ar6/syr/",
+      "topics": [
+        "climate"
+      ],
+      "description": "The 2023 Sixth Assessment synthesis report."
+    },
+    {
+      "id": "global-carbon",
+      "title": "Global Carbon Project",
+      "kind": "references",
+      "url": "https://www.globalcarbonproject.org/",
+      "topics": [
+        "climate"
+      ],
+      "description": "Carbon budgets and greenhouse-gas research."
+    },
+    {
+      "id": "global-budget",
+      "title": "Global Carbon Budget",
+      "kind": "references",
+      "url": "https://globalcarbonbudget.org/",
+      "topics": [
+        "climate"
+      ],
+      "description": "Emissions data and annual carbon budget publications."
+    },
+    {
+      "id": "wriedt-publications",
+      "title": "Wriedt Lab — Journal Articles & Publications",
+      "kind": "references",
+      "url": "https://labs.utdallas.edu/wriedt/publications/",
+      "topics": [
+        "mofs",
+        "pfas",
+        "crystallography"
+      ],
+      "description": "Complete research publication list from the Wriedt Lab."
+    },
+    {
+      "id": "wriedt-pfas-2026",
+      "title": "Degradation of Carbon-Adsorbed PFAS Using Yttrium Ions",
+      "kind": "papers",
+      "doi": "10.1021/acsestwater.5c01411",
+      "topics": [
+        "pfas",
+        "chemistry"
+      ],
+      "meta": "Sheybani et al. · ACS ES&T Water · 2026",
+      "description": "Research: activated carbon and partial PFAS defluorination; not complete mineralization or a MOF process."
+    },
+    {
+      "id": "wriedt-co2-2025",
+      "title": "From spontaneous ligand evolution to high-throughput water-based synthesis: scalable access to CO₂ selective mixed-ligand metal organic frameworks",
+      "kind": "papers",
+      "doi": "10.1039/D5CC03218K",
+      "topics": [
+        "mofs",
+        "climate"
+      ],
+      "meta": "Howlett et al. · Chemical Communications · 2025"
+    },
+    {
+      "id": "pfas-mof-composites-2024",
+      "title": "Metal-Organic Framework-Based Composites for the Adsorption Removal of Per- and Polyfluoroalkyl Substances from Water",
+      "kind": "papers",
+      "doi": "10.1021/acs.langmuir.3c02939",
+      "topics": [
+        "mofs",
+        "pfas"
+      ],
+      "meta": "Li et al. · Langmuir · 2024"
+    },
+    {
+      "id": "wriedt-pfas-commentary-2024",
+      "title": "PFAS concentration and destruction",
+      "kind": "papers",
+      "doi": "10.1038/s44221-024-00357-9",
+      "topics": [
+        "pfas",
+        "mofs"
+      ],
+      "meta": "Adarsh & Wriedt · Nature Water · 2024 · News & Views"
+    },
+    {
+      "id": "pfas-mof-review-2024",
+      "title": "Strategies to improve adsorption and photocatalytic performance of MOFs for PFAS removal from water: A review",
+      "kind": "papers",
+      "doi": "10.1016/j.envres.2023.117483",
+      "topics": [
+        "mofs",
+        "pfas"
+      ],
+      "meta": "Chen et al. · Environmental Research · 2024",
+      "description": "Research review; not a claim of commercially demonstrated PFAS treatment."
+    },
+    {
+      "id": "wriedt-water-harvesting-2023",
+      "title": "Water harvesting properties of a zwitterionic metal–organic framework",
+      "kind": "papers",
+      "doi": "10.1039/D2ME00284A",
+      "topics": [
+        "mofs",
+        "climate"
+      ],
+      "meta": "VanLeuven et al. · Molecular Systems Design & Engineering · 2023"
+    },
+    {
+      "id": "wriedt-mof-pfas-review-2022",
+      "title": "Metal-organic frameworks as platforms for the removal of per- and polyfluoroalkyl substances from contaminated waters",
+      "kind": "papers",
+      "doi": "10.1016/j.matt.2022.07.028",
+      "topics": [
+        "mofs",
+        "pfas"
+      ],
+      "meta": "Li et al. · Matter · 2022 · Review"
+    },
+    {
+      "id": "wriedt-pfas-zr-2021",
+      "title": "Efficient Removal of Per- and Polyfluoroalkyl Substances from Water with Zirconium-Based Metal–Organic Frameworks",
+      "kind": "papers",
+      "doi": "10.1021/acs.chemmater.1c00324",
+      "topics": [
+        "mofs",
+        "pfas"
+      ],
+      "meta": "Li et al. · Chemistry of Materials · 2021"
+    },
+    {
+      "id": "wriedt-groundwater-2021",
+      "title": "Systematic Study on the Removal of Per- and Polyfluoroalkyl Substances from Contaminated Groundwater Using Metal–Organic Frameworks",
+      "kind": "papers",
+      "doi": "10.1021/acs.est.1c03974",
+      "topics": [
+        "mofs",
+        "pfas"
+      ],
+      "meta": "Li et al. · Environmental Science & Technology · 2021"
+    },
+    {
+      "id": "wriedt-isoreticular-2018",
+      "title": "Rational Design of Pore Size and Functionality in a Series of Isoreticular Zwitterionic Metal–Organic Frameworks",
+      "kind": "papers",
+      "doi": "10.1021/acs.chemmater.8b03885",
+      "topics": [
+        "mofs",
+        "crystallography"
+      ],
+      "meta": "Aulakh et al. · Chemistry of Materials · 2018"
+    },
+    {
+      "id": "sbu-review-2018",
+      "title": "Secondary Building Units as the Turning Point in the Development of the Reticular Chemistry of MOFs",
+      "kind": "papers",
+      "doi": "10.1126/sciadv.aat9180",
+      "topics": [
+        "mofs",
+        "crystallography"
+      ],
+      "meta": "Kalmutzki et al. · Science Advances · 2018 · Review"
+    },
+    {
+      "id": "water-harvesting-2017",
+      "title": "Water Harvesting from Air with Metal–Organic Frameworks Powered by Natural Sunlight",
+      "kind": "papers",
+      "doi": "10.1126/science.aam8743",
+      "topics": [
+        "mofs",
+        "climate"
+      ],
+      "meta": "Kim et al. · Science · 2017"
+    },
+    {
+      "id": "framework-stability-2016",
+      "title": "Chemical, Thermal and Mechanical Stabilities of Metal–Organic Frameworks",
+      "kind": "papers",
+      "doi": "10.1038/natrevmats.2015.18",
+      "topics": [
+        "mofs",
+        "chemistry"
+      ],
+      "meta": "Howarth et al. · Nature Reviews Materials · 2016 · Review"
+    },
+    {
+      "id": "wriedt-education-2016",
+      "title": "Using Modern Solid-State Analytical Tools for Investigations of an Advanced Carbon Capture Material: Experiments for the Inorganic Chemistry Laboratory",
+      "kind": "papers",
+      "doi": "10.1021/acs.jchemed.6b00258",
+      "topics": [
+        "mofs",
+        "crystallography",
+        "climate",
+        "chemistry"
+      ],
+      "meta": "Wriedt et al. · Journal of Chemical Education · 2016 · Lab experiment"
+    },
+    {
+      "id": "wriedt-pxrd-2014",
+      "title": "Study of Guest Molecules in Metal–Organic Frameworks by Powder X-ray Diffraction: Analysis of Difference Envelope Density",
+      "kind": "papers",
+      "doi": "10.1021/cg500525g",
+      "topics": [
+        "mofs",
+        "crystallography"
+      ],
+      "meta": "Yakovenko et al. · Crystal Growth & Design · 2014"
+    },
+    {
+      "id": "water-stability-2014",
+      "title": "Water Stability and Adsorption in Metal–Organic Frameworks",
+      "kind": "papers",
+      "doi": "10.1021/cr5002589",
+      "topics": [
+        "mofs",
+        "chemistry"
+      ],
+      "meta": "Burtch et al. · Chemical Reviews · 2014 · Review"
+    },
+    {
+      "id": "mof-overview-2013",
+      "title": "The Chemistry and Applications of Metal–Organic Frameworks",
+      "kind": "papers",
+      "doi": "10.1126/science.1230444",
+      "topics": [
+        "mofs",
+        "chemistry"
+      ],
+      "meta": "Furukawa et al. · Science · 2013 · Review"
+    },
+    {
+      "id": "nu1000-2013",
+      "title": "Vapor-Phase Metalation by Atomic Layer Deposition in a Metal–Organic Framework",
+      "kind": "papers",
+      "doi": "10.1021/ja4050828",
+      "topics": [
+        "mofs",
+        "chemistry"
+      ],
+      "meta": "Mondloch et al. · JACS · 2013"
+    },
+    {
+      "id": "large-pore-2012",
+      "title": "Large-Pore Apertures in a Series of Metal–Organic Frameworks",
+      "kind": "papers",
+      "doi": "10.1126/science.1220131",
+      "topics": [
+        "mofs"
+      ],
+      "meta": "Deng et al. · Science · 2012"
+    },
+    {
+      "id": "wriedt-co2-2012",
+      "title": "Low-Energy Selective Capture of CO₂ by a Predesigned Elastic Single-Molecule Trap",
+      "kind": "papers",
+      "doi": "10.1002/anie.201202992",
+      "topics": [
+        "mofs",
+        "climate"
+      ],
+      "meta": "Wriedt et al. · Angewandte Chemie · 2012"
+    },
+    {
+      "id": "farha-surface-2012",
+      "title": "Metal–Organic Framework Materials with Ultrahigh Surface Areas: Is the Sky the Limit?",
+      "kind": "papers",
+      "doi": "10.1021/ja3055639",
+      "topics": [
+        "mofs",
+        "crystallography"
+      ],
+      "meta": "Farha et al. · JACS · 2012"
+    },
+    {
+      "id": "psm-review-2009",
+      "title": "Postsynthetic Modification of Metal–Organic Frameworks",
+      "kind": "papers",
+      "doi": "10.1039/B802258P",
+      "topics": [
+        "mofs",
+        "chemistry"
+      ],
+      "meta": "Wang & Cohen · Chem. Soc. Rev. · 2009 · Review"
+    },
+    {
+      "id": "uio66-2008",
+      "title": "A New Zirconium Inorganic Building Brick Forming Metal Organic Frameworks with Exceptional Stability",
+      "kind": "papers",
+      "doi": "10.1021/ja8057953",
+      "topics": [
+        "mofs",
+        "crystallography"
+      ],
+      "meta": "Cavka et al. · JACS · 2008"
+    },
+    {
+      "id": "mof74-co2-2008",
+      "title": "Dramatic Tuning of Carbon Dioxide Uptake via Metal Substitution in a Coordination Polymer with Cylindrical Pores",
+      "kind": "papers",
+      "doi": "10.1021/ja8036096",
+      "topics": [
+        "mofs",
+        "climate"
+      ],
+      "meta": "Caskey et al. · JACS · 2008"
+    },
+    {
+      "id": "zif-2006",
+      "title": "Exceptional Chemical and Thermal Stability of Zeolitic Imidazolate Frameworks",
+      "kind": "papers",
+      "doi": "10.1073/pnas.0602439103",
+      "topics": [
+        "mofs",
+        "crystallography"
+      ],
+      "meta": "Park et al. · PNAS · 2006"
+    },
+    {
+      "id": "mil101-2005",
+      "title": "A Chromium Terephthalate-Based Solid with Unusually Large Pore Volumes and Surface Area",
+      "kind": "papers",
+      "doi": "10.1126/science.1116275",
+      "topics": [
+        "mofs",
+        "crystallography"
+      ],
+      "meta": "Férey et al. · Science · 2005"
+    },
+    {
+      "id": "reticular-2003",
+      "title": "Reticular synthesis and the design of new materials",
+      "kind": "papers",
+      "doi": "10.1038/nature01650",
+      "topics": [
+        "mofs",
+        "chemistry"
+      ],
+      "meta": "Yaghi et al. · Nature · 2003"
+    },
+    {
+      "id": "irmof-2002",
+      "title": "Systematic design of pore size and functionality in isoreticular MOFs and their application in methane storage",
+      "kind": "papers",
+      "doi": "10.1126/science.1067208",
+      "topics": [
+        "mofs"
+      ],
+      "meta": "Eddaoudi et al. · Science · 2002"
+    },
+    {
+      "id": "hkust1-1999",
+      "title": "A Chemically Functionalizable Nanoporous Material",
+      "kind": "papers",
+      "doi": "10.1126/science.283.5405.1148",
+      "topics": [
+        "mofs",
+        "crystallography"
+      ],
+      "meta": "Chui et al. · Science · 1999"
+    },
+    {
+      "id": "mof5-1999",
+      "title": "Design and synthesis of an exceptionally stable and highly porous metal-organic framework",
+      "kind": "papers",
+      "doi": "10.1038/46248",
+      "topics": [
+        "mofs",
+        "crystallography"
+      ],
+      "meta": "Li et al. · Nature · 1999"
+    },
+    {
+      "id": "kitagawa-1997",
+      "title": "Three-Dimensional Framework with Channeling Cavities for Small Molecules",
+      "kind": "papers",
+      "doi": "10.1002/anie.199717251",
+      "topics": [
+        "mofs"
+      ],
+      "meta": "Kondo et al. (Kitagawa group) · Angew. Chem. · 1997"
+    },
+    {
+      "id": "yaghi-li-1995",
+      "title": "Hydrothermal Synthesis of a Metal-Organic Framework Containing Large Rectangular Channels",
+      "kind": "papers",
+      "doi": "10.1021/ja00146a033",
+      "topics": [
+        "mofs",
+        "crystallography"
+      ],
+      "meta": "Yaghi & Li · JACS · 1995"
+    },
+    {
+      "id": "robson-1989",
+      "title": "Infinite polymeric frameworks consisting of three dimensionally linked rod-like segments",
+      "kind": "papers",
+      "doi": "10.1021/ja00197a079",
+      "topics": [
+        "mofs",
+        "crystallography"
+      ],
+      "meta": "Hoskins & Robson · JACS · 1989"
+    }
+  ]
+}

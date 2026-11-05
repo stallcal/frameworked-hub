@@ -218,3 +218,8 @@ body { color:var(--navy); font:18px/1.55 'Libron',Georgia,serif; background:var(
 .bragg-feature-art svg{display:block;width:100%;height:auto;max-height:320px}
 .bragg-feature-art p{font:11px/1.5 "Courier New",monospace;letter-spacing:.05em;color:#5b6d82;margin:8px 0 4px}
 @media(max-width:750px){.bragg-feature{grid-template-columns:1fr}.bragg-feature-art{max-width:600px}}
+
+/* Frameworked custom node-to-arrow glyph. SVG replaces text/emoji-style arrow symbols. */
+.fw-arrow-icon{width:1em;height:1em;display:inline-block;vertical-align:-.12em;color:inherit;flex:none}
+.chapter-arrow .fw-arrow-icon{width:24px;height:24px;display:block}
+.inline-link .fw-arrow-icon,.editorial-button .fw-arrow-icon,.spotlight-button .fw-arrow-icon{width:17px;height:17px}
