@@ -59,7 +59,7 @@ assert.equal(f.bboxContains(requested,f.geographicViewport()),false,'Panning far
 assert.ok(html.includes("layer:0,element:'censusPrimaryLayer'"),'Primary layer missing');
 assert.ok(html.includes("layer:1,element:'censusSecondaryLayer'"),'Secondary layer missing');
 assert.ok(html.includes("layer:2,element:'streetLayer'"),'Local layer missing');
-assert.ok(html.includes("resultOffset:String(page*cfg.pageSize)"),'Road pagination missing');
+assert.ok(html.includes("resultOffset:String(offset)"),'Road pagination missing');
 console.log('Atlas audit PASS: '+places.length+' institutions, '+events.length+' event occurrences, '+roads.roads.length+' embedded TxDOT routes');
 console.log('Review status: '+verified+' verified, '+pending+' pending; '+approximate+' approximate pins; '+reviewedCoordinates+' coordinate-source checks.');
 console.log('Geographic road loading: complete viewport, pan refresh, 3 service layers and pagination checked.');
