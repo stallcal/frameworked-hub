@@ -4,13 +4,12 @@
 Sources of truth:
   static/atlas/data/places.json
   static/atlas/data/events.json
-  static/atlas/data/dfw-primary-roads.json
 
 Run from repo root:
   python3 scripts/atlas/sync_events.py --check
   python3 scripts/atlas/sync_events.py
 
-The HTML is self-contained for offline mapping. This tool does not fetch remote
+The directory and calendar use embedded data. This tool does not fetch remote
 information, approve editorial records, or publish any changes.
 """
 import argparse
@@ -22,10 +21,9 @@ from pathlib import Path
 from zoneinfo import ZoneInfo
 
 ROOT = Path(__file__).resolve().parents[2]
-HTML = ROOT / "static/atlas/index.html"
+HTML = ROOT / "assets/atlas/atlas.js"
 SOURCES = {
     "DATA": (ROOT / "static/atlas/data/places.json", re.compile(r"(?m)^const DATA=(.*);$")),
-    "ROADS": (ROOT / "static/atlas/data/dfw-primary-roads.json", re.compile(r"(?m)^const ROADS=(.*);$")),
     "EVENTS": (ROOT / "static/atlas/data/events.json", re.compile(r"(?m)^const EVENTS=(.*)\.events;$")),
 }
 ALLOWED_ACCESS = {"public", "registration", "restricted"}
@@ -40,7 +38,6 @@ def validate(sources):
     places = sources["DATA"]["places"]
     events_doc = sources["EVENTS"]
     events = events_doc["events"]
-    roads = sources["ROADS"]
     assert events_doc["publication_status"] == "preview_only_editorial_review_required", (
         "Source checks alone cannot approve public event publication"
     )
@@ -93,16 +90,7 @@ def validate(sources):
         if occurrence in occurrences:
             raise ValueError("Duplicate institution/title/time event for " + eid)
         occurrences.add(occurrence)
-    if not roads["source_url"].startswith("https://") or not roads["roads"]:
-        raise ValueError("Roads source or content missing")
-    seen_routes = set()
-    for route in roads["roads"]:
-        if route["name"] in seen_routes:
-            raise ValueError("Duplicate road identifier: " + route["name"])
-        seen_routes.add(route["name"])
-        if route["level"] not in ("primary", "secondary") or not route["d"].startswith("M"):
-            raise ValueError("Invalid road line geometry for " + route["name"])
-    return len(places), len(events), len(roads["roads"]), Counter(e["start_at"][:7] for e in events)
+    return len(places), len(events), Counter(e["start_at"][:7] for e in events)
 
 
 def main():
@@ -112,7 +100,7 @@ def main():
     args = parser.parse_args()
     datasets = {name: json.loads(path.read_text(encoding="utf-8"))
                 for name, (path, _) in SOURCES.items()}
-    places, events, routes, months = validate(datasets)
+    places, events, months = validate(datasets)
     html = HTML.read_text(encoding="utf-8")
     for name, (_, regex) in SOURCES.items():
         match = regex.search(html)
@@ -121,7 +109,7 @@ def main():
         current = json.loads(match.group(1))
         if args.check:
             if current != datasets[name]:
-                raise SystemExit(name + " is out of sync: run sync_events.py and commit index.html")
+                raise SystemExit(name + " is out of sync: run sync_events.py and commit atlas.js")
         else:
             compact = json.dumps(datasets[name], ensure_ascii=False, separators=(",", ":"))
             html = html[:match.start(1)] + compact + html[match.end(1):]
@@ -129,8 +117,8 @@ def main():
         original = HTML.read_text(encoding="utf-8")
         if html != original:
             HTML.write_text(html, encoding="utf-8")
-            print("Rebuilt index.html's three embedded source datasets")
-    print(f"Atlas source integrity PASS: {places} institutions, {events} event occurrences, {routes} highway routes")
+            print("Rebuilt atlas.js's two embedded source datasets")
+    print(f"Atlas source integrity PASS: {places} institutions, {events} event occurrences")
     print("Calendar months:", dict(sorted(months.items())))
     print("Publication gate: editorial and coordinate review remains mandatory.")
 

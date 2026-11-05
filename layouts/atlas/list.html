@@ -1,0 +1,47 @@
+{{ define "head-extra" }}
+<link rel="stylesheet" href="./vendor/leaflet/leaflet.css">
+<link rel="stylesheet" href="./vendor/markercluster/MarkerCluster.css">
+{{ $css := resources.Get "css/atlas.css" | minify | fingerprint }}
+<link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
+<meta name="robots" content="noindex,follow">
+{{ end }}
+{{ define "main" }}
+<div class="atlas-page">
+  <div class="container">
+    <div class="eyebrow">The science around us</div>
+    <h1>Explore science in Texas.</h1>
+    <p class="intro">Discover museums, observatories, nature education, university research and science outreach. Start in Dallas–Fort Worth, then browse a growing statewide directory by region. Entries are research leads, not a claim that every location is open to the public.</p>
+    <div class="intro-actions"><div class="crumb">Science Atlas <span aria-hidden="true">/</span> <strong>Texas</strong> <span aria-hidden="true">/</span> <span id="crumbRegion">Dallas–Fort Worth focus</span></div><div class="status"><span></span> Public beta · Texas coverage expanding</div></div>
+    <nav class="atlas-tabs" aria-label="Explore Atlas views"><button id="mapTab" type="button" class="active" aria-pressed="true">⌖ &nbsp;Places on the map</button><button id="calendarTab" type="button" aria-pressed="false">▦ &nbsp;Science events</button><span class="tab-detail">Event dates from official organizers · Texas pilot</span></nav>
+    <section class="atlas" id="atlasMapView">
+      <section class="directory" aria-labelledby="directoryTitle">
+        <div class="dir-header"><div class="sec-label">Browse the directory</div><h2 id="directoryTitle">North Texas</h2><p class="subtle" id="directorySubtitle">Places to explore, learn and connect with research.</p>
+          <input id="search" class="search" type="search" placeholder="Search name, city or science topic…" aria-label="Search science locations">
+          <div class="segmented" role="group" aria-label="Geographic scope"><button id="dfwButton" class="active" type="button" aria-pressed="true">Dallas–Fort Worth</button><button id="texasButton" type="button" aria-pressed="false">All Texas</button></div>
+          <select id="area" class="search" aria-label="Filter Texas region" style="margin-top:10px"><option value="all">All Texas regions</option><option value="dfw">Dallas–Fort Worth</option><option value="central">Central Texas / Austin–San Antonio</option><option value="houston">Greater Houston</option><option value="gulf">Gulf Coast / Coastal Bend</option><option value="east">East Texas</option><option value="panhandle">Panhandle / South Plains</option><option value="west">West Texas / El Paso</option><option value="south">Rio Grande Valley / South Texas</option></select>
+          <div class="filter-box"><select id="kind" aria-label="Filter science location category"><option value="all">All types</option><option value="museum">Science museums</option><option value="nature_center">Nature centers</option><option value="botanical_garden">Gardens</option><option value="observatory">Planetariums & observatories</option><option value="university">Universities</option><option value="research_center">Research centers</option><option value="zoo_aquarium">Zoos & aquariums</option></select><select id="access" aria-label="Filter visitor access"><option value="all">Any access</option><option value="public_venue">Public venues</option><option value="scheduled_public">Scheduled visits</option><option value="research_campus">Research / limited</option></select></div>
+        </div><div id="resultCount" class="results-line" aria-live="polite"></div><div id="placeList" class="list"></div>
+      </section>
+      <section class="map-column" aria-label="Interactive map of science locations in Texas">
+        <div class="map-heading"><strong id="mapTitle">Dallas–Fort Worth, Texas</strong><small>Zoom, drag or select a marker</small></div>
+        <div id="geoMap" class="street-map" role="region" aria-label="Street map of Texas science locations"></div>
+        <div class="controls"><button type="button" id="zoomIn" aria-label="Zoom in">+</button><button type="button" id="zoomOut" aria-label="Zoom out">−</button><button type="button" class="reset" id="resetMap" aria-label="Reset map view">RESET</button></div>
+        <div class="street-status hidden" id="streetStatus" role="status">Street map tiles unavailable. <button type="button" id="retryMap">Retry</button></div>
+        <div class="map-foot"><div class="map-legend"><span><i class="legend-dot" style="background:#084B9E"></i>Visitor venue</span><span><i class="legend-dot" style="background:#B68C3B"></i>Scheduled</span><span><i class="legend-dot" style="background:#9E382E"></i>Research</span></div><small>Pins show approximate locations</small></div>
+      </section>
+      <aside class="profile" id="profile" aria-label="Science location details" aria-live="polite"></aside>
+    </section>
+    <section class="calendar-shell hidden" id="calendarView" aria-labelledby="calendarHeading">
+      <div class="cal-toolbar"><div><div class="sec-label">Science events</div><h2 id="calendarHeading">November 2026</h2><p>Find an event, then open its official organizer page for registration and updates.</p></div><div class="cal-actions"><button type="button" id="prevMonth" aria-label="Previous month">←</button><button type="button" id="todayMonth">This month</button><button type="button" id="nextMonth" aria-label="Next month">→</button></div></div>
+      <div class="cal-filters"><select id="eventRegion" aria-label="Filter event region"><option value="dfw">Dallas–Fort Worth</option><option value="all">All Texas</option><option value="central">Central Texas</option><option value="houston">Greater Houston</option><option value="gulf">Gulf Coast</option><option value="east">East Texas</option><option value="west">West Texas</option><option value="panhandle">Panhandle</option><option value="south">South Texas</option></select><select id="eventType" aria-label="Filter event category"><option value="all">All event types</option><option value="workshop">Workshops</option><option value="nature">Nature & ecology</option><option value="environment">Environment & conservation</option><option value="astronomy">Astronomy</option><option value="family">Family activities</option><option value="science_social">Science social</option><option value="creative_science">Creative & science</option><option value="lecture">Lectures</option><option value="camp">Camps</option></select><select id="eventAccess" aria-label="Filter event access"><option value="all" selected>All access — including restricted</option><option value="public">Public and registration only</option><option value="restricted">Restricted only</option></select><input id="eventSearch" type="search" aria-label="Search events" placeholder="Search events or institutions…"></div>
+      <div class="cal-note">Pilot calendar · All access types appear by default, including restricted programs (clearly labeled). Restricted events are not necessarily open to public visitors. Dated entries were found on official sites on November 4, 2026, but have not completed publication review. Event schedules and ticket availability can change. No automated synchronization is running yet.</div>
+      <div class="cal-layout"><div><div class="cal-week" aria-hidden="true"><span>Sun</span><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span></div><div id="calendarGrid" class="cal-grid" role="group" aria-label="Monthly event calendar"></div></div><aside class="event-results" aria-live="polite"><h3 id="eventListTitle">Events this month</h3><p class="event-count" id="eventCount"></p><div id="eventCards"></div></aside></div>
+    </section>
+    <div class="bottom"><span>Frameworked Science Atlas · Public Beta · Statewide discovery research, not an official visitor guide</span><span>Preliminary listings and events require official-source checks before visiting.</span></div>
+  </div>
+</div>
+<script src="./vendor/leaflet/leaflet.js"></script>
+<script src="./vendor/markercluster/leaflet.markercluster.js"></script>
+{{ $atlas := resources.Get "atlas/atlas.js" | fingerprint }}
+<script src="{{ $atlas.RelPermalink }}" integrity="{{ $atlas.Data.Integrity }}"></script>
+{{ end }}

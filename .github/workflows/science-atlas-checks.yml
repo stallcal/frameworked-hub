@@ -4,6 +4,9 @@ on:
   pull_request:
     paths:
       - "static/atlas/**"
+      - "assets/atlas/**"
+      - "layouts/atlas/**"
+      - "assets/css/atlas.css"
       - "scripts/atlas/**"
       - ".github/workflows/science-atlas-checks.yml"
   workflow_dispatch:
@@ -26,5 +29,5 @@ jobs:
         run: python3 -m py_compile scripts/atlas/sync_events.py
       - name: Test calendar access filters and restricted-date inclusion
         run: node scripts/atlas/test_calendar_access.mjs
-      - name: Audit institution data and road viewport behavior
+      - name: Audit institution data
         run: node scripts/atlas/audit_places.mjs
