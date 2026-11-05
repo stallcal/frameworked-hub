@@ -1,0 +1,26 @@
+name: Science Atlas data validation
+
+on:
+  pull_request:
+    paths:
+      - "static/atlas/**"
+      - "scripts/atlas/**"
+      - ".github/workflows/science-atlas-checks.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Check Atlas event sources and embedded data
+        run: python3 scripts/atlas/sync_events.py --check
+      - name: Compile utility
+        run: python3 -m py_compile scripts/atlas/sync_events.py
