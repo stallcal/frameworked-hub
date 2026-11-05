@@ -11,11 +11,19 @@ const data=embedded('DATA');
 const places=data.places;
 const events=embedded('EVENTS','\\.events').events;
 const allowedAccess=new Set(['public_venue','scheduled_public','research_campus']);
-const allowedRegions=new Set(['dfw','central','houston','gulf','west','east','south','panhandle']);
+const allowedRegions=new Set(['dfw','central','houston','gulf','west','east','south','panhandle','north']);
 assert.ok(places.length>=1 && events.length>=1,'Empty data collections');
 let pending=0,verified=0,approximate=0,reviewedCoordinates=0;
 const ids=new Set();
+const collegeIds=new Set();
 for(const p of places){
+ if(p.college){
+  const {unitid,level,community,research,programs}=p.college;
+  assert.ok(Number.isInteger(unitid)&&!collegeIds.has(unitid),'Invalid or duplicate IPEDS identifier: '+p.id);
+  collegeIds.add(unitid);
+  assert.ok(['four_year','two_year'].includes(level)&&typeof community==='boolean','Invalid college type: '+p.id);
+  assert.ok([null,'R1','R2','RCU'].includes(research)&&programs.length>0,'Missing or invalid program data: '+p.id);
+ }
  assert.ok(!ids.has(p.id),'Duplicate institution ID: '+p.id);ids.add(p.id);
  assert.ok(p.name && p.city && p.address,'Incomplete location: '+p.id);
  assert.ok(allowedRegions.has(p.region),'Unknown region: '+p.id);
