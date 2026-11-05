@@ -87,11 +87,11 @@
       <span class="explore-destination-body"><strong>Resource Library</strong><span>YouTube channels, videos, research papers, scientific websites, and references.</span><small>{{ len $catalog.resources }} links in the starting collection</small></span>
       <span class="explore-destination-arrow" aria-hidden="true">{{ partial "frameworked-arrow.html" . }}</span>
     </a>
-    <div class="explore-destination explore-destination-upcoming">
+    <a class="explore-destination" href="{{ "/atlas/" | relURL }}" aria-label="Open the Science Atlas Texas public beta">
       <span class="explore-destination-index">02 / IN PERSON</span>
-      <span class="explore-destination-body"><strong>Science Atlas</strong><span>Science museums, discovery centers, research institutions, and events.</span><small>In development · Texas first</small></span>
-      
-    </div>
+      <span class="explore-destination-body"><strong>Science Atlas</strong><span>Explore Texas science museums, discovery centers, research institutions, and an events calendar.</span><small>Public beta · Texas first · Location details under review</small></span>
+      <span class="explore-destination-arrow" aria-hidden="true">{{ partial "frameworked-arrow.html" . }}</span>
+    </a>
   </div>
   <section class="explore-featured" aria-labelledby="explore-collections-heading">
     <p class="design-eyebrow">A FEW PLACES TO START</p>
