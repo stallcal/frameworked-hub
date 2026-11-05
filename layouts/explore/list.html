@@ -1,0 +1,107 @@
+{{ define "main" }}
+{{ $catalog := site.Data.science_resources }}
+{{ if .Params.isResourceLibrary }}
+<div class="explore-layout resource-library">
+  <nav class="explore-breadcrumb" aria-label="Breadcrumb"><a href="{{ "/explore/" | relURL }}">Explore</a><span aria-hidden="true">/</span><span aria-current="page">Resource Library</span></nav>
+  <header class="explore-lead">
+    <p class="design-eyebrow">EXPLORE / RESOURCE LIBRARY</p>
+    <h1>Science <em>resources.</em></h1>
+    <p>Good science is worth sharing. Browse channels, videos, primary papers, and useful references from across the web.</p>
+  </header>
+
+  <section class="resource-topics" aria-labelledby="subject-heading">
+    <div class="resource-section-top"><div><p class="design-eyebrow">START WITH A SUBJECT</p><h2 id="subject-heading">Browse a topic.</h2></div></div>
+    <div class="topic-grid">
+      {{ range first 4 $catalog.topics }}
+      <a class="topic-card" href="{{ printf "/explore/resources/?topic=%s" .id | relURL }}"><span class="topic-card-kicker">COLLECTION</span><strong>{{ .label }}</strong><span aria-hidden="true" class="topic-arrow">↗</span></a>
+      {{ end }}
+    </div>
+  </section>
+
+  <section class="resource-catalog" aria-labelledby="all-resources-heading">
+    <div class="resource-section-top">
+      <div><p class="design-eyebrow">THE DIRECTORY</p><h2 id="all-resources-heading">All resources.</h2></div>
+      <p class="resource-section-note">External links only. Additions are curated, not ranked.</p>
+    </div>
+    <form class="resource-filters" id="resource-filters" role="search" aria-label="Filter science resources">
+      <label for="resource-search">Search <input type="search" id="resource-search" name="search" autocomplete="off" placeholder="Title, author, keyword…"></label>
+      <label for="resource-topic">Subject <select id="resource-topic" name="topic">
+        <option value="all">All subjects</option>
+        {{ range $catalog.topics }}<option value="{{ .id }}">{{ .label }}</option>{{ end }}
+      </select></label>
+      <label for="resource-kind">Format <select id="resource-kind" name="kind">
+        <option value="all">All formats</option>
+        {{ range $catalog.kinds }}<option value="{{ .id }}">{{ .label }}</option>{{ end }}
+      </select></label>
+      <button type="reset" class="resource-reset" id="resource-reset">Clear filters</button>
+    </form>
+    <p class="resource-count" id="resource-count" role="status" aria-live="polite">{{ len $catalog.resources }} resources</p>
+
+    {{ range $catalog.kinds }}
+      {{ $kind := . }}
+      {{ $items := where $catalog.resources "kind" $kind.id }}
+      {{ with $items }}
+      <section class="resource-group" data-resource-group id="kind-{{ $kind.id }}" aria-labelledby="heading-{{ $kind.id }}">
+        <div class="resource-group-heading">
+          <div><h3 id="heading-{{ $kind.id }}">{{ $kind.label }}</h3><p>{{ $kind.description }}</p></div>
+          <span class="resource-group-size">{{ len . }}</span>
+        </div>
+        <div class="resource-list">
+        {{ range . }}
+          {{ $link := .url }}
+          {{ with .doi }}{{ $link = printf "https://doi.org/%s" . }}{{ end }}
+          <article class="resource-entry" data-resource-entry data-kind="{{ .kind }}" data-topics="{{ delimit .topics " " }}">
+            <div class="resource-entry-main">
+              <a class="resource-entry-title" href="{{ $link }}" target="_blank" rel="noopener noreferrer">{{ .title }} <span aria-hidden="true">↗</span></a>
+              {{ with .meta }}<p class="resource-entry-meta">{{ . }}</p>{{ end }}
+              {{ with .description }}<p class="resource-entry-description">{{ . }}</p>{{ end }}
+              <div class="resource-entry-tags">
+                {{ range .topics }}
+                  {{ $topic := . }}
+                  {{ range $catalog.topics }}{{ if eq .id $topic }}<span>{{ .short }}</span>{{ end }}{{ end }}
+                {{ end }}
+              </div>
+            </div>
+            {{ with .doi }}<a class="resource-doi" href="{{ printf "https://doi.org/%s" . }}" target="_blank" rel="noopener noreferrer" aria-label="Open DOI {{ . }}">DOI: {{ . }}</a>{{ end }}
+          </article>
+        {{ end }}
+        </div>
+      </section>
+      {{ end }}
+    {{ end }}
+    <p id="resource-empty" class="resource-empty" hidden>No resources match those filters. Try another subject or search term.</p>
+    <p class="resource-library-note">Links lead to external organizations and creators. Inclusion is for discovery, not an endorsement of every claim or practice shown. Some research articles may require institutional access.</p>
+  </section>
+</div>
+<script src="{{ "js/resource-library.js" | relURL }}" defer></script>
+{{ else }}
+<div class="explore-layout explore-home">
+  <header class="explore-lead">
+    <p class="design-eyebrow">FRAMEWORKED / EXPLORE</p>
+    <h1>Keep <em>exploring.</em></h1>
+    <p>Discover useful science resources online, and discover the places where science happens.</p>
+  </header>
+  <div class="explore-destinations">
+    <a class="explore-destination" href="{{ "/explore/resources/" | relURL }}">
+      <span class="explore-destination-index">01 / ONLINE</span>
+      <span class="explore-destination-body"><strong>Resource Library</strong><span>YouTube channels, videos, research papers, scientific websites, and references.</span><small>{{ len $catalog.resources }} links in the starting collection</small></span>
+      <span class="explore-destination-arrow" aria-hidden="true">↗</span>
+    </a>
+    <div class="explore-destination explore-destination-upcoming">
+      <span class="explore-destination-index">02 / IN PERSON</span>
+      <span class="explore-destination-body"><strong>Science Atlas</strong><span>Science museums, discovery centers, research institutions, and events.</span><small>In development · Texas first</small></span>
+      <span class="explore-destination-arrow" aria-hidden="true">⌁</span>
+    </div>
+  </div>
+  <section class="explore-featured" aria-labelledby="explore-collections-heading">
+    <p class="design-eyebrow">A FEW PLACES TO START</p>
+    <h2 id="explore-collections-heading">Browse by subject.</h2>
+    <div class="topic-grid">
+      {{ range first 4 $catalog.topics }}
+      <a class="topic-card" href="{{ printf "/explore/resources/?topic=%s" .id | relURL }}"><span class="topic-card-kicker">RESOURCE COLLECTION</span><strong>{{ .label }}</strong><span aria-hidden="true" class="topic-arrow">↗</span></a>
+      {{ end }}
+    </div>
+  </section>
+</div>
+{{ end }}
+{{ end }}
