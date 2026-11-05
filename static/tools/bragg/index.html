@@ -96,8 +96,7 @@
               <div class="field">
                 <label for="latticeA">1 · Lattice parameter, a (Å)</label>
                 <input id="latticeA" type="number" min="2" max="12" step="0.1" value="4" />
-                <input id="latticeSlider" type="range" min="2" max="12" step="0.1" value="4" aria-label="Adjust lattice parameter a in angstroms" />
-                <small class="parameter-hint">a is the repeat distance between adjacent blue dots. Increasing a expands the square lattice.</small>
+                <small class="parameter-hint">a is the repeat distance between adjacent blue dots. Move the slider beside the lattice diagram to watch it expand or contract.</small>
               </div>
               <div class="field">
                 <label for="planeFamily">2 · Highlight a plane family</label>
@@ -142,15 +141,7 @@
             </div>
             <div class="advanced-purpose" role="note"><strong id="advancedQuestion">Why enter a known value?</strong><p id="advancedAnswer">Predict where a reflection could occur if you know the plane spacing d.</p></div><div class="field">
               <label id="value-label" for="value">Plane spacing d (Å)</label
-              ><input id="value" type="number" value="3" step="any" /><input
-                id="spacing-slider"
-                aria-label="Adjust plane spacing in angstroms"
-                type="range"
-                min="0.5"
-                max="10"
-                step="0.01"
-                value="3"
-              />
+              ><input id="value" type="number" value="3" step="any" />
             </div>
             <div class="field">
               <label for="order">Diffraction order n</label
@@ -192,11 +183,21 @@
               <div class="visuals-grid" id="diagramPair">
                 <figure class="figure lattice-pane" id="latticePane">
                   <div class="figure-heading"><strong>1 · The repeating lattice</strong><span>Structure / spacing</span></div>
+                  <div class="diagram-slider" id="latticeSliderControl">
+                    <div class="diagram-slider-head"><label for="latticeSlider">Adjust lattice parameter <em>a</em></label><output id="latticeSliderValue" for="latticeSlider latticeA">4.00 Å</output></div>
+                    <input id="latticeSlider" type="range" min="2" max="12" step="0.1" value="4" aria-label="Adjust lattice parameter a in angstroms while viewing the lattice" />
+                    <div class="diagram-slider-limits" aria-hidden="true"><span>2 Å</span><span>12 Å</span></div>
+                  </div>
                   <svg id="latticeGeometry" viewBox="0 0 760 410" role="img" aria-label="Two-dimensional lattice points and highlighted family of lattice planes"></svg>
                   <figcaption class="dimension-legend"><span class="dimension-key"><span class="key-blue" aria-hidden="true"></span><strong>Blue a</strong> · lattice repeat</span><span class="dimension-key"><span class="key-red" aria-hidden="true"></span><strong>Red d</strong> · plane spacing</span></figcaption>
                 </figure>
                 <figure class="figure ray-pane" id="rayPane">
                   <div class="figure-heading"><strong>2 · The diffraction angle</strong><span id="ray-angle-display">θ — · 2θ —</span></div>
+                  <div class="diagram-slider" id="advancedSliderControl" hidden>
+                    <div class="diagram-slider-head"><label for="spacing-slider">Adjust plane spacing <em>d</em></label><output id="advancedSliderValue" for="spacing-slider value">3.00 Å</output></div>
+                    <input id="spacing-slider" aria-label="Adjust plane spacing d in angstroms while viewing the ray construction" type="range" min="0.5" max="10" step="0.01" value="3"/>
+                    <div class="diagram-slider-limits" aria-hidden="true"><span>0.5 Å</span><span>10 Å</span></div>
+                  </div>
                   <svg id="geometry" viewBox="0 0 520 360" role="img" aria-label="Dynamic Bragg ray construction showing incident and diffracted X-rays, angle theta, scattering angle two theta, and plane spacing"></svg>
                   <figcaption>Blue indicates the incident beam; red indicates a diffracted direction. The red arc labeled <em>2θ</em> expands or contracts as the Bragg angle changes. Ray geometry is schematic.</figcaption>
                 </figure>
