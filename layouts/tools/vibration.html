@@ -8,7 +8,7 @@
   <p class="vib-lead">A sample contains HCl and DCl. Use the gap between vibrational levels to predict which molecule absorbs infrared light at the lower wavenumber.</p>
   <div class="vib-lab">
     <div class="vib-figure">
-      <div class="vib-fighead"><h2>Vibrational energy levels</h2><span id="species">¹H³⁵Cl</span></div>
+      <div class="vib-fighead"><h2>Vibrational energy levels</h2></div>
       <svg id="well" viewBox="0 0 490 300" role="img" aria-labelledby="well-title well-desc">
         <title id="well-title">Harmonic potential and its first four vibrational levels</title><desc id="well-desc"></desc>
         <defs><clipPath id="well-clip"><rect x="84" y="17" width="374" height="223"/></clipPath></defs>
@@ -16,7 +16,7 @@
         <text x="262" y="294" text-anchor="middle">Displacement from equilibrium (pm)</text>
         <text transform="translate(17 132) rotate(-90)" text-anchor="middle">Energy / hc (cm⁻¹)</text>
       </svg>
-      <div class="vib-readout"><div><span>Predicted IR band</span><strong><output id="band"></output> <small>cm⁻¹</small></strong></div><div><span>Reduced mass</span><strong><output id="mass"></output> <small>u</small></strong></div></div>
+      <table class="vib-results"><thead><tr><th>Isotope</th><th>IR band (cm⁻¹)</th><th>Reduced mass (u)</th></tr></thead><tbody id="results"></tbody></table>
     </div>
     <section class="vib-controls" aria-label="Model controls">
       <h2>Change the isotope</h2>
@@ -26,8 +26,8 @@
         <label><input type="radio" name="guess" value="same"> Same wavenumber</label>
         <label><input type="radio" name="guess" value="higher"> Higher wavenumber</label>
       </fieldset><button class="editorial-button" type="submit">Reveal isotope shift →</button></form>
-      <div id="comparison" hidden><label for="isotope">Show energy levels for</label><select id="isotope"><option value="H">HCl · hydrogen</option><option value="D">DCl · deuterium</option></select>
-      <p id="feedback" role="status"></p><p id="shift"></p><button id="again" type="button">Try the prediction again</button></div>
+      <div id="comparison" hidden><div id="outcome" tabindex="-1" aria-labelledby="feedback"><h3 id="feedback"></h3><p id="reason"></p></div><label for="isotope">Show energy levels for</label><select id="isotope"><option value="both">Both isotopes</option><option value="H">HCl · hydrogen</option><option value="D">DCl · deuterium</option></select>
+      <button id="again" type="button">Try the prediction again</button></div>
     </section>
   </div>
   <section class="vib-theory"><h2>From bond to IR band</h2><div>

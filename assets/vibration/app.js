@@ -25,7 +25,7 @@ const py = energy => 240 - energy * 222 / 15000;
 const axes = byId('axes');
 for (const energy of [0, 5000, 10000, 15000]) {
   const y = py(energy);
-  mark(axes, 'line', { x1:84, x2:450, y1:y, y2:y, stroke:'#50627a' });
+  mark(axes, 'line', { x1:84, x2:450, y1:y, y2:y, stroke:'var(--hair)' });
   mark(axes, 'text', { x:77, y:y+5, 'text-anchor':'end' }, String(energy));
 }
 for (const pm of [-60, -30, 0, 30, 60]) {
@@ -33,11 +33,8 @@ for (const pm of [-60, -30, 0, 30, 60]) {
 }
 let revealed = false;
 function draw() {
-  const isotope = revealed ? byId('isotope').value : 'H';
-  const { mu, band } = vibration(isotope);
-  byId('mass').value = mu.toFixed(3);
-  byId('band').value = Math.round(band);
-  byId('species').textContent = isotope === 'H' ? '¹H³⁵Cl' : '²H³⁵Cl';
+  const view = revealed ? byId('isotope').value : 'H';
+  const isotopes = view === 'both' ? ['H','D'] : [view];
   const scale = 0.5 * k * 1e-24 / (planck * speedOfLight); // V/hc per pm²
   const path = [];
   for (let pm = -60; pm <= 60; pm += 0.5) {
@@ -46,18 +43,31 @@ function draw() {
   byId('potential').setAttribute('d', path.join(' '));
   const levels = byId('levels');
   levels.replaceChildren();
-  for (let v = 0; v < 4; v++) {
-    const energy = (v + 0.5) * band;
-    const turningPoint = Math.sqrt(energy / scale);
-    const y = py(energy);
-    mark(levels, 'line', { x1:px(-turningPoint), x2:px(turningPoint), y1:y, y2:y, stroke:'#ffca85', 'stroke-width':2.4 });
-    mark(levels, 'text', { x:px(turningPoint)+6, y:y+5 }, 'v = ' + v);
+  const results = byId('results');
+  results.replaceChildren();
+  const descriptions = [];
+  for (const isotope of isotopes) {
+    const { mu, band } = vibration(isotope);
+    const hydrogen = isotope === 'H';
+    const symbol = hydrogen ? '¹H³⁵Cl' : '²H³⁵Cl';
+    const row = results.insertRow();
+    row.className = hydrogen ? 'hcl' : 'dcl';
+    for (const value of [symbol, Math.round(band), mu.toFixed(3)]) row.insertCell().textContent = value;
+    descriptions.push(symbol + ': spacing ' + Math.round(band) + ' inverse centimeters');
+    for (let v = 0; v < 4; v++) {
+      const energy = (v + 0.5) * band;
+      const turningPoint = Math.sqrt(energy / scale);
+      const left = px(-turningPoint), right = px(turningPoint);
+      const y = py(energy);
+      // Use opposite halves of the symmetric well so nearby levels remain legible.
+      const both = view === 'both';
+      mark(levels, 'line', { x1:both && !hydrogen ? px(0) : left, x2:both && hydrogen ? px(0) : right, y1:y, y2:y, class:hydrogen ? 'hcl' : 'dcl' });
+      const labelLeft = both && hydrogen;
+      mark(levels, 'text', { x:labelLeft ? left-6 : right+6, y:y+5, 'text-anchor':labelLeft ? 'end' : 'start' }, 'v = ' + v);
+    }
   }
-  byId('well-desc').textContent = isotope + 'Cl at ' + k + ' newtons per meter. Adjacent levels are separated by ' + Math.round(band) + ' inverse centimeters.';
-  if (revealed) {
-    const h = vibration('H').band, d = vibration('D').band;
-    byId('shift').textContent = 'The model predicts HCl at ' + Math.round(h) + ' cm⁻¹ and DCl at ' + Math.round(d) + ' cm⁻¹. The predicted shift is ' + ((1-d/h)*100).toFixed(1) + '% lower.';
-  }
+  byId('well-desc').textContent = 'Shared harmonic potential at 480 newtons per meter. ' + descriptions.join('. ');
+
 }
 byId('predict').addEventListener('submit', event => {
   event.preventDefault();
@@ -65,10 +75,13 @@ byId('predict').addEventListener('submit', event => {
   revealed = true;
   byId('predict').hidden = true;
   byId('comparison').hidden = false;
-  byId('isotope').value = 'D';
-  byId('feedback').textContent = (correct ? 'Correct. ' : 'The band shifts lower. ') + 'Switch between the two plots and compare the v = 0 to v = 1 gap. DCl’s larger reduced mass makes this gap smaller, so a lower-energy photon can excite the vibration.';
+  byId('isotope').value = 'both';
+  byId('outcome').classList.toggle('correct', correct);
+  byId('feedback').textContent = correct ? 'Correct — DCl shifts lower.' : 'DCl shifts to a lower wavenumber.';
+  const drop = 100 * (1 - vibration('D').band / vibration('H').band);
+  byId('reason').textContent = 'Compare the gap from v = 0 to v = 1. With the same bond stiffness, DCl’s larger reduced mass brings the levels closer together. Its IR band is ' + drop.toFixed(1) + '% lower in wavenumber.';
   draw();
-  byId('isotope').focus();
+  byId('outcome').focus();
 });
 byId('again').addEventListener('click', () => {
   revealed = false;
