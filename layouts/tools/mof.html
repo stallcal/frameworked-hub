@@ -1,0 +1,9 @@
+{{ define "head-extra" }}
+{{ $style := resources.Get "mof/style.css" | minify | fingerprint }}<link rel="stylesheet" href="{{ $style.RelPermalink }}">
+{{ end }}
+{{ define "main" }}
+<article class="mof-lab"><a href="/tools/">← Workbench</a><h1>{{ .Title }}</h1><p class="mof-lead">{{ .Description }}</p>
+{{ partial (printf "mof/%s.html" .Params.experiment) . }}
+<noscript>Enable JavaScript to use the interactive model.</noscript></article>
+{{ $app := resources.Get (printf "mof/%s.js" .Params.experiment) | fingerprint }}<script type="module" src="{{ $app.RelPermalink }}"></script>
+{{ end }}
