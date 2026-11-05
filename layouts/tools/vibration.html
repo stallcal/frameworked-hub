@@ -5,7 +5,7 @@
 <article class="vibration">
   <a class="vib-back" href="/tools/">← Workbench</a>
   <h1>Molecular <em>vibration.</em></h1>
-  <p class="vib-lead">Swap hydrogen for deuterium in a hydrogen chloride bond. Predict how the heavier isotope changes the energy needed to excite one quantum of vibration.</p>
+  <p class="vib-lead">A sample contains HCl and DCl. Use the gap between vibrational levels to predict which molecule absorbs infrared light at the lower wavenumber.</p>
   <div class="vib-lab">
     <div class="vib-figure">
       <div class="vib-fighead"><h2>Vibrational energy levels</h2><span id="species">¹H³⁵Cl</span></div>
@@ -16,14 +16,12 @@
         <text x="262" y="294" text-anchor="middle">Displacement from equilibrium (pm)</text>
         <text transform="translate(17 132) rotate(-90)" text-anchor="middle">Energy / hc (cm⁻¹)</text>
       </svg>
-      <div class="vib-readout"><div><span>Fundamental IR band</span><strong><output id="band"></output> <small>cm⁻¹</small></strong></div><div><span>Reduced mass</span><strong><output id="mass"></output> <small>u</small></strong></div></div>
+      <div class="vib-readout"><div><span>Predicted IR band</span><strong><output id="band"></output> <small>cm⁻¹</small></strong></div><div><span>Reduced mass</span><strong><output id="mass"></output> <small>u</small></strong></div></div>
     </div>
     <section class="vib-controls" aria-label="Model controls">
-      <h2>Adjust the bond</h2>
-      <label for="stiffness">Force constant <i>k</i> <output id="kval" for="stiffness">480 N/m</output></label>
-      <input id="stiffness" type="range" min="120" max="900" step="5" value="480">
-      <p class="vib-scale"><span>120 N/m</span><span>900 N/m</span></p>
-      <form id="predict"><fieldset><legend>Replace H with D at the same stiffness. Where will the IR band move?</legend>
+      <h2>Change the isotope</h2>
+      <p>Deuterium adds a neutron to hydrogen. The bonding electrons experience essentially the same electric forces, so the model uses one spring constant (<i>k</i> = 480 N/m) for both bonds. The isotope swap changes the mass that vibrates in that potential well.</p>
+      <form id="predict"><fieldset><legend>Replace H with D at the same stiffness. Where will the DCl band appear relative to HCl?</legend>
         <label><input type="radio" name="guess" value="lower" required> Lower wavenumber</label>
         <label><input type="radio" name="guess" value="same"> Same wavenumber</label>
         <label><input type="radio" name="guess" value="higher"> Higher wavenumber</label>
@@ -37,7 +35,7 @@
     <p class="vib-formula">μ = m₁m₂ / (m₁ + m₂)<br>ν̃ = (1 / 2πc) √(k / μ)<br>Eᵥ = hcν̃ (v + ½)</p>
     <p>The fundamental absorption takes the molecule from <i>v</i> = 0 to 1. On the chart’s energy scale, the gap between those lines reads directly as the predicted IR wavenumber. Use μ in kilograms and c in cm/s with k in N/m.</p>
     <p>This harmonic model treats the bond as an ideal spring. Real HCl spectra also show anharmonic shifts and rotational structure.</p>
-    <p><a href="https://personal.utdallas.edu/~son051000/chem4473/HClDCl_theory.pdf">HCl and DCl spectroscopy theory</a> · <a href="https://physics.nist.gov/PhysRefData/Compositions/">NIST isotope masses</a></p>
+    <p><a href="https://personal.utdallas.edu/~son051000/chem4473/HClDCl_Lab.pdf">HCl and DCl spectroscopy lab</a> · <a href="https://physics.nist.gov/PhysRefData/Compositions/">NIST isotope masses</a></p>
   </div></section>
 </article>
 {{ $js := resources.Get "vibration/app.js" | fingerprint }}<script type="module" src="{{ $js.RelPermalink }}"></script>
