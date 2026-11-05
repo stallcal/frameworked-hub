@@ -49,11 +49,11 @@
             <p class="primer-equation" aria-label="n lambda equals two d sine theta">nλ = 2d sin θ</p>
             <p><strong>λ</strong> is the X-ray wavelength; <strong>d</strong> is the distance between planes; <strong>θ</strong> is the angle between the incoming beam and those planes; <strong>n</strong> is the diffraction order. A powder diffractometer typically reports <strong>2θ</strong>, the angle between the incident and diffracted beams.</p>
             <div class="primer-implication">
-              <strong>What can we learn?</strong>
+              <strong>Why this matters</strong>
               <ul class="primer-points">
                 <li><strong>Smaller d → larger 2θ</strong>, at the same wavelength.</li>
                 <li><strong>Longer λ → larger 2θ</strong>, at the same plane spacing, while the Bragg condition remains possible.</li>
-                <li><strong>Possible peak positions, not peak heights.</strong> Intensities depend on the structure and scattering processes.</li>
+                <li><strong>PXRD connection:</strong> measured peak positions let researchers estimate plane spacings. A shift toward higher 2θ corresponds to smaller d, for the same indexed reflection and wavelength.</li>
               </ul>
             </div>
           </div>
@@ -248,43 +248,11 @@
           <p class="interference-caveat">Scientific scope: this is a two-wave phase illustration, not a simulated diffraction pattern. Real crystalline scattering depends on many planes, finite-size broadening, atomic structure factors, and the instrument. <a href="https://www.iucr.org/what-we-do/education/pamphlets/introduction-calculation-of-structure-factors">IUCr explanation of phase and Bragg diffraction</a>.</p>
         </section>
         <details class="notes">
-          <summary>What this model means</summary>
-          <p>
-            <strong>Guided lattice view:</strong> the (10) and (11) families are drawn in a
-            two-dimensional square lattice with parameter a. Their separations are
-            d(10) = a and d(11) = a / √2. The illustrated dots are translational
-            lattice points, not individual atoms or a real MOF structure.
-          </p>
-          <p>
-            θ is the angle between a ray and a lattice plane. A powder pattern
-            normally reports <strong>2θ</strong>. Here q = 4π sin θ / λ = 2πn /
-            d. Wavelength and spacing are in angstroms; q is in inverse
-            angstroms.
-          </p>
-          <p>
-            This predicts a geometric diffraction condition, not reflection intensity. Atomic positions,
-            scattering factors, and symmetry determine intensities and
-            systematic absences. The diagram does not predict a complete
-            diffraction pattern or identify a phase. Higher-order diffraction is
-            often represented by different Miller indices with n = 1.
-          </p>
-          <p>
-            The ray diagram uses a mirror-like construction only to explain path difference;
-            actual diffraction results from interference among scattered waves, not specular
-            reflection from atomically flat mirrors. No intensities, structure factors,
-            detector peaks or complete PXRD patterns are computed.
-          </p>
-          <p>
-            Preset wavelengths are rounded educational values. No wavelength
-            uncertainty, refraction correction, or instrumental calibration is
-            applied.
-          </p>
-          <p>
-            Reference:
-            <a href="https://dictionary.iucr.org/Bragg%27s_law"
-              >IUCr Online Dictionary of Crystallography — Bragg’s law</a
-            >.
-          </p>
+          <summary>Model assumptions, limitations &amp; sources</summary>
+          <p><strong>What the models represent:</strong> the guided lattice is an ideal 2D square lattice, with d(10) = a and d(11) = a/√2. Dots are lattice points, not atoms or a specific MOF. The wave comparison adds only two equal-amplitude contributions.</p>
+          <p><strong>What the models cannot determine:</strong> peak intensity, phase identity, structural factors, systematic absences, full diffraction patterns, or experimental uncertainty. Real diffraction arises from scattering and interference, not literal mirror reflections from atomic planes.</p>
+          <p><strong>Measurements:</strong> wavelength presets are rounded values; detector calibration, instrumental effects and uncertainty propagation are not included. Here q = 4πsinθ/λ = 2πn/d, with q in Å⁻¹.</p>
+          <p>Reference: <a href="https://dictionary.iucr.org/Bragg%27s_law">IUCr Online Dictionary of Crystallography — Bragg's law</a>.</p>
         </details>
       </main>
       <footer>
