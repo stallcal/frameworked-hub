@@ -1,7 +1,7 @@
 // Atlas publication-gate audit: fail on invalid structure, report unverified work honestly.
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
-const html=fs.readFileSync('static/atlas/index.html','utf8');
+const html=fs.readFileSync('assets/atlas/atlas.js','utf8');
 function embedded(name, suffix=''){
  const result=html.match(new RegExp('^const '+name+'=(.*)'+suffix+';$','m'));
  assert.ok(result, 'Missing '+name+' inline source');

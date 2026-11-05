@@ -3,7 +3,7 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 
-const html = fs.readFileSync('static/atlas/index.html', 'utf8');
+const html = fs.readFileSync('assets/atlas/atlas.js', 'utf8');
 function embedded(name, suffix='') {
   const match = html.match(new RegExp('^const ' + name + '=(.*)' + suffix + ';$', 'm'));
   assert.ok(match, name + ' is embedded in the Atlas');
@@ -11,11 +11,12 @@ function embedded(name, suffix='') {
 }
 const places = embedded('DATA').places;
 const events = embedded('EVENTS', '\\.events').events;
-const firstAccessOption = html.match(/<select id="eventAccess"[^>]*>\s*<option value="([^"]+)"([^>]*)>/);
+const template = fs.readFileSync('layouts/atlas/list.html', 'utf8');
+const firstAccessOption = template.match(/<select id="eventAccess"[^>]*>\s*<option value="([^"]+)"([^>]*)>/);
 assert.ok(firstAccessOption, 'event access filter exists');
 assert.equal(firstAccessOption[1], 'all', 'All access must be the first/default option');
 assert.match(firstAccessOption[2], /selected/, 'All access must be explicitly selected');
-assert.match(html, /All access — including restricted/, 'access filter should be unambiguous');
+assert.match(template, /All access — including restricted/, 'access filter should be unambiguous');
 const start = html.indexOf('function filteredEvents(){');
 const end = html.indexOf('\nfunction changeMonth(', start);
 assert.ok(start >= 0 && end > start, 'calendar filtering function found');

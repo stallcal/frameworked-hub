@@ -4,6 +4,9 @@ on:
   pull_request:
     paths:
       - "static/atlas/**"
+      - "assets/atlas/**"
+      - "layouts/atlas/**"
+      - "assets/css/atlas.css"
       - "scripts/atlas/**"
       - ".github/workflows/science-atlas-checks.yml"
   workflow_dispatch:

@@ -5,7 +5,7 @@
 ## Canonical source of truth
 
 - `static/atlas/data/events.json`: dates, local timezone, venue ID, access, source URLs, review notes.
-- `static/atlas/index.html`: static, self-contained map and calendar with an embedded copy of the JSON.
+- `assets/atlas/atlas.js`: Atlas map and calendar logic with an embedded copy of the JSON.
 - `scripts/atlas/sync_events.py`: validates record integrity and regenerates the embedded copy.
 
 From the repository root, edit `events.json` and then run:

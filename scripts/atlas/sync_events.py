@@ -21,7 +21,7 @@ from pathlib import Path
 from zoneinfo import ZoneInfo
 
 ROOT = Path(__file__).resolve().parents[2]
-HTML = ROOT / "static/atlas/index.html"
+HTML = ROOT / "assets/atlas/atlas.js"
 SOURCES = {
     "DATA": (ROOT / "static/atlas/data/places.json", re.compile(r"(?m)^const DATA=(.*);$")),
     "EVENTS": (ROOT / "static/atlas/data/events.json", re.compile(r"(?m)^const EVENTS=(.*)\.events;$")),
@@ -109,7 +109,7 @@ def main():
         current = json.loads(match.group(1))
         if args.check:
             if current != datasets[name]:
-                raise SystemExit(name + " is out of sync: run sync_events.py and commit index.html")
+                raise SystemExit(name + " is out of sync: run sync_events.py and commit atlas.js")
         else:
             compact = json.dumps(datasets[name], ensure_ascii=False, separators=(",", ":"))
             html = html[:match.start(1)] + compact + html[match.end(1):]
@@ -117,7 +117,7 @@ def main():
         original = HTML.read_text(encoding="utf-8")
         if html != original:
             HTML.write_text(html, encoding="utf-8")
-            print("Rebuilt index.html's two embedded source datasets")
+            print("Rebuilt atlas.js's two embedded source datasets")
     print(f"Atlas source integrity PASS: {places} institutions, {events} event occurrences")
     print("Calendar months:", dict(sorted(months.items())))
     print("Publication gate: editorial and coordinate review remains mandatory.")

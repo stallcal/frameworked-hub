@@ -12,13 +12,14 @@
 {{ $design := resources.Get "css/editorial-redesign.css" | minify | fingerprint }}<link rel="stylesheet" href="{{ $design.RelPermalink }}" integrity="{{ $design.Data.Integrity }}">
 {{ $mark := (resources.Get "images/frameworked-mark.png").Resize "160x png" }}<link rel="icon" type="image/png" href="{{ $mark.RelPermalink }}">
 {{ if eq .Section "explore" }}{{ $explore := resources.Get "css/explore.css" | minify | fingerprint }}<link rel="stylesheet" href="{{ $explore.RelPermalink }}" integrity="{{ $explore.Data.Integrity }}">{{ end }}
+{{ block "head-extra" . }}{{ end }}
 </head><body class="{{ if .IsHome }}home{{ else }}interior{{ end }}{{ if .Params.isAbout }} about-page{{ end }}{{ if eq .Section "tools" }} tools-page{{ end }}">
 <a class="skip-link" href="#main">Skip to content</a>
 <div class="site-shell">
 <header class="site-header"><a class="site-brand" href="{{ "/" | relURL }}" aria-label="Frameworked home"><img src="{{ $mark.RelPermalink }}" alt="" width="36" height="36"><span>Frameworked<span class="brand-period">.</span></span></a><nav aria-label="Main navigation">
 <a href="{{ "/" | relURL }}" {{ if .IsHome }}aria-current="page"{{ end }}>Home</a>
 <a href="{{ "/articles/" | relURL }}" {{ if in (slice "articles" "learn" "series") .Section }}aria-current="page"{{ end }}>Articles</a>
-<a href="{{ "/explore/" | relURL }}" {{ if eq .Section "explore" }}aria-current="page"{{ end }}>Explore</a>
+<a href="{{ "/explore/" | relURL }}" {{ if eq .Section "atlas" }}aria-current="location"{{ else if eq .Section "explore" }}aria-current="page"{{ end }}>Explore</a>
 <a href="{{ "/tools/" | relURL }}" {{ if eq .Section "tools" }}aria-current="page"{{ end }}>Tools</a>
 <a href="{{ "/about/" | relURL }}" {{ if .Params.isAbout }}aria-current="page"{{ end }}>About</a>
 </nav></header>
