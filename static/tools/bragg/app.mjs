@@ -2,12 +2,14 @@ import { bragg, squareLatticeSpacing, compareTwoPlaneInterference, VERSION } fro
 
   const $=id=>document.getElementById(id);
   const number=id=>$(id).value.trim()===""?NaN:Number($(id).value);
-  const fmt=x=>Number(x.toPrecision(7)).toString();
-  let result=null, guided=true, latestPlane=null, previousGuided=null;
+  const fmt=x=>Number(x.toFixed(2)).toFixed(2);
+  const fmtPath=x=>Number(x.toFixed(4)).toString();
+  let result=null, guided=true, latestPlane=null, previousGuided=null, previousLatticeA=null;
 
   function drawLattice(p){
     const {a,h,k,d}=p, step=a*8.6, cx=380,cy=203;
-    const lines=[], thick=[],dots=[];
+    const lines=[], thick=[], dots=[], previousDots=[];
+    const oldStep=previousLatticeA!==null && previousLatticeA!==a?previousLatticeA*8.6:null;
     for(let m=-42;m<=42;m++){
       const line=k===0
         ?`<line x1="${cx+m*step}" y1="49" x2="${cx+m*step}" y2="355"/>`
@@ -18,6 +20,16 @@ import { bragg, squareLatticeSpacing, compareTwoPlaneInterference, VERSION } fro
       const x=cx+i*step,y=cy+j*step;
       if(x>36&&x<724&&y>52&&y<350)dots.push(`<circle cx="${x}" cy="${y}" r="3"/>`);
     }
+    // Ghost only a small central group of PREVIOUS positions, so motion is visible
+    // without distracting from the current diagram or leaving permanent overlays.
+    if(oldStep!==null){
+      for(let i=-3;i<=3;i++)for(let j=-2;j<=2;j++){
+        const x=cx+i*oldStep,y=cy+j*oldStep;
+        if(x>36&&x<724&&y>52&&y<350)
+          previousDots.push(`<circle class="lattice-previous-dot" cx="${x}" cy="${y}" r="3.4"/>`);
+      }
+    }
+    const aX1=cx+step,aX2=cx+2*step,aBracketY=cy+51;
     const n=h*h+k*k,vx=h*step/n,vy=k*step/n;
     const labelX=cx+vx*.5, labelY=cy+vy*.5-14;
     $("latticeGeometry").innerHTML=`
@@ -31,9 +43,16 @@ import { bragg, squareLatticeSpacing, compareTwoPlaneInterference, VERSION } fro
       <g clip-path="url(#braggLatticeClip)">
         <g stroke="#9bb3ce" stroke-width="1.1" opacity=".48">${lines.join("")}</g>
         <g stroke="#9e382e" stroke-width="3.1">${thick.join("")}</g>
+        <g class="lattice-previous-positions" fill="none" stroke="#084b9e" stroke-width="1.7">${previousDots.join("")}</g>
         <g fill="#084b9e">${dots.join("")}</g>
         <path d="M${cx} ${cy}L${cx+vx} ${cy+vy}" stroke="#9e382e" stroke-width="2.7" marker-end="url(#braggDtip)"/>
         <text x="${labelX}" y="${labelY}" font-family="system-ui,sans-serif" font-size="21" font-weight="700" text-anchor="middle" fill="#9e382e" stroke="#eff5fd" stroke-width="5" paint-order="stroke">d</text>
+        <!-- a is measured horizontally between two actual neighboring lattice points. -->
+        <g class="lattice-a-bracket" data-distance-px="${step}" stroke="#084b9e" fill="none" stroke-linecap="round">
+          <path d="M${aX1} ${cy+5}V${aBracketY-8} M${aX2} ${cy+5}V${aBracketY-8}" stroke-width="1.25" stroke-dasharray="3 3" opacity=".8"/>
+          <path d="M${aX1} ${aBracketY-7}V${aBracketY+7} M${aX1} ${aBracketY}H${aX2} M${aX2} ${aBracketY-7}V${aBracketY+7}" stroke-width="2.5"/>
+        </g>
+        <text class="lattice-a-label" x="${(aX1+aX2)/2}" y="${aBracketY-13}" font-family="system-ui,sans-serif" font-size="21" font-weight="700" text-anchor="middle" fill="#084b9e" stroke="#eff5fd" stroke-width="5" paint-order="stroke">a</text>
       </g>
       <rect x="45" y="61" width="340" height="57" rx="6" fill="#fff" opacity=".95"/>
       <g font-family="system-ui,sans-serif">
@@ -43,6 +62,7 @@ import { bragg, squareLatticeSpacing, compareTwoPlaneInterference, VERSION } fro
         <circle cx="62" cy="376" r="4" fill="#084b9e"/><text x="75" y="381" font-size="14" fill="#1c3049">Lattice points</text>
         <path d="M241 376H265" stroke="#9e382e" stroke-width="3"/><text x="279" y="381" font-size="14" fill="#1c3049">Selected planes &amp; spacing d</text>
       </g>`;
+    previousLatticeA=a;
   }
 
   function drawRay(r){
@@ -133,8 +153,8 @@ import { bragg, squareLatticeSpacing, compareTwoPlaneInterference, VERSION } fro
     drawWavePair("destructiveWaves",c.off.relativePhase);
     $("onBraggAngle").textContent="2θ = "+fmt(c.on.twoTheta)+"°";
     $("offBraggAngle").textContent="2θ = "+fmt(c.off.twoTheta)+"°";
-    $("onBraggPath").textContent="Δpath = "+fmt(c.on.pathDifference)+" Å = "+c.order+"λ";
-    $("offBraggPath").textContent="Δpath = "+fmt(c.off.pathDifference)+" Å = ("+c.order+" − ½)λ";
+    $("onBraggPath").textContent="Δpath = "+fmtPath(c.on.pathDifference)+" Å = "+c.order+"λ";
+    $("offBraggPath").textContent="Δpath = "+fmtPath(c.off.pathDifference)+" Å = ("+c.order+" − ½)λ";
   }
   function drawMobileAngle(r,plane){
     $("mobileLive").hidden=!guided;
@@ -160,9 +180,20 @@ import { bragg, squareLatticeSpacing, compareTwoPlaneInterference, VERSION } fro
   function update(){
     guided=!$("advancedPanel").open;
     $("guidedControls").hidden=!guided;
+    $("relationshipChain").hidden=!guided;
+    $("qMetric").hidden=guided;
+    $("readouts").classList.toggle("advanced-readouts",!guided);
     $("experimentHelper").textContent=guided
       ?"Adjust the square lattice or switch plane families. The Bragg-angle arc changes alongside the lattice."
       :"Enter a known spacing, 2θ or q. Only the ray construction is shown: the numerical calculation is independent of the guided square lattice.";
+    const guides={
+      spacing:["Known spacing → possible peak position","Enter d to find where this plane spacing may satisfy the Bragg condition for your X-ray wavelength."],
+      angle:["Measured peak → estimated plane spacing","Enter an experimental 2θ position and known wavelength to calculate the associated d-spacing. This alone does not index or identify the reflection."],
+      q:["Scattering vector → plane spacing","Enter q to convert a scattering-vector magnitude into the corresponding spacing for the selected diffraction order."]
+    };
+    const topic=guides[$("mode").value];
+    $("advancedQuestion").textContent=topic[0];
+    $("advancedAnswer").textContent=topic[1];
     $("latticePane").hidden=!guided;
     $("diagramPair").classList.toggle("advanced-layout",!guided);
     $("value-label").textContent={
@@ -217,18 +248,22 @@ import { bragg, squareLatticeSpacing, compareTwoPlaneInterference, VERSION } fro
             "At the same plane spacing, a longer wavelength requires a larger Bragg angle.":
             "At the same plane spacing, a shorter wavelength requires a smaller Bragg angle.";
         }
-        $("observation").textContent=`${message} Current (${plane.plane}) family: d = ${fmt(plane.d)} Å, θ = ${fmt(result.theta)}°, 2θ = ${fmt(result.twoTheta)}°.`;
+        $("observation").textContent=message;
         previousGuided=now;
       }else{
         $("observation").textContent=`The (${plane.plane}) planes are ${fmt(plane.d)} Å apart, but nλ ≤ 2d is not satisfied. No possible first-order reflection angle is shown.`;
       }
-      $("explanation").textContent="This is a 2D lattice teaching model. The highlighted lines represent plane families, not actual mirrored surfaces. Bragg's law does not predict intensities or a complete PXRD pattern.";
+      $("explanation").textContent="Schematic 2D geometry; see model assumptions below.";
     }else{
       $("takeawayTitle").textContent="Advanced calculation";
-      $("observation").textContent=result?
-        `For d = ${fmt(result.spacing)} Å, order n = ${result.order}, and λ = ${fmt(result.wavelength)} Å, the condition occurs at θ = ${fmt(result.theta)}° and 2θ = ${fmt(result.twoTheta)}°.`
-        :"Choose physically allowed inputs; no diffraction angle is calculated for this combination.";
-      $("explanation").textContent="Advanced spacing, 2θ and q inputs are not attached to the schematic square lattice. Reflection intensities and structural absences are outside this model.";
+      const inputMode=$("mode").value;
+      $("observation").textContent=!result?"No valid Bragg condition for these inputs.":
+        inputMode==="angle"
+          ?`A peak at 2θ = ${fmt(result.twoTheta)}° implies d ≈ ${fmt(result.spacing)} Å for this wavelength and order. One peak cannot identify a phase.`
+          :inputMode==="q"
+          ?`At q = ${fmt(result.q)} Å⁻¹, the corresponding d-spacing is ${fmt(result.spacing)} Å for the selected order.`
+          :`For d = ${fmt(result.spacing)} Å, a reflection is geometrically possible near 2θ = ${fmt(result.twoTheta)}° at this wavelength.`;
+      $("explanation").textContent="Advanced inputs are independent of the guided square-lattice schematic.";
     }
     drawRay(result);
     drawMobileAngle(result,plane);
@@ -267,6 +302,13 @@ import { bragg, squareLatticeSpacing, compareTwoPlaneInterference, VERSION } fro
   });
   $("preset").addEventListener("change",()=>{
     if($("preset").value!=="custom")$("wavelength").value=$("preset").value;
+    update();
+  });
+  $("tryMeasuredPeak").addEventListener("click",()=>{
+    $("advancedPanel").open=true;
+    $("mode").value="angle";
+    $("value").value="30";
+    $("order").value="1";
     update();
   });
   $("reset").addEventListener("click",()=>{
