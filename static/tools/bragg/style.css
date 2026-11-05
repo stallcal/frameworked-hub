@@ -609,7 +609,7 @@ footer {
 .advanced-example-button:hover{background:var(--surface-highlight)}
 .readouts-bragg{grid-template-columns:repeat(3,minmax(0,1fr))}
 .readouts-bragg.advanced-readouts{grid-template-columns:repeat(4,minmax(0,1fr))}
-#qMetric[hidden],.lattice-pane[hidden]{display:none!important}
+#qMetric[hidden],.lattice-pane[hidden],.relationship-chain[hidden]{display:none!important}
 .parameter-hint{color:#4a6889;font:12px/1.45 system-ui,sans-serif;margin-top:4px}
 .relationship-chain{display:flex;align-items:center;gap:10px 12px;flex-wrap:wrap;margin:12px 0 10px;padding:8px 12px;border-left:3px solid #084b9e;background:#f0f5fc;font:700 12px/1.35 system-ui,sans-serif;color:#446383}
 .relationship-chain span:nth-child(2),.relationship-chain span:nth-child(4){color:#9e382e;font-size:17px;line-height:1}
