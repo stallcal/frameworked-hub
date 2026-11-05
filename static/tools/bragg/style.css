@@ -619,8 +619,8 @@ footer {
 .lattice-pane .key-blue,.lattice-pane .key-red{display:inline-block;width:17px;height:3px;vertical-align:middle;position:relative;top:-3px;flex:none}
 .lattice-pane .key-blue{background:#084b9e}
 .lattice-pane .key-red{background:#9e382e}
-.lattice-previous-dot{animation:lattice-ghost-fade .52s ease-out both;pointer-events:none}
-@keyframes lattice-ghost-fade{0%{opacity:.45}100%{opacity:0}}
+.lattice-previous-dot{stroke-dasharray:2 2;animation:lattice-ghost-fade .95s ease-out both;pointer-events:none}
+@keyframes lattice-ghost-fade{0%{opacity:.7}60%{opacity:.28}100%{opacity:0}}
 @media(prefers-reduced-motion:reduce){.lattice-previous-positions{display:none}}
 @media(max-width:980px){
  .readouts-bragg,.readouts-bragg.advanced-readouts{grid-template-columns:repeat(2,minmax(0,1fr))}
