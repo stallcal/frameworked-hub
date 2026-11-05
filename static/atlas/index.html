@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="description" content="Explore Texas science museums, STEM outreach, observatories, nature centers and research institutions with the Frameworked Science Atlas.">
-  <title>Texas Science Atlas — Frameworked</title>
+  <title>Texas Science Atlas (Public Beta) — Frameworked</title>
   <style>
     :root{--blue:#084B9E;--navy:#1C3049;--ink:#26394f;--muted:#667a8e;--bg:#F6F8F9;--line:#DAE4EC;--green:#089E4B;--red:#9E382E;--gold:#C09438;--light:#E8F1F8;--serif:Georgia,"Times New Roman",serif}
     *{box-sizing:border-box}html,body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,"Segoe UI",-apple-system,BlinkMacSystemFont,Arial,sans-serif}button,select,input{font:inherit}button{cursor:pointer}a{color:var(--blue)}a:hover{text-decoration:underline}button:focus-visible,input:focus-visible,select:focus-visible,a:focus-visible,.pin:focus-visible{outline:3px solid #F0B44A;outline-offset:3px}.hidden{display:none!important}
@@ -29,17 +29,17 @@
     @media(max-width:630px){.atlas-tabs .tab-detail{display:none}.atlas-tabs button{flex:1}.cal-actions{width:100%}.cal-grid{grid-auto-rows:minmax(57px,1fr)}.cal-day{padding:5px;min-height:57px;gap:3px}.cal-day time{font-size:10px}.cal-day .count{font-size:9px;padding:3px}.cal-filters select{flex:1}.cal-filters input{flex:1 0 100%}.cal-toolbar h2{font-size:24px}}
 
   </style>
-  <meta name="robots" content="noindex,nofollow">
+  <meta name="robots" content="noindex,follow">
 
-<!-- Prototype geographic data generated from mpl_toolkits.basemap_data UScounties, covered by the MIT license for the other data assets in Basemap Data (copyright 2011 Jeffrey Whitaker). MIT license and source attribution should be retained in any future production version. Full license: https://github.com/matplotlib/basemap/blob/master/packages/basemap_data/LICENSE.mit . -->
+<!-- Prototype geographic data generated from mpl_toolkits.basemap_data UScounties, covered by the MIT license for the other data assets in Basemap Data (copyright 2011 Jeffrey Whitaker). MIT license and source attribution should be retained in any future production version. Package license/source: https://pypi.org/project/basemap-data/ . This prototype uses derived county shapes and retains source credit. -->
 </head>
 <body>
-  <header class="top"><div class="top-inner"><a class="brand" href="https://frameworked.org/" target="_blank" rel="noopener"><span class="brandmark"><b>⬡</b></span> Frameworked</a><div class="topmeta"><span class="label">Science Atlas · Texas Pilot</span><a href="https://frameworked.org/" target="_blank" rel="noopener">Frameworked.org ↗</a></div></div></header>
+  <header class="top"><div class="top-inner"><a class="brand" href="/"><span class="brandmark"><b>⬡</b></span> Frameworked</a><div class="topmeta"><span class="label">Science Atlas · Public Beta</span><a href="/explore/">Back to Explore ↗</a></div></div></header>
   <div class="container">
     <div class="eyebrow">The science around us</div>
     <h1>Explore science in Texas.</h1>
     <p class="intro">Discover museums, observatories, nature education, university research and science outreach. Start in Dallas–Fort Worth, then browse a growing statewide directory by region. Entries are research leads, not a claim that every location is open to the public.</p>
-    <div class="intro-actions"><div class="crumb">Science Atlas <span aria-hidden="true">/</span> <strong>Texas</strong> <span aria-hidden="true">/</span> <span id="crumbRegion">Dallas–Fort Worth focus</span></div><div class="status"><span></span> Texas coverage: mapping in progress</div></div>
+    <div class="intro-actions"><div class="crumb">Science Atlas <span aria-hidden="true">/</span> <strong>Texas</strong> <span aria-hidden="true">/</span> <span id="crumbRegion">Dallas–Fort Worth focus</span></div><div class="status"><span></span> Public beta · Texas coverage expanding</div></div>
     <nav class="atlas-tabs" aria-label="Explore Atlas views"><button id="mapTab" type="button" class="active" aria-pressed="true">⌖ &nbsp;Places on the map</button><button id="calendarTab" type="button" aria-pressed="false">▦ &nbsp;Science events</button><span class="tab-detail">Event dates from official organizers · Texas pilot</span></nav>
     <main class="atlas" id="atlasMapView">
       <section class="directory" aria-labelledby="directoryTitle">
@@ -65,7 +65,7 @@
       <div class="cal-note">Pilot calendar · All access types appear by default, including restricted programs (clearly labeled). Restricted events are not necessarily open to public visitors. Dated entries were found on official sites on November 4, 2026, but have not completed publication review. Event schedules and ticket availability can change. No automated synchronization is running yet.</div>
       <div class="cal-layout"><div><div class="cal-week" aria-hidden="true"><span>Sun</span><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span></div><div id="calendarGrid" class="cal-grid" role="group" aria-label="Monthly event calendar"></div></div><aside class="event-results" aria-live="polite"><h3 id="eventListTitle">Events this month</h3><p class="event-count" id="eventCount"></p><div id="eventCards"></div></aside></div>
     </section>
-    <div class="bottom"><span>Frameworked Science Atlas · v0.9.1 · Statewide discovery research, not an official visitor guide</span><span>All entries need editorial review before publication. County and DFW highway data are embedded; close road detail uses live Census data.</span></div>
+    <div class="bottom"><span>Frameworked Science Atlas · Public Beta · v0.9.1 · Statewide discovery research, not an official visitor guide</span><span>Preliminary listings and events require official-source checks before visiting. Counties and DFW highways are embedded; close road detail uses live Census data.</span></div>
   </div>
 <script>
 'use strict';
