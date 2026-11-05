@@ -65,7 +65,7 @@
       <div class="cal-note">Pilot calendar · All access types appear by default, including restricted programs (clearly labeled). Restricted events are not necessarily open to public visitors. Dated entries were found on official sites on November 4, 2026, but have not completed publication review. Event schedules and ticket availability can change. No automated synchronization is running yet.</div>
       <div class="cal-layout"><div><div class="cal-week" aria-hidden="true"><span>Sun</span><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span></div><div id="calendarGrid" class="cal-grid" role="group" aria-label="Monthly event calendar"></div></div><aside class="event-results" aria-live="polite"><h3 id="eventListTitle">Events this month</h3><p class="event-count" id="eventCount"></p><div id="eventCards"></div></aside></div>
     </section>
-    <div class="bottom"><span>Frameworked Science Atlas · v0.9 · Statewide discovery research, not an official visitor guide</span><span>All entries need editorial review before publication. County and DFW highway data are embedded; close road detail uses live Census data.</span></div>
+    <div class="bottom"><span>Frameworked Science Atlas · v0.9.1 · Statewide discovery research, not an official visitor guide</span><span>All entries need editorial review before publication. County and DFW highway data are embedded; close road detail uses live Census data.</span></div>
   </div>
 <script>
 'use strict';
@@ -373,7 +373,7 @@ function renderProfile(){const p=PLACES.find(p=>p.id===selectedId);const pane=$(
  const zoomButton=document.createElement('button');
  zoomButton.type='button';zoomButton.textContent='Explore nearby streets';
  zoomButton.style.cssText='padding:10px 12px;border-radius:8px;border:0;background:#084B9E;color:white;font-size:12px;font-weight:750;cursor:pointer;margin-bottom:10px';
- zoomButton.onclick=()=>{const w=4.0,h=w*.89;setView({x:xProj(p.lng)-w/2,y:yProj(p.lat)-h/2,w,h})};
+ zoomButton.onclick=()=>{const w=2.4,h=w*.89;setView({x:xProj(p.lng)-w/2,y:yProj(p.lat)-h/2,w,h})};
  streetActions.appendChild(zoomButton);
  const maps=document.createElement('a');
  maps.className='link';maps.target='_blank';maps.rel='noopener noreferrer';
@@ -397,7 +397,7 @@ function renderProfile(){const p=PLACES.find(p=>p.id===selectedId);const pane=$(
 }
 function selectPlace(id,recenter){const p=PLACES.find(p=>p.id===id);if(!p)return;selectedId=id;renderList();renderProfile();if(recenter){const w=Math.min(view.w,115),h=w*.89;setView({x:xProj(p.lng)-w/2,y:yProj(p.lat)-h/2,w,h})}else renderPins();const selected=$('placeList').querySelector('.selected');if(selected)selected.scrollIntoView({block:'nearest',behavior:'auto'});}
 function chooseRegion(next){region=next;area='all';$('area').value='all';$('crumbRegion').textContent=next==='dfw'?'Dallas–Fort Worth focus':'All Texas';selectedId=null;$('dfwButton').classList.toggle('active',next==='dfw');$('texasButton').classList.toggle('active',next==='tx');$('dfwButton').setAttribute('aria-pressed',String(next==='dfw'));$('texasButton').setAttribute('aria-pressed',String(next==='tx'));$('directoryTitle').textContent=next==='dfw'?'North Texas':'Texas directory';$('directorySubtitle').textContent=next==='dfw'?'Explore the Dallas–Fort Worth science community.':'Browse science locations across Texas by region.';$('mapTitle').textContent=next==='dfw'?'Dallas–Fort Worth, Texas':'Texas · Statewide';setView(VIEWS[next]);renderList();renderProfile()}
-function zoomBy(factor,clientX,clientY){const rect=$('geoMap').getBoundingClientRect();const mx=clientX===undefined?.5:(clientX-rect.left)/rect.width;const my=clientY===undefined?.5:(clientY-rect.top)/rect.height;const w=Math.max(1.6,Math.min(1700,view.w*factor)),h=view.h*w/view.w;setView({x:view.x+(view.w-w)*mx,y:view.y+(view.h-h)*my,w,h})}
+function zoomBy(factor,clientX,clientY){const rect=$('geoMap').getBoundingClientRect();const mx=clientX===undefined?.5:(clientX-rect.left)/rect.width;const my=clientY===undefined?.5:(clientY-rect.top)/rect.height;const w=Math.max(0.45,Math.min(1700,view.w*factor)),h=view.h*w/view.w;setView({x:view.x+(view.w-w)*mx,y:view.y+(view.h-h)*my,w,h})}
 function dragMove(e){if(!isDragging||!prevPointer)return;const rect=$('geoMap').getBoundingClientRect();const dx=(e.clientX-prevPointer.x)/rect.width*view.w,dy=(e.clientY-prevPointer.y)/rect.height*view.h;setView({...view,x:view.x-dx,y:view.y-dy});prevPointer={x:e.clientX,y:e.clientY}}
 $('geoMap').addEventListener('pointerdown',e=>{if(e.target.classList.contains('pin'))return;isDragging=true;prevPointer={x:e.clientX,y:e.clientY};$('geoMap').classList.add('dragging');$('geoMap').setPointerCapture(e.pointerId)});
 $('geoMap').addEventListener('pointermove',dragMove);['pointerup','pointercancel','lostpointercapture'].forEach(name=>$('geoMap').addEventListener(name,()=>{isDragging=false;prevPointer=null;$('geoMap').classList.remove('dragging')}));
