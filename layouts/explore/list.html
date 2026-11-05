@@ -16,16 +16,6 @@
       <a class="topic-card" href="{{ printf "/explore/resources/?topic=%s" .id | relURL }}"><span class="topic-card-kicker">COLLECTION</span><strong>{{ .label }}</strong><span aria-hidden="true" class="topic-arrow">{{ partial "frameworked-arrow.html" . }}</span></a>
       {{ end }}
     </div>
-    <div class="lab-feature">
-      <div>
-        <p class="design-eyebrow">RESEARCH COLLECTION / WRIEDT LAB</p>
-        <p>Selected papers on porous frameworks, PFAS, crystallography, and environmental applications.</p>
-      </div>
-      <div class="lab-feature-links">
-        <a href="{{ "/explore/resources/?collection=wriedt" | relURL }}">View Wriedt Lab papers <span aria-hidden="true">{{ partial "frameworked-arrow.html" . }}</span></a>
-        <a href="https://labs.utdallas.edu/wriedt/publications/" target="_blank" rel="noopener noreferrer">Complete lab publication list <span aria-hidden="true">{{ partial "frameworked-arrow.html" . }}</span></a>
-      </div>
-    </div>
   </section>
 
   <section class="resource-catalog" aria-labelledby="all-resources-heading">
@@ -44,7 +34,6 @@
         {{ range $catalog.kinds }}<option value="{{ .id }}">{{ .label }}</option>{{ end }}
       </select></label>
       <button type="reset" class="resource-reset" id="resource-reset">Clear filters</button>
-      <label class="resource-lab-filter" for="resource-lab-only"><input type="checkbox" id="resource-lab-only" name="collection" value="wriedt"><span>Selected Wriedt Lab papers only</span></label>
     </form>
     <p class="resource-count" id="resource-count" role="status" aria-live="polite">{{ len $catalog.resources }} resources</p>
 
@@ -61,7 +50,7 @@
         {{ range . }}
           {{ $link := .url }}
           {{ with .doi }}{{ $link = printf "https://doi.org/%s" . }}{{ end }}
-          <article class="resource-entry" data-resource-entry data-kind="{{ .kind }}" data-topics="{{ delimit .topics " " }}" data-collection="{{ .collection }}">
+          <article class="resource-entry" data-resource-entry data-kind="{{ .kind }}" data-topics="{{ delimit .topics " " }}">
             <div class="resource-entry-main">
               <a class="resource-entry-title" href="{{ $link }}" target="_blank" rel="noopener noreferrer">{{ .title }} <span aria-hidden="true">{{ partial "frameworked-arrow.html" . }}</span></a>
               {{ with .meta }}<p class="resource-entry-meta">{{ . }}</p>{{ end }}
@@ -71,7 +60,6 @@
                   {{ $topic := . }}
                   {{ range $catalog.topics }}{{ if eq .id $topic }}<span>{{ .short }}</span>{{ end }}{{ end }}
                 {{ end }}
-                {{ with .collection }}<span class="resource-lab-tag">Wriedt Lab</span>{{ end }}
               </div>
             </div>
             {{ with .doi }}<a class="resource-doi" href="{{ printf "https://doi.org/%s" . }}" target="_blank" rel="noopener noreferrer" aria-label="Open DOI {{ . }}">DOI: {{ . }}</a>{{ end }}
