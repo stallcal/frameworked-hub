@@ -1,0 +1,29 @@
+name: Reagent ratio calculator validation
+
+on:
+  pull_request:
+    paths:
+      - "static/tools/reagent-ratios/**"
+      - "tests/reagent-ratio.test.mjs"
+      - ".github/workflows/reagent-ratio.yml"
+  push:
+    branches: [main]
+    paths:
+      - "static/tools/reagent-ratios/**"
+      - "tests/reagent-ratio.test.mjs"
+      - ".github/workflows/reagent-ratio.yml"
+
+jobs:
+  ratio-model-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Validate calculation model
+        run: node --test tests/reagent-ratio.test.mjs
+      - name: JavaScript syntax validation
+        run: |
+          node --check static/tools/reagent-ratios/model.mjs
+          node --check static/tools/reagent-ratios/app.mjs

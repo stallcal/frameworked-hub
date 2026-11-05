@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Calculate reagent masses and molar amounts from a chosen feed ratio and one known quantity. A free, general-purpose chemistry tool from Frameworked." />
+  <title>Reagent ratio calculator · Frameworked</title>
+  <link rel="stylesheet" href="./style.css" />
+  <script type="module" src="./app.mjs"></script>
+</head>
+<body>
+  <a class="skip-link" href="#calculator">Skip to calculator</a>
+  <div class="page">
+    <header class="site-header">
+      <a class="brand" href="/">Frameworked<span>.</span></a>
+      <nav aria-label="Site navigation"><a href="/tools/"><span class="back-arrow" aria-hidden="true">←</span> All tools</a></nav>
+    </header>
+    <main>
+      <section class="page-intro" aria-labelledby="page-title">
+        <p class="eyebrow"><span class="eyebrow-rule" aria-hidden="true"></span> THE WORKBENCH / QUANTITATIVE CHEMISTRY</p>
+        <div class="intro-layout">
+          <div>
+            <h1 id="page-title">Reagent ratio<br><em>calculator.</em></h1>
+            <p class="intro-copy">Set the molar proportions. Enter one known amount. Calculate the quantities for every other reagent—without manually scaling a recipe.</p>
+          </div>
+          <div class="intro-diagram" aria-label="Illustration of three differently sized reagent proportions">
+            <span class="diagram-overline">01 — THE IDEA</span>
+            <div class="proportion-art" aria-hidden="true">
+              <div class="proportion-column">
+                <span class="proportion-value">1</span>
+                <span class="proportion-bar bar-blue"></span>
+                <span class="proportion-label">A</span>
+              </div>
+              <div class="proportion-column">
+                <span class="proportion-value">2</span>
+                <span class="proportion-bar bar-red"></span>
+                <span class="proportion-label">B</span>
+              </div>
+              <div class="proportion-column">
+                <span class="proportion-value">3</span>
+                <span class="proportion-bar bar-green"></span>
+                <span class="proportion-label">C</span>
+              </div>
+            </div>
+            <p class="diagram-caption">One specified quantity → a consistent molar feed ratio.</p>
+          </div>
+        </div>
+      </section>
+
+      <div class="workspace" id="calculator">
+        <section class="entry-panel" aria-labelledby="entry-title">
+          <div class="panel-heading">
+            <div><p class="eyebrow">STEP 01 / REAGENTS</p><h2 id="entry-title">Build your ratio.</h2></div>
+            <span class="small-index" id="reagentCount">2 REAGENTS</span>
+          </div>
+          <p class="panel-description">Give each reagent a molar mass and a relative number of moles. Names are optional. Start with two; add up to six.</p>
+          <div id="reagentList" class="reagent-list" aria-label="Reagent inputs"></div>
+          <button id="addReagent" type="button" class="secondary-button add-button"><span class="plus" aria-hidden="true">+</span> Add reagent</button>
+          <p class="field-guidance">For example, equivalents of 1, 2, and 3 give a 1:2:3 <strong>molar</strong> ratio—not a 1:2:3 mass ratio.</p>
+
+          <div class="reference-section" aria-labelledby="reference-title">
+            <div class="panel-heading reference-heading">
+              <div><p class="eyebrow">STEP 02 / KNOWN QUANTITY</p><h2 id="reference-title">Choose your starting point.</h2></div>
+            </div>
+            <p class="panel-description">Specify how much of one reagent you have or want to use. The other masses and mole amounts follow the entered proportions.</p>
+            <div class="reference-fields">
+              <div class="field">
+                <label for="referenceReagent">Known reagent</label>
+                <select id="referenceReagent" aria-label="Choose reference reagent"></select>
+              </div>
+              <div class="field amount-field">
+                <label for="knownAmount">Known quantity</label>
+                <div class="amount-control">
+                  <input id="knownAmount" type="number" inputmode="decimal" min="0" step="any" placeholder="e.g. 100" autocomplete="off" />
+                  <select id="knownUnit" aria-label="Known quantity unit">
+                    <option value="mg">mg</option>
+                    <option value="g">g</option>
+                    <option value="mmol">mmol</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="entry-actions">
+            <button id="reset" class="text-button" type="button">Reset calculator</button>
+          </div>
+        </section>
+
+        <aside class="output-panel" aria-labelledby="output-title">
+          <div class="output-top">
+            <div>
+              <p class="eyebrow">LIVE / RESULTS</p>
+              <h2 id="output-title">Calculated amounts.</h2>
+            </div>
+            <span class="live-indicator"><span aria-hidden="true"></span> LIVE</span>
+          </div>
+          <div id="validationMessage" class="validation-message" role="status" aria-live="polite">Enter the molar masses, equivalents, and one known quantity to begin.</div>
+          <div id="results" hidden>
+            <section class="ratio-display" aria-labelledby="ratio-title">
+              <p class="result-subheading" id="ratio-title">Molar equivalents</p>
+              <div class="ratio-bars" id="ratioBars"></div>
+            </section>
+            <div class="result-heading">
+              <p class="result-subheading">Quantities by reagent</p>
+              <span class="result-unit">MASS / AMOUNT</span>
+            </div>
+            <div id="resultRows" class="result-rows"></div>
+          </div>
+          <div class="result-actions">
+            <button id="copyResults" type="button" class="primary-button" disabled><span class="copy-icon" aria-hidden="true">⧉</span> Copy calculated quantities</button>
+            <p id="copyFeedback" class="copy-feedback" role="status" aria-live="polite"></p>
+          </div>
+          <p class="assumption-note"><strong>Interpretation.</strong> These are user-selected <em>feed proportions</em>, not necessarily balanced reaction coefficients. Results assume the molecular weights and reagent forms you entered are correct and the materials are pure.</p>
+        </aside>
+      </div>
+
+      <section class="method-section" aria-labelledby="method-title">
+        <div>
+          <p class="eyebrow">UNDER THE HOOD / THE CHEMISTRY</p>
+          <h2 id="method-title">One basis. Any proportion.</h2>
+          <p>The calculation first converts the known quantity into millimoles. It then multiplies that amount by the ratio of molar equivalents and converts the result back to mass.</p>
+        </div>
+        <div class="formula-panel">
+          <div class="equation">n<sub>i</sub> = n<sub>known</sub> × (r<sub>i</sub> / r<sub>known</sub>)</div>
+          <div class="equation">m<sub>i</sub> = n<sub>i</sub> × M<sub>i</sub></div>
+          <p><strong>n</strong> is amount in mmol, <strong>r</strong> is relative molar equivalents, and <strong>M</strong> is molar mass in g/mol. Numerically, g/mol = mg/mmol, so <strong>m</strong> is in mg.</p>
+          <details>
+            <summary>Limitations and assumptions</summary>
+            <p>Choosing a molar ratio does not establish a balanced chemical equation, limiting reagent, expected product composition, theoretical yield, or synthesis outcome. For salts, confirm the hydrate or solvate form. Purity corrections, stock solutions, and reagent lookup are not included in this version. Independent experimental verification is needed before using any quantities as part of a synthesis procedure.</p>
+          </details>
+        </div>
+      </section>
+    </main>
+    <footer><a class="brand footer-brand" href="/">Frameworked<span>.</span></a><p>Exploring chemistry, one building block at a time.</p><a href="/tools/">Back to the workbench <span aria-hidden="true">↗</span></a></footer>
+  </div>
+</body>
+</html>
