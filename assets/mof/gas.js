@@ -61,6 +61,9 @@ function reveal(choice){
  el('finding').setAttribute('tabindex','-1');el('finding').focus();
 }
 el('guessA').onclick=()=>reveal(0);el('guessB').onclick=()=>reveal(1);el('skip').onclick=()=>reveal(null);
+el('retry').onclick=()=>{
+ prediction=null;el('answer').hidden=true;el('guess').hidden=false;el('first').focus();
+};
 for(const c of curves){const a=document.createElement('a');a.href=c.url;a.textContent=c.name+' data';el('sources').append(a,' · ')}
 for(const id of [...names,'fill','release'])el(id).addEventListener('input',()=>{prediction=null;draw()});
 draw();

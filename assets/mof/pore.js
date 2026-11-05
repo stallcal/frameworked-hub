@@ -18,3 +18,5 @@ document.querySelector('#poreForm').onsubmit=event=>{
   result.textContent=(prediction.value===outcome?'Correct. ':'Observe where the probe stops. ')+explanation[outcome];
 };
 prepare();
+
+document.querySelector('#testProbe').disabled=false;
