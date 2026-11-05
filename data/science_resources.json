@@ -172,6 +172,27 @@
       "meta": "CCDC · 2025"
     },
     {
+      "id": "robson-1989",
+      "title": "Infinite polymeric frameworks consisting of three dimensionally linked rod-like segments",
+      "kind": "papers",
+      "doi": "10.1021/ja00197a079",
+      "topics": [
+        "mofs",
+        "crystallography"
+      ],
+      "meta": "Hoskins & Robson · JACS · 1989"
+    },
+    {
+      "id": "kitagawa-1997",
+      "title": "Three-Dimensional Framework with Channeling Cavities for Small Molecules",
+      "kind": "papers",
+      "doi": "10.1002/anie.199717251",
+      "topics": [
+        "mofs"
+      ],
+      "meta": "Kondo et al. (Kitagawa group) · Angew. Chem. · 1997"
+    },
+    {
       "id": "yaghi-li-1995",
       "title": "Hydrothermal Synthesis of a Metal-Organic Framework Containing Large Rectangular Channels",
       "kind": "papers",
