@@ -1,0 +1,797 @@
+{
+  "version": "0.6.0",
+  "source_checked_at": "2026-11-04",
+  "publication_status": "preview_only_editorial_review_required",
+  "events": [
+    {
+      "id": "heard-guided-trails-20261107",
+      "institution_id": "heard",
+      "title": "Guided Trails",
+      "start_at": "2026-11-07T09:30:00-06:00",
+      "end_at": "2026-11-07T11:30:00-06:00",
+      "timezone": "America/Chicago",
+      "category": "nature",
+      "audience": "Check organizer requirements",
+      "access": "registration",
+      "summary": "A guided exploration of the Heard sanctuary trails.",
+      "source_url": "https://www.heardmuseum.org/all-events/",
+      "source_checked_at": "2026-11-04",
+      "review": {
+        "status": "source_checked",
+        "notes": "Official dated schedule checked; event registration, ages, available spaces, and cancellations need recheck."
+      }
+    },
+    {
+      "timezone": "America/Chicago",
+      "source_checked_at": "2026-11-04",
+      "review": {
+        "status": "source_checked",
+        "notes": "Published date and time located on official organizer source; registration, availability, cancellations, and visitor access require recheck before publication."
+      },
+      "id": "ansc-20261107-moonlight-nature-night",
+      "institution_id": "austin-nature",
+      "title": "Moonlight Nature Night",
+      "start_at": "2026-11-07T17:00:00-06:00",
+      "end_at": "2026-11-07T20:00:00-06:00",
+      "category": "nature",
+      "audience": "General public, all ages",
+      "access": "public",
+      "summary": "Free outdoor education about nocturnal wildlife, astronomy, guided hikes, and science activities.",
+      "source_url": "https://www.austintexas.gov/parks/events/moonlight-nature-night"
+    },
+    {
+      "timezone": "America/Chicago",
+      "source_checked_at": "2026-11-04",
+      "review": {
+        "status": "source_checked",
+        "notes": "Published date and time located on official organizer source; registration, availability, cancellations, and visitor access require recheck before publication."
+      },
+      "id": "heard-family-campout-20261107",
+      "institution_id": "heard",
+      "title": "Family Campout",
+      "start_at": "2026-11-07T17:00:00-06:00",
+      "end_at": "2026-11-08T08:30:00-06:00",
+      "category": "nature",
+      "audience": "Families with children ages 5–12; adult supervision required",
+      "access": "registration",
+      "summary": "Overnight wildlife, science and nature activities at the sanctuary; advance tickets and age requirements apply.",
+      "source_url": "https://www.heardmuseum.org/event/family-campout-11-07-26/"
+    },
+    {
+      "timezone": "America/Chicago",
+      "source_checked_at": "2026-11-04",
+      "review": {
+        "status": "source_checked",
+        "notes": "Published date and time located on official organizer source; registration, availability, cancellations, and visitor access require recheck before publication."
+      },
+      "id": "george-saturday-20261107",
+      "institution_id": "george",
+      "title": "Saturday Stargazing — 7 PM Timed Session",
+      "start_at": "2026-11-07T19:00:00-06:00",
+      "end_at": "2026-11-07T20:00:00-06:00",
+      "category": "astronomy",
+      "audience": "General public with advance timed-entry ticket",
+      "access": "registration",
+      "summary": "Telescope observing, constellation tours and astronomy experts; separate Brazos Bend State Park admission applies. Some dates or slots may already be sold out.",
+      "source_url": "https://george.hmns.org/exhibits/saturday-stargazing/",
+      "availability_note": "Advance tickets required. Availability not confirmed; check organizer before visiting."
+    },
+    {
+      "timezone": "America/Chicago",
+      "source_checked_at": "2026-11-04",
+      "review": {
+        "status": "source_checked",
+        "notes": "Published date and time located on official organizer source; registration, availability, cancellations, and visitor access require recheck before publication."
+      },
+      "id": "ansc-20261109-science-storytime",
+      "institution_id": "austin-nature",
+      "title": "Science Storytime",
+      "start_at": "2026-11-09T09:30:00-06:00",
+      "category": "family",
+      "audience": "Young children (especially ages 4 and under) and caregivers",
+      "access": "public",
+      "summary": "Free science-themed drop-in storytime with an animal or natural object.",
+      "source_url": "https://www.austintexas.gov/parks/austin-nature-science-center-camps-events-and-community-programs"
+    },
+    {
+      "timezone": "America/Chicago",
+      "source_checked_at": "2026-11-04",
+      "review": {
+        "status": "source_checked",
+        "notes": "Published date and time located on official organizer source; registration, availability, cancellations, and visitor access require recheck before publication."
+      },
+      "id": "ansc-20261109-suppertime-star-party-intro-to",
+      "institution_id": "austin-nature",
+      "title": "Suppertime Star Party: Intro to Astronomy",
+      "start_at": "2026-11-09T18:00:00-06:00",
+      "end_at": "2026-11-09T18:45:00-06:00",
+      "category": "astronomy",
+      "audience": "All ages; online attendance",
+      "access": "registration",
+      "summary": "Family Zoom session explaining the differences between stars and planets; registration required.",
+      "source_url": "https://www.austintexas.gov/parks/austin-nature-science-center-camps-events-and-community-programs",
+      "delivery": "online"
+    },
+    {
+      "id": "uta-mindful-moments-20261111",
+      "institution_id": "uta-planetarium",
+      "title": "Mindful Moments Under the Stars",
+      "start_at": "2026-11-11T12:15:00-06:00",
+      "end_at": "2026-11-11T12:45:00-06:00",
+      "timezone": "America/Chicago",
+      "category": "astronomy",
+      "audience": "UTA students, faculty and staff",
+      "access": "restricted",
+      "summary": "A scheduled program at the UTA Planetarium; eligibility restrictions apply.",
+      "source_url": "https://events.uta.edu/planetarium_764",
+      "source_checked_at": "2026-11-04",
+      "review": {
+        "status": "source_checked",
+        "notes": "Date and basic program details seen on official organizer schedule. Registration, cancellations, pricing and access must be reconfirmed before attendance."
+      }
+    },
+    {
+      "id": "heard-recycles-20261113",
+      "institution_id": "heard",
+      "title": "Texas Recycles Day",
+      "start_at": "2026-11-13T09:00:00-06:00",
+      "end_at": "2026-11-13T17:00:00-06:00",
+      "timezone": "America/Chicago",
+      "category": "environment",
+      "audience": "Visitors of all ages",
+      "access": "public",
+      "summary": "Conservation outreach and museum access; a recyclable item qualifies for free admission under organizer conditions.",
+      "source_url": "https://www.heardmuseum.org/texas-recycles-day-at-heard/",
+      "source_checked_at": "2026-11-04",
+      "review": {
+        "status": "source_checked",
+        "notes": "Official dated schedule checked; event registration, ages, available spaces, and cancellations need recheck."
+      }
+    },
+    {
+      "id": "heard-night-hike-20261113",
+      "institution_id": "heard",
+      "title": "Night Hike",
+      "start_at": "2026-11-13T18:30:00-06:00",
+      "end_at": "2026-11-13T20:30:00-06:00",
+      "timezone": "America/Chicago",
+      "category": "nature",
+      "audience": "Check organizer age and trail requirements",
+      "access": "registration",
+      "summary": "Evening nature exploration at the Heard sanctuary.",
+      "source_url": "https://www.heardmuseum.org/all-events/",
+      "source_checked_at": "2026-11-04",
+      "review": {
+        "status": "source_checked",
+        "notes": "Official dated schedule checked; event registration, ages, available spaces, and cancellations need recheck."
+      }
+    },
+    {
+      "id": "heard-recycles-20261114",
+      "institution_id": "heard",
+      "title": "Texas Recycles Day",
+      "start_at": "2026-11-14T09:00:00-06:00",
+      "end_at": "2026-11-14T17:00:00-06:00",
+      "timezone": "America/Chicago",
+      "category": "environment",
+      "audience": "Visitors of all ages",
+      "access": "public",
+      "summary": "Conservation outreach and museum access; a recyclable item qualifies for free admission under organizer conditions.",
+      "source_url": "https://www.heardmuseum.org/texas-recycles-day-at-heard/",
+      "source_checked_at": "2026-11-04",
+      "review": {
+        "status": "source_checked",
+        "notes": "Official dated schedule checked; event registration, ages, available spaces, and cancellations need recheck."
+      }
+    },
+    {
+      "timezone": "America/Chicago",
+      "source_checked_at": "2026-11-04",
+      "review": {
+        "status": "source_checked",
+        "notes": "Published date and time located on official organizer source; registration, availability, cancellations, and visitor access require recheck before publication."
+      },
+      "id": "ansc-20261114-dinovember-fossil-explorations",
+      "institution_id": "austin-nature",
+      "title": "Dinovember: Fossil Explorations",
+      "start_at": "2026-11-14T10:00:00-06:00",
+      "end_at": "2026-11-14T14:00:00-06:00",
+      "category": "family",
+      "audience": "Families",
+      "access": "public",
+      "summary": "Compare ancient and modern specimens at fossil activities and explore evidence of Texas prehistoric life.",
+      "source_url": "https://www.austintexas.gov/parks/austin-nature-science-center-camps-events-and-community-programs"
+    },
+    {
+      "timezone": "America/Chicago",
+      "source_checked_at": "2026-11-04",
+      "review": {
+        "status": "source_checked",
+        "notes": "Published date and time located on official organizer source; registration, availability, cancellations, and visitor access require recheck before publication."
+      },
+      "id": "george-saturday-20261114",
+      "institution_id": "george",
+      "title": "Saturday Stargazing — 7 PM Timed Session",
+      "start_at": "2026-11-14T19:00:00-06:00",
+      "end_at": "2026-11-14T20:00:00-06:00",
+      "category": "astronomy",
+      "audience": "General public with advance timed-entry ticket",
+      "access": "registration",
+      "summary": "Telescope observing, constellation tours and astronomy experts; separate Brazos Bend State Park admission applies. Some dates or slots may already be sold out.",
+      "source_url": "https://george.hmns.org/exhibits/saturday-stargazing/",
+      "availability_note": "Advance tickets required. Availability not confirmed; check organizer before visiting."
+    },
+    {
+      "id": "heard-recycles-20261115",
+      "institution_id": "heard",
+      "title": "Texas Recycles Day",
+      "start_at": "2026-11-15T13:00:00-06:00",
+      "end_at": "2026-11-15T17:00:00-06:00",
+      "timezone": "America/Chicago",
+      "category": "environment",
+      "audience": "Visitors of all ages",
+      "access": "public",
+      "summary": "Conservation outreach and museum access; a recyclable item qualifies for free admission under organizer conditions.",
+      "source_url": "https://www.heardmuseum.org/texas-recycles-day-at-heard/",
+      "source_checked_at": "2026-11-04",
+      "review": {
+        "status": "source_checked",
+        "notes": "Official dated schedule checked; event registration, ages, available spaces, and cancellations need recheck."
+      }
+    },
+    {
+      "id": "heard-wetland-canoe-20261115",
+      "institution_id": "heard",
+      "title": "3 Hour Wetland Canoe Trails",
+      "start_at": "2026-11-15T13:00:00-06:00",
+      "end_at": "2026-11-15T16:00:00-06:00",
+      "timezone": "America/Chicago",
+      "category": "nature",
+      "audience": "Check organizer age and equipment requirements",
+      "access": "registration",
+      "summary": "Guided paddling experience focused on wetlands and local ecology.",
+      "source_url": "https://www.heardmuseum.org/all-events/",
+      "source_checked_at": "2026-11-04",
+      "review": {
+        "status": "source_checked",
+        "notes": "Official dated schedule checked; event registration, ages, available spaces, and cancellations need recheck."
+      }
+    },
+    {
+      "timezone": "America/Chicago",
+      "source_checked_at": "2026-11-04",
+      "review": {
+        "status": "source_checked",
+        "notes": "Published date and time located on official organizer source; registration, availability, cancellations, and visitor access require recheck before publication."
+      },
+      "id": "hmns-astronomy-20261117",
+      "institution_id": "hmns",
+      "title": "Tuesday Rooftop Astronomy: Moon, Saturn & Andromeda",
+      "start_at": "2026-11-17T18:00:00-06:00",
+      "end_at": "2026-11-17T20:00:00-06:00",
+      "category": "astronomy",
+      "audience": "General public",
+      "access": "public",
+      "summary": "Free public astronomy guided by HMNS astronomers on the museum parking garage roof; weather dependent, no ticket required.",
+      "source_url": "https://www.hmns.org/astronomy-events/"
+    },
+    {
+      "id": "uta-mindful-moments-20261118",
+      "institution_id": "uta-planetarium",
+      "title": "Mindful Moments Under the Stars",
+      "start_at": "2026-11-18T12:15:00-06:00",
+      "end_at": "2026-11-18T12:45:00-06:00",
+      "timezone": "America/Chicago",
+      "category": "astronomy",
+      "audience": "UTA students, faculty and staff",
+      "access": "restricted",
+      "summary": "A scheduled program at the UTA Planetarium; eligibility restrictions apply.",
+      "source_url": "https://events.uta.edu/planetarium_764",
+      "source_checked_at": "2026-11-04",
+      "review": {
+        "status": "source_checked",
+        "notes": "Date and basic program details seen on official organizer schedule. Registration, cancellations, pricing and access must be reconfirmed before attendance."
+      }
+    },
+    {
+      "id": "fwm-colorful-chemistry-20261118",
+      "institution_id": "fwmuseum",
+      "title": "Homeschool Family Science Club: Colorful Chemistry",
+      "start_at": "2026-11-18T14:00:00-06:00",
+      "end_at": "2026-11-18T15:00:00-06:00",
+      "timezone": "America/Chicago",
+      "category": "workshop",
+      "audience": "Families and homeschool learners",
+      "access": "registration",
+      "summary": "Hands-on exploration of physical and chemical changes.",
+      "source_url": "https://www.fwmuseum.org/calendar/month/2026-11/",
+      "source_checked_at": "2026-11-04",
+      "review": {
+        "status": "source_checked",
+        "notes": "Date and basic program details seen on official organizer schedule. Registration, cancellations, pricing and access must be reconfirmed before attendance."
+      }
+    },
+    {
+      "id": "fwm-science-on-tap-20261119",
+      "institution_id": "fwmuseum",
+      "title": "Science on Tap",
+      "start_at": "2026-11-19T17:30:00-06:00",
+      "end_at": null,
+      "timezone": "America/Chicago",
+      "category": "science_social",
+      "audience": "Audience details on organizer site",
+      "access": "registration",
+      "summary": "Science-themed museum program; consult the organizer for program and eligibility details.",
+      "source_url": "https://buy.fwmuseum.org/events",
+      "source_checked_at": "2026-11-04",
+      "review": {
+        "status": "source_checked",
+        "notes": "Date and basic program details seen on official organizer schedule. Registration, cancellations, pricing and access must be reconfirmed before attendance."
+      }
+    },
+    {
+      "timezone": "America/Chicago",
+      "source_checked_at": "2026-11-04",
+      "review": {
+        "status": "source_checked",
+        "notes": "Published date and time located on official organizer source; registration, availability, cancellations, and visitor access require recheck before publication."
+      },
+      "id": "sciencemill-rainforest-reveal-20261119",
+      "institution_id": "science-mill",
+      "title": "STEM in the Rainforest Exhibit Reveal — Members Night",
+      "start_at": "2026-11-19T17:30:00-06:00",
+      "end_at": "2026-11-19T19:30:00-06:00",
+      "category": "workshop",
+      "audience": "Science Mill members (membership offered onsite)",
+      "access": "restricted",
+      "summary": "Members-only launch event for a rainforest STEM exhibit; RSVP deadline stated as November 9. Not a general admission event.",
+      "source_url": "https://www.sciencemill.org/upcoming-events-2"
+    },
+    {
+      "timezone": "America/Chicago",
+      "source_checked_at": "2026-11-04",
+      "review": {
+        "status": "source_checked",
+        "notes": "Published date and time located on official organizer source; registration, availability, cancellations, and visitor access require recheck before publication."
+      },
+      "id": "perot-painting-20261120",
+      "institution_id": "perot",
+      "title": "Painting with a Twist: Museum After Hours",
+      "start_at": "2026-11-20T18:00:00-06:00",
+      "end_at": "2026-11-20T20:00:00-06:00",
+      "category": "creative_science",
+      "audience": "Ages 21+",
+      "access": "registration",
+      "summary": "After-hours creative workshop with opportunity to explore the museum halls. Adults only; check ticket availability.",
+      "source_url": "https://www.perotmuseum.org/events/"
+    },
+    {
+      "timezone": "America/Chicago",
+      "source_checked_at": "2026-11-04",
+      "review": {
+        "status": "source_checked",
+        "notes": "Published date and time located on official organizer source; registration, availability, cancellations, and visitor access require recheck before publication."
+      },
+      "id": "george-saturday-20261121",
+      "institution_id": "george",
+      "title": "Saturday Stargazing — 7 PM Timed Session",
+      "start_at": "2026-11-21T19:00:00-06:00",
+      "end_at": "2026-11-21T20:00:00-06:00",
+      "category": "astronomy",
+      "audience": "General public with advance timed-entry ticket",
+      "access": "registration",
+      "summary": "Telescope observing, constellation tours and astronomy experts; separate Brazos Bend State Park admission applies. Some dates or slots may already be sold out.",
+      "source_url": "https://george.hmns.org/exhibits/saturday-stargazing/",
+      "availability_note": "Advance tickets required. Availability not confirmed; check organizer before visiting."
+    },
+    {
+      "timezone": "America/Chicago",
+      "source_checked_at": "2026-11-04",
+      "review": {
+        "status": "source_checked",
+        "notes": "Published date and time located on official organizer source; registration, availability, cancellations, and visitor access require recheck before publication."
+      },
+      "id": "perot-camp-20261123",
+      "institution_id": "perot",
+      "title": "Fall Discovery Camp: Currents, Amps, and Volts!",
+      "start_at": "2026-11-23T09:00:00-06:00",
+      "end_at": "2026-11-23T15:00:00-06:00",
+      "category": "camp",
+      "audience": "Grades K–4; enrolled campers only",
+      "access": "registration",
+      "summary": "One day of the three-day fall camp exploring electricity and hands-on circuits; camp enrollment covers the multi-day program.",
+      "source_url": "https://www.perotmuseum.org/events/children-and-families/discovery-camps/",
+      "program_id": "perot-camp-202611"
+    },
+    {
+      "timezone": "America/Chicago",
+      "source_checked_at": "2026-11-04",
+      "review": {
+        "status": "source_checked",
+        "notes": "Published date and time located on official organizer source; registration, availability, cancellations, and visitor access require recheck before publication."
+      },
+      "id": "perot-camp-20261124",
+      "institution_id": "perot",
+      "title": "Fall Discovery Camp: Currents, Amps, and Volts!",
+      "start_at": "2026-11-24T09:00:00-06:00",
+      "end_at": "2026-11-24T15:00:00-06:00",
+      "category": "camp",
+      "audience": "Grades K–4; enrolled campers only",
+      "access": "registration",
+      "summary": "One day of the three-day fall camp exploring electricity and hands-on circuits; camp enrollment covers the multi-day program.",
+      "source_url": "https://www.perotmuseum.org/events/children-and-families/discovery-camps/",
+      "program_id": "perot-camp-202611"
+    },
+    {
+      "timezone": "America/Chicago",
+      "source_checked_at": "2026-11-04",
+      "review": {
+        "status": "source_checked",
+        "notes": "Published date and time located on official organizer source; registration, availability, cancellations, and visitor access require recheck before publication."
+      },
+      "id": "perot-camp-20261125",
+      "institution_id": "perot",
+      "title": "Fall Discovery Camp: Currents, Amps, and Volts!",
+      "start_at": "2026-11-25T09:00:00-06:00",
+      "end_at": "2026-11-25T15:00:00-06:00",
+      "category": "camp",
+      "audience": "Grades K–4; enrolled campers only",
+      "access": "registration",
+      "summary": "One day of the three-day fall camp exploring electricity and hands-on circuits; camp enrollment covers the multi-day program.",
+      "source_url": "https://www.perotmuseum.org/events/children-and-families/discovery-camps/",
+      "program_id": "perot-camp-202611"
+    },
+    {
+      "timezone": "America/Chicago",
+      "source_checked_at": "2026-11-04",
+      "review": {
+        "status": "source_checked",
+        "notes": "Published date and time located on official organizer source; registration, availability, cancellations, and visitor access require recheck before publication."
+      },
+      "id": "george-saturday-20261128",
+      "institution_id": "george",
+      "title": "Saturday Stargazing — 7 PM Timed Session",
+      "start_at": "2026-11-28T19:00:00-06:00",
+      "end_at": "2026-11-28T20:00:00-06:00",
+      "category": "astronomy",
+      "audience": "General public with advance timed-entry ticket",
+      "access": "registration",
+      "summary": "Telescope observing, constellation tours and astronomy experts; separate Brazos Bend State Park admission applies. Some dates or slots may already be sold out.",
+      "source_url": "https://george.hmns.org/exhibits/saturday-stargazing/",
+      "availability_note": "Advance tickets required. Availability not confirmed; check organizer before visiting."
+    },
+    {
+      "id": "heard-wetland-canoe-20261129",
+      "institution_id": "heard",
+      "title": "3 Hour Wetland Canoe Trails",
+      "start_at": "2026-11-29T13:00:00-06:00",
+      "end_at": "2026-11-29T16:00:00-06:00",
+      "timezone": "America/Chicago",
+      "category": "nature",
+      "audience": "Check organizer age and equipment requirements",
+      "access": "registration",
+      "summary": "Guided paddling experience focused on wetlands and local ecology.",
+      "source_url": "https://www.heardmuseum.org/all-events/",
+      "source_checked_at": "2026-11-04",
+      "review": {
+        "status": "source_checked",
+        "notes": "Official dated schedule checked; event registration, ages, available spaces, and cancellations need recheck."
+      }
+    },
+    {
+      "id": "heard-guided-trails-20261205",
+      "institution_id": "heard",
+      "title": "Guided Trails",
+      "start_at": "2026-12-05T09:30:00-06:00",
+      "end_at": "2026-12-05T11:30:00-06:00",
+      "timezone": "America/Chicago",
+      "category": "nature",
+      "audience": "Check organizer requirements",
+      "access": "registration",
+      "summary": "A guided exploration of the Heard sanctuary trails.",
+      "source_url": "https://www.heardmuseum.org/all-events/",
+      "source_checked_at": "2026-11-04",
+      "review": {
+        "status": "source_checked",
+        "notes": "Official dated schedule checked; event registration, ages, available spaces, and cancellations need recheck."
+      }
+    },
+    {
+      "timezone": "America/Chicago",
+      "source_checked_at": "2026-11-04",
+      "review": {
+        "status": "source_checked",
+        "notes": "Published date and time located on official organizer source; registration, availability, cancellations, and visitor access require recheck before publication."
+      },
+      "id": "ansc-20261205-meet-the-animals",
+      "institution_id": "austin-nature",
+      "title": "Meet the Animals",
+      "start_at": "2026-12-05T10:00:00-06:00",
+      "end_at": "2026-12-05T14:00:00-06:00",
+      "category": "nature",
+      "audience": "Families",
+      "access": "public",
+      "summary": "Free resident-animal programs at scheduled times; limited capacity and first-come activity passes.",
+      "source_url": "https://www.austintexas.gov/parks/austin-nature-science-center-camps-events-and-community-programs"
+    },
+    {
+      "timezone": "America/Chicago",
+      "source_checked_at": "2026-11-04",
+      "review": {
+        "status": "source_checked",
+        "notes": "Published date and time located on official organizer source; registration, availability, cancellations, and visitor access require recheck before publication."
+      },
+      "id": "ansc-20261207-suppertime-star-party-ancient-",
+      "institution_id": "austin-nature",
+      "title": "Suppertime Star Party: Ancient Astronomy",
+      "start_at": "2026-12-07T18:00:00-06:00",
+      "end_at": "2026-12-07T18:45:00-06:00",
+      "category": "astronomy",
+      "audience": "All ages; online attendance",
+      "access": "registration",
+      "summary": "Family Zoom session exploring how people used the stars as calendars, maps and cultural stories; registration required.",
+      "source_url": "https://www.austintexas.gov/parks/austin-nature-science-center-camps-events-and-community-programs",
+      "delivery": "online"
+    },
+    {
+      "timezone": "America/Chicago",
+      "source_checked_at": "2026-11-04",
+      "review": {
+        "status": "source_checked",
+        "notes": "Published date and time located on official organizer source; registration, availability, cancellations, and visitor access require recheck before publication."
+      },
+      "id": "ansc-20261212-space-saturday",
+      "institution_id": "austin-nature",
+      "title": "Space Saturday",
+      "start_at": "2026-12-12T10:00:00-06:00",
+      "end_at": "2026-12-12T14:00:00-06:00",
+      "category": "astronomy",
+      "audience": "Families",
+      "access": "public",
+      "summary": "Free planetarium sessions throughout the day; free first-come activity passes required.",
+      "source_url": "https://www.austintexas.gov/parks/austin-nature-science-center-camps-events-and-community-programs"
+    },
+    {
+      "timezone": "America/Chicago",
+      "source_checked_at": "2026-11-04",
+      "review": {
+        "status": "source_checked",
+        "notes": "Published date and time located on official organizer source; registration, availability, cancellations, and visitor access require recheck before publication."
+      },
+      "id": "george-saturday-20261212",
+      "institution_id": "george",
+      "title": "Saturday Stargazing — 7 PM Timed Session",
+      "start_at": "2026-12-12T19:00:00-06:00",
+      "end_at": "2026-12-12T20:00:00-06:00",
+      "category": "astronomy",
+      "audience": "General public with advance timed-entry ticket",
+      "access": "registration",
+      "summary": "Telescope observing, constellation tours and astronomy experts; separate Brazos Bend State Park admission applies. Some dates or slots may already be sold out.",
+      "source_url": "https://george.hmns.org/exhibits/saturday-stargazing/",
+      "availability_note": "Advance tickets required. Availability not confirmed; check organizer before visiting."
+    },
+    {
+      "timezone": "America/Chicago",
+      "source_checked_at": "2026-11-04",
+      "review": {
+        "status": "source_checked",
+        "notes": "Published date and time located on official organizer source; registration, availability, cancellations, and visitor access require recheck before publication."
+      },
+      "id": "ansc-20261214-science-storytime",
+      "institution_id": "austin-nature",
+      "title": "Science Storytime",
+      "start_at": "2026-12-14T09:30:00-06:00",
+      "category": "family",
+      "audience": "Young children (especially ages 4 and under) and caregivers",
+      "access": "public",
+      "summary": "Free science-themed drop-in storytime with an animal or natural object.",
+      "source_url": "https://www.austintexas.gov/parks/austin-nature-science-center-camps-events-and-community-programs"
+    },
+    {
+      "timezone": "America/Chicago",
+      "source_checked_at": "2026-11-04",
+      "review": {
+        "status": "source_checked",
+        "notes": "Published date and time located on official organizer source; registration, availability, cancellations, and visitor access require recheck before publication."
+      },
+      "id": "hmns-astronomy-20261215",
+      "institution_id": "hmns",
+      "title": "Tuesday Rooftop Astronomy: Moon, Saturn & Andromeda",
+      "start_at": "2026-12-15T18:00:00-06:00",
+      "end_at": "2026-12-15T20:00:00-06:00",
+      "category": "astronomy",
+      "audience": "General public",
+      "access": "public",
+      "summary": "Free public astronomy guided by HMNS astronomers on the museum parking garage roof; weather dependent, no ticket required.",
+      "source_url": "https://www.hmns.org/astronomy-events/"
+    },
+    {
+      "timezone": "America/Chicago",
+      "source_checked_at": "2026-11-04",
+      "review": {
+        "status": "source_checked",
+        "notes": "Published date and time located on official organizer source; registration, availability, cancellations, and visitor access require recheck before publication."
+      },
+      "id": "sciencemill-light-opening-20261219",
+      "institution_id": "science-mill",
+      "title": "De-Lightful Discoveries: Opening Day",
+      "start_at": "2026-12-19T10:00:00-06:00",
+      "end_at": "2026-12-19T16:00:00-06:00",
+      "category": "workshop",
+      "audience": "General public; check admission",
+      "access": "public",
+      "summary": "Opening day of an exhibition of lasers, lenses, color mixing, optics and paper circuits. The program runs through December 31; museum closes December 24–25.",
+      "source_url": "https://www.sciencemill.org/upcoming-events-2"
+    },
+    {
+      "timezone": "America/Chicago",
+      "source_checked_at": "2026-11-04",
+      "review": {
+        "status": "source_checked",
+        "notes": "Published date and time located on official organizer source; registration, availability, cancellations, and visitor access require recheck before publication."
+      },
+      "id": "george-saturday-20261219",
+      "institution_id": "george",
+      "title": "Saturday Stargazing — 7 PM Timed Session",
+      "start_at": "2026-12-19T19:00:00-06:00",
+      "end_at": "2026-12-19T20:00:00-06:00",
+      "category": "astronomy",
+      "audience": "General public with advance timed-entry ticket",
+      "access": "registration",
+      "summary": "Telescope observing, constellation tours and astronomy experts; separate Brazos Bend State Park admission applies. Some dates or slots may already be sold out.",
+      "source_url": "https://george.hmns.org/exhibits/saturday-stargazing/",
+      "availability_note": "Advance tickets required. Availability not confirmed; check organizer before visiting."
+    },
+    {
+      "timezone": "America/Chicago",
+      "source_checked_at": "2026-11-04",
+      "review": {
+        "status": "source_checked",
+        "notes": "Published date and time located on official organizer source; registration, availability, cancellations, and visitor access require recheck before publication."
+      },
+      "id": "perot-camp-20261221",
+      "institution_id": "perot",
+      "title": "Winter (week 1) Discovery Camp: STEAM into the New Year!",
+      "start_at": "2026-12-21T09:00:00-06:00",
+      "end_at": "2026-12-21T15:00:00-06:00",
+      "category": "camp",
+      "audience": "Grades K–4; enrolled campers only",
+      "access": "registration",
+      "summary": "One day of the three-day winter STEAM camp; each week is a separate enrollment and the listed day is not a stand-alone ticket.",
+      "source_url": "https://www.perotmuseum.org/events/children-and-families/discovery-camps/",
+      "program_id": "perot-camp-202612w1"
+    },
+    {
+      "timezone": "America/Chicago",
+      "source_checked_at": "2026-11-04",
+      "review": {
+        "status": "source_checked",
+        "notes": "Published date and time located on official organizer source; registration, availability, cancellations, and visitor access require recheck before publication."
+      },
+      "id": "hmns-astronomy-20261221",
+      "institution_id": "hmns",
+      "title": "Winter Solstice Sundial Celebration",
+      "start_at": "2026-12-21T12:00:00-06:00",
+      "end_at": "2026-12-21T14:00:00-06:00",
+      "category": "astronomy",
+      "audience": "General public",
+      "access": "public",
+      "summary": "Free public solstice science programming by the Cockrell Sundial; weather dependent.",
+      "source_url": "https://www.hmns.org/astronomy-events/"
+    },
+    {
+      "timezone": "America/Chicago",
+      "source_checked_at": "2026-11-04",
+      "review": {
+        "status": "source_checked",
+        "notes": "Published date and time located on official organizer source; registration, availability, cancellations, and visitor access require recheck before publication."
+      },
+      "id": "perot-camp-20261222",
+      "institution_id": "perot",
+      "title": "Winter (week 1) Discovery Camp: STEAM into the New Year!",
+      "start_at": "2026-12-22T09:00:00-06:00",
+      "end_at": "2026-12-22T15:00:00-06:00",
+      "category": "camp",
+      "audience": "Grades K–4; enrolled campers only",
+      "access": "registration",
+      "summary": "One day of the three-day winter STEAM camp; each week is a separate enrollment and the listed day is not a stand-alone ticket.",
+      "source_url": "https://www.perotmuseum.org/events/children-and-families/discovery-camps/",
+      "program_id": "perot-camp-202612w1"
+    },
+    {
+      "timezone": "America/Chicago",
+      "source_checked_at": "2026-11-04",
+      "review": {
+        "status": "source_checked",
+        "notes": "Published date and time located on official organizer source; registration, availability, cancellations, and visitor access require recheck before publication."
+      },
+      "id": "perot-camp-20261223",
+      "institution_id": "perot",
+      "title": "Winter (week 1) Discovery Camp: STEAM into the New Year!",
+      "start_at": "2026-12-23T09:00:00-06:00",
+      "end_at": "2026-12-23T15:00:00-06:00",
+      "category": "camp",
+      "audience": "Grades K–4; enrolled campers only",
+      "access": "registration",
+      "summary": "One day of the three-day winter STEAM camp; each week is a separate enrollment and the listed day is not a stand-alone ticket.",
+      "source_url": "https://www.perotmuseum.org/events/children-and-families/discovery-camps/",
+      "program_id": "perot-camp-202612w1"
+    },
+    {
+      "timezone": "America/Chicago",
+      "source_checked_at": "2026-11-04",
+      "review": {
+        "status": "source_checked",
+        "notes": "Published date and time located on official organizer source; registration, availability, cancellations, and visitor access require recheck before publication."
+      },
+      "id": "george-saturday-20261226",
+      "institution_id": "george",
+      "title": "Saturday Stargazing — 7 PM Timed Session",
+      "start_at": "2026-12-26T19:00:00-06:00",
+      "end_at": "2026-12-26T20:00:00-06:00",
+      "category": "astronomy",
+      "audience": "General public with advance timed-entry ticket",
+      "access": "registration",
+      "summary": "Telescope observing, constellation tours and astronomy experts; separate Brazos Bend State Park admission applies. Some dates or slots may already be sold out.",
+      "source_url": "https://george.hmns.org/exhibits/saturday-stargazing/",
+      "availability_note": "Advance tickets required. Availability not confirmed; check organizer before visiting."
+    },
+    {
+      "timezone": "America/Chicago",
+      "source_checked_at": "2026-11-04",
+      "review": {
+        "status": "source_checked",
+        "notes": "Published date and time located on official organizer source; registration, availability, cancellations, and visitor access require recheck before publication."
+      },
+      "id": "perot-camp-20261228",
+      "institution_id": "perot",
+      "title": "Winter (week 2) Discovery Camp: STEAM into the New Year!",
+      "start_at": "2026-12-28T09:00:00-06:00",
+      "end_at": "2026-12-28T15:00:00-06:00",
+      "category": "camp",
+      "audience": "Grades K–4; enrolled campers only",
+      "access": "registration",
+      "summary": "One day of the three-day winter STEAM camp; each week is a separate enrollment and the listed day is not a stand-alone ticket.",
+      "source_url": "https://www.perotmuseum.org/events/children-and-families/discovery-camps/",
+      "program_id": "perot-camp-202612w2"
+    },
+    {
+      "timezone": "America/Chicago",
+      "source_checked_at": "2026-11-04",
+      "review": {
+        "status": "source_checked",
+        "notes": "Published date and time located on official organizer source; registration, availability, cancellations, and visitor access require recheck before publication."
+      },
+      "id": "perot-camp-20261229",
+      "institution_id": "perot",
+      "title": "Winter (week 2) Discovery Camp: STEAM into the New Year!",
+      "start_at": "2026-12-29T09:00:00-06:00",
+      "end_at": "2026-12-29T15:00:00-06:00",
+      "category": "camp",
+      "audience": "Grades K–4; enrolled campers only",
+      "access": "registration",
+      "summary": "One day of the three-day winter STEAM camp; each week is a separate enrollment and the listed day is not a stand-alone ticket.",
+      "source_url": "https://www.perotmuseum.org/events/children-and-families/discovery-camps/",
+      "program_id": "perot-camp-202612w2"
+    },
+    {
+      "timezone": "America/Chicago",
+      "source_checked_at": "2026-11-04",
+      "review": {
+        "status": "source_checked",
+        "notes": "Published date and time located on official organizer source; registration, availability, cancellations, and visitor access require recheck before publication."
+      },
+      "id": "perot-camp-20261230",
+      "institution_id": "perot",
+      "title": "Winter (week 2) Discovery Camp: STEAM into the New Year!",
+      "start_at": "2026-12-30T09:00:00-06:00",
+      "end_at": "2026-12-30T15:00:00-06:00",
+      "category": "camp",
+      "audience": "Grades K–4; enrolled campers only",
+      "access": "registration",
+      "summary": "One day of the three-day winter STEAM camp; each week is a separate enrollment and the listed day is not a stand-alone ticket.",
+      "source_url": "https://www.perotmuseum.org/events/children-and-families/discovery-camps/",
+      "program_id": "perot-camp-202612w2"
+    }
+  ]
+}
