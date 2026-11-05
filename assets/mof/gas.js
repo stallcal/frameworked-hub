@@ -17,6 +17,7 @@ function mark(tag,attrs,text){
  for(const [k,v] of Object.entries(attrs))n.setAttribute(k,v);
  if(text!==undefined)n.textContent=text;svg.append(n);
 }
+let prediction=null;
 function draw(){
  const selected=names.map(id=>curves[Number(el(id).value)]);
  for(const [i,id] of names.entries())for(const opt of el(id).options)opt.disabled=opt.value===el(names[1-i]).value;
@@ -47,9 +48,19 @@ function draw(){
   delivered.push(high-low);
  });
  el('legend').textContent='Solid: '+selected[0].name+'   ·   Dashed: '+selected[1].name;
+ el('guessA').textContent=selected[0].name;el('guessB').textContent=selected[1].name;
  const delta=delivered[0]-delivered[1];
  el('finding').textContent=Math.abs(delta)<0.1?'The estimated deliveries agree within 0.1 cm³(STP)/cm³.':selected[delta>0?0:1].name+' delivers about '+Math.abs(delta).toFixed(1)+' more cm³(STP) of methane per cm³ of crystal over the '+fill+' → '+release+' bar swing.';
+ if(prediction!==null&&Math.abs(delta)>=0.1){
+  const correct=prediction===(delta>0?0:1);
+  el('finding').textContent=(correct?'Correct. ':'Compare the two differences. ')+el('finding').textContent;
+ }
 }
+function reveal(choice){
+ prediction=choice;draw();el('answer').hidden=false;el('guess').hidden=true;
+ el('finding').setAttribute('tabindex','-1');el('finding').focus();
+}
+el('guessA').onclick=()=>reveal(0);el('guessB').onclick=()=>reveal(1);el('skip').onclick=()=>reveal(null);
 for(const c of curves){const a=document.createElement('a');a.href=c.url;a.textContent=c.name+' data';el('sources').append(a,' · ')}
-for(const id of [...names,'fill','release'])el(id).addEventListener('input',draw);
+for(const id of [...names,'fill','release'])el(id).addEventListener('input',()=>{prediction=null;draw()});
 draw();
