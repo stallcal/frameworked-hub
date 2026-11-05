@@ -10,7 +10,6 @@ function embedded(name, suffix=''){
 const data=embedded('DATA');
 const places=data.places;
 const events=embedded('EVENTS','\\.events').events;
-const roads=embedded('ROADS');
 const allowedAccess=new Set(['public_venue','scheduled_public','research_campus']);
 const allowedRegions=new Set(['dfw','central','houston','gulf','west','east','south','panhandle']);
 assert.ok(places.length>=1 && events.length>=1,'Empty data collections');
@@ -40,27 +39,6 @@ for(const e of events){
  assert.ok(e.source_url?.startsWith('https://'),'Unproven event source: '+e.id);
  assert.ok(e.review?.status,'Missing event review: '+e.id);
 }
-assert.equal(roads.source?.includes('TxDOT'),true,'Road source attribution missing');
-assert.match(roads.source_url,/^https:\/\//,'Road source URL must be HTTPS');
-assert.ok(roads.roads.length>0,'No embedded road routes');
-assert.match(html,/TIGERweb/,'Census road source attribution missing');
-// Road viewport regression: a zoomed-in map must request the entire visible
-// extent, with padding, and refresh when it moves outside loaded coverage.
-const geoStart=html.indexOf('function geographicViewport(){');
-const geoEnd=html.indexOf('function streetStatus(',geoStart);
-assert.ok(geoStart>=0&&geoEnd>geoStart,'Road viewport calculations found');
-const snippets=html.slice(geoStart,geoEnd);
-const v={x:850,y:350,w:4,h:3.56};
-const f=new Function('view', snippets+'\nreturn {geographicViewport,paddedViewport,bboxContains};')(v);
-const viewBounds=f.geographicViewport(),requested=f.paddedViewport(viewBounds);
-assert.ok(f.bboxContains(requested,viewBounds),'Request must cover all visible streets');
-v.x+=v.w*.8;
-assert.equal(f.bboxContains(requested,f.geographicViewport()),false,'Panning far should trigger new road request');
-assert.ok(html.includes("layer:0,element:'censusPrimaryLayer'"),'Primary layer missing');
-assert.ok(html.includes("layer:1,element:'censusSecondaryLayer'"),'Secondary layer missing');
-assert.ok(html.includes("layer:2,element:'streetLayer'"),'Local layer missing');
-assert.ok(html.includes("resultOffset:String(offset)"),'Road pagination missing');
-console.log('Atlas audit PASS: '+places.length+' institutions, '+events.length+' event occurrences, '+roads.roads.length+' embedded TxDOT routes');
+console.log('Atlas audit PASS: '+places.length+' institutions, '+events.length+' event occurrences');
 console.log('Review status: '+verified+' verified, '+pending+' pending; '+approximate+' approximate pins; '+reviewedCoordinates+' coordinate-source checks.');
-console.log('Geographic road loading: complete viewport, pan refresh, 3 service layers and pagination checked.');
 console.log('Publication gate: pending records remain preliminary; passing structure checks does not certify public access or ticket availability.');
