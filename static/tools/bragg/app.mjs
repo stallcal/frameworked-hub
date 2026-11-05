@@ -189,7 +189,7 @@ import { bragg, squareLatticeSpacing, compareTwoPlaneInterference, VERSION } fro
     $("readouts").classList.toggle("advanced-readouts",!guided);
     $("experimentHelper").textContent=guided
       ?"Move the blue a slider directly above the lattice to see both diagrams respond, or switch plane families."
-      :"Enter a known spacing, 2θ or q. For spacing d, use the slider beside the ray construction; the calculation is independent of the guided lattice.";
+      :"Enter a known spacing, 2θ or q. For spacing d, use the slider beside the ray construction; the calculation is independent of the guided square lattice.";
     const guides={
       spacing:["Known spacing → possible peak position","Enter d to find where this plane spacing may satisfy the Bragg condition for your X-ray wavelength."],
       angle:["Measured peak → estimated plane spacing","Enter an experimental 2θ position and known wavelength to calculate the associated d-spacing. This alone does not index or identify the reflection."],
