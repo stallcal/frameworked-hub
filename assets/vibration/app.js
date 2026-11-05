@@ -5,7 +5,9 @@ const planck = 6.62607015e-34; // J s
 const chlorine = 34.968852682;
 const isotopeMass = { H: 1.00782503223, D: 2.01410177812 };
 
-function vibration(k, isotope) {
+const k = 480; // Shared model force constant in N/m for both isotopes.
+
+function vibration(isotope) {
   const m = isotopeMass[isotope];
   const mu = m * chlorine / (m + chlorine);
   return { mu, band: Math.sqrt(k / (mu * atomicMassUnit)) / (2 * Math.PI * speedOfLight) };
@@ -31,10 +33,8 @@ for (const pm of [-60, -30, 0, 30, 60]) {
 }
 let revealed = false;
 function draw() {
-  const k = Number(byId('stiffness').value);
   const isotope = revealed ? byId('isotope').value : 'H';
-  const { mu, band } = vibration(k, isotope);
-  byId('kval').value = k + ' N/m';
+  const { mu, band } = vibration(isotope);
   byId('mass').value = mu.toFixed(3);
   byId('band').value = Math.round(band);
   byId('species').textContent = isotope === 'H' ? '¹H³⁵Cl' : '²H³⁵Cl';
@@ -55,8 +55,8 @@ function draw() {
   }
   byId('well-desc').textContent = isotope + 'Cl at ' + k + ' newtons per meter. Adjacent levels are separated by ' + Math.round(band) + ' inverse centimeters.';
   if (revealed) {
-    const h = vibration(k,'H').band, d = vibration(k,'D').band;
-    byId('shift').textContent = 'At ' + k + ' N/m, HCl absorbs at ' + Math.round(h) + ' cm⁻¹ and DCl at ' + Math.round(d) + ' cm⁻¹. The predicted shift is ' + ((1-d/h)*100).toFixed(1) + '% lower.';
+    const h = vibration('H').band, d = vibration('D').band;
+    byId('shift').textContent = 'The model predicts HCl at ' + Math.round(h) + ' cm⁻¹ and DCl at ' + Math.round(d) + ' cm⁻¹. The predicted shift is ' + ((1-d/h)*100).toFixed(1) + '% lower.';
   }
 }
 byId('predict').addEventListener('submit', event => {
@@ -66,7 +66,7 @@ byId('predict').addEventListener('submit', event => {
   byId('predict').hidden = true;
   byId('comparison').hidden = false;
   byId('isotope').value = 'D';
-  byId('feedback').textContent = (correct ? 'Correct. ' : 'The band shifts lower. ') + 'Deuterium increases the reduced mass, so the vibrational levels move closer together.';
+  byId('feedback').textContent = (correct ? 'Correct. ' : 'The band shifts lower. ') + 'Switch between the two plots and compare the v = 0 to v = 1 gap. DCl’s larger reduced mass makes this gap smaller, so a lower-energy photon can excite the vibration.';
   draw();
   byId('isotope').focus();
 });
@@ -78,6 +78,5 @@ byId('again').addEventListener('click', () => {
   draw();
   byId('predict').querySelector('input').focus();
 });
-byId('stiffness').addEventListener('input', draw);
 byId('isotope').addEventListener('change', draw);
 draw();
