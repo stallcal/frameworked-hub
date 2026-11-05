@@ -30,17 +30,6 @@
           <a class="mobile-activity-link" href="#braggActivity">Jump to the interactive activity ↓</a>
         </section>
 
-        <section class="palette-review" aria-label="Compare color palette variations">
-          <div class="palette-review-heading">
-            <strong>Compare color treatments</strong>
-            <span>Design preview · this page only</span>
-          </div>
-          <div class="palette-options" role="group" aria-label="Page color treatment">
-            <button type="button" id="paletteClassic" class="palette-choice selected" data-palette="classic" aria-pressed="true"><span class="palette-swatches" aria-hidden="true"><i></i><i></i><i></i></span>01 · Classic blue</button>
-            <button type="button" id="paletteWarm" class="palette-choice" data-palette="warm" aria-pressed="false"><span class="palette-swatches" aria-hidden="true"><i></i><i></i><i></i></span>02 · Warm editorial</button>
-            <button type="button" id="paletteNavy" class="palette-choice" data-palette="navy" aria-pressed="false"><span class="palette-swatches" aria-hidden="true"><i></i><i></i><i></i></span>03 · Navy field notes</button>
-          </div>
-        </section>
         <section class="bragg-primer" aria-labelledby="bragg-primer-title">
           <div class="primer-copy">
             <p class="eyebrow">THE CONCEPT / WHY DIFFRACTION HAPPENS</p>
@@ -105,9 +94,10 @@
               <p class="activity-label">GUIDED ACTIVITY · SQUARE LATTICE</p>
               <p class="activity-prompt">Change the lattice spacing or select a plane family. Watch the diffraction angle respond.</p>
               <div class="field">
-                <label for="latticeA">1 · Lattice parameter a (Å)</label>
+                <label for="latticeA">1 · Lattice parameter, a (Å)</label>
                 <input id="latticeA" type="number" min="2" max="12" step="0.1" value="4" />
-                <input id="latticeSlider" type="range" min="2" max="12" step="0.1" value="4" aria-label="Adjust square lattice parameter a in angstroms" />
+                <input id="latticeSlider" type="range" min="2" max="12" step="0.1" value="4" aria-label="Adjust lattice parameter a in angstroms" />
+                <small class="parameter-hint">a is the repeat distance between adjacent blue dots. Increasing a expands the square lattice.</small>
               </div>
               <div class="field">
                 <label for="planeFamily">2 · Highlight a plane family</label>
@@ -185,7 +175,12 @@
               <div><p class="eyebrow">WATCH THE RELATIONSHIP CHANGE</p><h2>From lattice spacing to diffraction angle</h2></div>
               <span class="experiment-equation">nλ = 2d sin θ</span>
             </div>
-            <p class="experiment-helper" id="experimentHelper">Adjust the square lattice or switch plane families. The red Bragg-angle arc on the right changes automatically, alongside the lattice on the left.</p>
+            <div class="relationship-chain" id="relationshipChain" role="note" aria-label="Cause and effect: lattice parameter changes plane spacing, which changes the Bragg angle">
+              <span>Change <strong>a</strong></span><span aria-hidden="true">→</span>
+              <span>Plane spacing <strong>d</strong></span><span aria-hidden="true">→</span>
+              <span>Diffraction angle <strong>2θ</strong></span>
+            </div>
+            <p class="experiment-helper" id="experimentHelper">Move the lattice slider to see how changing the repeat distance shifts the diffraction angle.</p>
             <p id="error" class="error" role="alert"></p>
             <div id="results">
               <div class="readouts readouts-bragg" id="readouts" aria-live="polite">
@@ -198,7 +193,7 @@
                 <figure class="figure lattice-pane" id="latticePane">
                   <div class="figure-heading"><strong>1 · The repeating lattice</strong><span>Structure / spacing</span></div>
                   <svg id="latticeGeometry" viewBox="0 0 760 410" role="img" aria-label="Two-dimensional lattice points and highlighted family of lattice planes"></svg>
-                  <figcaption>Blue dots are repeating lattice points, not individual atoms. The red arrow is perpendicular to adjacent planes and marks their spacing <em>d</em>.</figcaption>
+                  <figcaption><span class="dimension-key"><span class="key-blue" aria-hidden="true"></span><strong>Blue a:</strong> neighboring lattice points</span><span class="dimension-key"><span class="key-red" aria-hidden="true"></span><strong>Red d:</strong> spacing between selected planes</span></figcaption>
                 </figure>
                 <figure class="figure ray-pane" id="rayPane">
                   <div class="figure-heading"><strong>2 · The diffraction angle</strong><span id="ray-angle-display">θ — · 2θ —</span></div>
