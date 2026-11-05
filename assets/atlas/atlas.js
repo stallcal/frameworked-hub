@@ -40,12 +40,21 @@ function renderPins(){
   const icon=L.divIcon({className:'atlas-pin'+(selected?' selected':''),
    html:'<span style="--pin-color:'+ACCESS_COLOR[p.access.level]+'"></span>',iconSize:[30,30]});
   const marker=L.marker([p.lat,p.lng],{icon,title:p.name,alt:p.name,zIndexOffset:selected?1000:0});
-  marker.on('click',()=>selectPlace(p.id,false));
   if(selected){
-   const label=document.createElement('span');label.textContent=p.name;
-   marker.bindTooltip(label,{permanent:true,direction:'top',offset:[0,-10]});
+   const card=document.createElement('article');
+   card.className='venue-popup';
+   const access=p.access.advisory==='temporarily_closed'?'Temporarily closed':p.access.label;
+   card.innerHTML=`<strong>${esc(p.name)}</strong><small>${esc(CATEGORY[p.category])} · ${esc(p.city)}</small><p>${esc(p.summary)}</p><small>${esc(access)}</small>`;
+   marker.bindPopup(card,{
+    maxWidth:Math.min(255,map.getSize().x-66),maxHeight:180,offset:[0,-10],
+    autoPanPaddingTopLeft:[10,88],autoPanPaddingBottomRight:[12,26]
+   });
    selection.addLayer(marker);
-  }else markers.push(marker);
+   marker.openPopup();
+  }else{
+   marker.on('click',()=>selectPlace(p.id,false));
+   markers.push(marker);
+  }
  }
  clusters.addLayers(markers);
 }
