@@ -18,15 +18,15 @@ function mark(group, tag, attrs, label) {
   group.append(el);
 }
 
-const px = pm => 258 + pm * 4.8;
+const px = pm => 267 + pm * 3.05;
 const py = energy => 240 - energy * 222 / 15000;
 const axes = byId('axes');
 for (const energy of [0, 5000, 10000, 15000]) {
   const y = py(energy);
-  mark(axes, 'line', { x1:66, x2:450, y1:y, y2:y, stroke:'#50627a' });
-  mark(axes, 'text', { x:61, y:y+5, 'text-anchor':'end' }, String(energy));
+  mark(axes, 'line', { x1:84, x2:450, y1:y, y2:y, stroke:'#50627a' });
+  mark(axes, 'text', { x:77, y:y+5, 'text-anchor':'end' }, String(energy));
 }
-for (const pm of [-40, -20, 0, 20, 40]) {
+for (const pm of [-60, -30, 0, 30, 60]) {
   mark(axes, 'text', { x:px(pm), y:264, 'text-anchor':'middle' }, String(pm));
 }
 let revealed = false;
@@ -40,8 +40,8 @@ function draw() {
   byId('species').textContent = isotope === 'H' ? '¹H³⁵Cl' : '²H³⁵Cl';
   const scale = 0.5 * k * 1e-24 / (planck * speedOfLight); // V/hc per pm²
   const path = [];
-  for (let pm = -40; pm <= 40; pm += 0.5) {
-    path.push((pm === -40 ? 'M' : 'L') + px(pm) + ' ' + py(scale * pm * pm));
+  for (let pm = -60; pm <= 60; pm += 0.5) {
+    path.push((pm === -60 ? 'M' : 'L') + px(pm) + ' ' + py(scale * pm * pm));
   }
   byId('potential').setAttribute('d', path.join(' '));
   const levels = byId('levels');
