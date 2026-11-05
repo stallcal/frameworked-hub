@@ -1,0 +1,24 @@
+.vibration{max-width:1150px;margin:36px auto 70px;color:var(--navy)}
+.vib-back{font:600 14px system-ui;color:var(--blue)}
+.vibration h1{font:700 clamp(42px,6.3vw,88px)/1.03 Libron,Georgia,serif;letter-spacing:-.055em;color:var(--blue);margin:25px 0 12px}
+.vibration h1 em{font:italic 400 1em var(--display);color:var(--red)}
+.vib-lead{max-width:700px;margin:0 0 30px;font-size:clamp(17px,2vw,22px)}
+.vib-lab{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(250px,1fr);border:1px solid var(--hair)}
+.vibration h2{font:700 clamp(23px,2.6vw,32px)/1.15 Libron,Georgia,serif;letter-spacing:-.035em;margin:0}
+.vib-figure{background:#192e48;color:#fff;padding:clamp(14px,2.5vw,32px);min-width:0}
+.vib-fighead,.vib-scale,.vib-readout,.vib-controls>label{display:flex;align-items:baseline;justify-content:space-between;gap:10px}
+.vib-fighead span{font:600 18px Georgia,serif;color:#a5e1ca}
+#well{width:100%;display:block;margin:14px 0 8px}#well text{font:15px system-ui;fill:#e6edf5}
+#potential{stroke:#9ae0c4;stroke-width:3;fill:none}
+.vib-readout{border-top:1px solid #52657b;padding-top:12px;justify-content:flex-start;gap:12%}
+.vib-readout span,.vib-scale{font:13px system-ui}.vib-readout strong{display:block;font:normal clamp(24px,3.6vw,42px) Georgia,serif;font-variant-numeric:tabular-nums}
+.vib-readout small{font:15px system-ui}
+.vib-controls{padding:clamp(18px,3vw,35px);background:white;font:15px/1.5 system-ui}
+.vib-controls h2{margin-bottom:18px}.vib-controls>label{justify-content:flex-start}.vib-controls output{margin-left:auto;font-weight:bold}
+#stiffness{width:100%;accent-color:var(--blue);margin:12px 0 0}.vib-scale{margin:0;color:var(--quiet)}
+#predict,#comparison{border-top:1px solid var(--hair);margin-top:22px;padding-top:20px}
+.vib-controls fieldset{border:0;margin:0;padding:0}.vib-controls legend{font-weight:650;margin-bottom:8px}
+.vib-controls fieldset label{display:block;padding:6px 0}.vib-controls button,.vib-controls select{font:inherit;cursor:pointer}.vib-controls button{margin-top:12px}
+#isotope{display:block;width:100%;padding:8px;margin-top:6px}#again{background:none;border:0;text-decoration:underline;color:var(--blue);padding:0}
+.vib-theory{display:grid;grid-template-columns:1fr 2fr;gap:24px;border-top:1px solid var(--hair);margin-top:38px;padding-top:24px}.vib-theory p{margin:0 0 15px}.vib-formula{line-height:1.8;padding-left:16px;border-left:3px solid var(--green);font-family:Georgia,serif}
+@media(max-width:760px){.vib-lab,.vib-theory{grid-template-columns:1fr}.vibration{margin-top:24px}.vib-fighead h2{font-size:22px}}
