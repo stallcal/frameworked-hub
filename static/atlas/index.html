@@ -11,7 +11,7 @@
     .container{max-width:1500px;margin:auto;padding:30px 34px 22px}.eyebrow{text-transform:uppercase;letter-spacing:.15em;color:var(--blue);font-size:11px;font-weight:850;display:flex;align-items:center;gap:9px}.eyebrow:before{content:"";width:25px;height:2px;background:var(--green)}h1{font-family:var(--serif);font-size:clamp(32px,3.8vw,49px);line-height:1.12;color:var(--navy);margin:9px 0 10px;letter-spacing:-1.5px}p{line-height:1.55}.intro{max-width:845px;color:var(--muted);font-size:14px;margin:0}.intro-actions{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin:20px 0 18px}.crumb{font-size:12px;color:var(--muted)}.crumb strong{color:var(--navy)}.status{font-size:11px;color:var(--blue);background:#EDF4FB;padding:8px 11px;border-radius:10px;border:1px solid #CDE0EF;font-weight:700}.status span{display:inline-block;width:8px;height:8px;background:var(--blue);border-radius:3px;margin-right:5px}
     .atlas{display:grid;grid-template-columns:minmax(265px,300px) minmax(0,1fr) minmax(270px,310px);border:1px solid var(--line);border-radius:16px;background:white;box-shadow:0 6px 26px #1D3D6010;overflow:hidden;min-height:650px}
     .directory{display:flex;flex-direction:column;min-width:0;border-right:1px solid var(--line)}.dir-header{padding:23px 18px 15px;border-bottom:1px solid var(--line)}.sec-label{text-transform:uppercase;letter-spacing:.14em;font-size:10px;font-weight:850;color:#6A8295}.dir-header h2{font:700 27px var(--serif);letter-spacing:-.6px;color:var(--navy);margin:6px 0 6px}.subtle{color:var(--muted);font-size:12px;margin:0}.search{display:block;width:100%;height:40px;border-radius:9px;background:#FCFDFE;border:1px solid #D5E2EA;padding:0 11px;color:var(--ink);font-size:12px;margin-top:14px}.search::placeholder{color:#8B9AA8}.search:focus{outline:2px solid #BDD4E9}.segmented{display:grid;grid-template-columns:1fr 1fr;gap:3px;background:#F0F4F7;border-radius:10px;padding:4px;margin-top:11px}.segmented button{background:transparent;border:0;color:#728497;font-size:12px;font-weight:770;padding:8px 5px;border-radius:7px}.segmented button.active{background:white;color:var(--blue);box-shadow:0 1px 3px #12304A20}.filter-box{margin-top:10px;display:flex;gap:7px}.filter-box select{width:50%;min-width:0;border:1px solid #D5E2EA;color:#50677D;border-radius:8px;background:white;font-size:11px;padding:8px 4px}.results-line{font-size:11px;color:#75899A;padding:11px 18px 5px}.list{overflow:auto;max-height:540px;flex:1;padding:4px 9px 12px}.place{display:flex;align-items:flex-start;gap:9px;border:1px solid transparent;border-radius:11px;background:white;text-align:left;width:100%;padding:10px 9px;margin:3px 0;transition:background .12s}.place:hover{background:#F5F9FC}.place.selected{border-color:#B7D4EA;background:#EDF5FB}.marker-icon{width:36px;height:36px;display:grid;place-items:center;border-radius:10px;background:#EDF3F9;font-size:16px;flex:none}.place strong{color:var(--navy);font-size:12.5px;line-height:1.27;display:block}.place small{color:#74899C;font-size:11px;display:block;margin-top:4px}.place em{font-style:normal;display:block;color:#667C8D;font-size:10px;margin-top:4px}.no-results{padding:24px 16px;color:var(--muted);font-size:13px;line-height:1.6}
-    .map-column{position:relative;overflow:hidden;min-width:0;background:linear-gradient(160deg,#ECF4F7,#FAFCFD 75%);display:flex;flex-direction:column}.map-heading{position:absolute;left:18px;top:17px;z-index:2;border:1px solid #DFE8EF;background:#FFFDFBf2;padding:12px 14px;border-radius:12px;box-shadow:0 3px 18px #1D354515;pointer-events:none}.map-heading strong{font-size:12px;color:var(--navy);display:block}.map-heading small{font-size:10px;color:var(--muted);display:block;margin-top:3px}.map-svg{display:block;width:100%;height:590px;min-height:480px;flex:1;cursor:grab;touch-action:none;user-select:none}.map-svg.dragging{cursor:grabbing}.county{fill:#EBF1EA;stroke:#BACBCE;stroke-width:1;vector-effect:non-scaling-stroke;pointer-events:none}.county.metro{fill:#E0EDE6;stroke:#AFC7C0}.texas-outline{fill:none;stroke:#577785;stroke-width:2.4;vector-effect:non-scaling-stroke;pointer-events:none}.road-primary{stroke:#A2AEBB;stroke-width:1.8;vector-effect:non-scaling-stroke;fill:none;stroke-linecap:round;stroke-linejoin:round;opacity:.75;pointer-events:none}.road-secondary{stroke:#BBC4CA;stroke-width:1.15;vector-effect:non-scaling-stroke;fill:none;stroke-linecap:round;stroke-linejoin:round;opacity:.65;pointer-events:none}.road-label{fill:#617181;font-weight:750;paint-order:stroke;stroke:#FBFCFD;stroke-width:2px;stroke-linejoin:round;pointer-events:none}.city-label{fill:#26303B;font-weight:650;paint-order:stroke;stroke:#F8FBFB;stroke-width:1.2px;stroke-linejoin:round;pointer-events:none}.city-dot{fill:#17222C;stroke:#fff;stroke-width:0.85;vector-effect:non-scaling-stroke;pointer-events:none}.pin{cursor:pointer;stroke:white;stroke-width:2.2;vector-effect:non-scaling-stroke}.pin:hover,.pin.active{stroke:#F0B44A;stroke-width:3.2}.pin-cluster{stroke:white;stroke-width:3}#pinLayer g[role="button"]{cursor:pointer}#pinLayer g[role="button"]:focus-visible .pin{stroke:#F0B44A;stroke-width:3.5}.map-tip{position:absolute;left:16px;bottom:66px;background:#FFFFFFE8;border:1px solid #DEE8EF;color:#597385;border-radius:8px;padding:6px 9px;font-size:10px;pointer-events:none}.map-foot{height:49px;background:#ffffffec;border-top:1px solid #DFE8ED;display:flex;align-items:center;justify-content:space-between;gap:9px;padding:8px 14px}.map-legend{display:flex;align-items:center;flex-wrap:wrap;gap:11px;font-size:10px;color:#5E7587}.legend-dot{width:9px;height:9px;border-radius:50%;display:inline-block;margin-right:4px}.map-foot small{font-size:9px;color:#8D9FAC;text-align:right}.controls{position:absolute;right:16px;top:16px;display:flex;flex-direction:column;gap:6px;z-index:4}.controls button{width:35px;height:35px;display:grid;place-items:center;border:1px solid #D1DFE7;color:var(--navy);background:#FFF;border-radius:9px;font-size:21px;font-weight:600;box-shadow:0 2px 9px #203D4B18}.controls button.reset{font-size:10px;font-weight:800;height:34px}
+    .map-column{position:relative;overflow:hidden;min-width:0;background:linear-gradient(160deg,#ECF4F7,#FAFCFD 75%);display:flex;flex-direction:column}.map-heading{position:absolute;left:18px;top:17px;z-index:2;border:1px solid #DFE8EF;background:#FFFDFBf2;padding:12px 14px;border-radius:12px;box-shadow:0 3px 18px #1D354515;pointer-events:none}.map-heading strong{font-size:12px;color:var(--navy);display:block}.map-heading small{font-size:10px;color:var(--muted);display:block;margin-top:3px}.map-svg{display:block;width:100%;height:590px;min-height:480px;flex:1;cursor:grab;touch-action:none;user-select:none}.map-svg.dragging{cursor:grabbing}.county{fill:#EBF1EA;stroke:#BACBCE;stroke-width:1;vector-effect:non-scaling-stroke;pointer-events:none}.county.metro{fill:#E0EDE6;stroke:#AFC7C0}.texas-outline{fill:none;stroke:#577785;stroke-width:2.4;vector-effect:non-scaling-stroke;pointer-events:none}.street-road{fill:none;stroke:#C7D3DB;stroke-width:1.05;vector-effect:non-scaling-stroke;stroke-linejoin:round;stroke-linecap:round;pointer-events:none}.street-name{fill:#697681;font-weight:600;paint-order:stroke;stroke:#F9FBFD;stroke-width:2px;stroke-linejoin:round;pointer-events:none}.street-status{position:absolute;left:16px;bottom:94px;z-index:3;border:1px solid #D9E5EC;background:#FFFFFFED;padding:6px 9px;border-radius:8px;color:#4C6376;font-size:10px;pointer-events:none;max-width:270px}.road-primary{stroke:#A2AEBB;stroke-width:1.8;vector-effect:non-scaling-stroke;fill:none;stroke-linecap:round;stroke-linejoin:round;opacity:.75;pointer-events:none}.road-secondary{stroke:#BBC4CA;stroke-width:1.15;vector-effect:non-scaling-stroke;fill:none;stroke-linecap:round;stroke-linejoin:round;opacity:.65;pointer-events:none}.road-label{fill:#617181;font-weight:750;paint-order:stroke;stroke:#FBFCFD;stroke-width:2px;stroke-linejoin:round;pointer-events:none}.city-label{fill:#26303B;font-weight:650;paint-order:stroke;stroke:#F8FBFB;stroke-width:1.2px;stroke-linejoin:round;pointer-events:none}.city-dot{fill:#17222C;stroke:#fff;stroke-width:0.85;vector-effect:non-scaling-stroke;pointer-events:none}.pin{cursor:pointer;stroke:white;stroke-width:2.2;vector-effect:non-scaling-stroke}.pin:hover,.pin.active{stroke:#F0B44A;stroke-width:3.2}.pin-cluster{stroke:white;stroke-width:3}#pinLayer g[role="button"]{cursor:pointer}#pinLayer g[role="button"]:focus-visible .pin{stroke:#F0B44A;stroke-width:3.5}.map-tip{position:absolute;left:16px;bottom:66px;background:#FFFFFFE8;border:1px solid #DEE8EF;color:#597385;border-radius:8px;padding:6px 9px;font-size:10px;pointer-events:none}.map-foot{height:49px;background:#ffffffec;border-top:1px solid #DFE8ED;display:flex;align-items:center;justify-content:space-between;gap:9px;padding:8px 14px}.map-legend{display:flex;align-items:center;flex-wrap:wrap;gap:11px;font-size:10px;color:#5E7587}.legend-dot{width:9px;height:9px;border-radius:50%;display:inline-block;margin-right:4px}.map-foot small{font-size:9px;color:#8D9FAC;text-align:right}.controls{position:absolute;right:16px;top:16px;display:flex;flex-direction:column;gap:6px;z-index:4}.controls button{width:35px;height:35px;display:grid;place-items:center;border:1px solid #D1DFE7;color:var(--navy);background:#FFF;border-radius:9px;font-size:21px;font-weight:600;box-shadow:0 2px 9px #203D4B18}.controls button.reset{font-size:10px;font-weight:800;height:34px}
     .profile{padding:25px 22px;min-width:0;max-height:705px;overflow:auto}.profile h2{font:700 27px/1.16 var(--serif);letter-spacing:-.5px;color:var(--navy);margin:8px 0 11px}.profile p{font-size:12.5px;color:var(--muted);line-height:1.68}.profile .hero-stat{font:700 38px var(--serif);color:var(--blue);margin:17px 0 0}.profile .hero-caption{font-size:12px;color:var(--muted);margin-top:0}.card{border:1px solid #D9E6ED;background:#F4F9FC;border-radius:10px;padding:13px 14px;margin-top:16px}.card strong{font-size:12px;color:var(--navy)}.card p{font-size:12px;margin:5px 0 0}.section-name{font-size:10px;color:#75889A;text-transform:uppercase;font-weight:850;letter-spacing:.12em;margin:19px 0 8px}.tagset{display:flex;flex-wrap:wrap;gap:5px}.topic{background:#F2F5F7;color:#596F81;border-radius:6px;font-size:10px;padding:6px 8px}.pill{border-radius:20px;font-size:10px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;display:inline-flex;padding:6px 9px;margin-top:11px}.access{background:#F1F7FA;border:1px solid #DEEBF2;border-radius:9px;padding:12px}.access strong{font-size:12px;color:var(--navy)}.access p{margin:5px 0 0}.review{color:#926B24;background:#FFF8E6;border:1px solid #F0DEB5;border-radius:8px;font-size:11px;padding:9px 10px}.link{display:block;font-size:12px;font-weight:700;margin:8px 0;word-break:break-word}.note{color:#7D8E9E!important;font-size:10.5px!important}.bottom{display:flex;justify-content:space-between;flex-wrap:wrap;gap:15px;padding:13px 0 19px;color:#728496;font-size:11px}.bottom a{font-size:11px}.sr-only{position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden}
     @media(max-width:1200px){.atlas{grid-template-columns:minmax(235px,270px) minmax(0,1fr) minmax(240px,275px)}.profile{padding:22px 18px}.map-legend{gap:7px}}
     @media(max-width:950px){.container{padding:22px 15px}.top-inner{padding:0 15px}.atlas{grid-template-columns:minmax(235px,300px) minmax(0,1fr)}.profile{grid-column:1/-1;border-top:1px solid var(--line);max-height:none;min-height:225px}.map-svg{height:520px;min-height:520px}.list{max-height:510px}}
@@ -52,10 +52,10 @@
       </section>
       <section class="map-column" aria-label="Interactive map of science locations in Texas">
         <div class="map-heading"><strong id="mapTitle">Dallas–Fort Worth, Texas</strong><small>Zoom, drag or select a marker</small></div>
-        <svg id="geoMap" class="map-svg" xmlns="http://www.w3.org/2000/svg" role="group" aria-label="Geographic Texas county map showing science locations"><g id="countyLayer"></g><path id="border" class="texas-outline"></path><g id="roadLayer" aria-hidden="true"><g id="majorRoadLayer"></g><g id="minorRoadLayer"></g><g id="roadLabelLayer"></g></g><g id="cityLayer"></g><g id="pinLayer"></g></svg>
+        <svg id="geoMap" class="map-svg" xmlns="http://www.w3.org/2000/svg" role="group" aria-label="Geographic Texas county map showing science locations"><g id="countyLayer"></g><path id="border" class="texas-outline"></path><g id="roadLayer" aria-hidden="true"><g id="streetLayer"></g><g id="majorRoadLayer"></g><g id="minorRoadLayer"></g><g id="streetLabelLayer"></g><g id="roadLabelLayer"></g></g><g id="cityLayer"></g><g id="pinLayer"></g></svg>
         <div class="controls"><button type="button" id="zoomIn" aria-label="Zoom in">+</button><button type="button" id="zoomOut" aria-label="Zoom out">−</button><button type="button" class="reset" id="resetMap" aria-label="Reset map view">RESET</button></div>
-        <div class="map-tip">Pin positions approximate · Use official directions when visiting</div>
-        <div class="map-foot"><div class="map-legend"><span><i class="legend-dot" style="background:#084B9E"></i>Visitor venue</span><span><i class="legend-dot" style="background:#B68C3B"></i>Scheduled</span><span><i class="legend-dot" style="background:#9E382E"></i>Research</span></div><small>Texas counties · TxDOT roads · Offline vectors</small></div>
+        <div class="map-tip">Pin positions approximate · Use official directions when visiting</div><div class="street-status hidden" id="streetStatus" role="status" aria-live="polite"></div>
+        <div class="map-foot"><div class="map-legend"><span><i class="legend-dot" style="background:#084B9E"></i>Visitor venue</span><span><i class="legend-dot" style="background:#B68C3B"></i>Scheduled</span><span><i class="legend-dot" style="background:#9E382E"></i>Research</span></div><small>Texas counties &amp; TxDOT highways · Local streets: U.S. Census TIGERweb</small></div>
       </section>
       <aside class="profile" id="profile" aria-label="Science location details" aria-live="polite"></aside>
     </main>
@@ -65,7 +65,7 @@
       <div class="cal-note">Pilot calendar · Dated entries were found on official sites on November 4, 2026, but have not completed publication review. Event schedules and ticket availability can change. No automated synchronization is running yet.</div>
       <div class="cal-layout"><div><div class="cal-week" aria-hidden="true"><span>Sun</span><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span></div><div id="calendarGrid" class="cal-grid" role="group" aria-label="Monthly event calendar"></div></div><aside class="event-results" aria-live="polite"><h3 id="eventListTitle">Events this month</h3><p class="event-count" id="eventCount"></p><div id="eventCards"></div></aside></div>
     </section>
-    <div class="bottom"><span>Frameworked Science Atlas · v0.7 · Statewide discovery research, not an official visitor guide</span><span>All entries need full editorial review before publication. No map tile service required.</span></div>
+    <div class="bottom"><span>Frameworked Science Atlas · v0.8 · Statewide discovery research, not an official visitor guide</span><span>All entries need full editorial review before publication. No map tile service required.</span></div>
   </div>
 <script>
 'use strict';
@@ -83,6 +83,10 @@ const PLACES=DATA.places.filter(p=>p.state==='TX').map(p=>({...p,lat:p.coordinat
 let region='dfw',area='all',kind='all',access='all',selectedId=null,isDragging=false,prevPointer=null;
 let view={x:742,y:281,w:205,h:175};
 const VIEWS={dfw:{x:742,y:281,w:205,h:175},tx:{x:-30,y:-14,w:1230,h:1110}};
+const STREET_SOURCE='https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/Transportation_LargeScale/MapServer/2/query';
+const STREET_SCALE_LIMIT=14;
+const streetCache=new Map();
+let streetDetail=null,streetTimer=null,streetController=null,streetPendingKey='',streetRequestSequence=0;
 const xProj=lng=>(lng+106.7)*87;
 const yProj=lat=>(36.6-lat)*99;
 const esc=s=>String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -93,7 +97,7 @@ const eligible=()=>{
 };
 function drawCounties(){const frag=document.createDocumentFragment();GEO.counties.forEach(c=>{const p=svgEl('path',{d:c.d,class:'county'+(c.m?' metro':'')});p.appendChild(svgEl('title'));p.lastChild.textContent=c.n+' County';frag.appendChild(p)});$('countyLayer').appendChild(frag);$('border').setAttribute('d',GEO.outer)}
 const CITY_POINTS=[['Dallas',32.779,-96.797],['Fort Worth',32.754,-97.330],['Denton',33.214,-97.134],['Frisco',33.151,-96.823],['McKinney',33.198,-96.640],['Arlington',32.737,-97.107],['Plano',33.020,-96.700],['Houston',29.76,-95.37],['Austin',30.27,-97.74],['Amarillo',35.22,-101.83],['El Paso',31.76,-106.49],['San Antonio',29.42,-98.49],['Lubbock',33.58,-101.85],['Midland',32,-102.08]];
-function setView(v){view={...v};$('geoMap').setAttribute('viewBox',`${view.x} ${view.y} ${view.w} ${view.h}`);renderRoads();renderCities();renderPins()}
+function setView(v){view={...v};$('geoMap').setAttribute('viewBox',`${view.x} ${view.y} ${view.w} ${view.h}`);renderRoads();renderCities();renderPins();scheduleStreetDetail()}
 function drawRoads(){
  const major=$('majorRoadLayer'),minor=$('minorRoadLayer');
  for(const road of ROADS.roads){const path=svgEl('path',{d:road.d,class:road.level==='primary'?'road-primary':'road-secondary'});path.appendChild(svgEl('title'));path.lastChild.textContent=road.name+' · simplified highway centerline';(road.level==='primary'?major:minor).appendChild(path)}
@@ -102,6 +106,9 @@ function renderRoads(){
  const visible=view.w<=165;
  $('roadLayer').classList.toggle('hidden',!visible);
  $('minorRoadLayer').classList.toggle('hidden',view.w>115);
+ $('streetLayer').classList.toggle('hidden',view.w>STREET_SCALE_LIMIT);
+ $('streetLabelLayer').classList.toggle('hidden',view.w>4.8);
+ renderStreetNames();
  const labels=$('roadLabelLayer');labels.replaceChildren();
  if(!visible||view.w>85)return;
  const rect=$('geoMap').getBoundingClientRect(),scale=Math.max(.01,Math.min((rect.width||700)/view.w,(rect.height||590)/view.h));
@@ -110,6 +117,128 @@ function renderRoads(){
   if(road.x<view.x||road.x>view.x+view.w||road.y<view.y||road.y>view.y+view.h)continue;
   const label=svgEl('text',{x:road.x,y:road.y,'font-size':fontSize,class:'road-label','text-anchor':'middle'});
   label.textContent=road.name;labels.appendChild(label);
+ }
+}
+
+// Neighborhood streets are requested only at high zoom, after navigation pauses.
+// Rendering uses the same longitude/latitude projection as the county boundaries.
+function streetViewportCenter(){
+ const x=view.x+view.w/2,y=view.y+view.h/2;
+ return {lng:x/87-106.7,lat:36.6-y/99};
+}
+function streetTile(center){
+ const resolution=.035;
+ const lng=Math.round(center.lng/resolution)*resolution,lat=Math.round(center.lat/resolution)*resolution;
+ return {lng,lat,key:lng.toFixed(3)+','+lat.toFixed(3),bbox:[lng-.027,lat-.027,lng+.027,lat+.027]};
+}
+function streetStatus(message){
+ const node=$('streetStatus');
+ if(!message){node.classList.add('hidden');node.textContent='';return}
+ node.textContent=message;node.classList.remove('hidden');
+}
+function geometryStreetPaths(geometry){
+ if(!geometry)return [];
+ const lines=geometry.type==='MultiLineString'?geometry.coordinates:
+    geometry.type==='LineString'?[geometry.coordinates]:[];
+ return lines.filter(a=>Array.isArray(a)&&a.length>=2);
+}
+function drawStreetDetail(tile){
+ const paths=$('streetLayer');paths.replaceChildren();
+ streetDetail=tile;
+ if(!tile)return;
+ const frag=document.createDocumentFragment();
+ for(const feature of tile.features){
+  const geometry=feature.geometry;
+  for(const line of geometryStreetPaths(geometry)){
+   const d=line.filter(p=>Array.isArray(p)&&Number.isFinite(p[0])&&Number.isFinite(p[1]))
+     .map((p,i)=>(i?'L':'M')+xProj(p[0]).toFixed(2)+','+yProj(p[1]).toFixed(2)).join('');
+   if(!d)continue;
+   const path=svgEl('path',{d,class:'street-road'});
+   frag.appendChild(path);
+  }
+ }
+ paths.appendChild(frag);
+ renderStreetNames();
+}
+function renderStreetNames(){
+ const root=$('streetLabelLayer');root.replaceChildren();
+ if(!streetDetail||view.w>4.8)return;
+ const rect=$('geoMap').getBoundingClientRect();
+ const scale=Math.max(.01,Math.min((rect.width||700)/view.w,(rect.height||590)/view.h));
+ const names=new Set(),positions=[],frag=document.createDocumentFragment();
+ for(const feature of streetDetail.features){
+  const name=feature.properties&&feature.properties.NAME;
+  if(!name||names.has(name)||positions.length>=22)continue;
+  const lines=geometryStreetPaths(feature.geometry);
+  if(!lines.length)continue;
+  const longest=lines.reduce((a,b)=>a.length>b.length?a:b,lines[0]);
+  const mid=longest[Math.floor(longest.length/2)];
+  if(!mid)continue;
+  const x=xProj(mid[0]),y=yProj(mid[1]);
+  if(x<view.x+view.w*.08||x>view.x+view.w*.92||y<view.y+view.h*.08||y>view.y+view.h*.92)continue;
+  if(positions.some(p=>Math.hypot((p.x-x)*scale,(p.y-y)*scale)<75))continue;
+  names.add(name);positions.push({x,y});
+  const label=svgEl('text',{x,y,'font-size':10.5/scale,class:'street-name','text-anchor':'middle'});
+  label.textContent=name;frag.appendChild(label);
+ }
+ root.appendChild(frag);
+}
+function scheduleStreetDetail(){
+ if(streetTimer){clearTimeout(streetTimer);streetTimer=null}
+ if(view.w>STREET_SCALE_LIMIT){
+  streetPendingKey='';if(streetController){streetController.abort();streetController=null}
+  $('streetLayer').classList.add('hidden');$('streetLabelLayer').classList.add('hidden');
+  streetStatus('');return;
+ }
+ const center=streetViewportCenter();
+ if(center.lng<-107||center.lng>-93||center.lat<25||center.lat>37){streetStatus('Local streets available within Texas.');return}
+ const tile=streetTile(center);
+ if(streetDetail&&streetDetail.key===tile.key){
+  streetStatus('Neighborhood streets · U.S. Census Bureau (online detail)');return;
+ }
+ if(streetCache.has(tile.key)){
+  drawStreetDetail(streetCache.get(tile.key));
+  streetStatus('Neighborhood streets · U.S. Census Bureau (online detail)');return;
+ }
+ streetStatus('Loading neighborhood streets…');
+ if(streetPendingKey===tile.key)return;
+ streetTimer=setTimeout(()=>loadStreetDetail(tile),450);
+}
+async function loadStreetDetail(tile){
+ streetTimer=null;
+ if(view.w>STREET_SCALE_LIMIT)return;
+ streetRequestSequence+=1;
+ const sequence=streetRequestSequence;
+ if(streetController)streetController.abort();
+ streetController=new AbortController();
+ streetPendingKey=tile.key;
+ const currentController=streetController;
+ const params=new URLSearchParams({
+  where:'1=1',geometry:tile.bbox.join(','),geometryType:'esriGeometryEnvelope',
+  inSR:'4326',spatialRel:'esriSpatialRelIntersects',outFields:'NAME,MTFCC',
+  returnGeometry:'true',outSR:'4326',geometryPrecision:'5',
+  maxAllowableOffset:'0.00012',resultRecordCount:'1500',f:'geojson'
+ });
+ const timeout=setTimeout(()=>currentController.abort(),12000);
+ try{
+  const response=await fetch(STREET_SOURCE+'?'+params.toString(),{signal:currentController.signal,mode:'cors'});
+  if(!response.ok)throw new Error('Street service returned '+response.status);
+  const data=await response.json();
+  if(!Array.isArray(data.features))throw new Error('Street service response has no features');
+  if(sequence!==streetRequestSequence||view.w>STREET_SCALE_LIMIT)return;
+  const tileData={...tile,features:data.features};
+  streetCache.set(tile.key,tileData);
+  if(streetCache.size>12)streetCache.delete(streetCache.keys().next().value);
+  drawStreetDetail(tileData);
+  streetStatus(data.exceededTransferLimit?'Neighborhood streets: partial data · U.S. Census Bureau':
+    'Neighborhood streets · U.S. Census Bureau (online detail)');
+ }catch(err){
+  if(sequence===streetRequestSequence&&view.w<=STREET_SCALE_LIMIT){
+   streetStatus('Street details unavailable; use official directions for precise entrances.');
+  }
+ }finally{
+  clearTimeout(timeout);
+  if(streetController===currentController){streetController=null;streetPendingKey=''}
  }
 }
 function renderCities(){
@@ -189,6 +318,27 @@ function renderProfile(){const p=PLACES.find(p=>p.id===selectedId);const pane=$(
  const checked=p.review.status==='verified';const advisory=p.access.advisory==='temporarily_closed'?`<div class="review" style="margin-top:11px;background:#FCEDEA;color:#94372A;border-color:#EEC9C0"><strong>Temporarily closed</strong> · Information checked ${esc(p.access.advisory_as_of||'date unknown')}. Follow the official site for reopening updates.</div>`:'';
  pane.innerHTML=`<div class="sec-label">Location profile</div><span class="pill" style="background:${bg};color:${fg}">${esc(CATEGORY[p.category])}</span><h2>${esc(p.name)}</h2><p>${esc(p.address)}</p>${advisory}<div class="section-name">What you'll find</div><p>${esc(p.summary)}</p><div class="section-name">Science topics</div><div class="tagset">${p.topics.map(t=>`<span class="topic">${esc(t)}</span>`).join('')}</div><div class="section-name">Visitor access</div><div class="access"><strong>${esc(p.access.label)}</strong><p>${esc(p.access.notes)}</p></div><div class="section-name">Editorial check</div><div class="review">${checked?'✓ Reviewed listing':'Source review pending — preliminary profile'}</div><p class="note">Pins show approximate locations, not verified entrances. Confirm public access, admission and directions on the official website.</p><div class="section-name">Institution references</div><a class="link" href="${esc(p.links.official_url)}" target="_blank" rel="noopener noreferrer">Official website ↗</a>${p.review.sources.slice(0,3).map(s=>`<a class="link" href="${esc(s.url)}" target="_blank" rel="noopener noreferrer">${esc(s.purpose)} ↗</a>`).join('')}`;
 
+
+ // Street geometry is real, but preliminary institution pins are approximate.
+ // Search by name and address rather than treating the pin as a verified entrance.
+ const streetActions=document.createElement('div');
+ streetActions.className='card';
+ const zoomButton=document.createElement('button');
+ zoomButton.type='button';zoomButton.textContent='Explore nearby streets';
+ zoomButton.style.cssText='padding:10px 12px;border-radius:8px;border:0;background:#084B9E;color:white;font-size:12px;font-weight:750;cursor:pointer;margin-bottom:10px';
+ zoomButton.onclick=()=>{const w=4.0,h=w*.89;setView({x:xProj(p.lng)-w/2,y:yProj(p.lat)-h/2,w,h})};
+ streetActions.appendChild(zoomButton);
+ const maps=document.createElement('a');
+ maps.className='link';maps.target='_blank';maps.rel='noopener noreferrer';
+ maps.href='https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(p.name+', '+p.address);
+ maps.textContent='Find address and directions in Maps ↗';
+ streetActions.appendChild(maps);
+ const caution=document.createElement('p');
+ caution.className='note';
+ caution.textContent='The Atlas pin is approximate. Use the organizer’s official directions to find the correct visitor entrance.';
+ streetActions.appendChild(caution);
+ pane.appendChild(streetActions);
+
  // Show dated opportunities on the institution profile without changing access policy.
  const upcoming=EVENTS.filter(e=>e.institution_id===p.id&&new Date(e.start_at).getTime()>=Date.now()).sort((a,b)=>a.start_at.localeCompare(b.start_at)).slice(0,3);
  if(upcoming.length){
@@ -200,7 +350,7 @@ function renderProfile(){const p=PLACES.find(p=>p.id===selectedId);const pane=$(
 }
 function selectPlace(id,recenter){const p=PLACES.find(p=>p.id===id);if(!p)return;selectedId=id;renderList();renderProfile();if(recenter){const w=Math.min(view.w,115),h=w*.89;setView({x:xProj(p.lng)-w/2,y:yProj(p.lat)-h/2,w,h})}else renderPins();const selected=$('placeList').querySelector('.selected');if(selected)selected.scrollIntoView({block:'nearest',behavior:'auto'});}
 function chooseRegion(next){region=next;area='all';$('area').value='all';$('crumbRegion').textContent=next==='dfw'?'Dallas–Fort Worth focus':'All Texas';selectedId=null;$('dfwButton').classList.toggle('active',next==='dfw');$('texasButton').classList.toggle('active',next==='tx');$('dfwButton').setAttribute('aria-pressed',String(next==='dfw'));$('texasButton').setAttribute('aria-pressed',String(next==='tx'));$('directoryTitle').textContent=next==='dfw'?'North Texas':'Texas directory';$('directorySubtitle').textContent=next==='dfw'?'Explore the Dallas–Fort Worth science community.':'Browse science locations across Texas by region.';$('mapTitle').textContent=next==='dfw'?'Dallas–Fort Worth, Texas':'Texas · Statewide';setView(VIEWS[next]);renderList();renderProfile()}
-function zoomBy(factor,clientX,clientY){const rect=$('geoMap').getBoundingClientRect();const mx=clientX===undefined?.5:(clientX-rect.left)/rect.width;const my=clientY===undefined?.5:(clientY-rect.top)/rect.height;const w=Math.max(12,Math.min(1700,view.w*factor)),h=view.h*w/view.w;setView({x:view.x+(view.w-w)*mx,y:view.y+(view.h-h)*my,w,h})}
+function zoomBy(factor,clientX,clientY){const rect=$('geoMap').getBoundingClientRect();const mx=clientX===undefined?.5:(clientX-rect.left)/rect.width;const my=clientY===undefined?.5:(clientY-rect.top)/rect.height;const w=Math.max(1.6,Math.min(1700,view.w*factor)),h=view.h*w/view.w;setView({x:view.x+(view.w-w)*mx,y:view.y+(view.h-h)*my,w,h})}
 function dragMove(e){if(!isDragging||!prevPointer)return;const rect=$('geoMap').getBoundingClientRect();const dx=(e.clientX-prevPointer.x)/rect.width*view.w,dy=(e.clientY-prevPointer.y)/rect.height*view.h;setView({...view,x:view.x-dx,y:view.y-dy});prevPointer={x:e.clientX,y:e.clientY}}
 $('geoMap').addEventListener('pointerdown',e=>{if(e.target.classList.contains('pin'))return;isDragging=true;prevPointer={x:e.clientX,y:e.clientY};$('geoMap').classList.add('dragging');$('geoMap').setPointerCapture(e.pointerId)});
 $('geoMap').addEventListener('pointermove',dragMove);['pointerup','pointercancel','lostpointercapture'].forEach(name=>$('geoMap').addEventListener(name,()=>{isDragging=false;prevPointer=null;$('geoMap').classList.remove('dragging')}));
