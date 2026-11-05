@@ -3,7 +3,7 @@
   "states": {
     "TX": {
       "status": "mapping",
-      "status_updated_at": "2026-11-04",
+      "status_updated_at": "2026-11-05",
       "verification_scope": "Statewide discovery catalog seeded in Dallas–Fort Worth, Central Texas, Houston/Gulf Coast, East and West Texas, Panhandle and South Texas. Not a comprehensive census or verified visitor directory.",
       "criteria": [
         "Each listing has a primary institutional source",
@@ -3906,6 +3906,754 @@
           }
         ]
       }
+    },
+    {
+      "id": "fort-worth-aviation",
+      "state": "TX",
+      "name": "Fort Worth Aviation Museum",
+      "city": "Fort Worth",
+      "category": "museum",
+      "address": "3300 Ross Ave, Fort Worth, TX 76106",
+      "coordinates": {
+        "lat": 32.80493,
+        "lng": -97.356119,
+        "accuracy": "approximate",
+        "source_url": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?benchmark=Public_AR_Current&format=json&address=3300%20Ross%20Ave%2C%20Fort%20Worth%2C%20TX%2076106"
+      },
+      "summary": "Aircraft exhibits and a flight simulator introduce visitors to aviation technology.",
+      "topics": [
+        "Aviation",
+        "Engineering"
+      ],
+      "access": {
+        "level": "public_venue",
+        "label": "Public visitor venue",
+        "notes": "Public admission; check the museum’s ticket page before visiting."
+      },
+      "links": {
+        "official_url": "https://fortworthaviationmuseum.com/tickets/"
+      },
+      "review": {
+        "status": "verified",
+        "reviewed_at": "2026-11-05",
+        "reviewed_by": "Codex (published-source check)",
+        "checks": {
+          "organization_source": true,
+          "access_source": true,
+          "coordinate_source": true
+        },
+        "sources": [
+          {
+            "url": "https://fortworthaviationmuseum.com/tickets/",
+            "purpose": "Official visitor information and address",
+            "checked_at": "2026-11-05"
+          },
+          {
+            "url": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?benchmark=Public_AR_Current&format=json&address=3300%20Ross%20Ave%2C%20Fort%20Worth%2C%20TX%2076106",
+            "purpose": "Census street-address match (approximate)",
+            "checked_at": "2026-11-05"
+          }
+        ]
+      },
+      "region": "dfw"
+    },
+    {
+      "id": "whiteside-museum",
+      "state": "TX",
+      "name": "Whiteside Museum of Natural History",
+      "city": "Seymour",
+      "category": "museum",
+      "address": "310 N Washington St, Seymour, TX 76380",
+      "coordinates": {
+        "lat": 33.590207,
+        "lng": -99.261628,
+        "accuracy": "approximate",
+        "source_url": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?benchmark=Public_AR_Current&format=json&address=310%20N%20Washington%20St%2C%20Seymour%2C%20TX%2076380"
+      },
+      "summary": "Permian fossils from the Seymour area reveal the animals that lived in Texas long before the dinosaurs.",
+      "topics": [
+        "Paleontology",
+        "Permian fossils"
+      ],
+      "access": {
+        "level": "public_venue",
+        "label": "Public visitor venue",
+        "notes": "Ticketed museum. Use the front entrance and north parking lot."
+      },
+      "links": {
+        "official_url": "https://www.wmnh.org/plan-your-visit"
+      },
+      "review": {
+        "status": "verified",
+        "reviewed_at": "2026-11-05",
+        "reviewed_by": "Codex (published-source check)",
+        "checks": {
+          "organization_source": true,
+          "access_source": true,
+          "coordinate_source": true
+        },
+        "sources": [
+          {
+            "url": "https://www.wmnh.org/plan-your-visit",
+            "purpose": "Official visitor information and address",
+            "checked_at": "2026-11-05"
+          },
+          {
+            "url": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?benchmark=Public_AR_Current&format=json&address=310%20N%20Washington%20St%2C%20Seymour%2C%20TX%2076380",
+            "purpose": "Census street-address match (approximate)",
+            "checked_at": "2026-11-05"
+          },
+          {
+            "url": "https://cityofseymour.org/directory/whiteside-museum-of-natural-history/",
+            "purpose": "Municipal museum description",
+            "checked_at": "2026-11-05"
+          }
+        ]
+      },
+      "region": "west"
+    },
+    {
+      "id": "lubbock-lake-landmark",
+      "state": "TX",
+      "name": "Lubbock Lake Landmark",
+      "city": "Lubbock",
+      "category": "museum",
+      "address": "2401 Landmark Drive, Lubbock, TX",
+      "coordinates": {
+        "lat": 33.6259,
+        "lng": -101.8907,
+        "accuracy": "approximate",
+        "source_url": "https://tpwd.texas.gov/huntwild/wildlife/wildlife-trails/php/llano-estacado-loop"
+      },
+      "summary": "An active archaeology site and interpretive center trace nearly 12,000 years of human and environmental history on the Southern High Plains.",
+      "topics": [
+        "Archaeology",
+        "Natural history"
+      ],
+      "access": {
+        "level": "public_venue",
+        "label": "Public visitor venue",
+        "notes": "Free admission. Check in at the Nash Interpretive Center before exploring the trails."
+      },
+      "links": {
+        "official_url": "https://www.depts.ttu.edu/museumttu/LLL/"
+      },
+      "review": {
+        "status": "verified",
+        "reviewed_at": "2026-11-05",
+        "reviewed_by": "Codex (published-source check)",
+        "checks": {
+          "organization_source": true,
+          "access_source": true,
+          "coordinate_source": true
+        },
+        "sources": [
+          {
+            "url": "https://www.depts.ttu.edu/museumttu/LLL/",
+            "purpose": "Official visitor information and address",
+            "checked_at": "2026-11-05"
+          },
+          {
+            "url": "https://tpwd.texas.gov/huntwild/wildlife/wildlife-trails/php/llano-estacado-loop",
+            "purpose": "Texas wildlife trail site coordinates",
+            "checked_at": "2026-11-05"
+          }
+        ]
+      },
+      "region": "panhandle"
+    },
+    {
+      "id": "wildcat-bluff",
+      "state": "TX",
+      "name": "Wildcat Bluff Discovery Center",
+      "city": "Amarillo",
+      "category": "nature_center",
+      "address": "2301 N Soncy, Amarillo, TX",
+      "coordinates": {
+        "lat": 35.2351,
+        "lng": -101.9399,
+        "accuracy": "approximate",
+        "source_url": "https://tpwd.texas.gov/huntwild/wildlife/wildlife-trails/php/canyon-loop"
+      },
+      "summary": "Prairie trails and a bird blind offer a close look at native grassland wildlife near Amarillo.",
+      "topics": [
+        "Prairie ecology",
+        "Birds"
+      ],
+      "access": {
+        "level": "public_venue",
+        "label": "Public visitor venue",
+        "notes": "Admission applies. Check the center’s directions for current parking access."
+      },
+      "links": {
+        "official_url": "https://discoverycentercollective.org/wildcat-bluff-discovery-center/visit/"
+      },
+      "review": {
+        "status": "verified",
+        "reviewed_at": "2026-11-05",
+        "reviewed_by": "Codex (published-source check)",
+        "checks": {
+          "organization_source": true,
+          "access_source": true,
+          "coordinate_source": true
+        },
+        "sources": [
+          {
+            "url": "https://discoverycentercollective.org/wildcat-bluff-discovery-center/visit/",
+            "purpose": "Official visitor information and address",
+            "checked_at": "2026-11-05"
+          },
+          {
+            "url": "https://tpwd.texas.gov/huntwild/wildlife/wildlife-trails/php/canyon-loop",
+            "purpose": "Texas wildlife trail site coordinates",
+            "checked_at": "2026-11-05"
+          }
+        ]
+      },
+      "region": "panhandle"
+    },
+    {
+      "id": "chihuahuan-desert-center",
+      "state": "TX",
+      "name": "Chihuahuan Desert Nature Center",
+      "city": "Fort Davis",
+      "category": "nature_center",
+      "address": "43869 State Hwy 118, Fort Davis, TX 79734",
+      "coordinates": {
+        "lat": 30.5567,
+        "lng": -103.8664,
+        "accuracy": "approximate",
+        "source_url": "https://tpwd.texas.gov/huntwild/wildlife/wildlife-trails/fwtx/davis-mountains-loop"
+      },
+      "summary": "Compare desert plants in the botanical gardens with grassland and canyon habitats in the foothills of the Davis Mountains.",
+      "topics": [
+        "Desert ecology",
+        "Botany"
+      ],
+      "access": {
+        "level": "public_venue",
+        "label": "Public visitor venue",
+        "notes": "Admission applies; arrange guided group tours in advance."
+      },
+      "links": {
+        "official_url": "https://www.cdri.org/hours-admission-directions-and-weather-conditions.html"
+      },
+      "review": {
+        "status": "verified",
+        "reviewed_at": "2026-11-05",
+        "reviewed_by": "Codex (published-source check)",
+        "checks": {
+          "organization_source": true,
+          "access_source": true,
+          "coordinate_source": true
+        },
+        "sources": [
+          {
+            "url": "https://www.cdri.org/hours-admission-directions-and-weather-conditions.html",
+            "purpose": "Official visitor information and address",
+            "checked_at": "2026-11-05"
+          },
+          {
+            "url": "https://tpwd.texas.gov/huntwild/wildlife/wildlife-trails/fwtx/davis-mountains-loop",
+            "purpose": "Texas wildlife trail site coordinates",
+            "checked_at": "2026-11-05"
+          }
+        ]
+      },
+      "region": "west"
+    },
+    {
+      "id": "cibolo-nature-center",
+      "state": "TX",
+      "name": "Cibolo Nature Center",
+      "city": "Boerne",
+      "category": "nature_center",
+      "address": "140 City Park Road, Boerne, TX 78006",
+      "coordinates": {
+        "lat": 29.7817,
+        "lng": -98.7087,
+        "accuracy": "approximate",
+        "source_url": "https://tpwd.texas.gov/huntwild/wildlife/wildlife-trails/hote/cibolo-loop"
+      },
+      "summary": "Trails along Cibolo Creek connect tallgrass prairie, marsh and woodland, making it easy to compare Hill Country habitats on foot.",
+      "topics": [
+        "Wetland ecology",
+        "Native plants"
+      ],
+      "access": {
+        "level": "public_venue",
+        "label": "Public visitor venue",
+        "notes": "Free trail access. The visitor center has separate hours."
+      },
+      "links": {
+        "official_url": "https://www.cibolo.org/cibolo-nature-center/"
+      },
+      "review": {
+        "status": "verified",
+        "reviewed_at": "2026-11-05",
+        "reviewed_by": "Codex (published-source check)",
+        "checks": {
+          "organization_source": true,
+          "access_source": true,
+          "coordinate_source": true
+        },
+        "sources": [
+          {
+            "url": "https://www.cibolo.org/cibolo-nature-center/",
+            "purpose": "Official visitor information and address",
+            "checked_at": "2026-11-05"
+          },
+          {
+            "url": "https://tpwd.texas.gov/huntwild/wildlife/wildlife-trails/hote/cibolo-loop",
+            "purpose": "Texas wildlife trail site coordinates",
+            "checked_at": "2026-11-05"
+          }
+        ]
+      },
+      "region": "central"
+    },
+    {
+      "id": "naranjo-museum",
+      "state": "TX",
+      "name": "Naranjo Museum of Natural History",
+      "city": "Lufkin",
+      "category": "museum",
+      "address": "5104 S First Street, Lufkin, TX 75901",
+      "coordinates": {
+        "lat": 31.2684177,
+        "lng": -94.7420495,
+        "accuracy": "approximate",
+        "source_url": "https://naranjomuseum.org/the-museum/plan-your-visit/"
+      },
+      "summary": "Dinosaur displays and hands-on fossil digs introduce visitors to paleontology.",
+      "topics": [
+        "Paleontology",
+        "Dinosaurs"
+      ],
+      "access": {
+        "level": "public_venue",
+        "label": "Public visitor venue",
+        "notes": "Ticketed admission. Schedule group visits in advance for the group rate."
+      },
+      "links": {
+        "official_url": "https://naranjomuseum.org/the-museum/plan-your-visit/"
+      },
+      "review": {
+        "status": "verified",
+        "reviewed_at": "2026-11-05",
+        "reviewed_by": "Codex (published-source check)",
+        "checks": {
+          "organization_source": true,
+          "access_source": true,
+          "coordinate_source": true
+        },
+        "sources": [
+          {
+            "url": "https://naranjomuseum.org/the-museum/plan-your-visit/",
+            "purpose": "Official visitor information and linked site map",
+            "checked_at": "2026-11-05"
+          }
+        ]
+      },
+      "region": "east"
+    },
+    {
+      "id": "east-texas-oil-museum",
+      "state": "TX",
+      "name": "East Texas Oil Museum",
+      "city": "Kilgore",
+      "category": "museum",
+      "address": "1301 S Henderson Blvd, Kilgore, TX 75662",
+      "coordinates": {
+        "lat": 32.377099,
+        "lng": -94.870066,
+        "accuracy": "approximate",
+        "source_url": "https://easttexasoilmuseum.kilgore.edu/visit/"
+      },
+      "summary": "Artifacts and oral histories document how the East Texas oilfield was discovered and developed in the 1930s.",
+      "topics": [
+        "Petroleum technology",
+        "Industrial history"
+      ],
+      "access": {
+        "level": "public_venue",
+        "label": "Public visitor venue",
+        "notes": "Buy admission at the museum. Visitor parking is behind the building on Ross Avenue."
+      },
+      "links": {
+        "official_url": "https://easttexasoilmuseum.kilgore.edu/visit/"
+      },
+      "review": {
+        "status": "verified",
+        "reviewed_at": "2026-11-05",
+        "reviewed_by": "Codex (published-source check)",
+        "checks": {
+          "organization_source": true,
+          "access_source": true,
+          "coordinate_source": true
+        },
+        "sources": [
+          {
+            "url": "https://easttexasoilmuseum.kilgore.edu/visit/",
+            "purpose": "Official visitor information and linked site map",
+            "checked_at": "2026-11-05"
+          }
+        ]
+      },
+      "region": "east"
+    },
+    {
+      "id": "texas-energy-museum",
+      "state": "TX",
+      "name": "Texas Energy Museum",
+      "city": "Beaumont",
+      "category": "museum",
+      "address": "600 Main St, Beaumont, TX 77701",
+      "coordinates": {
+        "lat": 30.083136,
+        "lng": -94.096693,
+        "accuracy": "approximate",
+        "source_url": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?benchmark=Public_AR_Current&format=json&address=600%20Main%20St%2C%20Beaumont%2C%20TX%2077701"
+      },
+      "summary": "Exhibits connect petroleum science and drilling technology to the Spindletop discovery in Beaumont.",
+      "topics": [
+        "Energy",
+        "Petroleum technology"
+      ],
+      "access": {
+        "level": "public_venue",
+        "label": "Public visitor venue",
+        "notes": "Ticketed public museum; group rates require a reservation."
+      },
+      "links": {
+        "official_url": "https://www.texasenergymuseum.org/"
+      },
+      "review": {
+        "status": "verified",
+        "reviewed_at": "2026-11-05",
+        "reviewed_by": "Codex (published-source check)",
+        "checks": {
+          "organization_source": true,
+          "access_source": true,
+          "coordinate_source": true
+        },
+        "sources": [
+          {
+            "url": "https://www.texasenergymuseum.org/",
+            "purpose": "Official visitor information and address",
+            "checked_at": "2026-11-05"
+          },
+          {
+            "url": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?benchmark=Public_AR_Current&format=json&address=600%20Main%20St%2C%20Beaumont%2C%20TX%2077701",
+            "purpose": "Census street-address match (approximate)",
+            "checked_at": "2026-11-05"
+          }
+        ]
+      },
+      "region": "east"
+    },
+    {
+      "id": "shangri-la-gardens",
+      "state": "TX",
+      "name": "Shangri La Botanical Gardens & Nature Center",
+      "city": "Orange",
+      "category": "botanical_garden",
+      "address": "2111 W Park Ave, Orange, TX 77630",
+      "coordinates": {
+        "lat": 30.1029,
+        "lng": -93.75172,
+        "accuracy": "approximate",
+        "source_url": "https://tpwd.texas.gov/huntwild/wildlife/wildlife-trails/utc/big-thicket-loop"
+      },
+      "summary": "Gardens, a heron nesting area and the wooded wetlands of Adams Bayou offer places to study birds and wetland plants.",
+      "topics": [
+        "Botany",
+        "Wetland ecology",
+        "Birds"
+      ],
+      "access": {
+        "level": "public_venue",
+        "label": "Public visitor venue",
+        "notes": "General garden admission is free. Check the visitor page for special-event charges, early closures and seasonal closures."
+      },
+      "links": {
+        "official_url": "https://shangrilagardens.org/visit/"
+      },
+      "review": {
+        "status": "verified",
+        "reviewed_at": "2026-11-05",
+        "reviewed_by": "Codex (published-source check)",
+        "checks": {
+          "organization_source": true,
+          "access_source": true,
+          "coordinate_source": true
+        },
+        "sources": [
+          {
+            "url": "https://shangrilagardens.org/visit/",
+            "purpose": "Official visitor information and address",
+            "checked_at": "2026-11-05"
+          },
+          {
+            "url": "https://tpwd.texas.gov/huntwild/wildlife/wildlife-trails/utc/big-thicket-loop",
+            "purpose": "Texas wildlife trail site coordinates",
+            "checked_at": "2026-11-05"
+          }
+        ]
+      },
+      "region": "east"
+    },
+    {
+      "id": "hmns-sugar-land",
+      "state": "TX",
+      "name": "Houston Museum of Natural Science at Sugar Land",
+      "city": "Sugar Land",
+      "category": "museum",
+      "address": "13016 University Blvd, Sugar Land, TX 77479",
+      "coordinates": {
+        "lat": 29.593115,
+        "lng": -95.64879,
+        "accuracy": "approximate",
+        "source_url": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?benchmark=Public_AR_Current&format=json&address=13016%20University%20Blvd%2C%20Sugar%20Land%2C%20TX%2077479"
+      },
+      "summary": "The Sugar Land museum’s paleontology hall uses dinosaur skeletons, plants and marine fossils to explore prehistoric environments.",
+      "topics": [
+        "Paleontology",
+        "Fossils"
+      ],
+      "access": {
+        "level": "public_venue",
+        "label": "Public visitor venue",
+        "notes": "Public museum admission covers permanent exhibits. Check Sugar Land hours before visiting."
+      },
+      "links": {
+        "official_url": "https://sugarland.hmns.org/exhibits/hall-of-paleontology/"
+      },
+      "review": {
+        "status": "verified",
+        "reviewed_at": "2026-11-05",
+        "reviewed_by": "Codex (published-source check)",
+        "checks": {
+          "organization_source": true,
+          "access_source": true,
+          "coordinate_source": true
+        },
+        "sources": [
+          {
+            "url": "https://sugarland.hmns.org/exhibits/hall-of-paleontology/",
+            "purpose": "Official visitor information and address",
+            "checked_at": "2026-11-05"
+          },
+          {
+            "url": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?benchmark=Public_AR_Current&format=json&address=13016%20University%20Blvd%2C%20Sugar%20Land%2C%20TX%2077479",
+            "purpose": "Census street-address match (approximate)",
+            "checked_at": "2026-11-05"
+          }
+        ]
+      },
+      "region": "houston"
+    },
+    {
+      "id": "armand-bayou",
+      "state": "TX",
+      "name": "Armand Bayou Nature Center",
+      "city": "Pasadena",
+      "category": "nature_center",
+      "address": "8500 Bay Area Blvd, Pasadena, TX 77507",
+      "coordinates": {
+        "lat": 29.59958,
+        "lng": -95.07492,
+        "accuracy": "approximate",
+        "source_url": "https://tpwd.texas.gov/huntwild/wildlife/wildlife-trails/utc/clear-lake-loop"
+      },
+      "summary": "Walk between restored coastal prairie, woodland and wetland habitats to see how local wildlife use each landscape.",
+      "topics": [
+        "Coastal ecology",
+        "Prairie restoration"
+      ],
+      "access": {
+        "level": "public_venue",
+        "label": "Public visitor venue",
+        "notes": "Admission applies. Groups larger than 15 should arrange a field trip or private tour."
+      },
+      "links": {
+        "official_url": "https://www.abnc.org/hours-location-admission"
+      },
+      "review": {
+        "status": "verified",
+        "reviewed_at": "2026-11-05",
+        "reviewed_by": "Codex (published-source check)",
+        "checks": {
+          "organization_source": true,
+          "access_source": true,
+          "coordinate_source": true
+        },
+        "sources": [
+          {
+            "url": "https://www.abnc.org/hours-location-admission",
+            "purpose": "Official visitor information and address",
+            "checked_at": "2026-11-05"
+          },
+          {
+            "url": "https://tpwd.texas.gov/huntwild/wildlife/wildlife-trails/utc/clear-lake-loop",
+            "purpose": "Texas wildlife trail site coordinates",
+            "checked_at": "2026-11-05"
+          }
+        ]
+      },
+      "region": "houston"
+    },
+    {
+      "id": "brazosport-natural-science",
+      "state": "TX",
+      "name": "Brazosport Museum of Natural Science",
+      "city": "Clute",
+      "category": "museum",
+      "address": "400 College Dr, Clute, TX 77531",
+      "coordinates": {
+        "lat": 29.045492,
+        "lng": -95.405262,
+        "accuracy": "approximate",
+        "source_url": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?benchmark=Public_AR_Current&format=json&address=400%20College%20Dr%2C%20Clute%2C%20TX%2077531"
+      },
+      "summary": "Seashells, mammoth bones and fluorescent rocks offer three ways to explore natural history on the Texas coast.",
+      "topics": [
+        "Paleontology",
+        "Mineralogy",
+        "Marine life"
+      ],
+      "access": {
+        "level": "public_venue",
+        "label": "Public visitor venue",
+        "notes": "Admission is free; the museum asks visitors to reserve ahead."
+      },
+      "links": {
+        "official_url": "https://bcfas.org/museum/"
+      },
+      "review": {
+        "status": "verified",
+        "reviewed_at": "2026-11-05",
+        "reviewed_by": "Codex (published-source check)",
+        "checks": {
+          "organization_source": true,
+          "access_source": true,
+          "coordinate_source": true
+        },
+        "sources": [
+          {
+            "url": "https://bcfas.org/museum/",
+            "purpose": "Official visitor information and address",
+            "checked_at": "2026-11-05"
+          },
+          {
+            "url": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?benchmark=Public_AR_Current&format=json&address=400%20College%20Dr%2C%20Clute%2C%20TX%2077531",
+            "purpose": "Census street-address match (approximate)",
+            "checked_at": "2026-11-05"
+          }
+        ]
+      },
+      "region": "gulf"
+    },
+    {
+      "id": "south-texas-botanical",
+      "state": "TX",
+      "name": "South Texas Botanical Gardens & Nature Center",
+      "city": "Corpus Christi",
+      "category": "botanical_garden",
+      "address": "8545 S Staples St, Corpus Christi, TX 78413",
+      "coordinates": {
+        "lat": 27.6522,
+        "lng": -97.4061,
+        "accuracy": "approximate",
+        "source_url": "https://tpwd.texas.gov/huntwild/wildlife/wildlife-trails/ctc/corpus-christi-bay-loop"
+      },
+      "summary": "Formal gardens and trails through coastal brush habitat connect plant diversity with bird and butterfly observation.",
+      "topics": [
+        "Botany",
+        "Pollinators",
+        "Coastal ecology"
+      ],
+      "access": {
+        "level": "public_venue",
+        "label": "Public visitor venue",
+        "notes": "Admission applies. Follow the garden’s directions to the visitor entrance on South Oso Parkway."
+      },
+      "links": {
+        "official_url": "https://stxbot.org/"
+      },
+      "review": {
+        "status": "verified",
+        "reviewed_at": "2026-11-05",
+        "reviewed_by": "Codex (published-source check)",
+        "checks": {
+          "organization_source": true,
+          "access_source": true,
+          "coordinate_source": true
+        },
+        "sources": [
+          {
+            "url": "https://stxbot.org/",
+            "purpose": "Official visitor information and address",
+            "checked_at": "2026-11-05"
+          },
+          {
+            "url": "https://tpwd.texas.gov/huntwild/wildlife/wildlife-trails/ctc/corpus-christi-bay-loop",
+            "purpose": "Texas wildlife trail site coordinates",
+            "checked_at": "2026-11-05"
+          }
+        ]
+      },
+      "region": "gulf"
+    },
+    {
+      "id": "spi-birding",
+      "state": "TX",
+      "name": "South Padre Island Birding, Nature Center & Alligator Sanctuary",
+      "city": "South Padre Island",
+      "category": "nature_center",
+      "address": "6801 Padre Blvd, South Padre Island, TX 78597",
+      "coordinates": {
+        "lat": 26.1374,
+        "lng": -97.1735,
+        "accuracy": "approximate",
+        "source_url": "https://tpwd.texas.gov/huntwild/wildlife/wildlife-trails/ltc/south-padre-island-loop"
+      },
+      "summary": "Bayfront boardwalks and bird blinds overlook Laguna Madre habitat where visitors can observe coastal and migratory birds.",
+      "topics": [
+        "Ornithology",
+        "Coastal wetlands"
+      ],
+      "access": {
+        "level": "public_venue",
+        "label": "Public visitor venue",
+        "notes": "General admission is ticketed. Some animal activities have separate fees."
+      },
+      "links": {
+        "official_url": "https://www.spibirding.org/hours-admission"
+      },
+      "review": {
+        "status": "verified",
+        "reviewed_at": "2026-11-05",
+        "reviewed_by": "Codex (published-source check)",
+        "checks": {
+          "organization_source": true,
+          "access_source": true,
+          "coordinate_source": true
+        },
+        "sources": [
+          {
+            "url": "https://www.spibirding.org/hours-admission",
+            "purpose": "Official visitor information and address",
+            "checked_at": "2026-11-05"
+          },
+          {
+            "url": "https://tpwd.texas.gov/huntwild/wildlife/wildlife-trails/ltc/south-padre-island-loop",
+            "purpose": "Texas wildlife trail site coordinates",
+            "checked_at": "2026-11-05"
+          }
+        ]
+      },
+      "region": "south"
     }
   ]
 }
