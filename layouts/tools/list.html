@@ -1,12 +1,12 @@
 {{ define "main" }}
 <section class="tools-intro" aria-labelledby="tools-title"><div><p class="design-eyebrow">THE WORKBENCH / FRAMEWORKED</p><h1 id="tools-title">Scientific<br>tools.</h1></div><p>Calculators and interactive resources for exploring measurements, models, and the evidence behind scientific conclusions.</p></section>
-<section class="tools-feature" aria-labelledby="tool-scherrer-title"><div class="tools-feature-art"><span class="design-eyebrow">TOOL NO. 001</span><svg viewBox="0 0 500 280" role="img" aria-label="Illustrative powder diffraction curve, not experimental data"><g stroke="#b8cde6" opacity=".6" stroke-dasharray="3 7"><path d="M15 40H485 M15 120H485 M15 200H485 M65 20V245 M165 20V245 M265 20V245 M365 20V245 M465 20V245"/></g><path d="M15 240C85 240 100 235 113 207 C125 165 135 66 145 39 C155 73 160 191 176 225 C186 239 203 239 217 229 C234 205 236 158 248 144 C267 152 274 216 289 231 C318 241 337 232 352 209 C364 179 370 105 381 102 C397 135 401 215 418 236 C439 241 458 239 485 240" fill="none" stroke="#084b9e" stroke-width="4" stroke-linecap="round"/><path d="M128 141H161 M128 134V148 M161 134V148" stroke="#9e382e" stroke-width="3"/></svg><span class="plot-art-caption">FIG 01 — PEAK WIDTH / SCHERRER EQUATION</span></div><div class="tools-feature-copy"><p class="design-eyebrow">PXRD ANALYSIS / RESEARCH BETA</p><h2 id="tool-scherrer-title">Scherrer<br>calculator.</h2><p>Upload a powder diffraction pattern, fit individual reflections, inspect their full widths at half maximum, and estimate coherent crystallite domain sizes.</p><ul><li>XY and XYE text files</li><li>Automatic suggestions and manual peak selection</li><li>Visible assumptions and downloadable results</li></ul><a class="editorial-button" href="{{ "/tools/scherrer/" | relURL }}">Open the calculator <span aria-hidden="true">↗</span></a></div></section>
+<section class="tools-feature" aria-labelledby="tool-scherrer-title"><div class="tools-feature-art"><span class="design-eyebrow">TOOL NO. 001</span><svg viewBox="0 0 500 280" role="img" aria-label="Illustrative powder diffraction curve, not experimental data"><g stroke="#b8cde6" opacity=".6" stroke-dasharray="3 7"><path d="M15 40H485 M15 120H485 M15 200H485 M65 20V245 M165 20V245 M265 20V245 M365 20V245 M465 20V245"/></g><path d="M15 240C85 240 100 235 113 207 C125 165 135 66 145 39 C155 73 160 191 176 225 C186 239 203 239 217 229 C234 205 236 158 248 144 C267 152 274 216 289 231 C318 241 337 232 352 209 C364 179 370 105 381 102 C397 135 401 215 418 236 C439 241 458 239 485 240" fill="none" stroke="#084b9e" stroke-width="4" stroke-linecap="round"/><path d="M128 141H161 M128 134V148 M161 134V148" stroke="#9e382e" stroke-width="3"/></svg><span class="plot-art-caption">FIG 01 — PEAK WIDTH / SCHERRER EQUATION</span></div><div class="tools-feature-copy"><p class="design-eyebrow">PXRD ANALYSIS / RESEARCH BETA</p><h2 id="tool-scherrer-title">Scherrer<br>calculator.</h2><p>Upload a powder diffraction pattern, fit individual reflections, inspect their full widths at half maximum, and estimate coherent crystallite domain sizes.</p><ul><li>XY and XYE text files</li><li>Automatic suggestions and manual peak selection</li><li>Visible assumptions and downloadable results</li></ul><a class="editorial-button" href="{{ "/tools/scherrer/" | relURL }}">Open the calculator <span aria-hidden="true">{{ partial "frameworked-arrow.html" . }}</span></a></div></section>
 <section class="bragg-feature" aria-labelledby="tool-bragg-title">
   <div class="bragg-feature-intro">
     <p class="design-eyebrow">TOOL NO. 002 / DIFFRACTION EDUCATION</p>
     <h2 id="tool-bragg-title">Bragg's law <em>explorer.</em></h2>
     <p>See how the spacing of crystal lattice planes determines a possible diffraction angle. Change a square lattice, compare (10) and (11) planes, then examine the Bragg ray construction.</p>
-    <a class="editorial-button" href="{{ "/tools/bragg/" | relURL }}">Explore Bragg's law <span aria-hidden="true">↗</span></a>
+    <a class="editorial-button" href="{{ "/tools/bragg/" | relURL }}">Explore Bragg's law <span aria-hidden="true">{{ partial "frameworked-arrow.html" . }}</span></a>
   </div>
   <div class="bragg-feature-art" aria-hidden="true">
     <svg viewBox="0 0 400 240">
@@ -28,7 +28,7 @@
     <p class="design-eyebrow">TOOL NO. 003 / GENERAL CHEMISTRY</p>
     <h2 id="tool-ratio-title">Reagent ratio <em>calculator.</em></h2>
     <p>Set molar equivalents for two or more reagents, enter one known mass or amount, and calculate the remaining quantities. Includes color-coded results, multiple reagents, and easy copying.</p>
-    <a class="editorial-button" href="{{ "/tools/reagent-ratios/" | relURL }}">Calculate reagent ratios <span aria-hidden="true">↗</span></a>
+    <a class="editorial-button" href="{{ "/tools/reagent-ratios/" | relURL }}">Calculate reagent ratios <span aria-hidden="true">{{ partial "frameworked-arrow.html" . }}</span></a>
   </div>
   <div class="bragg-feature-art" aria-hidden="true">
     <svg viewBox="0 0 400 240">
@@ -45,7 +45,7 @@
   </div>
 </section>
 <section class="bragg-feature" aria-labelledby="tool-vibration-title">
-  <div class="bragg-feature-intro"><h2 id="tool-vibration-title">Molecular vibration <em>explorer.</em></h2><p>Predict how an isotope swap shifts an infrared absorption band, then test your answer against the quantum energy levels.</p><a class="editorial-button" href="/tools/molecular-vibration/">Explore molecular vibration →</a></div>
+  <div class="bragg-feature-intro"><h2 id="tool-vibration-title">Molecular vibration <em>explorer.</em></h2><p>Predict how an isotope swap shifts an infrared absorption band, then test your answer against the quantum energy levels.</p><a class="editorial-button" href="/tools/molecular-vibration/">Explore molecular vibration <span aria-hidden="true">{{ partial "frameworked-arrow.html" . }}</span></a></div>
   <div class="bragg-feature-art" aria-hidden="true"><svg viewBox="0 0 400 165"><path d="M75 10 Q200 310 325 10" fill="none" stroke="#084b9e" stroke-width="3"/><path d="M165 148H235 M138 123H262 M120 98H280 M105 73H295" stroke="#9e382e" stroke-width="3"/></svg><p>Vibrational states in a harmonic potential</p></div>
 </section>
 {{ end }}
