@@ -98,7 +98,7 @@ test("advanced calculator does not pretend to use the guided lattice", () => {
   ui.toggleAdvanced(true);
   assert.equal(ui.el("latticePane").hidden, true);
   assert.equal(ui.el("guidedControls").hidden, true);
-  assert.match(ui.el("explanation").textContent, /not attached to the schematic/);
+  assert.match(ui.el("explanation").textContent, /independent of the guided square-lattice schematic/);
   assert.match(ui.el("experimentHelper").textContent, /independent of the guided square lattice/);
   ui.change("mode", "angle", "change");
   ui.change("value", 60);
