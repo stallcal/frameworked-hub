@@ -146,16 +146,30 @@ test("advanced mode hides guided mobile quick preview",()=>{
   assert.equal(ui.el("mobileLive").hidden,false);
 });
 
-test("palette preview choices change the page palette without altering calculations",()=>{
+test("blue a bracket spans two lattice points and expands with lattice parameter",()=>{
   const ui=createActivity();
-  ui.el("paletteWarm").handlers.click[0]();
-  assert.equal(ui.theme.attributes["data-palette"],"warm");
-  assert.equal(ui.el("paletteWarm").handlers.click.length,1);
-  near(ui.el("angle-out").textContent.replace("°",""),22.21);
-  ui.el("paletteNavy").handlers.click[0]();
-  assert.equal(ui.theme.attributes["data-palette"],"navy");
-  ui.el("paletteClassic").handlers.click[0]();
-  assert.equal(ui.theme.attributes["data-palette"],"classic");
+  const initial=ui.el("latticeGeometry").innerHTML;
+  assert.match(initial,/class="lattice-a-bracket" data-distance-px="34\.4/);
+  assert.match(initial,/class="lattice-a-label"/);
+  assert.match(initial,/>a<\/text>/);
+  assert.match(initial,/>d<\/text>/);
+  ui.change("latticeA",5);
+  const changed=ui.el("latticeGeometry").innerHTML;
+  assert.match(changed,/class="lattice-a-bracket" data-distance-px="43"/);
+  assert.match(changed,/class="lattice-previous-dot"/);
+  near(ui.el("d-out").textContent,5);
+  near(ui.el("angle-out").textContent.replace("°",""),17.72);
+  ui.change("planeFamily","11");
+  assert.match(ui.el("latticeGeometry").innerHTML,/data-distance-px="43"/);
+  near(ui.el("d-out").textContent,5/Math.sqrt(2),0.01);
+});
+test("lattice causal explanation appears only in guided mode",()=>{
+  const ui=createActivity();
+  assert.equal(ui.el("relationshipChain").hidden,false);
+  ui.toggleAdvanced(true);
+  assert.equal(ui.el("relationshipChain").hidden,true);
+  ui.toggleAdvanced(false);
+  assert.equal(ui.el("relationshipChain").hidden,false);
 });
 test("measured PXRD example explains why advanced controls matter",()=>{
   const ui=createActivity();
