@@ -13,8 +13,18 @@
     <div class="resource-section-top"><div><p class="design-eyebrow">START WITH A SUBJECT</p><h2 id="subject-heading">Browse a topic.</h2></div></div>
     <div class="topic-grid">
       {{ range first 4 $catalog.topics }}
-      <a class="topic-card" href="{{ printf "/explore/resources/?topic=%s" .id | relURL }}"><span class="topic-card-kicker">COLLECTION</span><strong>{{ .label }}</strong><span aria-hidden="true" class="topic-arrow">↗</span></a>
+      <a class="topic-card" href="{{ printf "/explore/resources/?topic=%s" .id | relURL }}"><span class="topic-card-kicker">COLLECTION</span><strong>{{ .label }}</strong><span aria-hidden="true" class="topic-arrow">{{ partial "frameworked-arrow.html" . }}</span></a>
       {{ end }}
+    </div>
+    <div class="lab-feature">
+      <div>
+        <p class="design-eyebrow">RESEARCH COLLECTION / WRIEDT LAB</p>
+        <p>Selected papers on porous frameworks, PFAS, crystallography, and environmental applications.</p>
+      </div>
+      <div class="lab-feature-links">
+        <a href="{{ "/explore/resources/?collection=wriedt" | relURL }}">View Wriedt Lab papers <span aria-hidden="true">{{ partial "frameworked-arrow.html" . }}</span></a>
+        <a href="https://labs.utdallas.edu/wriedt/publications/" target="_blank" rel="noopener noreferrer">Complete lab publication list <span aria-hidden="true">{{ partial "frameworked-arrow.html" . }}</span></a>
+      </div>
     </div>
   </section>
 
@@ -34,6 +44,7 @@
         {{ range $catalog.kinds }}<option value="{{ .id }}">{{ .label }}</option>{{ end }}
       </select></label>
       <button type="reset" class="resource-reset" id="resource-reset">Clear filters</button>
+      <label class="resource-lab-filter" for="resource-lab-only"><input type="checkbox" id="resource-lab-only" name="collection" value="wriedt"><span>Selected Wriedt Lab papers only</span></label>
     </form>
     <p class="resource-count" id="resource-count" role="status" aria-live="polite">{{ len $catalog.resources }} resources</p>
 
@@ -50,9 +61,9 @@
         {{ range . }}
           {{ $link := .url }}
           {{ with .doi }}{{ $link = printf "https://doi.org/%s" . }}{{ end }}
-          <article class="resource-entry" data-resource-entry data-kind="{{ .kind }}" data-topics="{{ delimit .topics " " }}">
+          <article class="resource-entry" data-resource-entry data-kind="{{ .kind }}" data-topics="{{ delimit .topics " " }}" data-collection="{{ .collection }}">
             <div class="resource-entry-main">
-              <a class="resource-entry-title" href="{{ $link }}" target="_blank" rel="noopener noreferrer">{{ .title }} <span aria-hidden="true">↗</span></a>
+              <a class="resource-entry-title" href="{{ $link }}" target="_blank" rel="noopener noreferrer">{{ .title }} <span aria-hidden="true">{{ partial "frameworked-arrow.html" . }}</span></a>
               {{ with .meta }}<p class="resource-entry-meta">{{ . }}</p>{{ end }}
               {{ with .description }}<p class="resource-entry-description">{{ . }}</p>{{ end }}
               <div class="resource-entry-tags">
@@ -60,6 +71,7 @@
                   {{ $topic := . }}
                   {{ range $catalog.topics }}{{ if eq .id $topic }}<span>{{ .short }}</span>{{ end }}{{ end }}
                 {{ end }}
+                {{ with .collection }}<span class="resource-lab-tag">Wriedt Lab</span>{{ end }}
               </div>
             </div>
             {{ with .doi }}<a class="resource-doi" href="{{ printf "https://doi.org/%s" . }}" target="_blank" rel="noopener noreferrer" aria-label="Open DOI {{ . }}">DOI: {{ . }}</a>{{ end }}
@@ -85,12 +97,12 @@
     <a class="explore-destination" href="{{ "/explore/resources/" | relURL }}">
       <span class="explore-destination-index">01 / ONLINE</span>
       <span class="explore-destination-body"><strong>Resource Library</strong><span>YouTube channels, videos, research papers, scientific websites, and references.</span><small>{{ len $catalog.resources }} links in the starting collection</small></span>
-      <span class="explore-destination-arrow" aria-hidden="true">↗</span>
+      <span class="explore-destination-arrow" aria-hidden="true">{{ partial "frameworked-arrow.html" . }}</span>
     </a>
     <div class="explore-destination explore-destination-upcoming">
       <span class="explore-destination-index">02 / IN PERSON</span>
       <span class="explore-destination-body"><strong>Science Atlas</strong><span>Science museums, discovery centers, research institutions, and events.</span><small>In development · Texas first</small></span>
-      <span class="explore-destination-arrow" aria-hidden="true">⌁</span>
+      
     </div>
   </div>
   <section class="explore-featured" aria-labelledby="explore-collections-heading">
@@ -98,7 +110,7 @@
     <h2 id="explore-collections-heading">Browse by subject.</h2>
     <div class="topic-grid">
       {{ range first 4 $catalog.topics }}
-      <a class="topic-card" href="{{ printf "/explore/resources/?topic=%s" .id | relURL }}"><span class="topic-card-kicker">RESOURCE COLLECTION</span><strong>{{ .label }}</strong><span aria-hidden="true" class="topic-arrow">↗</span></a>
+      <a class="topic-card" href="{{ printf "/explore/resources/?topic=%s" .id | relURL }}"><span class="topic-card-kicker">RESOURCE COLLECTION</span><strong>{{ .label }}</strong><span aria-hidden="true" class="topic-arrow">{{ partial "frameworked-arrow.html" . }}</span></a>
       {{ end }}
     </div>
   </section>

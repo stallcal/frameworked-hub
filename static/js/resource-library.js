@@ -5,6 +5,7 @@
   const search = document.getElementById('resource-search');
   const topic = document.getElementById('resource-topic');
   const kind = document.getElementById('resource-kind');
+  const labOnly = document.getElementById('resource-lab-only');
   const count = document.getElementById('resource-count');
   const empty = document.getElementById('resource-empty');
   const entries = Array.from(document.querySelectorAll('[data-resource-entry]'));
@@ -13,6 +14,7 @@
   if (Array.from(topic.options).some(o => o.value === params.get('topic'))) topic.value = params.get('topic');
   if (Array.from(kind.options).some(o => o.value === params.get('kind'))) kind.value = params.get('kind');
   search.value = params.get('q') || '';
+  labOnly.checked = params.get('collection') === 'wriedt';
   function update() {
     const q = search.value.trim().toLocaleLowerCase();
     let matches = 0;
@@ -21,7 +23,8 @@
       const text = entry.textContent.toLocaleLowerCase();
       const visible = (!q || text.includes(q)) &&
         (topic.value === 'all' || topics.includes(topic.value)) &&
-        (kind.value === 'all' || kind.value === entry.dataset.kind);
+        (kind.value === 'all' || kind.value === entry.dataset.kind) &&
+        (!labOnly.checked || entry.dataset.collection === 'wriedt');
       entry.hidden = !visible;
       if (visible) matches++;
     }
@@ -37,6 +40,7 @@
     if (topic.value !== 'all') query.set('topic', topic.value);
     if (kind.value !== 'all') query.set('kind', kind.value);
     if (search.value.trim()) query.set('q', search.value.trim());
+    if (labOnly.checked) query.set('collection', 'wriedt');
     const url = window.location.pathname + (query.toString() ? '?' + query.toString() : '');
     window.history.replaceState(null, '', url);
   }
