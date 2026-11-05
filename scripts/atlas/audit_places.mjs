@@ -19,8 +19,9 @@ const collegeIds=new Set();
 for(const p of places){
  if(p.college){
   const {unitid,level,community,research,programs}=p.college;
-  assert.ok(Number.isInteger(unitid)&&!collegeIds.has(unitid),'Invalid or duplicate IPEDS identifier: '+p.id);
-  collegeIds.add(unitid);
+  const campusKey=unitid+'/'+(p.college.campus||'');
+  assert.ok(Number.isInteger(unitid)&&!collegeIds.has(campusKey),'Invalid or duplicate college location: '+p.id);
+  collegeIds.add(campusKey);
   assert.ok(['four_year','two_year'].includes(level)&&typeof community==='boolean','Invalid college type: '+p.id);
   assert.ok([null,'R1','R2','RCU'].includes(research)&&programs.length>0,'Missing or invalid program data: '+p.id);
  }
