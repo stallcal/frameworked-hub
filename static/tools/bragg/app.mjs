@@ -4,11 +4,12 @@ import { bragg, squareLatticeSpacing, compareTwoPlaneInterference, VERSION } fro
   const number=id=>$(id).value.trim()===""?NaN:Number($(id).value);
   const fmt=x=>Number(x.toFixed(2)).toFixed(2);
   const fmtPath=x=>Number(x.toFixed(4)).toString();
-  let result=null, guided=true, latestPlane=null, previousGuided=null;
+  let result=null, guided=true, latestPlane=null, previousGuided=null, previousLatticeA=null;
 
   function drawLattice(p){
     const {a,h,k,d}=p, step=a*8.6, cx=380,cy=203;
-    const lines=[], thick=[],dots=[];
+    const lines=[], thick=[], dots=[], previousDots=[];
+    const oldStep=previousLatticeA!==null && previousLatticeA!==a?previousLatticeA*8.6:null;
     for(let m=-42;m<=42;m++){
       const line=k===0
         ?`<line x1="${cx+m*step}" y1="49" x2="${cx+m*step}" y2="355"/>`
@@ -19,6 +20,16 @@ import { bragg, squareLatticeSpacing, compareTwoPlaneInterference, VERSION } fro
       const x=cx+i*step,y=cy+j*step;
       if(x>36&&x<724&&y>52&&y<350)dots.push(`<circle cx="${x}" cy="${y}" r="3"/>`);
     }
+    // Ghost only a small central group of PREVIOUS positions, so motion is visible
+    // without distracting from the current diagram or leaving permanent overlays.
+    if(oldStep!==null){
+      for(let i=-3;i<=3;i++)for(let j=-2;j<=2;j++){
+        const x=cx+i*oldStep,y=cy+j*oldStep;
+        if(x>36&&x<724&&y>52&&y<350)
+          previousDots.push(`<circle class="lattice-previous-dot" cx="${x}" cy="${y}" r="3.4"/>`);
+      }
+    }
+    const aX1=cx+step,aX2=cx+2*step,aBracketY=cy+51;
     const n=h*h+k*k,vx=h*step/n,vy=k*step/n;
     const labelX=cx+vx*.5, labelY=cy+vy*.5-14;
     $("latticeGeometry").innerHTML=`
@@ -32,9 +43,16 @@ import { bragg, squareLatticeSpacing, compareTwoPlaneInterference, VERSION } fro
       <g clip-path="url(#braggLatticeClip)">
         <g stroke="#9bb3ce" stroke-width="1.1" opacity=".48">${lines.join("")}</g>
         <g stroke="#9e382e" stroke-width="3.1">${thick.join("")}</g>
+        <g class="lattice-previous-positions" fill="none" stroke="#084b9e" stroke-width="1.7">${previousDots.join("")}</g>
         <g fill="#084b9e">${dots.join("")}</g>
         <path d="M${cx} ${cy}L${cx+vx} ${cy+vy}" stroke="#9e382e" stroke-width="2.7" marker-end="url(#braggDtip)"/>
         <text x="${labelX}" y="${labelY}" font-family="system-ui,sans-serif" font-size="21" font-weight="700" text-anchor="middle" fill="#9e382e" stroke="#eff5fd" stroke-width="5" paint-order="stroke">d</text>
+        <!-- a is measured horizontally between two actual neighboring lattice points. -->
+        <g class="lattice-a-bracket" stroke="#084b9e" fill="none" stroke-linecap="round">
+          <path d="M${aX1} ${cy+5}V${aBracketY-8} M${aX2} ${cy+5}V${aBracketY-8}" stroke-width="1.25" stroke-dasharray="3 3" opacity=".8"/>
+          <path d="M${aX1} ${aBracketY-7}V${aBracketY+7} M${aX1} ${aBracketY}H${aX2} M${aX2} ${aBracketY-7}V${aBracketY+7}" stroke-width="2.5"/>
+        </g>
+        <text class="lattice-a-label" x="${(aX1+aX2)/2}" y="${aBracketY-13}" font-family="system-ui,sans-serif" font-size="21" font-weight="700" text-anchor="middle" fill="#084b9e" stroke="#eff5fd" stroke-width="5" paint-order="stroke">a</text>
       </g>
       <rect x="45" y="61" width="340" height="57" rx="6" fill="#fff" opacity=".95"/>
       <g font-family="system-ui,sans-serif">
@@ -44,6 +62,7 @@ import { bragg, squareLatticeSpacing, compareTwoPlaneInterference, VERSION } fro
         <circle cx="62" cy="376" r="4" fill="#084b9e"/><text x="75" y="381" font-size="14" fill="#1c3049">Lattice points</text>
         <path d="M241 376H265" stroke="#9e382e" stroke-width="3"/><text x="279" y="381" font-size="14" fill="#1c3049">Selected planes &amp; spacing d</text>
       </g>`;
+    previousLatticeA=a;
   }
 
   function drawRay(r){
@@ -291,21 +310,6 @@ import { bragg, squareLatticeSpacing, compareTwoPlaneInterference, VERSION } fro
     $("order").value="1";
     update();
   });
-  const palettes=[
-    {id:"paletteClassic",name:"classic"},
-    {id:"paletteWarm",name:"warm"},
-    {id:"paletteNavy",name:"navy"}
-  ];
-  for(const choice of palettes){
-    $(choice.id).addEventListener("click",()=>{
-      document.documentElement?.setAttribute("data-palette",choice.name);
-      for(const option of palettes){
-        const active=option.name===choice.name;
-        $(option.id).classList.toggle("selected",active);
-        $(option.id).setAttribute("aria-pressed",String(active));
-      }
-    });
-  }
   $("reset").addEventListener("click",()=>{
     $("advancedPanel").open=false;
     $("mode").value="spacing";$("value").value=3;
