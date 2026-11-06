@@ -1,0 +1,8 @@
+<a class="chapter-link" href="{{ .url }}"><span class="mini-tool-art" aria-hidden="true"><svg viewBox="0 0 70 50" fill="none" stroke="currentColor" stroke-width="2">
+{{ if in (slice "node" "lattice") .icon }}<path d="M10 10H60V40H10ZM10 10L60 40M60 10L10 40"/><g fill="#9e382e" stroke="none"><circle cx="10" cy="10" r="4"/><circle cx="60" cy="10" r="4"/><circle cx="10" cy="40" r="4"/><circle cx="60" cy="40" r="4"/></g>
+{{ else if in (slice "thermal" "bars") .icon }}<path d="M5 44H65M15 44V28H25V44M30 44V18H40V44M45 44V6H55V44"/>
+{{ else if eq .icon "gas" }}<path d="M5 5V44H65M5 44Q15 9 65 9"/><path d="M5 44Q35 20 65 18" stroke="#9e382e" stroke-dasharray="3 3"/>
+{{ else if in (slice "pore" "light") .icon }}<path d="M25 5H45V45H25ZM0 25H25"/><path d="M45 25H70" stroke="#9e382e" stroke-dasharray="3 3"/>
+{{ else if eq .icon "peak" }}<path d="M5 44H18Q24 44 30 8Q36 44 42 44H65"/><path d="M25 26H35" stroke="#9e382e"/>
+{{ else }}<path d="M5 5V45M65 5V45M5 25C15-2 25-2 35 25S55 52 65 25"/><path d="M5 25H65" stroke="#9e382e" stroke-dasharray="3 3"/>
+{{ end }}</svg></span><span class="chapter-main"><strong>{{ .title }}</strong><small>{{ .description }}</small></span><span class="chapter-arrow" aria-hidden="true">{{ partial "frameworked-arrow.html" . }}</span></a>
