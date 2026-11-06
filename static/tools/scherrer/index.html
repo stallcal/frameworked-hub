@@ -7,7 +7,7 @@
   <meta name="description" content="Explore PXRD patterns, fit diffraction peaks, and transparently estimate coherent crystallite domain sizes with the Scherrer equation. A Frameworked scientific tool.">
   <title>Scherrer Calculator — PXRD Crystallite Size | Frameworked</title>
   <link rel="stylesheet" href="./style.css">
-  <link rel="stylesheet" href="./brand.css">
+  <link rel="stylesheet" href="./brand.css"><link rel="stylesheet" href="/css/math.css">
   <script type="module" src="./app.mjs"></script>
 </head>
 <body>
@@ -23,7 +23,7 @@
       <div class="shell">
         <div class="calculator-intro">
           <div class="calculator-title"><p class="eyebrow"><span class="eyebrow-line"></span> FRAMEWORKED / TOOL 001 / PXRD ANALYSIS</p><h1>Scherrer calculator<span class="title-period">.</span></h1><p>Upload an XY or XYE pattern, fit individual reflections, compare patterns, and inspect the variables behind its coherent-domain size estimate.</p></div>
-          <div class="calculator-equation" aria-label="Scherrer equation: D equals K times lambda divided by beta times cosine theta"><span>THE EQUATION</span><div class="formula"><i>D</i> = <span class="fraction"><span><i>Kλ</i></span><span><i>β</i> cos <i>θ</i></span></span></div><small>β = FWHM in radians · θ = Bragg angle</small></div>
+          <div class="calculator-equation" aria-label="Scherrer equation: D equals K times lambda divided by beta times cosine theta"><span>THE EQUATION</span><div class="formula math-display"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>D</mi><mo>=</mo><mfrac><mrow><mi>K</mi><mi>λ</mi></mrow><mrow><mi>β</mi><mi mathvariant="normal">cos</mi><mo>⁡</mo><mi>θ</mi></mrow></mfrac></mrow></math></div><small>β = FWHM in radians · θ = Bragg angle</small></div>
         </div>
         <p class="calculator-disclaimer"><strong>Research beta.</strong> The calculator estimates coherent-domain length, not particle diameter. Without measured instrumental broadening, results are uncorrected and should be treated as preliminary. <span>Files stay in your browser.</span></p>
         <div class="workspace">
@@ -67,7 +67,7 @@
           </div>
         </div>
 
-        <div class="inspector" id="inspector"><div class="inspector-copy"><p class="eyebrow">THE CALCULATION</p><h3>Scherrer results</h3><p id="inspectorText">Choose a fitted reflection above to inspect its Scherrer calculation. We convert measured FWHM from degrees of 2θ to radians, then apply the equation.</p></div><div class="inspector-values"><div class="inspector-result"><span>ESTIMATED COHERENT DOMAIN SIZE</span><strong id="sizeValue">— <small>nm</small></strong><p id="sizeQualifier">No reflection selected</p></div><div class="variable-grid"><div><small>BRAGG ANGLE, θ</small><strong id="thetaValue">—</strong></div><div><small>FWHM, β</small><strong id="betaValue">—</strong></div><div><small>WAVELENGTH, λ</small><strong id="lambdaValue">1.5406 Å</strong></div><div><small>SHAPE FACTOR, K</small><strong id="kValue">0.90</strong></div></div><p class="formula-caption" id="formulaDetail">D = K × λ / (β × cos θ) · width in radians, length in nm.</p></div></div>
+        <div class="inspector" id="inspector"><div class="inspector-copy"><p class="eyebrow">THE CALCULATION</p><h3>Scherrer results</h3><p id="inspectorText">Choose a fitted reflection above to inspect its Scherrer calculation. We convert measured FWHM from degrees of 2θ to radians, then apply the equation.</p></div><div class="inspector-values"><div class="inspector-result"><span>ESTIMATED COHERENT DOMAIN SIZE</span><strong id="sizeValue">— <small>nm</small></strong><p id="sizeQualifier">No reflection selected</p></div><div class="variable-grid"><div><small>BRAGG ANGLE, θ</small><strong id="thetaValue">—</strong></div><div><small>FWHM, β</small><strong id="betaValue">—</strong></div><div><small>WAVELENGTH, λ</small><strong id="lambdaValue">1.5406 Å</strong></div><div><small>SHAPE FACTOR, K</small><strong id="kValue">0.90</strong></div></div><p class="formula-caption" id="formulaDetail">The calculation uses peak width in radians and wavelength in nm.</p></div></div>
       </div>
     </section>
 

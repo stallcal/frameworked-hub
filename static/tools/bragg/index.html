@@ -8,7 +8,7 @@
       content="Connect lattice spacing, wavelength, and diffraction angle. Change one quantity and follow what happens to the others."
     />
     <title>Bragg’s law explorer · Frameworked</title>
-    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./style.css" /><link rel="stylesheet" href="/css/math.css" />
     <script type="module" src="./app.mjs"></script>
   </head>
   <body>
@@ -35,7 +35,7 @@
             <p class="eyebrow">THE CONCEPT / WHY DIFFRACTION HAPPENS</p>
             <h2 id="bragg-primer-title">What is Bragg's law?</h2>
             <p>When X-rays encounter a repeating crystal structure, waves scattered from neighboring lattice planes can reinforce one another. <strong>Bragg's law gives the angles at which that constructive interference is possible.</strong></p>
-            <p class="primer-equation" aria-label="n lambda equals two d sine theta">nλ = 2d sin θ</p>
+            <div class="primer-equation math-display"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>n</mi><mi>λ</mi><mo>=</mo><mn>2</mn><mi>d</mi><mi mathvariant="normal">sin</mi><mo>⁡</mo><mi>θ</mi></mrow></math></div>
             <p><strong>λ</strong> is the X-ray wavelength; <strong>d</strong> is the distance between planes; <strong>θ</strong> is the angle between the incoming beam and those planes; <strong>n</strong> is the diffraction order. A powder diffractometer typically reports <strong>2θ</strong>, the angle between the incident and diffracted beams.</p>
             <div class="primer-implication">
               <strong>Why this matters</strong>
@@ -164,7 +164,7 @@
           <section class="visual" aria-label="Interactive Bragg experiment">
             <div class="experiment-heading">
               <div><p class="eyebrow">WATCH THE RELATIONSHIP CHANGE</p><h2>From lattice spacing to diffraction angle</h2></div>
-              <span class="experiment-equation">nλ = 2d sin θ</span>
+              <div class="experiment-equation math-display"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>n</mi><mi>λ</mi><mo>=</mo><mn>2</mn><mi>d</mi><mi mathvariant="normal">sin</mi><mo>⁡</mo><mi>θ</mi></mrow></math></div>
             </div>
             <div class="relationship-chain" id="relationshipChain" role="note" aria-label="Cause and effect: lattice parameter changes plane spacing, which changes the Bragg angle">
               <span>Change <strong>a</strong></span><span aria-hidden="true">→</span>

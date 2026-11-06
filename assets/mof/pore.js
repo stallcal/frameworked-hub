@@ -1,22 +1,16 @@
-const size=document.querySelector('#size'), prediction=document.querySelector('#prediction');
+const size=document.querySelector('#size');
 const guest=document.querySelector('#guest'), result=document.querySelector('#poreResult');
-function move(x){guest.style.transform='translateX('+x+'px)'}
-function prepare(){
-  guest.querySelector('circle').setAttribute('r',Number(size.value)*6);
-  move(-65);prediction.value='';
-  result.textContent='Compare the '+size.value+' Å probe with the cavity and window.';
-}
-size.onchange=prepare;
-document.querySelector('#poreForm').onsubmit=event=>{
-  event.preventDefault();
+function draw(){
   const diameter=Number(size.value), radius=diameter*6;
+  guest.querySelector('circle').setAttribute('r',radius);
+  document.querySelector('#sizeValue').textContent=diameter.toFixed(1)+' Å';
   const outcome=diameter>10?'outside':diameter>4?'window':'pass';
-  // Tangency to the corner of the narrower opening stops the sphere.
+  // Stop at sphere tangency to the corner of a narrower opening.
   const stop=outcome==='outside'?12-Math.sqrt(radius**2-60**2):outcome==='window'?175-Math.sqrt(radius**2-24**2):405;
-  move(stop);
-  const explanation={pass:'The 3 Å guest fits through the 4 Å window and reaches the second cavity.',window:'The 6 Å guest fits inside the 10 Å cavity. Its diameter exceeds the 4 Å opening, so it stops at the window.',outside:'The 11 Å guest exceeds even the 10 Å cavity diameter. It stops at the entrance.'};
-  result.textContent=(prediction.value===outcome?'Correct. ':'Observe where the probe stops. ')+explanation[outcome];
-};
-prepare();
-
-document.querySelector('#testProbe').disabled=false;
+  guest.style.transform='translateX('+stop+'px)';
+  const explanation={pass:'fits through the 4 Å window and reaches the second cavity.',window:'fits inside the 10 Å cavity, but exceeds the 4 Å opening and stops at the window.',outside:'exceeds the 10 Å cavity diameter and stops at the entrance.'};
+  result.textContent='The '+diameter.toFixed(1)+' Å guest '+explanation[outcome];
+  document.querySelector('#pore').setAttribute('aria-label',result.textContent);
+}
+size.addEventListener('input',draw);
+draw();

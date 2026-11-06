@@ -285,7 +285,7 @@ function updateInspector() {
     byId('sizeValue').innerHTML = '— <small>nm</small>';
     byId('sizeQualifier').textContent = peak ? 'Peak fit unavailable' : 'No reflection selected';
     byId('thetaValue').textContent = '—'; byId('betaValue').textContent = '—';
-    byId('formulaDetail').textContent = 'D = K × λ / (β × cos θ) · width in radians, length in nm.';
+    byId('formulaDetail').textContent = 'The calculation uses peak width in radians and wavelength in nm.';
     return;
   }
   byId('thetaValue').textContent = `${round(fit.center/2,3)}°`;
@@ -303,7 +303,7 @@ function updateInspector() {
     ? `Fit shifted ${round(Math.abs(fit.center - peak.hint), 3)}° from selected 2θ. Verify peak identity; do not report this size without review.`
     : `${form.correction.value === 'none' ? 'Uncorrected' : 'Assumption-corrected'} · ${fit.fitted && fit.rSquared >= .94 ? 'review fit before reporting' : 'fit requires attention'}`;
   const instrumentPart = form.correction.value === 'none' ? 'no instrumental correction' : `${form.correction.value} subtraction of ${round(n(form.instrument),3)}°`;
-  byId('formulaDetail').textContent = `2θ = ${round(fit.center,3)}° → θ = ${round(result.thetaDeg,3)}° · FWHM = ${round(fit.fwhmDeg,4)}° → β = ${round(result.betaRad,7)} rad (${instrumentPart}). D = (${round(n(form.shapeFactor),2)} × ${round(result.wavelengthNm,5)} nm) / (${round(result.betaRad,7)} × cos ${round(result.thetaDeg,3)}°).`;
+  byId('formulaDetail').textContent = `2θ = ${round(fit.center,3)}° → θ = ${round(result.thetaDeg,3)}° · FWHM = ${round(fit.fwhmDeg,4)}° → β = ${round(result.betaRad,7)} rad (${instrumentPart}). The equation above gives a coherent-domain size of ${round(result.sizeNm,1)} nm.`;
 }
 
 function updateAll(){

@@ -1,4 +1,5 @@
 {{ define "head-extra" }}
+<link rel="stylesheet" href="/css/math.css">
 {{ $style := resources.Get "mof/style.css" | minify | fingerprint }}<link rel="stylesheet" href="{{ $style.RelPermalink }}">
 {{ end }}
 {{ define "main" }}
