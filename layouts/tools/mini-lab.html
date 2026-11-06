@@ -1,0 +1,13 @@
+{{ define "head-extra" }}
+{{ $style := resources.Get "labs/style.css" | minify | fingerprint }}<link rel="stylesheet" href="{{ $style.RelPermalink }}" integrity="{{ $style.Data.Integrity }}">
+{{ end }}
+{{ define "main" }}
+<article class="mini-lab" data-lab="{{ .Params.lab }}">
+  <a class="lab-back" href="{{ "/tools/" | relURL }}"><span aria-hidden="true">{{ partial "frameworked-arrow.html" . }}</span> Back to the workbench</a>
+  <header class="lab-intro"><p class="design-eyebrow">A SMALL EXPERIMENT / {{ .Params.topic }}</p><h1>{{ .Title }}<span>.</span></h1><p class="lab-lead">{{ .Description }}</p></header>
+  {{ partial (printf "labs/%s.html" .Params.lab) . }}
+  <noscript><p class="lab-takeaway">Enable JavaScript to explore this model. The equations and assumptions below are available without it.</p></noscript>
+  <nav class="lab-related" aria-label="More small experiments"><h2>Keep exploring.</h2><div class="chapter-collection">{{ range sort (where .Site.RegularPages "Params.layout" "mini-lab") "Weight" }}{{ if ne .RelPermalink $.RelPermalink }}<a class="chapter-link" href="{{ .RelPermalink }}"><span class="chapter-main"><strong>{{ .Title }}</strong><small>{{ .Params.topic }}</small></span><span class="chapter-arrow" aria-hidden="true">{{ partial "frameworked-arrow.html" . }}</span></a>{{ end }}{{ end }}</div></nav>
+</article>
+{{ $app := resources.Get "labs/app.js" | js.Build (dict "target" "es2020") | fingerprint }}<script type="module" src="{{ $app.RelPermalink }}" integrity="{{ $app.Data.Integrity }}"></script>
+{{ end }}

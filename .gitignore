@@ -4,3 +4,4 @@ public-production/
 resources/
 .hugo_build.lock
 .preview/
+assets/jsconfig.json
