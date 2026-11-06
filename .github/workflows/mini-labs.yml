@@ -1,10 +1,10 @@
 name: Quantum and chemistry mini labs
 on:
   pull_request:
-    paths: ['assets/labs/**', 'layouts/partials/labs/**', 'layouts/tools/mini-lab.html', 'site-content/tools/**', 'tests/mini-labs.test.mjs', '.github/workflows/mini-labs.yml']
+    paths: ['assets/labs/**', 'assets/intro/**', 'layouts/tools/intro-explorer.html', 'tests/intro-explorers.test.mjs', 'layouts/partials/labs/**', 'layouts/tools/mini-lab.html', 'site-content/tools/**', 'tests/mini-labs.test.mjs', '.github/workflows/mini-labs.yml']
   push:
     branches: [main]
-    paths: ['assets/labs/**', 'tests/mini-labs.test.mjs', '.github/workflows/mini-labs.yml']
+    paths: ['assets/labs/**', 'assets/intro/**', 'layouts/tools/intro-explorer.html', 'tests/intro-explorers.test.mjs', 'tests/mini-labs.test.mjs', '.github/workflows/mini-labs.yml']
 permissions:
   contents: read
 jobs:
@@ -15,4 +15,4 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - run: node --test tests/mini-labs.test.mjs
+      - run: node --test tests/mini-labs.test.mjs tests/intro-explorers.test.mjs
