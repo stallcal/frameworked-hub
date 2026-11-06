@@ -1,0 +1,14 @@
+{{ define "head-extra" }}
+<link rel="stylesheet" href="/css/math.css">
+{{ $style := resources.Get "labs/style.css" | minify | fingerprint }}<link rel="stylesheet" href="{{ $style.RelPermalink }}">
+<style>.intro-summary{margin:20px 0;font:16px/1.6 system-ui}.intro-key{font:13px/1.6 system-ui}.intro-chart{min-width:0}.intro-chart svg{width:100%;height:auto}.intro-chart text{font:18px system-ui;fill:#1c3049}.intro-theory{max-width:850px;margin-top:36px}.intro-theory p{line-height:1.65;margin:16px 0}.intro-theory h3{font:700 26px/1.2 Libron,Georgia,serif;margin:32px 0 12px}.intro-theory li{margin:12px 0;line-height:1.5}.lab-controls output{float:none;display:block}.intro-values{font:600 16px/1.65 system-ui;padding:18px;background:#edf5f0;border-left:4px solid #087e48;margin-top:20px}</style>
+{{ end }}
+{{ define "main" }}
+<article class="mini-lab" data-explorer="{{ .Params.explorer }}"><a class="lab-back" href="/tools/">← Workbench</a><header class="lab-intro"><p class="design-eyebrow">{{ .Params.topic }} / INTRODUCTORY EXPLORER</p><h1>{{ .Title }}<span>.</span></h1><p class="lab-lead">{{ .Description }}</p></header>
+<div class="lab-panel"><section class="lab-visual intro-chart"><h2>{{ .Params.charttitle }}</h2><svg id="plot" viewBox="0 0 600 410" role="img" aria-labelledby="plot-title plot-desc"><title id="plot-title">{{ .Title }}</title><desc id="plot-desc">Enable JavaScript to display the interactive diagram.</desc></svg><p class="intro-key" id="key"></p></section><form class="lab-controls"><h2>Explore the relationship.</h2>
+{{ range .Params.controls }}<label for="{{ .id }}">{{ .label }}{{ if .options }}<select id="{{ .id }}">{{ range .options }}<option value="{{ .value }}">{{ .label }}</option>{{ end }}</select>{{ else }}<output id="{{ .id }}-value" for="{{ .id }}"></output><input id="{{ .id }}" type="range" min="{{ .min }}" max="{{ .max }}" step="{{ .step }}" value="{{ .value }}">{{ end }}</label>{{ end }}
+<div id="values" class="intro-values" role="status"></div><button class="lab-reset" type="reset">Reset view</button></form></div>
+<section class="lab-takeaway"><h2>The relationship</h2><p id="explanation" aria-live="polite"></p></section>
+<section class="intro-theory"><h2>The model and its limits.</h2>{{ range .Params.equations }}{{ partial "equation.html" . }}{{ end }}{{ .Content }}</section><noscript>Enable JavaScript to use the controls. The model description and sources remain available below.</noscript></article>
+{{ $app := resources.Get "intro/app.js" | js.Build (dict "target" "es2020") | fingerprint }}<script type="module" src="{{ $app.RelPermalink }}"></script>
+{{ end }}
