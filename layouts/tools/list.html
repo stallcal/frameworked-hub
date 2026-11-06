@@ -2,61 +2,14 @@
 {{ $style := resources.Get "labs/style.css" | minify | fingerprint }}<link rel="stylesheet" href="{{ $style.RelPermalink }}" integrity="{{ $style.Data.Integrity }}">
 {{ end }}
 {{ define "main" }}
-<section class="tools-intro" aria-labelledby="tools-title"><div><p class="design-eyebrow">THE WORKBENCH / FRAMEWORKED</p><h1 id="tools-title">Scientific<br>tools.</h1></div><p>Calculators and interactive resources for exploring measurements, models, and the evidence behind scientific conclusions.</p></section>
-<section class="home-section mini-tools" aria-labelledby="mini-tools-title"><div class="mini-tools-intro"><p class="design-eyebrow">NEW / SMALL EXPERIMENTS</p><h2 id="mini-tools-title">One idea. <em>A little exploration.</em></h2><p>Change a parameter and follow its effect through a visual model. Explore the relationships behind quantum mechanics and chemistry.</p></div><div class="chapter-collection">
-{{ range sort (where .Pages "Params.layout" "mini-lab") "Weight" }}
-<a class="chapter-link" href="{{ .RelPermalink }}"><span class="mini-tool-art" aria-hidden="true"><svg viewBox="0 0 70 50" fill="none" stroke="currentColor" stroke-width="2">{{ if eq .Params.lab "box" }}<path d="M5 5V45M65 5V45M5 25C15-2 25-2 35 25S55 52 65 25"/><path d="M5 25H65" stroke="#9e382e" stroke-dasharray="3 3"/>{{ else if eq .Params.lab "thermal" }}<path d="M5 40H65M5 10H65"/><circle cx="15" cy="36" r="3"/><circle cx="25" cy="36" r="3"/><circle cx="35" cy="36" r="3"/><circle cx="45" cy="6" r="3" stroke="#9e382e"/>{{ else }}<path d="M25 5H45V45H25ZM0 25H25"/><path d="M45 25H70" stroke="#9e382e" stroke-dasharray="3 3"/>{{ end }}</svg></span><span class="chapter-main"><strong>{{ .Title }}</strong><small>{{ .Description }}</small></span><span class="chapter-arrow" aria-hidden="true">{{ partial "frameworked-arrow.html" . }}</span></a>
-{{ end }}</div></section>
-<section class="tools-feature" aria-labelledby="tool-scherrer-title"><div class="tools-feature-art"><span class="design-eyebrow">TOOL NO. 001</span><svg viewBox="0 0 500 280" role="img" aria-label="Illustrative powder diffraction curve, not experimental data"><g stroke="#b8cde6" opacity=".6" stroke-dasharray="3 7"><path d="M15 40H485 M15 120H485 M15 200H485 M65 20V245 M165 20V245 M265 20V245 M365 20V245 M465 20V245"/></g><path d="M15 240C85 240 100 235 113 207 C125 165 135 66 145 39 C155 73 160 191 176 225 C186 239 203 239 217 229 C234 205 236 158 248 144 C267 152 274 216 289 231 C318 241 337 232 352 209 C364 179 370 105 381 102 C397 135 401 215 418 236 C439 241 458 239 485 240" fill="none" stroke="#084b9e" stroke-width="4" stroke-linecap="round"/><path d="M128 141H161 M128 134V148 M161 134V148" stroke="#9e382e" stroke-width="3"/></svg><span class="plot-art-caption">FIG 01 — PEAK WIDTH / SCHERRER EQUATION</span></div><div class="tools-feature-copy"><p class="design-eyebrow">PXRD ANALYSIS / RESEARCH BETA</p><h2 id="tool-scherrer-title">Scherrer<br>calculator.</h2><p>Upload a powder diffraction pattern, fit individual reflections, inspect their full widths at half maximum, and estimate coherent crystallite domain sizes.</p><ul><li>XY and XYE text files</li><li>Automatic suggestions and manual peak selection</li><li>Visible assumptions and downloadable results</li></ul><a class="editorial-button" href="{{ "/tools/scherrer/" | relURL }}">Open the calculator <span aria-hidden="true">{{ partial "frameworked-arrow.html" . }}</span></a></div></section>
-<section class="bragg-feature" aria-labelledby="tool-bragg-title">
-  <div class="bragg-feature-intro">
-    <p class="design-eyebrow">TOOL NO. 002 / DIFFRACTION EDUCATION</p>
-    <h2 id="tool-bragg-title">Bragg's law <em>explorer.</em></h2>
-    <p>See how the spacing of crystal lattice planes determines a possible diffraction angle. Change a square lattice, compare (10) and (11) planes, then examine the Bragg ray construction.</p>
-    <a class="editorial-button" href="{{ "/tools/bragg/" | relURL }}">Explore Bragg's law <span aria-hidden="true">{{ partial "frameworked-arrow.html" . }}</span></a>
-  </div>
-  <div class="bragg-feature-art" aria-hidden="true">
-    <svg viewBox="0 0 400 240">
-      <g fill="#084b9e">
-        {{ range seq 0 7 }}{{ $i := . }}
-          {{ range seq 0 4 }}<circle cx="{{ add 50 (mul $i 43) }}" cy="{{ add 32 (mul . 43) }}" r="4"/>{{ end }}
-        {{ end }}
-      </g>
-      <g stroke="#9e382e" stroke-width="2" opacity=".85">
-        <path d="M93 16V223 M136 16V223 M179 16V223 M222 16V223"/>
-      </g>
-      <path d="M136 207H179" stroke="#9e382e" stroke-width="2"/><text x="151" y="197" font-size="15" font-family="sans-serif" fill="#9e382e">d</text>
-    </svg>
-    <p>Lattice points · highlighted plane family · schematic</p>
-  </div>
-</section>
-<section class="bragg-feature ratio-feature" aria-labelledby="tool-ratio-title">
-  <div class="bragg-feature-intro">
-    <p class="design-eyebrow">TOOL NO. 003 / GENERAL CHEMISTRY</p>
-    <h2 id="tool-ratio-title">Reagent ratio <em>calculator.</em></h2>
-    <p>Set molar equivalents for two or more reagents, enter one known mass or amount, and calculate the remaining quantities. Includes color-coded results, multiple reagents, and easy copying.</p>
-    <a class="editorial-button" href="{{ "/tools/reagent-ratios/" | relURL }}">Calculate reagent ratios <span aria-hidden="true">{{ partial "frameworked-arrow.html" . }}</span></a>
-  </div>
-  <div class="bragg-feature-art" aria-hidden="true">
-    <svg viewBox="0 0 400 240">
-      <g font-size="17" font-weight="700" font-family="system-ui,sans-serif" text-anchor="middle">
-        <text x="105" y="34" fill="#084b9e">1</text><text x="200" y="34" fill="#9e382e">2</text><text x="295" y="34" fill="#089e4b">3</text>
-      </g>
-      <g><rect x="71" y="164" width="68" height="36" fill="#084b9e" rx="2"/><rect x="166" y="128" width="68" height="72" fill="#9e382e" rx="2"/><rect x="261" y="92" width="68" height="108" fill="#089e4b" rx="2"/></g>
-      <g font-size="13" font-weight="700" font-family="system-ui,sans-serif" text-anchor="middle" fill="#1c3049">
-        <text x="105" y="221">Reagent A</text><text x="200" y="221">Reagent B</text><text x="295" y="221">Reagent C</text>
-      </g>
-      <path d="M33 202H370" stroke="#b8cde6" stroke-width="1.5"/>
-    </svg>
-    <p>User-entered molar equivalents · illustrated 1:2:3 ratio</p>
-  </div>
-</section>
-<section class="bragg-feature" aria-labelledby="tool-vibration-title">
-  <div class="bragg-feature-intro"><h2 id="tool-vibration-title">Molecular vibration <em>explorer.</em></h2><p>Compare isotopes to see how reduced mass changes vibrational energy spacing and infrared absorption.</p><a class="editorial-button" href="/tools/molecular-vibration/">Explore molecular vibration <span aria-hidden="true">{{ partial "frameworked-arrow.html" . }}</span></a></div>
-  <div class="bragg-feature-art" aria-hidden="true"><svg viewBox="0 0 400 165"><path d="M75 10 Q200 310 325 10" fill="none" stroke="#084b9e" stroke-width="3"/><path d="M165 148H235 M138 123H262 M120 98H280 M105 73H295" stroke="#9e382e" stroke-width="3"/></svg><p>Vibrational states in a harmonic potential</p></div>
-</section>
-<section class="home-section" aria-labelledby="mof-tools"><h2 id="mof-tools">Explore <em>metal–organic frameworks.</em></h2><div class="chapter-collection">
-{{ range sort (where .Pages "Params.experiment" "in" (slice "gas" "pore" "node")) "Title" }}
-<a class="chapter-link" href="{{ .RelPermalink }}"><span class="chapter-main"><strong>{{ .Title }}</strong><small>{{ .Description }}</small></span><span class="chapter-arrow">{{ partial "frameworked-arrow.html" . }}</span></a>
-{{ end }}</div></section>
+<section class="tools-intro" aria-labelledby="tools-title"><div><p class="design-eyebrow">THE WORKBENCH / FRAMEWORKED</p><h1 id="tools-title">Scientific<br>tools.</h1></div><p>Change a parameter, explore a model, and see how the relationships unfold. Calculators and visual explorers for chemistry and materials.</p></section>
+<section class="mini-tools" style="margin:32px 0 64px" aria-label="All scientific tools"><div class="chapter-collection">
+{{ range sort .Pages "Title" }}
+{{ partial "tool-link.html" (dict "title" .Title "description" .Description "url" .RelPermalink "icon" (.Params.lab | default .Params.experiment | default "wave")) }}
 {{ end }}
+{{ partial "tool-link.html" (dict "title" "Bragg’s law explorer" "description" "Connect lattice spacing, wavelength, and diffraction angle through an interactive crystal model." "url" "/tools/bragg/" "icon" "lattice") }}
+{{ partial "tool-link.html" (dict "title" "Reagent ratio calculator" "description" "Set molar equivalents and one known quantity to calculate reagent masses and amounts." "url" "/tools/reagent-ratios/" "icon" "bars") }}
+{{ partial "tool-link.html" (dict "title" "Scherrer calculator" "description" "Fit powder diffraction peaks and inspect coherent crystallite size estimates and their assumptions." "url" "/tools/scherrer/" "icon" "peak") }}
+</div></section>
+{{ end }}
+
