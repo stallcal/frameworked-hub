@@ -31,4 +31,3 @@ This model omits hot bands, different frequencies, mode mixing, anharmonicity, a
 [Andrei Tokmakoff, The Displaced Harmonic Oscillator Model](https://chem.libretexts.org/Bookshelves/Physical_and_Theoretical_Chemistry_Textbook_Maps/Time-Dependent_Quantum_Mechanics_and_Spectroscopy_2025e_%28Tokmakoff%29/16%3A_Coupling_of_Electronic_and_Nuclear_Motion/16.01%3A_The_Displaced_Harmonic_Oscillator_Model) derives this progression and its assumptions.
 
 Inspired by the extra-material topics in [UT Dallas CHEM 3322](https://personal.utdallas.edu/~son051000/chem3322.html).
-

@@ -10,8 +10,8 @@ export function isotherm(type,x,desorption=false){
  case 'I':return (1-Math.exp(-30*x))/(1-Math.exp(-30));
  case 'II':return knee+.76*x**3;
  case 'III':return x**2.5;
- case 'IV':return knee+.72*step(x,desorption?.46:.66,28);
- case 'V':return .96*step(x,desorption?.48:.69,22);
+ case 'IV':return knee+.72*step(x,desorption ? .46 : .66,28);
+ case 'V':return .96*step(x,desorption ? .48 : .69,22);
  case 'VI':return (step(x,.2,65)+step(x,.48,65)+step(x,.76,65))/3;
  }
 }

@@ -12,4 +12,3 @@
 <section class="intro-theory"><h2>The model and its limits.</h2>{{ range .Params.equations }}{{ partial "equation.html" . }}{{ end }}{{ .Content }}</section><noscript>Enable JavaScript to use the controls. The model description and sources remain available below.</noscript></article>
 {{ $app := resources.Get "intro/app.js" | js.Build (dict "target" "es2020") | fingerprint }}<script type="module" src="{{ $app.RelPermalink }}"></script>
 {{ end }}
-

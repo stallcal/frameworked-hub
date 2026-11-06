@@ -37,4 +37,3 @@ This is a controllable snapshot, not a time animation. For a freely evolving sup
 [OpenStax: the quantum particle in a box](https://openstax.org/books/university-physics-volume-3/pages/7-4-the-quantum-particle-in-a-box) gives the stationary states. [Wave functions](https://openstax.org/books/university-physics-volume-3/pages/7-1-wave-functions) explains normalization and probability density.
 
 Inspired by the extra-material topics in [UT Dallas CHEM 3322](https://personal.utdallas.edu/~son051000/chem3322.html).
-

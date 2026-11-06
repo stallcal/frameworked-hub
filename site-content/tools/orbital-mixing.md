@@ -37,4 +37,3 @@ This is a two-state Hamiltonian, not a computed molecule. It neglects basis over
 [Andrei Tokmakoff, Two-Level System](https://chem.libretexts.org/Bookshelves/Physical_and_Theoretical_Chemistry_Textbook_Maps/Time-Dependent_Quantum_Mechanics_and_Spectroscopy_2025e_%28Tokmakoff%29/02%3A_The_Schrodinger_Equation_and_Time-Propagator/2.03%3A_Two-Level_System) develops the coupled Hamiltonian and eigenstates.
 
 Inspired by the extra-material topics in [UT Dallas CHEM 3322](https://personal.utdallas.edu/~son051000/chem3322.html).
-
