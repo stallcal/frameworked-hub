@@ -18,12 +18,12 @@ function classify(element,pos){
 }
 function select(kind,origin=center,axis=0,side=1){
  mode=kind;center=origin;direction=axis;sign=side;
- byId('net').disabled=mode==='cell'||mode==='net';
+ byId('net').disabled=mode==='net';
  const content={
- cell:['MOF-5 unit cell','Which group joins several linkers at one point?'],
+ cell:['MOF-5 unit cell','Zn₄O clusters are joined by terephthalate linkers. Select a group or change the view to see how those connections form a network.'],
  cluster:['Six linkers around a node','The blue zinc atoms surround a central oxygen. Six terephthalate linkers extend from this Zn₄O cluster toward six neighboring clusters. Follow each arm to its neighbor.'],
  linker:['One organic bridge','The highlighted terephthalate linker has a benzene ring and two carboxylate ends. Each end binds a different zinc cluster, so this linker becomes one edge of the net.'],
- net:['Primitive cubic net','Each dot represents a whole Zn₄O node; each edge represents one terephthalate bridge. Count the six edges meeting the central node along three axes.']
+ net:['Primitive cubic net','Each dot represents a whole Zn₄O node; each edge represents one terephthalate bridge. Six edges meet the central node along three axes, giving the framework its primitive cubic connectivity.']
  };
  byId('sceneTitle').textContent=content[mode][0];byId('nodeResult').textContent=content[mode][1];
  byId('key').textContent=mode==='net'?'Central node · red   /   its six connections · blue':mode==='linker'?'Selected bridge · green   /   neighboring atoms · muted':'Zn · blue   /   O · red   /   C · graphite';

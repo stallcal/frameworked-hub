@@ -68,7 +68,7 @@ function light() {
   const {absorbance:A,transmission:T}=absorption(c,l);
   text('concentration-value',c+' µM');text('path-value',l.toFixed(1)+' cm');
   text('absorbance',A.toFixed(2));text('transmission',percent(T));text('absorbed',percent(1-T));
-  text('takeaway',c===0?'With no absorber in the cell, A = 0 and all the light is transmitted in this ideal model. Add solute to see the calibration point rise.':`At ${c} µM and ${l.toFixed(1)} cm, A = ${A.toFixed(2)} and ${percent(T)} of the light gets through. Doubling concentration at fixed path doubles absorbance, while the transmission fraction is squared. For example, at 1 cm, 50 µM transmits 31.6% and 100 µM transmits 10.0%.`);
+  text('takeaway',c===0?'With no absorber in the cell, A = 0 and all the light is transmitted in this ideal model. Add solute to see the calibration point rise.':`At ${c} µM and ${l.toFixed(1)} cm, A = ${A.toFixed(2)} and ${percent(T)} of the light gets through. Doubling concentration at fixed path doubles absorbance, while the transmission fraction is squared. The graph stays linear even as the transmitted beam fades nonlinearly.`);
   text('chart-desc',`At ${c} micromolar and a path length of ${l.toFixed(1)} centimeters, absorbance is ${A.toFixed(2)} and transmission is ${percent(T)}. Absorbance is linear in concentration.`);
   const width=70+70*l,left=300-width/2,right=300+width/2;
   let s=label(62,25,'Incident light','class="plot-label"')+label(560,25,'Transmitted','text-anchor="end" class="plot-label"');
@@ -84,10 +84,4 @@ form.addEventListener('submit',event=>event.preventDefault());
 form.addEventListener('input',update);
 form.addEventListener('change',update);
 form.addEventListener('reset',()=>requestAnimationFrame(update));
-root.querySelector('[data-preset]').addEventListener('click',()=>{
-  if(root.dataset.lab==='box'){ $('length').value=2;$('state').value=1; }
-  if(root.dataset.lab==='thermal')$('temperature').value=600;
-  if(root.dataset.lab==='light'){ $('concentration').value=100;$('path').value=1; }
-  update();
-});
 update();

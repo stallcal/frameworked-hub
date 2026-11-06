@@ -31,9 +31,8 @@ for (const energy of [0, 5000, 10000, 15000]) {
 for (const pm of [-60, -30, 0, 30, 60]) {
   mark(axes, 'text', { x:px(pm), y:264, 'text-anchor':'middle' }, String(pm));
 }
-let revealed = false;
 function draw() {
-  const view = revealed ? byId('isotope').value : 'H';
+  const view = byId('isotope').value;
   const isotopes = view === 'both' ? ['H','D'] : [view];
   const scale = 0.5 * k * 1e-24 / (planck * speedOfLight); // V/hc per pm²
   const path = [];
@@ -67,29 +66,9 @@ function draw() {
     }
   }
   byId('well-desc').textContent = 'Shared harmonic potential at 480 newtons per meter. ' + descriptions.join('. ');
-
-}
-byId('predict').addEventListener('submit', event => {
-  event.preventDefault();
-  const correct = new FormData(event.currentTarget).get('guess') === 'lower';
-  revealed = true;
-  byId('predict').hidden = true;
-  byId('comparison').hidden = false;
-  byId('isotope').value = 'both';
-  byId('outcome').classList.toggle('correct', correct);
-  byId('feedback').textContent = correct ? 'Correct — DCl shifts lower.' : 'DCl shifts to a lower wavenumber.';
   const drop = 100 * (1 - vibration('D').band / vibration('H').band);
-  byId('reason').textContent = 'Compare the gap from v = 0 to v = 1. With the same bond stiffness, DCl’s larger reduced mass brings the levels closer together. Its IR band is ' + drop.toFixed(1) + '% lower in wavenumber.';
-  draw();
-  byId('outcome').focus();
-});
-byId('again').addEventListener('click', () => {
-  revealed = false;
-  byId('comparison').hidden = true;
-  byId('predict').hidden = false;
-  byId('predict').reset();
-  draw();
-  byId('predict').querySelector('input').focus();
-});
+  const current = view === 'both' ? 'The blue HCl levels and dashed red DCl levels share the same potential.' : view === 'H' ? 'HCl’s lighter reduced mass gives wider energy spacing.' : 'DCl’s heavier reduced mass gives narrower energy spacing.';
+  byId('reason').textContent = current + ' The fundamental IR band shifts from ' + Math.round(vibration('H').band) + ' cm⁻¹ for HCl to ' + Math.round(vibration('D').band) + ' cm⁻¹ for DCl, a ' + drop.toFixed(1) + '% decrease at the same stiffness.';
+}
 byId('isotope').addEventListener('change', draw);
 draw();

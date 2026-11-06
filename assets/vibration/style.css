@@ -12,7 +12,7 @@
 .vib-controls{padding:clamp(18px,3vw,35px);background:white;font:15px/1.5 system-ui}
 .vib-controls h2{margin-bottom:18px}
 
-#predict,#comparison{border-top:1px solid var(--hair);margin-top:22px;padding-top:20px}
+#comparison{border-top:1px solid var(--hair);margin-top:22px;padding-top:20px}
 .vib-controls fieldset{border:0;margin:0;padding:0}.vib-controls legend{font-weight:650;margin-bottom:8px}
 .vib-controls fieldset label{display:block;padding:6px 0}.vib-controls button,.vib-controls select{font:inherit;cursor:pointer}.vib-controls button{margin-top:12px}
 #isotope{display:block;width:100%;padding:8px;margin-top:6px}#again{background:none;border:0;text-decoration:underline;color:var(--blue);padding:0}
@@ -27,7 +27,6 @@
 .vib-results th{font-size:13px}.vib-results :first-child:is(th,td){text-align:left}
 .vib-results td:first-child::before{content:"";display:inline-block;width:20px;margin-right:6px;vertical-align:middle;border-top:3px solid var(--blue)}
 .vib-results .dcl td:first-child::before{border-top:3px dashed var(--red)}
-#outcome{margin:0 0 20px;border-left:5px solid var(--blue);background:var(--wash);padding:15px;color:var(--navy)}
-#outcome.correct{border-color:var(--green);background:#edf7f1}
+#outcome{margin:20px 0 0;border-left:5px solid var(--green);background:#edf7f1;padding:15px;color:var(--navy)}
 #outcome h3{font:700 22px/1.15 Libron,Georgia,serif;margin:0 0 8px}
 #outcome p{margin:0}

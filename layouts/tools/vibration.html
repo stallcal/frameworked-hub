@@ -1,11 +1,12 @@
 {{ define "head-extra" }}
+<link rel="stylesheet" href="/css/math.css">
 {{ $css := resources.Get "vibration/style.css" | minify | fingerprint }}<link rel="stylesheet" href="{{ $css.RelPermalink }}">
 {{ end }}
 {{ define "main" }}
 <article class="vibration">
   <a class="vib-back" href="/tools/">← Workbench</a>
   <h1>Molecular <em>vibration.</em></h1>
-  <p class="vib-lead">A sample contains HCl and DCl. Use the gap between vibrational levels to predict which molecule absorbs infrared light at the lower wavenumber.</p>
+  <p class="vib-lead">Compare HCl and DCl to see how isotope mass changes vibrational energy spacing and infrared absorption.</p>
   <div class="vib-lab">
     <div class="vib-figure">
       <div class="vib-fighead"><h2>Vibrational energy levels</h2></div>
@@ -21,18 +22,14 @@
     <section class="vib-controls" aria-label="Model controls">
       <h2>Change the isotope</h2>
       <p>Deuterium adds a neutron to hydrogen. The bonding electrons experience essentially the same electric forces, so the model uses one spring constant (<i>k</i> = 480 N/m) for both bonds. The isotope swap changes the mass that vibrates in that potential well.</p>
-      <form id="predict"><fieldset><legend>Replace H with D at the same stiffness. Where will the DCl band appear relative to HCl?</legend>
-        <label><input type="radio" name="guess" value="lower" required> Lower wavenumber</label>
-        <label><input type="radio" name="guess" value="same"> Same wavenumber</label>
-        <label><input type="radio" name="guess" value="higher"> Higher wavenumber</label>
-      </fieldset><button class="editorial-button" type="submit">Reveal isotope shift →</button></form>
-      <div id="comparison" hidden><div id="outcome" tabindex="-1" aria-labelledby="feedback"><h3 id="feedback"></h3><p id="reason"></p></div><label for="isotope">Show energy levels for</label><select id="isotope"><option value="both">Both isotopes</option><option value="H">HCl · hydrogen</option><option value="D">DCl · deuterium</option></select>
-      <button id="again" type="button">Try the prediction again</button></div>
+      <div id="comparison"><label for="isotope">Show energy levels for</label><select id="isotope"><option value="both">Both isotopes</option><option value="H">HCl · hydrogen</option><option value="D">DCl · deuterium</option></select>
+      <div id="outcome" aria-live="polite"><h3>More mass, closer levels.</h3><p id="reason"></p></div></div>
     </section>
   </div>
   <section class="vib-theory"><h2>From bond to IR band</h2><div>
-    <p>The curve is the bond’s potential energy, <i>V(x) = ½kx²</i>. Each horizontal line is an allowed energy. Even the ground state sits half a quantum above the bottom of the well.</p>
-    <p class="vib-formula">μ = m₁m₂ / (m₁ + m₂)<br>ν̃ = (1 / 2πc) √(k / μ)<br>Eᵥ = hcν̃ (v + ½)</p>
+    <p>The curve is the bond’s potential energy. Each horizontal line is an allowed energy. Even the ground state sits half a quantum above the bottom of the well.</p>
+    <div class="vib-formula">{{ partial "equation.html" `V(x) = \frac{1}{2}kx^2` }}{{ partial "equation.html" `\mu = \frac{m_1m_2}{m_1+m_2}` }}{{ partial "equation.html" `\tilde{\nu} = \frac{1}{2\pi c}\sqrt{\frac{k}{\mu}}` }}{{ partial "equation.html" `E_v = hc\tilde{\nu}\left(v+\frac{1}{2}\right)` }}</div>
+    <p>At fixed stiffness, wavenumber varies as the inverse square root of reduced mass. A heavier isotope lowers every level spacing while leaving the potential curve unchanged.</p>
     <p>The fundamental absorption takes the molecule from <i>v</i> = 0 to 1. On the chart’s energy scale, the gap between those lines reads directly as the predicted IR wavenumber. Use μ in kilograms and c in cm/s with k in N/m.</p>
     <p>This harmonic model treats the bond as an ideal spring. Real HCl spectra also show anharmonic shifts and rotational structure.</p>
     <p><a href="https://personal.utdallas.edu/~son051000/chem4473/HClDCl_Lab.pdf">HCl and DCl spectroscopy lab</a> · <a href="https://physics.nist.gov/PhysRefData/Compositions/">NIST isotope masses</a></p>

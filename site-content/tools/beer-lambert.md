@@ -1,6 +1,6 @@
 ---
 title: "Light through a solution"
-description: "Double the concentration. Does half the light get through? Explore the Beer–Lambert law one variable at a time."
+description: "Change concentration and path length to see how absorbance and transmitted light are related."
 layout: "mini-lab"
 lab: "light"
 topic: "Spectroscopy"

@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="description" content="Calculate reagent masses and molar amounts from a chosen feed ratio and one known quantity. A free, general-purpose chemistry tool from Frameworked." />
   <title>Reagent ratio calculator · Frameworked</title>
-  <link rel="stylesheet" href="./style.css" />
+  <link rel="stylesheet" href="./style.css" /><link rel="stylesheet" href="/css/math.css" />
   <script type="module" src="./app.mjs"></script>
 </head>
 <body>
@@ -121,8 +121,8 @@
           <p>The calculation first converts the known quantity into millimoles. It then multiplies that amount by the ratio of molar equivalents and converts the result back to mass.</p>
         </div>
         <div class="formula-panel">
-          <div class="equation">n<sub>i</sub> = n<sub>known</sub> × (r<sub>i</sub> / r<sub>known</sub>)</div>
-          <div class="equation">m<sub>i</sub> = n<sub>i</sub> × M<sub>i</sub></div>
+          <div class="equation math-display"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><msub><mi>n</mi><mi>i</mi></msub><mo>=</mo><msub><mi>n</mi><mtext>known</mtext></msub><mo>×</mo><mfrac><msub><mi>r</mi><mi>i</mi></msub><msub><mi>r</mi><mtext>known</mtext></msub></mfrac></mrow></math></div>
+          <div class="equation math-display"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><msub><mi>m</mi><mi>i</mi></msub><mo>=</mo><msub><mi>n</mi><mi>i</mi></msub><mo>×</mo><msub><mi>M</mi><mi>i</mi></msub></mrow></math></div>
           <p><strong>n</strong> is amount in mmol, <strong>r</strong> is relative molar equivalents, and <strong>M</strong> is molar mass in g/mol. Numerically, g/mol = mg/mmol, so <strong>m</strong> is in mg.</p>
           <details>
             <summary>Limitations and assumptions</summary>
