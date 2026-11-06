@@ -5,11 +5,11 @@
 <section class="tools-intro" aria-labelledby="tools-title"><div><p class="design-eyebrow">THE WORKBENCH / FRAMEWORKED</p><h1 id="tools-title">Scientific<br>tools.</h1></div><p>Change a parameter, explore a model, and see how the relationships unfold. Calculators and visual explorers for chemistry and materials.</p></section>
 <section class="mini-tools" style="margin:32px 0 64px" aria-label="All scientific tools"><div class="chapter-collection">
 {{ range sort .Pages "Title" }}
-{{ partial "tool-link.html" (dict "title" .Title "description" .Description "url" .RelPermalink "icon" (.Params.lab | default .Params.experiment | default "wave")) }}
+{{ $icon := .Params.icon | default .Params.explorer | default .Params.lab | default .Params.experiment | default "generic" }}
+{{ partial "tool-link.html" (dict "title" .Title "description" .Description "url" .RelPermalink "icon" $icon) }}
 {{ end }}
 {{ partial "tool-link.html" (dict "title" "Bragg’s law explorer" "description" "Connect lattice spacing, wavelength, and diffraction angle through an interactive crystal model." "url" "/tools/bragg/" "icon" "lattice") }}
 {{ partial "tool-link.html" (dict "title" "Reagent ratio calculator" "description" "Set molar equivalents and one known quantity to calculate reagent masses and amounts." "url" "/tools/reagent-ratios/" "icon" "bars") }}
 {{ partial "tool-link.html" (dict "title" "Scherrer calculator" "description" "Fit powder diffraction peaks and inspect coherent crystallite size estimates and their assumptions." "url" "/tools/scherrer/" "icon" "peak") }}
 </div></section>
 {{ end }}
-
