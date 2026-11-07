@@ -92,7 +92,7 @@ Classification describes morphology. Choosing a fitting equation such as Langmui
 ### Why this matters for MOFs
 Flexible MOFs can change structure as gas enters or leaves. Gate opening and structural transitions can create steps and hysteresis. A loop is not sufficient evidence for capillary condensation: structural measurements and experimental conditions matter. This explorer does not model framework flexibility or infer a mechanism from an unknown curve.
 
-For measured high-pressure methane curves, explore [methane storage](/tools/methane-storage/).
+To move beyond classifying curves and explore an idealized quantitative relationship, try the [Langmuir adsorption explorer](/tools/langmuir-isotherm/). For measured high-pressure methane curves, explore [methane storage](/tools/methane-storage/).
 
 ### Literature
 - Thommes et al. (2015), [Physisorption of gases — IUPAC Technical Report](https://doi.org/10.1515/pac-2014-1117). Classification, subtypes, and interpretation limits.
