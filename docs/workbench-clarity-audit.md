@@ -35,3 +35,8 @@ Method: repository source review of templates, scientific model code, SVG drawin
 - Improve keyboard discoverability of the MOF-5 atom selection interaction (the separate view buttons remain usable).
 - Follow up on the Scherrer peak-selection concerns and an end-to-end audit of the standalone calculators.
 - For new coordination chemistry, MOF architecture, topology, and breakthrough tools, apply the figure-first rubric before release.
+
+## Mobile control-to-figure visibility
+All introductory explorers, small labs, MOF-panel explorers, and the isotope vibration explorer now use a compact figure panel on narrow screens, with a sticky figure on portrait-height viewports (min-height 620px). The sticky panel remains bounded by its own visualization/controls container and releases before lower explanatory sections. On short or landscape viewports, the layout remains stacked without sticky behavior. Introductory plot-reading notes remain available in a collapsible disclosure, rather than consuming space while changing sliders.
+
+**Visual QA still required:** verify actual Safari/iPhone behavior with the dynamic browser toolbar, first and last sliders, select dropdowns, rotation controls and reset behavior; check that the sticky figure never obscures focused inputs or cuts off plotted labels. Verify at widths 320/390/430px and shorter landscape heights.
