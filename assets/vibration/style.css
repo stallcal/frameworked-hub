@@ -30,3 +30,32 @@
 #outcome{margin:20px 0 0;border-left:5px solid var(--green);background:#edf7f1;padding:15px;color:var(--navy)}
 #outcome h3{font:700 22px/1.15 Libron,Georgia,serif;margin:0 0 8px}
 #outcome p{margin:0}
+
+.vib-line-legend{display:flex;flex-wrap:wrap;gap:9px 18px;margin:12px 0 19px;font:600 13px/1.5 system-ui}.vib-line-legend>span{display:inline-flex;gap:8px;align-items:center}.vib-swatch{display:inline-block;width:26px;border-top:3px solid var(--blue)}.vib-swatch-dcl{border-color:var(--red);border-top-style:dashed}.vib-swatch-potential{border-color:var(--quiet)}
+
+
+/* On phones, keep the isotope diagram visible while the selector is used. */
+@media (max-width: 760px) {
+  .vib-lab > .vib-figure { padding: 11px 12px 10px; background: var(--wash); }
+  #well { max-height: min(29dvh, 215px); margin: 6px 0; }
+  .vib-line-legend { margin: 5px 0 8px; gap: 4px 12px; font-size: 11px; }
+  .vib-swatch { width: 20px; }
+  .vib-results { font-size: 13px; }
+  .vib-results th, .vib-results td { padding: 4px 2px; }
+  .vib-results th { font-size: 11px; }
+  .vib-results td:first-child::before { width: 14px; }
+  .vib-controls { padding: 16px 18px 20px; }
+  .vib-controls h2 { margin-bottom: 8px; }
+  #comparison { margin-top: 12px; padding-top: 12px; }
+  #isotope { min-height: 44px; scroll-margin-top: 48dvh; }
+}
+@media (max-width: 760px) and (min-height: 620px) {
+  .vib-lab > .vib-figure {
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    align-self: start;
+    border-bottom: 1px solid var(--hair);
+    box-shadow: 0 6px 14px rgba(28, 48, 73, .12);
+  }
+}

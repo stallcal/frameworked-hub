@@ -18,3 +18,9 @@ Standalone tools in `static/tools/` use equivalent native MathML. Use real fract
 ## Verification
 
 Check the calculation relationships and limits, direct parameter updates, keyboard controls, and desktop/mobile layouts. Review rendered equations visually, including long fractions. Verify the Cloudflare preview before merging, then check the live deployment.
+
+## Figure-first explanatory cues
+
+Before release, audit every explorer with the controls at default and at boundary values. A visitor should be able to identify each plotted series **inside the figure panel** without consulting a separate paragraph. Use direct labels or a color-and-line-style legend; the same encoding should persist in the controls and numerical readouts. Make axis labels, units, conditions, and assumptions visible near the graphic.
+
+Tie the parameter being changed to a highlighted point, band, geometry, or transition wherever feasible. Explain what moves, what remains fixed, and which interpretation is justified. An observed structure, digitized experiment, and schematic comparison must be plainly distinguished. Mark discrete quantum states as integers and label expectation values with angle brackets. Keep on-plot text readable on phones; put responsive legends in the figure panel instead of letting them shrink with SVG scaling.
