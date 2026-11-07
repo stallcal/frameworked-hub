@@ -1,0 +1,28 @@
+<div class="gas-panel">
+<section class="gas-figure" aria-labelledby="langmuir-plot-heading">
+<h2 id="langmuir-plot-heading">Affinity changes uptake—and release</h2>
+<svg id="langmuir-plot" viewBox="0 0 620 330" role="img" aria-labelledby="langmuir-plot-title langmuir-plot-desc"><title id="langmuir-plot-title">Langmuir CO₂ adsorption uptake versus partial pressure</title><desc id="langmuir-plot-desc">Change adsorption affinity, saturation capacity, and working pressures to compare adsorption and regeneration.</desc></svg>
+<div class="gas-legend" aria-label="Plot legend"><span><i class="langmuir-current" aria-hidden="true"></i>Current Langmuir curve</span><span><i class="langmuir-reference" aria-hidden="true"></i>Reference affinity (5 bar⁻¹)</span></div>
+<p class="gas-chart-note">Blue circles mark uptake at adsorption and regeneration pressures. Both curves use the same saturation capacity. All curves and capacities are calculated, not measured.</p>
+</section>
+<form class="gas-controls" id="langmuir-form">
+<h2>Change the adsorption model.</h2>
+<label for="langmuir-affinity">Affinity constant, K: <output for="langmuir-affinity" id="langmuir-affinity-value">25.1 bar⁻¹</output></label>
+<input type="range" id="langmuir-affinity" min="-1" max="3" step="0.025" value="1.4">
+<p class="gas-hint">Logarithmic slider: each step changes the affinity multiplicatively; K ranges from 0.1 to 1,000 bar⁻¹.</p>
+<label for="langmuir-qmax">Saturation capacity, qmax: <output for="langmuir-qmax" id="langmuir-qmax-value">4.0 mmol/g</output></label>
+<input type="range" id="langmuir-qmax" min="0.5" max="10" step="0.1" value="4">
+<label for="langmuir-ads">CO₂ partial pressure at adsorption: <output for="langmuir-ads" id="langmuir-ads-value">0.150 bar</output></label>
+<input type="range" id="langmuir-ads" min="0.02" max="0.5" step="0.005" value="0.15">
+<label for="langmuir-des">CO₂ partial pressure at regeneration: <output for="langmuir-des" id="langmuir-des-value">0.010 bar</output></label>
+<input type="range" id="langmuir-des" min="0.001" max="0.2" step="0.001" value="0.01">
+<p class="gas-hint">Constant temperature. This idealized pressure swing does not include heating, competitive adsorption, process losses or irreversible binding.</p>
+<button class="gas-reset" type="reset">Reset model</button>
+</form>
+</div>
+<div class="gas-stats" aria-live="polite" aria-atomic="true">
+<div><small>Uptake at adsorption pressure</small><strong id="langmuir-high">— mmol/g</strong></div>
+<div><small>Uptake retained at regeneration</small><strong id="langmuir-low">— mmol/g</strong></div>
+<div><small>Ideal equilibrium working capacity</small><strong class="gas-emphasis" id="langmuir-work">— mmol/g</strong></div>
+</div>
+<div class="gas-finding"><strong>What changes?</strong><p id="langmuir-explanation" aria-live="polite">Stronger adsorption can improve low-pressure uptake but also increase retention during regeneration.</p></div>
