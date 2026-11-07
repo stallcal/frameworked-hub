@@ -16,6 +16,18 @@ function classify(element,pos){
  const axis=offset.map(Math.abs).indexOf(Math.max(...offset.map(Math.abs)));
  return {origin,axis,side:Math.sign(offset[axis]),core:isCore(element,offset)};
 }
+function showKey(mode){
+ const items=mode==='net'?[['Central cluster node','#9e382e'],['Connections to neighbors','#084b9e']]:
+ mode==='linker'?[['Selected linker','#087e48'],['Unselected atoms','#adbdc9']]:
+ [['Zn','#084b9e'],['O','#9e382e'],['C','#404040']];
+ const key=byId('key');key.replaceChildren();
+ for(const [label,color] of items){
+  const entry=document.createElement('span'),swatch=document.createElement('span');
+  entry.className='node-key-entry';swatch.className='node-key-swatch';swatch.style.backgroundColor=color;
+  swatch.setAttribute('aria-hidden','true');
+  entry.append(swatch,document.createTextNode(label));key.append(entry);
+ }
+}
 function select(kind,origin=center,axis=0,side=1){
  mode=kind;center=origin;direction=axis;sign=side;
  byId('net').disabled=mode==='net';
@@ -26,7 +38,7 @@ function select(kind,origin=center,axis=0,side=1){
  net:['Primitive cubic net','Each dot represents a whole Zn₄O node; each edge represents one terephthalate bridge. Six edges meet the central node along three axes, giving the framework its primitive cubic connectivity.']
  };
  byId('sceneTitle').textContent=content[mode][0];byId('nodeResult').textContent=content[mode][1];
- byId('key').textContent=mode==='net'?'Central node · red   /   its six connections · blue':mode==='linker'?'Selected bridge · green   /   neighboring atoms · muted':'Zn · blue   /   O · red   /   C · graphite';
+ showKey(mode);
  draw();
 }
 function collectAtoms(){
@@ -95,4 +107,4 @@ function draw(){
 }
 byId('cluster').onclick=()=>select('cluster');byId('linker').onclick=()=>select('linker');
 byId('net').onclick=()=>select('net');byId('reset').onclick=()=>select('cell');
-byId('angle').oninput=draw;draw();
+byId('angle').oninput=draw;showKey(mode);draw();
