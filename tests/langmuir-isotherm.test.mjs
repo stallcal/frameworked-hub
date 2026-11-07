@@ -27,7 +27,7 @@ test('optimal affinity maximizes working capacity at positive pressures',()=>{
  const atOpt=equilibriumWorkingCapacity(ads,regen,qmax,k);
  assert.ok(atOpt>equilibriumWorkingCapacity(ads,regen,qmax,k/10));
  assert.ok(atOpt>equilibriumWorkingCapacity(ads,regen,qmax,k*10));
- near(optimalAffinity(.15,0),Infinity);
+ assert.equal(optimalAffinity(.15,0),Infinity);
 });
 test('reject invalid pressures, saturation and affinity',()=>{
  assert.throws(()=>langmuirUptake(-1,4,2),RangeError);
