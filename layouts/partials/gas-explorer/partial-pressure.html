@@ -1,0 +1,28 @@
+<div class="gas-panel">
+<section class="gas-figure" aria-labelledby="gas-plot-heading">
+<h2 id="gas-plot-heading">Where the pressure comes from</h2>
+<svg id="gas-plot" viewBox="0 0 620 270" role="img" aria-labelledby="gas-plot-title gas-plot-desc">
+<title id="gas-plot-title">CO₂ partial pressure and balance-gas contribution</title>
+<desc id="gas-plot-desc">Adjust the pressure and CO₂ mole fraction to see each gas contribution.</desc>
+</svg>
+<div class="gas-legend" aria-label="Plot legend"><span><i aria-hidden="true"></i>CO₂ contribution</span><span><i class="gas-balance" aria-hidden="true"></i>All other gases</span></div>
+<p class="gas-chart-note">Bar lengths show pressure contributions in proportion. Very small CO₂ fractions may be too thin to see; the numeric readout retains their precision.</p>
+</section>
+<form class="gas-controls" id="gas-form">
+<h2>Change the gas mixture.</h2>
+<label for="gas-preset">Example mixture</label>
+<select id="gas-preset"><option value="flue">Illustrative flue gas · 15% CO₂</option><option value="air">Illustrative air · 420 ppm CO₂</option><option value="pure">Pure CO₂ · 100%</option><option value="custom">Custom mixture</option></select>
+<label for="gas-total">Total absolute pressure: <output id="gas-total-value" for="gas-total">1.00 bar</output></label>
+<input id="gas-total" type="range" min="0.5" max="10" step="0.05" value="1">
+<label for="gas-percent">CO₂ mole percentage (%)</label>
+<input id="gas-percent" type="number" min="0" max="100" step="any" value="15" inputmode="decimal" aria-describedby="gas-percent-hint">
+<p id="gas-percent-hint" class="gas-hint">Enter 0.042 for 420 ppm CO₂. This is mole percent, not partial pressure.</p>
+<button class="gas-reset" type="reset">Reset example</button>
+</form>
+</div>
+<div class="gas-stats" aria-live="polite" aria-atomic="true">
+<div><small>Mole fraction, yCO₂</small><strong id="gas-y">0.15</strong></div>
+<div><small>CO₂ concentration</small><strong id="gas-ppm">150,000 ppm</strong></div>
+<div><small>CO₂ partial pressure</small><strong class="gas-emphasis" id="gas-pco2">0.15 bar</strong></div>
+</div>
+<div class="gas-finding"><strong>What does this tell us?</strong><p id="gas-explanation" aria-live="polite">At 1 bar total pressure, 15% CO₂ contributes 0.15 bar.</p></div>
