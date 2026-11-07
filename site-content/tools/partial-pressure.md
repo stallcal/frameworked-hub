@@ -4,6 +4,7 @@ description: "Understand why 15% CO₂ in a gas mixture corresponds to 0.15 bar 
 layout: "gas-explorer"
 topic: "Gas mixtures & carbon capture"
 experiment: "partial-pressure"
+icon: "partial-pressure"
 equations:
   - "p_{\\mathrm{CO_2}} = y_{\\mathrm{CO_2}}P_{\\mathrm{total}}"
   - "y_{\\mathrm{CO_2}} = \\frac{\\mathrm{ppmv}_{\\mathrm{CO_2}}}{10^6}"
