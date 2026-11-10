@@ -93,14 +93,14 @@ Our plot uses **color for the selected comparison** (blue = Curve A, red = Curve
 Different paths can arise from metastability, capillary condensation in mesopores, pore blocking, or network effects. Flexible MOFs may also exhibit structural transitions. **A loop alone does not identify its physical mechanism.** This schematic does not predict experimental pore properties or hysteresis magnitudes.
 
 ### Reading the families
-The descriptions above summarize six broad IUPAC families. Types I(a) and I(b) distinguish microporous shapes. IV(a) has hysteresis; IV(b) can be reversible. The plotted IV illustrates IV(a). Type IV(a) is hysteretic, while Type IV(b) can be reversible. Our Type IV illustration specifically represents IV(a); Type V also includes a loop in this simplified plot.
+The descriptions above summarize six broad IUPAC families. Types I(a) and I(b) distinguish microporous shapes. Type IV(a) displays hysteresis, while Type IV(b) may be reversible; our Type IV selection illustrates IV(a). The Type V selection also includes a schematic hysteresis loop.
 
 Classification describes morphology. Choosing a fitting equation such as Langmuir or BET requires appropriate assumptions and a valid pressure range. Shape alone does not determine pore size or identify a material.
 
 ### Why this matters for MOFs
 Flexible MOFs can change structure as gas enters or leaves. Gate opening and structural transitions can create steps and hysteresis. A loop is not sufficient evidence for capillary condensation: structural measurements and experimental conditions matter. This explorer does not model framework flexibility or infer a mechanism from an unknown curve.
 
-For measured high-pressure methane curves, explore [methane storage](/tools/methane-storage/).
+To see how affinity and saturation capacity affect equilibrium working capacity, explore the [Langmuir adsorption model](/tools/langmuir-isotherm/). For experimental high-pressure methane uptake, explore [methane storage](/tools/methane-storage/).
 
 ### Literature
 - Thommes et al. (2015), [Physisorption of gases — IUPAC Technical Report](https://doi.org/10.1515/pac-2014-1117). Classification, subtypes, and interpretation limits.
