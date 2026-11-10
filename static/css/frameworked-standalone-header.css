@@ -1,0 +1,99 @@
+/* Frameworked standalone-tool navigation.
+ * Keep static explorers visually aligned with the Hugo site's shared header.
+ * Scoped selectors avoid changing scientific figures, sliders and controls.
+ */
+.bragg-compact .fw-site-header {
+  position: relative;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  min-height: 92px;
+  padding: 0;
+  gap: 28px;
+  border: 0;
+  border-bottom: 1px solid #c8d6e5;
+  background: transparent;
+}
+.bragg-compact .fw-site-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 11px;
+  white-space: nowrap;
+  color: #084b9e;
+  font: 700 clamp(23px, 2vw, 30px)/1 Libron, Georgia, serif;
+  letter-spacing: -.06em;
+  text-decoration: none;
+}
+.bragg-compact .fw-site-brand img {
+  display: block;
+  width: 34px;
+  height: 34px;
+  object-fit: contain;
+  flex: none;
+}
+.bragg-compact .fw-brand-period { color: #9e382e; }
+.bragg-compact .fw-site-nav {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: clamp(20px, 2.4vw, 38px);
+}
+.bragg-compact .fw-site-nav a {
+  position: relative;
+  display: inline-block;
+  padding: 34px 1px 32px;
+  color: #1c3049;
+  text-decoration: none;
+  white-space: nowrap;
+  font: 700 15px/1.5 Libron, Georgia, serif;
+}
+.bragg-compact .fw-site-nav a:hover,
+.bragg-compact .fw-site-nav a[aria-current] { color: #084b9e; }
+.bragg-compact .fw-site-nav a[aria-current]::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  border-bottom: 2px solid #9e382e;
+}
+.bragg-compact .fw-site-header a:focus-visible {
+  outline: 3px solid #084b9e;
+  outline-offset: 5px;
+}
+@media (max-width: 1150px) {
+  .bragg-compact .fw-site-nav {
+    position: static;
+    left: auto;
+    transform: none;
+    margin-left: auto;
+    gap: 27px;
+  }
+}
+@media (max-width: 850px) {
+  .bragg-compact .fw-site-header {
+    flex-wrap: wrap;
+    gap: 5px 20px;
+    padding: 18px 0 0;
+    min-height: 0;
+  }
+  .bragg-compact .fw-site-brand { margin-bottom: 12px; }
+  .bragg-compact .fw-site-nav {
+    width: 100%;
+    justify-content: flex-start;
+    gap: 32px;
+    overflow-x: auto;
+    margin-left: 0;
+    scrollbar-width: thin;
+  }
+  .bragg-compact .fw-site-nav a { padding: 9px 0 15px; }
+}
+@media (max-width: 520px) {
+  .bragg-compact .fw-site-brand { font-size: 25px; }
+  .bragg-compact .fw-site-brand img { width: 29px; height: 29px; }
+  .bragg-compact .fw-site-nav { gap: 22px; }
+  .bragg-compact .fw-site-nav a { font-size: 15px; }
+}
