@@ -1,0 +1,8 @@
+{{- if not (.Page.Scratch.Get "normalModeAssetsLoaded") -}}
+  {{- .Page.Scratch.Set "normalModeAssetsLoaded" true -}}
+  {{- $css := resources.Get "normal-modes/style.css" | minify | fingerprint -}}
+  <link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
+  {{- $js := resources.Get "normal-modes/app.js" | js.Build (dict "target" "es2020") | fingerprint -}}
+  <script type="module" src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}"></script>
+{{- end -}}
+{{- partial "normal-mode-widget.html" (dict "molecule" (.Get "molecule") "mode" (.Get "mode") "compact" true) -}}

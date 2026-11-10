@@ -267,3 +267,18 @@ test("Bragg explorer header matches Frameworked's main site navigation", () => {
   assert.match(css, /\.fw-site-nav a\[aria-current\]::after/);
   assert.match(css, /@media \(max-width: 850px\)/);
 });
+
+
+test("ray arrowhead markers remain aligned with shaft endpoints after branch integration", () => {
+  const ui = createActivity();
+  const rays = ui.el("geometry").innerHTML;
+  const lattice = ui.el("latticeGeometry").innerHTML;
+  const html = readFileSync(new URL("../static/tools/bragg/index.html", import.meta.url), "utf8");
+  for (const id of ["braggBlueArrow", "braggRedArrow"]) {
+    assert.match(rays, new RegExp('id="' + id + '"[^>]*refX="6"'));
+  }
+  assert.match(lattice, /id="braggDtip"[^>]*refX="6"/);
+  assert.match(rays, /stroke="#084b9e" stroke-linecap="butt" marker-end="url\(#braggBlueArrow\)"/);
+  assert.match(rays, /stroke="#9e382e" stroke-linecap="butt" marker-end="url\(#braggRedArrow\)"/);
+  assert.doesNotMatch(html, /id="intro-blue-tip"/);
+});
