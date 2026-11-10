@@ -700,6 +700,18 @@ footer {
 }
 
 
+/* Reserve real inset space next to the left blue rule. The global math.css
+   loads after this stylesheet, so this selector intentionally outranks its
+   generic .math-display padding rule. */
+.bragg-compact .bragg-equation.math-display {
+  padding: 16px 22px 16px 30px;
+}
+@media (max-width: 620px) {
+  .bragg-compact .bragg-equation.math-display {
+    padding: 13px 15px 13px 23px;
+  }
+}
+
 /* Streamlined Bragg lesson: one visible experiment, with deeper explanations
    kept accessible in disclosures. Use existing Frameworked brand tokens. */
 .bragg-compact .shell { max-width: 1380px; }
@@ -858,8 +870,6 @@ footer {
 }
 .bragg-compact .teaching-takeaway strong { font-size: 19px; }
 .bragg-compact .teaching-takeaway p { font-size: 15px; margin: 4px 0 0; }
-.bragg-compact .visual .actions { margin-top: 15px; }
-.bragg-compact .visual .actions button { font-size: 13px; min-height: 42px; }
 .bragg-compact .bragg-optional,
 .bragg-compact .notes {
   border: 2px solid var(--navy);
