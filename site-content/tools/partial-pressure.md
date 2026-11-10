@@ -24,7 +24,7 @@ The illustrative flue-gas and air compositions are learning presets, not a chara
 
 ### Related explorers
 
-Compare [adsorption isotherm shapes](/tools/isotherm-shapes/) and measured [high-pressure methane storage data](/tools/methane-storage/). An idealized Langmuir adsorption model will provide the next connection between partial pressure, affinity and capacity.
+Compare [adsorption isotherm shapes](/tools/isotherm-shapes/) and measured [high-pressure methane storage data](/tools/methane-storage/). The [Langmuir adsorption explorer](/tools/langmuir-isotherm/) provides the next connection between partial pressure, affinity, and idealized equilibrium working capacity.
 
 ### Reference
 

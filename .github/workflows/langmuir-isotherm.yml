@@ -1,0 +1,18 @@
+name: Langmuir model tests
+on:
+  pull_request:
+    paths: ['assets/gas-explorer/langmuir-model.mjs', 'assets/gas-explorer/langmuir.js', 'tests/langmuir-isotherm.test.mjs', '.github/workflows/langmuir-isotherm.yml']
+  push:
+    branches: [main]
+    paths: ['assets/gas-explorer/langmuir-model.mjs', 'assets/gas-explorer/langmuir.js', 'tests/langmuir-isotherm.test.mjs', '.github/workflows/langmuir-isotherm.yml']
+permissions:
+  contents: read
+jobs:
+  model-checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node --test tests/langmuir-isotherm.test.mjs
