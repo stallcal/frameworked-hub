@@ -247,3 +247,23 @@ test("equation accent rule has a deliberate left inset", () => {
   const css = readFileSync(new URL("../static/tools/bragg/style.css", import.meta.url), "utf8");
   assert.match(css, /\.bragg-compact \.bragg-equation\.math-display\s*\{\s*padding:\s*16px 22px 16px 30px/);
 });
+
+test("Bragg explorer header matches Frameworked's main site navigation", () => {
+  const html = readFileSync(new URL("../static/tools/bragg/index.html", import.meta.url), "utf8");
+  const css = readFileSync(new URL("../static/css/frameworked-standalone-header.css", import.meta.url), "utf8");
+  const match = html.match(/<header class="fw-site-header">([\s\S]*?)<\/header>/);
+  assert.ok(match, "Expected modern Frameworked site header");
+  const header = match[1];
+  for (const [path, label] of [
+    ["/", "Home"], ["/articles/", "Articles"], ["/explore/", "Explore"],
+    ["/tools/", "Tools"], ["/about/", "About"]
+  ]) {
+    assert.match(header, new RegExp(`href="${path}"[^>]*>${label}<\\/a>`));
+  }
+  assert.match(header, /src="\/images\/frameworked-mark\.png"/);
+  assert.match(header, /href="\/tools\/" aria-current="page"/);
+  assert.doesNotMatch(header, /All tools/);
+  assert.match(html, /href="\/css\/frameworked-standalone-header\.css"/);
+  assert.match(css, /\.fw-site-nav a\[aria-current\]::after/);
+  assert.match(css, /@media \(max-width: 850px\)/);
+});
