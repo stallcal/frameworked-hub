@@ -77,3 +77,81 @@
 @media (prefers-reduced-motion: reduce) {
   .fw-neo-workbench .chapter-link { transition: none; }
 }
+
+
+/* Phase 2: give the homepage's three main destinations the same tactile
+   vocabulary as the workbench, without converting editorial text to cards. */
+.fw-neo-home-nav .chapter-collection {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 21px;
+  padding: 0 var(--fw-neo-offset) var(--fw-neo-offset) 0;
+  border-top: 0;
+}
+.fw-neo-home-nav .chapter-link {
+  display: grid;
+  grid-template-columns: 77px minmax(0, 1fr) 24px;
+  align-items: center;
+  gap: 15px;
+  min-width: 0;
+  min-height: 140px;
+  padding: 21px;
+  background: #fff;
+  border: 2px solid var(--fw-neo-stroke);
+  border-radius: 2px;
+  box-shadow: var(--fw-neo-offset) var(--fw-neo-offset) 0 var(--fw-neo-shadow);
+  color: var(--navy);
+  text-decoration: none;
+  transition: transform 150ms ease, box-shadow 150ms ease;
+}
+.fw-neo-home-nav .chapter-main { min-width: 0; }
+.fw-neo-home-nav .chapter-main strong { font-size: clamp(23px, 2vw, 30px); }
+.fw-neo-home-nav .chapter-main small { font-size: 16px; }
+.fw-neo-home-nav .chapter-index { align-self: start; }
+.fw-neo-home-nav .chapter-link:focus-visible,
+.home .editorial-button:focus-visible {
+  outline: 3px solid var(--red);
+  outline-offset: 7px;
+}
+.fw-neo-home-nav .chapter-link:active {
+  transform: translate(var(--fw-neo-offset), var(--fw-neo-offset));
+  box-shadow: none;
+}
+.home .editorial-button {
+  border: 2px solid var(--fw-neo-stroke);
+  border-radius: 2px;
+  box-shadow: 4px 4px 0 var(--fw-neo-shadow);
+  transition: transform 150ms ease, box-shadow 150ms ease, background 150ms ease;
+}
+.home .editorial-button:active {
+  transform: translate(4px, 4px);
+  box-shadow: none;
+}
+@media (hover: hover) {
+  .fw-neo-home-nav .chapter-link:hover {
+    transform: translate(2px, 2px);
+    box-shadow: 3px 3px 0 var(--fw-neo-shadow);
+  }
+  .home .editorial-button:hover {
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0 var(--fw-neo-shadow);
+  }
+}
+@media (max-width: 520px) {
+  .fw-neo-home-nav .chapter-collection { gap: 17px; }
+  .fw-neo-home-nav .chapter-link {
+    grid-template-columns: minmax(0, 1fr) 22px;
+    min-height: 0;
+    gap: 9px;
+    padding: 18px 16px;
+  }
+  .fw-neo-home-nav .chapter-index {
+    grid-column: 1/-1;
+    padding: 0;
+  }
+  .fw-neo-home-nav .chapter-main strong { font-size: 24px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .fw-neo-home-nav .chapter-link,
+  .home .editorial-button { transition: none; }
+}
