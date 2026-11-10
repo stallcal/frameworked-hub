@@ -11,3 +11,32 @@
 @media(max-width:760px){.lab-panel,.lab-theory{grid-template-columns:1fr}.lab-controls{padding:24px}.lab-intro{margin-top:28px}.lab-visual{padding:22px 14px 18px}.lab-theory{gap:8px}.lab-results dl>div{padding:16px 10px}.lab-results dd{font-size:25px}.lab-results dt{font-size:11px}.lab-takeaway{padding:20px}.lab-figure-head{flex-wrap:wrap;gap:6px}.lab-badge{font-size:10px}.mini-tools .chapter-link{gap:12px}.mini-tool-art{width:44px;flex-basis:44px}}
 @media(max-width:760px){.mini-tools .chapter-link{grid-template-columns:44px minmax(0,1fr) 22px}.lab-related .chapter-link{grid-template-columns:minmax(0,1fr) 22px}}
 @media(prefers-reduced-motion:reduce){.mini-lab *{scroll-behavior:auto}}
+
+
+/* Phone workbench: keep the active figure visible while the controls scroll.
+   Restrict stickiness to taller viewports so landscape/short screens retain room to interact. */
+@media (max-width: 760px) {
+  .mini-lab .lab-visual {
+    padding: 12px 12px 10px;
+    background: var(--wash);
+  }
+  .mini-lab .lab-visual h2 { font-size: 21px; margin-bottom: 7px; }
+  .mini-lab .lab-figure-head { margin-bottom: 6px; }
+  .mini-lab .lab-visual svg { max-height: min(32dvh, 235px); }
+  .mini-lab .lab-caption { margin-top: 5px; font-size: 11px; line-height: 1.4; }
+  .mini-lab .lab-controls { padding: 16px 18px 22px; }
+  .mini-lab .lab-controls h2 { font-size: 23px; margin-bottom: 10px; }
+  .mini-lab .lab-controls label { margin-top: 13px; }
+  .mini-lab .lab-controls input[type=range] { min-height: 44px; margin: 2px 0; }
+  .mini-lab .lab-controls input, .mini-lab .lab-controls select { scroll-margin-top: 50dvh; }
+}
+@media (max-width: 760px) and (min-height: 620px) {
+  .mini-lab .lab-panel > .lab-visual {
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    align-self: start;
+    border-bottom: 1px solid var(--hair);
+    box-shadow: 0 6px 14px rgba(28, 48, 73, .12);
+  }
+}

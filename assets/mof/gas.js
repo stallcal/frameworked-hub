@@ -42,11 +42,11 @@ function draw(){
   for(const [p,q] of curve.points)mark('circle',{cx:X(p),cy:Y(q),r:2,fill:colors[i]});
   const high=uptake(curve.points,fill),low=uptake(curve.points,release);
   for(const [p,q] of [[fill,high],[release,low]])mark('circle',{cx:X(p),cy:Y(q),r:5,stroke:colors[i],fill:'white','stroke-width':2});
-  const row=el('capacity').insertRow(),th=document.createElement('th');th.scope='row';th.textContent=curve.name;row.append(th);
+  const row=el('capacity').insertRow(),th=document.createElement('th');th.scope='row';th.className='gas-name '+(i===0?'gas-name-blue':'gas-name-red');th.textContent=curve.name;row.append(th);
   for(const v of [high,low,high-low])row.insertCell().textContent=v.toFixed(1);
   delivered.push(high-low);
  });
- el('legend').textContent='Solid: '+selected[0].name+'   ·   Dashed: '+selected[1].name;
+ const legend=el('legend');legend.replaceChildren();selected.forEach((curve,i)=>{const item=document.createElement('span'),swatch=document.createElement('span');item.className='mof-legend-entry';swatch.className='mof-legend-swatch '+(i===0?'mof-legend-blue':'mof-legend-red');swatch.setAttribute('aria-hidden','true');item.append(swatch,document.createTextNode(curve.name+' ('+(i===0?'solid':'dashed')+')'));legend.append(item);});
  const delta=delivered[0]-delivered[1];
  el('finding').textContent=Math.abs(delta)<0.1?'The estimated deliveries agree within 0.1 cm³(STP)/cm³.':selected[delta>0?0:1].name+' delivers about '+Math.abs(delta).toFixed(1)+' more cm³(STP) of methane per cm³ of crystal over the '+fill+' → '+release+' bar swing.';
  el('finding').textContent+=' A material can hold more at fill pressure yet deliver less if it also retains more at delivery pressure. Move either endpoint to see that difference change.';

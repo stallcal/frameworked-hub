@@ -1,1 +1,34 @@
 .mof-lab{max-width:1140px;margin:36px auto 70px;color:var(--navy)}.mof-lab h1{font:700 clamp(42px,6vw,82px)/1.04 Libron,Georgia,serif;letter-spacing:-.055em;color:var(--blue);margin:24px 0 12px}.mof-lead{font-size:clamp(18px,2vw,25px);margin:0 0 28px}.mof-panel{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(245px,1fr);border:1px solid var(--hair)}.mof-chart{background:var(--wash);padding:clamp(12px,2vw,28px);min-width:0}.mof-lab h2{font:700 clamp(22px,3vw,32px)/1.2 Libron,Georgia,serif;margin:20px 0 8px}.mof-panel h2{margin:0 0 12px}.mof-chart svg{display:block;width:100%;height:auto}.mof-controls{background:white;padding:clamp(16px,3vw,32px);font:15px/1.5 system-ui}.mof-controls label{display:block;font-weight:600;margin:12px 0}.mof-controls select,.mof-controls input{display:block;width:100%;font:inherit;padding:6px;accent-color:var(--blue)}.mof-controls output{float:right}.mof-lab button{font:600 14px system-ui;padding:10px 14px;cursor:pointer;background:var(--blue);border:1px solid var(--blue);color:white;margin:4px 3px 0 0}.mof-lab button:disabled{opacity:.45;cursor:default}.mof-lab table{font:16px/1.4 system-ui;width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}.mof-lab th,.mof-lab td{text-align:right;border-bottom:1px solid var(--hair);padding:9px 4px}.mof-lab th:first-child{text-align:left}.mof-lab .finding{background:var(--wash);border-left:4px solid var(--blue);padding:14px 18px;font-weight:600}.mof-lab details{margin:18px 0}.mof-lab summary{cursor:pointer;font-weight:bold}.mof-chart #legend,.mof-chart #key{font:14px system-ui;margin:10px 0}.mof-chart text{font-family:system-ui,sans-serif}.mof-chart [data-pick]{cursor:pointer}.mof-chart #guest{transition:transform .7s ease-in-out}@media(prefers-reduced-motion:reduce){.mof-chart #guest{transition:none}}@media(max-width:740px){.mof-panel{grid-template-columns:1fr}.mof-lab table{font-size:14px}}
+
+/* Curve styling matches the colored legends and working-capacity table. */
+.mof-chart #legend{display:flex;flex-wrap:wrap;gap:9px 20px;align-items:center;line-height:1.5}.mof-legend-entry{display:inline-flex;align-items:center;gap:8px}.mof-legend-swatch{display:inline-block;width:28px;flex:none;border-top:3px solid var(--blue)}.mof-legend-red{border-top-color:var(--red);border-top-style:dashed}.mof-lab .gas-name{padding-left:9px;border-left:4px solid var(--blue)}.mof-lab .gas-name-red{border-left-color:var(--red)}
+
+.mof-chart #key{display:flex;flex-wrap:wrap;gap:9px 16px;align-items:center;line-height:1.5}.node-key-entry{display:inline-flex;align-items:center;gap:7px}.node-key-swatch{width:12px;height:12px;border-radius:50%;display:inline-block;flex:none;outline:1px solid #82909c}
+
+
+/* Phone explorers keep the current molecular/adsorption diagram beside the controls. */
+@media (max-width: 740px) {
+  .mof-panel > .mof-chart {
+    padding: 12px 12px 10px;
+    background: var(--wash);
+  }
+  .mof-panel h2 { font-size: 21px; margin-bottom: 6px; }
+  .mof-chart svg { max-height: min(32dvh, 240px); }
+  .mof-chart #legend, .mof-chart #key { font-size: 12px; margin: 5px 0; }
+  .mof-chart .mof-legend-entry, .mof-chart .node-key-entry { gap: 5px; }
+  .mof-chart #legend, .mof-chart #key { gap: 4px 12px; }
+  .mof-controls { padding: 16px 18px 20px; }
+  .mof-controls label { margin: 10px 0; }
+  .mof-controls input[type=range] { min-height: 44px; padding-block: 0; }
+  .mof-controls input, .mof-controls select, .mof-controls button { scroll-margin-top: 48dvh; }
+}
+@media (max-width: 740px) and (min-height: 620px) {
+  .mof-panel > .mof-chart {
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    align-self: start;
+    border-bottom: 1px solid var(--hair);
+    box-shadow: 0 6px 14px rgba(28, 48, 73, .12);
+  }
+}
