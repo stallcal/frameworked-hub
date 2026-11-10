@@ -125,7 +125,7 @@ function attachNormalModes(root){
     setText(root,'symmetry',mode.symmetry+' · '+molecule.pointGroup);
     setClass(el('ir'),mode.ir);
     setClass(el('raman'),mode.raman);
-    setText(root,'frequency','≈ '+mode.frequency+' cm⁻¹');
+    setText(root,'frequency',mode.id==='co2-sym'?'≈ 1333 cm⁻¹ (uncoupled)':'≈ '+mode.frequency+' cm⁻¹');
     setText(root,'degeneracy',mode.degeneracy===1?'Nondegenerate normal coordinate.':'Component '+mode.partner+' of '+mode.degeneracy+' degenerate coordinates; equivalent mixtures are also possible.');
     setText(root,'angle-label',molecule.angleLabel+' angle');
     const pair=molecule.bonds[0];
