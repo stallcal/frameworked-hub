@@ -83,13 +83,12 @@ test("changing to diagonal (11) planes changes d and two-theta", () => {
   assert.match(ui.el("observation").textContent, /Switching from \(10\) to \(11\)/);
 });
 
-test("impossible wavelengths remove angle readouts and disable export", () => {
+test("impossible wavelengths remove angle readouts and show a meaningful error", () => {
   const ui = createActivity();
   ui.change("wavelength", 20);
   assert.equal(ui.el("angle-out").textContent, "—");
   assert.equal(ui.el("theta-out").textContent, "—");
   assert.equal(ui.el("q-out").textContent, "—");
-  assert.equal(ui.el("export").disabled, true);
   assert.match(ui.el("error").textContent, /No physical Bragg angle/);
   assert.equal(ui.el("latticePane").hidden, false);
   assert.match(ui.el("geometry").innerHTML, /No possible Bragg angle/);
@@ -234,4 +233,17 @@ test("advanced calculation and optional content remain accessible from the simpl
   assert.match(html, /<details class="bragg-optional" id="interferenceLesson">/);
   assert.match(html, /<details class="advanced-panel" id="advancedPanel">/);
   assert.equal((html.match(/id="geometry"/g) || []).length, 1);
+});
+
+test("Bragg page retains its calculation readouts but omits download controls", () => {
+  const html = readFileSync(new URL("../static/tools/bragg/index.html", import.meta.url), "utf8");
+  assert.match(html, /id="angle-out"/);
+  assert.match(html, /id="d-out"/);
+  assert.doesNotMatch(html, /id="export"/);
+  assert.doesNotMatch(source, /\$\("export"\)/);
+});
+
+test("equation accent rule has a deliberate left inset", () => {
+  const css = readFileSync(new URL("../static/tools/bragg/style.css", import.meta.url), "utf8");
+  assert.match(css, /\.bragg-compact \.bragg-equation\.math-display\s*\{\s*padding:\s*16px 22px 16px 30px/);
 });
