@@ -1,0 +1,14 @@
+{{ define "head-extra" }}
+<link rel="stylesheet" href="/css/math.css">
+{{ $style := resources.Get "gas-explorer/style.css" | minify | fingerprint }}<link rel="stylesheet" href="{{ $style.RelPermalink }}" integrity="{{ $style.Data.Integrity }}">
+{{ end }}
+{{ define "main" }}
+<article class="gas-explorer" data-gas-explorer="{{ .Params.experiment }}">
+<a class="gas-back" href="/tools/">← Back to the workbench</a>
+<header class="gas-intro"><p class="design-eyebrow">{{ .Params.topic }} / INTERACTIVE EXPLORER</p><h1>{{ .Title }}<span>.</span></h1><p class="gas-lead">{{ .Description }}</p></header>
+{{ partial (printf "gas-explorer/%s.html" .Params.experiment) . }}
+<section class="gas-theory"><h2>Understand the model.</h2>{{ range .Params.equations }}{{ partial "equation.html" . }}{{ end }}{{ .Content }}</section>
+<noscript>Enable JavaScript to explore the diagram. The equations and limitations remain available below.</noscript>
+</article>
+{{ $app := resources.Get (printf "gas-explorer/%s.js" .Params.experiment) | js.Build (dict "target" "es2020") | fingerprint }}<script type="module" src="{{ $app.RelPermalink }}" integrity="{{ $app.Data.Integrity }}"></script>
+{{ end }}
