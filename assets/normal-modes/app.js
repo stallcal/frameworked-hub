@@ -83,41 +83,43 @@ function renderMolecule(svg,molecule,mode,phase,amplitude,yaw,pitch,arrows,equil
     }
   }
 
-  // Split bonds into near/far halves and depth-sort against the atoms.
-  // This prevents front sticks from appearing behind every sphere.
-  const sceneObjects=[];
-  for(const [i,j] of molecule.bonds){
-    const a=screen[i],b=screen[j];
-    const mid={x:(a.x+b.x)/2,y:(a.y+b.y)/2,z:(a.z+b.z)/2,perspective:(a.perspective+b.perspective)/2};
-    for(const [from,to] of [[a,mid],[mid,b]]){
-      const depth=(from.z+to.z)/2;
-      const opacity=Math.max(.55,Math.min(1,.82+depth*.17));
-      const strokeWidth=(diagram?7:16)*((from.perspective+to.perspective)/2);
-      sceneObjects.push({depth,draw:()=>{
-        const g=node('g',{opacity});
-        g.append(node('line',{x1:from.x,y1:from.y,x2:to.x,y2:to.y,stroke:diagram?'#5f748e':'#48596c','stroke-width':strokeWidth,'stroke-linecap':'round'}));
-        if(!diagram)g.append(node('line',{x1:from.x-1,y1:from.y-1,x2:to.x-1,y2:to.y-1,stroke:'#d5e1ed','stroke-width':strokeWidth*.36,'stroke-linecap':'round','stroke-opacity':.9}));
-        return g;
-      }});
-    }
+  // Bonds are painted behind EVERY atom surface. Even a foreground bond should
+  // disappear where it enters an opaque sphere (ball-and-stick occlusion).
+  // Previous interleaving by depth put portions of bonds on top of atom fills.
+  const bonds=node('g',{'aria-hidden':'true'});
+  const sortedBonds=molecule.bonds.slice().sort((a,b)=>{
+    const depth=pair=>(screen[pair[0]].z+screen[pair[1]].z)/2;
+    return depth(a)-depth(b);
+  });
+  for(const [i,j] of sortedBonds){
+    const from=screen[i],to=screen[j];
+    const depth=(from.z+to.z)/2;
+    const opacity=Math.max(.64,Math.min(1,.87+depth*.1));
+    const strokeWidth=(diagram?7:16)*((from.perspective+to.perspective)/2);
+    const group=node('g',{opacity});
+    group.append(node('line',{x1:from.x,y1:from.y,x2:to.x,y2:to.y,stroke:diagram?'#5f748e':'#48596c','stroke-width':strokeWidth,'stroke-linecap':'round'}));
+    if(!diagram)group.append(node('line',{x1:from.x-1,y1:from.y-1,x2:to.x-1,y2:to.y-1,stroke:'#d5e1ed','stroke-width':strokeWidth*.36,'stroke-linecap':'round','stroke-opacity':.9}));
+    bonds.append(group);
   }
-  for(let i=0;i<screen.length;i++){
-    const pos=screen[i],element=molecule.atoms[i].element;
+  scene.append(bonds);
+
+  // Paint all spheres afterward, back to front. Their opaque fills now mask
+  // both the bond endpoints and any bonds passing behind a foreground atom.
+  // Perspective size and radial gradients still communicate three-dimensionality.
+  const spheres=node('g',{'aria-hidden':'true'});
+  const atomOrder=screen.map((pos,i)=>({pos,i})).sort((a,b)=>a.pos.z-b.pos.z);
+  for(const {pos,i} of atomOrder){
+    const element=molecule.atoms[i].element;
     const style=ELEMENTS[element],size=(diagram?15:style.radius)*pos.perspective;
-    sceneObjects.push({depth:pos.z,draw:()=>{
-      const group=node('g');
-      group.append(node('circle',{cx:pos.x,cy:pos.y,r:size,fill:diagram?'#f9fbfe':'url(#'+prefix+'-'+element+')',stroke:diagram?style.color:'#344458','stroke-width':diagram?2.8:1.35}));
-      if(diagram){
-        group.append(node('circle',{cx:pos.x,cy:pos.y,r:size*.58,fill:style.color,'fill-opacity':.07}));
-      }
-      group.append(node('text',{x:pos.x,y:pos.y+size*.23,'text-anchor':'middle','font-size':(diagram?14.5:16)*pos.perspective,'font-family':'system-ui, sans-serif','font-weight':750,fill:diagram?style.color:style.text},element));
-      return group;
-    }});
+    const group=node('g');
+    group.append(node('circle',{cx:pos.x,cy:pos.y,r:size,fill:diagram?'#f9fbfe':'url(#'+prefix+'-'+element+')',stroke:diagram?style.color:'#344458','stroke-width':diagram?2.8:1.35}));
+    if(diagram){
+      group.append(node('circle',{cx:pos.x,cy:pos.y,r:size*.58,fill:style.color,'fill-opacity':.07}));
+    }
+    group.append(node('text',{x:pos.x,y:pos.y+size*.23,'text-anchor':'middle','font-size':(diagram?14.5:16)*pos.perspective,'font-family':'system-ui, sans-serif','font-weight':750,fill:diagram?style.color:style.text},element));
+    spheres.append(group);
   }
-  sceneObjects.sort((a,b)=>a.depth-b.depth);
-  const geometry=node('g',{'aria-hidden':'true'});
-  for(const object of sceneObjects)geometry.append(object.draw());
-  scene.append(geometry);
+  scene.append(spheres);
 
   if(arrows||diagram){
     const vectors=node('g',{'aria-hidden':'true'});
