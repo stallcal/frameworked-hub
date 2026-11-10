@@ -21,3 +21,11 @@ test('schematic curves are finite, monotonic and loop branches meet',()=>{
  for(const t of ['I','II','III','IV','V','VI'])for(const branch of [false,true]){let prev=-1;for(let i=0;i<=100;i++){const y=isotherm(t,i/100,branch);assert.ok(Number.isFinite(y)&&y>=prev);prev=y;}}
  for(const t of ['IV','V']){assert.equal(isotherm(t,0),isotherm(t,0,true));assert.equal(isotherm(t,1),isotherm(t,1,true));assert.ok(isotherm(t,.5,true)>isotherm(t,.5));}
 });
+
+test('hysteretic isotherm branches separate at intermediate pressure',()=>{
+ for(const type of ['IV','V']){
+  for(const p of [.35,.5,.6,.75])assert.ok(isotherm(type,p,true)>=isotherm(type,p));
+  assert.ok(isotherm(type,.5,true)-isotherm(type,.5)>.02);
+ }
+ for(const type of ['I','II','III','VI'])for(const p of [0,.3,.7,1])assert.equal(isotherm(type,p,true),isotherm(type,p));
+});
