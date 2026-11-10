@@ -10,6 +10,8 @@
 
 ## Scientific model
 
+Ammonia equilibrium model uses gas-phase N–H = 1.012 Å and H–N–H = 106.7° (see NIST JANAF), with 120° azimuthal separation among the three H atoms around the C3 axis. Screen-space angles vary with the 3D camera perspective.
+
 Initial library: CO2 (4), H2O (3), NH3 (6), CH4 (9) = 22 vibrational coordinates. Degenerate partners are individually selectable. These are *schematic, symmetry-adapted displacements*, constructed from approximate molecular geometry and trial stretching/bending deformations. Each is mass-orthogonalized against translational and rotational motions and earlier vibrational basis vectors. They are not verified numerical Hessian eigenvectors; for a rigorous quantitative visualization, substitute mass-weighted eigenvectors from a specified calculation / measured normal-coordinate analysis.
 
 Approximate gas-phase fundamentals displayed in cm^-1; no frequency is calculated from animation speed. Mode symmetry activity is based on point-group first-order electric-dipole / polarizability selection rules, not an empirical peak-detection classifier.
@@ -23,6 +25,7 @@ Approximate gas-phase fundamentals displayed in cm^-1; no frequency is calculate
 - Every produced vector is projected free of rigid translation/rotation. This is necessary but *not sufficient* to establish a physical normal-mode eigenvector.
 
 Sources:
+- https://srd.nist.gov/JPCRD/jpcrd146.pdf
 - https://web.mit.edu/course/6/6.734j/www/group-full.pdf
 - https://lweb.cfa.harvard.edu/hitran/vibrational.html
 - https://www.physchem.no/physchem_book/chapters-13-vibrational-spectroscopy.html
