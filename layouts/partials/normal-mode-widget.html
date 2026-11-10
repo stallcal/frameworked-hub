@@ -1,0 +1,85 @@
+<section class="nm-widget{{ if .compact }} nm-compact{{ end }}" data-normal-modes data-molecule="{{ .molecule | default "co2" }}" data-mode="{{ .mode | default "" }}" aria-label="Interactive molecular normal modes">
+  <div class="nm-workspace">
+    <div class="nm-main">
+      <div class="nm-selectors">
+        <label>Molecule
+          <select data-nm="molecule">
+            <option value="co2">CO₂ · Carbon dioxide</option>
+            <option value="h2o">H₂O · Water</option>
+            <option value="nh3">NH₃ · Ammonia</option>
+            <option value="ch4">CH₄ · Methane</option>
+          </select>
+        </label>
+        <label>Normal mode
+          <select data-nm="mode" aria-label="Choose a vibrational normal mode"></select>
+        </label>
+      </div>
+      <div class="nm-visuals" data-nm="visuals" data-view="ball">
+        <figure class="nm-pane nm-pane-ball">
+          <figcaption>Ball-and-stick model</figcaption>
+          <svg data-nm="ball" viewBox="0 0 640 390" role="img" aria-label="Three-dimensional animated ball-and-stick molecule; drag to rotate">
+            <g class="nm-scene"></g>
+          </svg>
+        </figure>
+        <figure class="nm-pane nm-pane-diagram">
+          <figcaption>Mode displacement diagram</figcaption>
+          <svg data-nm="diagram" viewBox="0 0 640 390" role="img" aria-label="Schematic atomic displacements with direction arrows; drag to rotate">
+            <g class="nm-scene"></g>
+          </svg>
+        </figure>
+      </div>
+      <div class="nm-transport">
+        <button type="button" data-nm="play" aria-pressed="false">Pause animation</button>
+        <label class="nm-inline">View
+          <select data-nm="view" aria-label="Choose molecular visualization style">
+            <option value="ball">Model</option>
+            <option value="diagram">Mode diagram</option>
+            <option value="both">Both</option>
+          </select>
+        </label>
+        <label class="nm-check"><input type="checkbox" data-nm="arrows" checked> Displacement arrows</label>
+        <label class="nm-check"><input type="checkbox" data-nm="equilibrium"> Equilibrium overlay</label>
+      </div>
+      <div class="nm-sliders">
+        <label>Visual amplitude <output data-nm="amplitude-value">1.0×</output>
+          <input data-nm="amplitude" type="range" min="0.2" max="1.8" value="1" step="0.1">
+        </label>
+        <label>Animation speed <output data-nm="speed-value">1.0×</output>
+          <input data-nm="speed" type="range" min="0.2" max="2" value="1" step="0.1">
+        </label>
+      </div>
+      <p class="nm-hint">Drag either molecule to rotate it. Amplitude and speed are exaggerated visual controls, not measured displacements or vibrational frequencies.</p>
+    </div>
+    <aside class="nm-details" aria-live="polite" aria-atomic="false">
+      <p class="nm-eyebrow" data-nm="group">NORMAL MODE</p>
+      <h3 data-nm="title">Select a vibration</h3>
+      <p class="nm-description" data-nm="description"></p>
+      <dl class="nm-properties">
+        <div><dt>Symmetry</dt><dd data-nm="symmetry">—</dd></div>
+        <div><dt>IR activity</dt><dd data-nm="ir">—</dd></div>
+        <div><dt>Raman activity</dt><dd data-nm="raman">—</dd></div>
+        <div><dt>Fundamental (approx.)</dt><dd data-nm="frequency">—</dd></div>
+      </dl>
+      <p class="nm-degeneracy" data-nm="degeneracy"></p>
+      <div class="nm-measure"><span data-nm="angle-label">Bond angle</span><strong data-nm="angle-value">—</strong><span data-nm="bond-label">Bond</span><strong data-nm="bond-value">—</strong></div>
+      <p class="nm-model-note">Illustrative symmetry-adapted displacement patterns, not ab initio eigenvectors. The listed frequencies are approximate gas-phase references and do not set animation speed.</p>
+    </aside>
+  </div>
+  <div class="nm-foundations">
+    <div>
+      <p class="nm-eyebrow">COUNT THE MODES</p>
+      <p class="nm-formula" data-nm="formula">3N − 5</p>
+      <p data-nm="count-explanation"></p>
+      <div class="nm-degree-bars" aria-hidden="true"><span class="nm-translations" data-nm="trans-bar"></span><span class="nm-rotations" data-nm="rot-bar"></span><span class="nm-vibrations" data-nm="vib-bar"></span></div>
+      <p class="nm-bar-key">3 translations <span class="nm-dot nm-key-t"></span> · <span data-nm="rot-count">2</span> rotations <span class="nm-dot nm-key-r"></span> · <span data-nm="vib-count">4</span> vibrations <span class="nm-dot nm-key-v"></span></p>
+    </div>
+    <div>
+      <p class="nm-eyebrow">WHY IR / RAMAN?</p>
+      <p><strong>IR:</strong> an allowed fundamental has a nonzero dipole derivative, ∂μ/∂Q.</p>
+      <p><strong>Raman:</strong> an allowed fundamental has a nonzero polarizability derivative, ∂α/∂Q.</p>
+      <p data-nm="selection-note">For a centrosymmetric molecule, ordinary IR and Raman fundamentals obey mutual exclusion.</p>
+    </div>
+  </div>
+  {{ if .compact }}<a class="nm-open" href="/tools/normal-modes/">Open full Normal Mode Explorer →</a>{{ end }}
+  <noscript><p class="nm-noscript">Enable JavaScript to animate the molecular modes. The mode-count and selection-rule explanations remain available.</p></noscript>
+</section>
