@@ -15,9 +15,7 @@ objectives:
 
 Carbon dioxide has three atoms. Its atoms can move along three Cartesian axes, so the entire molecule has nine degrees of freedom. Three correspond to translation and two to rotation, leaving four **vibrational normal coordinates**:
 
-\[
-3N-5=3(3)-5=4
-\]
+**3N − 5 = 3(3) − 5 = 4**
 
 There is one symmetric stretch, one asymmetric stretch, and two mutually perpendicular bending motions. The bending pair has the same frequency for an isolated, linear CO₂ molecule.
 
