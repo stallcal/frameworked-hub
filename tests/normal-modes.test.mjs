@@ -1,5 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
 import {MOLECULES,degrees,displacedPositions,bondAngle,distance} from '../assets/normal-modes/modes.js';
 
 const expected={co2:4,h2o:3,nh3:6,ch4:9};
@@ -78,4 +79,29 @@ test('water bending motion changes H-O-H angle',()=>{
   const eq=bondAngle(m.atoms[1].pos,m.atoms[0].pos,m.atoms[2].pos);
   const displaced=displacedPositions(m,m.modes[1],.2,1);
   assert.ok(Math.abs(bondAngle(displaced[1],displaced[0],displaced[2])-eq)>.1);
+});
+
+
+test('ammonia geometry matches NIST equilibrium geometry, not a 120-degree H-N-H bond angle',()=>{
+  const m=MOLECULES.find(m=>m.id==='nh3');
+  const nitrogen=m.atoms[0].pos;
+  for(let i=1;i<4;i++){
+    assert.ok(Math.abs(distance(nitrogen,m.atoms[i].pos)-1.012)<1e-8);
+  }
+  for(const [i,j] of [[1,2],[1,3],[2,3]]){
+    const angle=bondAngle(m.atoms[i].pos,nitrogen,m.atoms[j].pos);
+    assert.ok(Math.abs(angle-106.7)<1e-9,'H-N-H angle '+i+'-'+j+': '+angle);
+    const a=m.atoms[i].pos,b=m.atoms[j].pos;
+    const cosAzimuth=(a[0]*b[0]+a[1]*b[1])/
+      Math.hypot(a[0],a[1])/Math.hypot(b[0],b[1]);
+    assert.ok(Math.abs(cosAzimuth+0.5)<1e-10,'H azimuthal separation must be 120 degrees');
+  }
+});
+
+test('schematic displacement arrow shafts stop inside the arrowhead, before its tip',()=>{
+  const source=readFileSync(new URL('../assets/normal-modes/app.js',import.meta.url),'utf8');
+  assert.match(source,/shaftX=tx-ox\*headLength\*\.8/);
+  assert.match(source,/shaftY=ty-oy\*headLength\*\.8/);
+  assert.match(source,/'stroke-linecap':'butt'/);
+  assert.match(source,/'polygon',\{points:tx\+','\+ty/);
 });
