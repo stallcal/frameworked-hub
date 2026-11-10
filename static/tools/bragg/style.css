@@ -657,3 +657,44 @@ footer {
   .diagram-slider-head output{font-size:16px}
   .diagram-slider input[type="range"]{height:40px;min-height:40px}
 }
+
+
+/* Neobrutalism pilot: give the work area and primary actions stronger
+   definition without restyling graphs, axes, legends, or mobile controls. */
+.workspace {
+  border: 2px solid var(--navy);
+  box-shadow: 5px 5px 0 var(--navy);
+  margin: 0 5px 5px 0;
+}
+.guided-controls {
+  border: 2px solid var(--navy);
+  border-left: 4px solid var(--blue);
+}
+.actions button {
+  border: 2px solid var(--navy);
+  border-radius: 2px;
+  box-shadow: 3px 3px 0 var(--navy);
+  margin: 0 3px 3px 0;
+  transition: transform 150ms ease, box-shadow 150ms ease;
+}
+.actions button:focus-visible {
+  outline: 3px solid var(--red);
+  outline-offset: 5px;
+}
+.actions button:not(:disabled):active {
+  transform: translate(3px, 3px);
+  box-shadow: none;
+}
+.actions button:disabled { box-shadow: none; }
+@media (hover: hover) {
+  .actions button:not(:disabled):hover {
+    transform: translate(1px, 1px);
+    box-shadow: 2px 2px 0 var(--navy);
+  }
+}
+@media (max-width: 620px) {
+  .workspace { box-shadow: 3px 3px 0 var(--navy); margin-right: 3px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .actions button { transition: none; }
+}
