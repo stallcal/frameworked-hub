@@ -54,3 +54,8 @@
  .gas-figure{position:sticky;top:0;z-index:5;align-self:start;border-bottom:1px solid var(--hair,#cbd8e8);box-shadow:0 6px 14px rgba(28,48,73,.12)}
 }
 @media(max-width:370px){.gas-figure svg{max-height:27dvh}}
+
+/* Langmuir curve key and reset control */
+.gas-legend .langmuir-current{border-color:#084b9e}
+.gas-legend .langmuir-reference{border-color:#9e382e;border-top-style:dashed}
+.gas-controls .gas-reset{display:inline-block;cursor:pointer;margin-top:15px;padding:8px 0;color:#084b9e;background:transparent;border:0;text-decoration:underline;font:650 14px/1.5 system-ui;min-height:44px}
