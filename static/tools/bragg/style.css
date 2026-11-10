@@ -927,3 +927,184 @@ footer {
   .bragg-compact .bragg-optional .interference-lesson { padding: 0 12px 16px; }
   .bragg-compact .bragg-optional-body { padding: 0 15px 12px; }
 }
+
+
+/* Detector-angle scan: an additive lesson below the original Bragg activity.
+   Graphs stay visually restrained; no changes to the existing ray diagram. */
+.bragg-scan {
+  margin: 32px 0 28px;
+  padding: clamp(18px, 2.5vw, 32px);
+  border: 2px solid var(--navy);
+  box-shadow: 4px 4px 0 var(--navy);
+  background: #fff;
+}
+.bragg-scan-heading {
+  max-width: 880px;
+  margin-bottom: 21px;
+}
+.bragg-scan-heading .eyebrow { margin: 0 0 6px; }
+.bragg-scan-heading h2 {
+  margin: 0 0 9px;
+  font-size: clamp(25px, 3vw, 37px);
+  line-height: 1.14;
+  color: var(--blue);
+}
+.bragg-scan-heading > p:last-child {
+  font-size: clamp(15px, 1.45vw, 17px);
+  line-height: 1.55;
+  color: var(--navy);
+  margin: 0;
+}
+.bragg-scan-controls {
+  padding: 15px 18px 12px;
+  background: #eff5fd;
+  border: 1px solid #c5d6e9;
+  margin-bottom: 17px;
+}
+.bragg-scan-control-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+}
+.bragg-scan-control-head label {
+  font: 700 15px/1.4 system-ui, -apple-system, "Segoe UI", sans-serif;
+  color: var(--navy);
+}
+.bragg-scan-control-head output {
+  color: var(--blue);
+  font: 700 23px/1.2 Libron, Georgia, serif;
+  font-variant-numeric: tabular-nums;
+}
+.bragg-scan-controls input[type="range"] {
+  width: 100%;
+  display: block;
+  margin: 9px 0 5px;
+  height: 40px;
+  padding: 0;
+  accent-color: var(--blue);
+  cursor: ew-resize;
+  touch-action: pan-y;
+}
+.bragg-scan-control-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  color: #526b87;
+  font: 12px/1.4 system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+.bragg-scan-snap {
+  padding: 7px 12px;
+  border: 1.5px solid var(--navy);
+  border-radius: 2px;
+  background: #fff;
+  color: var(--blue);
+  cursor: pointer;
+  font: 700 12px/1.3 system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+.bragg-scan-snap:hover:not(:disabled) { background: #dce9f8; }
+.bragg-scan-snap:focus-visible { outline: 3px solid var(--red); outline-offset: 3px; }
+.bragg-scan-snap:disabled { opacity: .5; cursor: not-allowed; }
+.bragg-scan-peak {
+  margin: 10px 0 0;
+  color: #47607e;
+  font: 13px/1.4 system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+.bragg-scan-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+  gap: 16px;
+  margin-bottom: 14px;
+}
+.bragg-scan-figure {
+  min-width: 0;
+  margin: 0;
+  padding: 14px 14px 12px;
+  border: 1px solid #cbd8e8;
+  background: #fff;
+}
+.bragg-scan-figure-title {
+  min-height: 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 4px 9px;
+  margin-bottom: 8px;
+}
+.bragg-scan-figure-title strong {
+  color: var(--navy);
+  font: 700 14px/1.4 system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+.bragg-scan-figure-title span {
+  color: #54718f;
+  font: 12px/1.4 system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+.bragg-scan-figure svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+.bragg-scan-figure svg text {
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+.bragg-scan-figure figcaption {
+  margin-top: 9px;
+  font: 12px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif;
+  color: #526981;
+}
+.bragg-scan-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 15px;
+  font: 11px/1.4 system-ui, -apple-system, "Segoe UI", sans-serif;
+  color: #344f6c;
+}
+.bragg-scan-legend span { display: inline-flex; align-items: center; gap: 6px; }
+.bragg-scan-legend i {
+  width: 19px;
+  display: inline-block;
+  border-top: 3px solid;
+}
+.bragg-legend-blue { border-color: #084b9e!important; }
+.bragg-legend-red { border-color: #9e382e!important; border-top-style: dashed!important; }
+.bragg-legend-green { border-color: #089e4b!important; border-top-style: dashed!important; }
+.bragg-scan-readout {
+  padding: 13px 17px;
+  background: #eff5fd;
+  border-left: 4px solid var(--blue);
+}
+.bragg-scan-readout strong {
+  font: 700 15px/1.4 Libron, Georgia, serif;
+  color: var(--navy);
+}
+.bragg-scan-readout p {
+  margin: 5px 0 5px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--navy);
+}
+.bragg-scan-readout small {
+  font: 12px/1.4 system-ui, -apple-system, "Segoe UI", sans-serif;
+  color: #526981;
+}
+.bragg-scan-caveat {
+  margin: 14px 0 0;
+  max-width: 1100px;
+  font-size: 13px;
+  line-height: 1.55;
+  color: #4a627f;
+}
+@media(max-width: 910px) {
+  .bragg-scan-grid { grid-template-columns: minmax(0, 1fr); }
+}
+@media(max-width: 620px) {
+  .bragg-scan { margin-right: 3px; box-shadow: 3px 3px 0 var(--navy); }
+  .bragg-scan-controls { padding: 13px 12px; }
+  .bragg-scan-control-foot { gap: 7px; }
+  .bragg-scan-snap { padding: 8px; text-align: center; font-size: 11px; }
+  .bragg-scan-figure { padding: 12px 9px 10px; }
+  .bragg-scan-figure-title { min-height: auto; }
+}
