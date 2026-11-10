@@ -176,6 +176,8 @@ function attachNormalModes(root){
 
   function updateFacts(){
     const d=degrees(molecule);
+    const axisView=el('axis-view');
+    if(axisView)axisView.hidden=molecule.id!=='nh3';
     setText(root,'group',molecule.formula+' / '+mode.group+' / '+mode.kind.toUpperCase());
     setText(root,'title',mode.name);
     setText(root,'description',mode.description);
@@ -235,6 +237,8 @@ function attachNormalModes(root){
   playButton.addEventListener('click',()=>{running=!running;updatePlay();draw();});
   const resetView=el('reset-view');
   if(resetView)resetView.addEventListener('click',()=>{yaw=cameraFor(molecule).yaw;pitch=cameraFor(molecule).pitch;draw();});
+  const axisView=el('axis-view');
+  if(axisView)axisView.addEventListener('click',()=>{yaw=0;pitch=0;draw();});
   for(const svg of [ball,diagram]){
     let drag=null;
     svg.addEventListener('pointerdown',e=>{
