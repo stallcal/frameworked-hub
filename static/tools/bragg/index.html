@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="/css/math.css" />
     <link rel="stylesheet" href="/css/frameworked-standalone-header.css" />
     <script type="module" src="./app.mjs"></script>
+    <script type="module" src="./scan-view.mjs"></script>
   </head>
   <body class="bragg-compact">
     <a class="skip" href="#main">Skip to tool</a>
@@ -156,6 +157,52 @@
             </div>
           </section>
         </div>
+        <section class="bragg-scan" id="braggScan" aria-labelledby="scanHeading">
+          <div class="bragg-scan-heading">
+            <p class="eyebrow">ANGLE SCAN / INTERFERENCE</p>
+            <h2 id="scanHeading">Why are some angles brighter?</h2>
+            <p>The main diagram finds a Bragg angle. Now scan the detector through other angles and watch the contributions from eight equally spaced planes reinforce or cancel.</p>
+          </div>
+          <div class="bragg-scan-controls">
+            <div class="bragg-scan-control-head">
+              <label for="scanTwoTheta">Detector angle · 2θ</label>
+              <output id="scanTwoThetaValue" for="scanTwoTheta">22.2°</output>
+            </div>
+            <input id="scanTwoTheta" type="range" min="2" max="178" step="0.1" value="22.2" aria-label="Scan detector scattering angle, two theta, in degrees" />
+            <div class="bragg-scan-control-foot">
+              <span>2°</span>
+              <button type="button" id="scanSnap" class="bragg-scan-snap">Jump to predicted Bragg angle</button>
+              <span>178°</span>
+            </div>
+            <p id="scanPeak" class="bragg-scan-peak" aria-live="polite"></p>
+          </div>
+          <p id="scanError" class="error" role="alert"></p>
+          <div id="scanPanels">
+            <div class="bragg-scan-grid">
+              <figure class="bragg-scan-figure">
+                <div class="bragg-scan-figure-title"><strong>Interference from a finite stack</strong><span>8 equal-amplitude planes</span></div>
+                <svg id="scanPhasors" viewBox="0 0 500 240" role="img" aria-label="Eight equally spaced planes and the head-to-tail complex phase vectors for their scattering contributions"></svg>
+                <figcaption>The blue vectors represent the phases of the scattered contributions, not X-ray ray paths. The dashed red vector shows their sum.</figcaption>
+              </figure>
+              <figure class="bragg-scan-figure">
+                <div class="bragg-scan-figure-title"><strong>Normalized interference vs. 2θ</strong><span>Ideal finite-plane factor</span></div>
+                <svg id="scanIntensity" viewBox="0 0 640 280" role="img" aria-label="Normalized eight-plane interference factor across detector angles with movable scan angle and predicted Bragg peak marker"></svg>
+                <div class="bragg-scan-legend" aria-hidden="true">
+                  <span><i class="bragg-legend-blue"></i> Interference curve</span>
+                  <span><i class="bragg-legend-red"></i> Scan position</span>
+                  <span><i class="bragg-legend-green"></i> Bragg angle</span>
+                </div>
+                <figcaption>Each maximum is a possible coherent reinforcement direction for this ideal stack; real reflections can have very different intensities or be absent.</figcaption>
+              </figure>
+            </div>
+            <div class="bragg-scan-readout" aria-live="polite" aria-atomic="true">
+              <strong>At this angle</strong>
+              <p id="scanResponse"></p>
+              <small id="scanContext"></small>
+            </div>
+          </div>
+          <p class="bragg-scan-caveat"><strong>Model scope:</strong> This normalized interference factor is <strong>not an experimental PXRD pattern</strong>. It assumes eight equally spaced, identical, coherent contributions and excludes atomic structure factors, systematic absences, multiplicity, thermal motion, instrumental broadening and background. Peak heights should not be interpreted as measured intensities.</p>
+        </section>
         <details class="bragg-optional bragg-theory">
           <summary>How does Bragg's law work?</summary>
           <div class="bragg-optional-body">
@@ -202,7 +249,7 @@
         <details class="notes">
           <summary>Model assumptions, limitations &amp; sources</summary>
           <p><strong>What the models represent:</strong> the guided lattice is an ideal 2D square lattice, with d(10) = a and d(11) = a/√2. Dots are lattice points, not atoms or a specific MOF. The wave comparison adds only two equal-amplitude contributions.</p>
-          <p><strong>What the models cannot determine:</strong> peak intensity, phase identity, structural factors, systematic absences, full diffraction patterns, or experimental uncertainty. Real diffraction arises from scattering and interference, not literal mirror reflections from atomic planes.</p>
+          <p><strong>What the models cannot determine:</strong> experimental peak intensities, phase identity, atomic structure factors, systematic absences, full diffraction patterns, or experimental uncertainty. The scan gives only an idealized normalized finite-stack interference factor. Real diffraction arises from scattering and interference, not literal mirror reflections from atomic planes.</p>
           <p><strong>Measurements:</strong> wavelength presets are rounded values; detector calibration, instrumental effects and uncertainty propagation are not included. Here q = 4πsinθ/λ = 2πn/d, with q in Å⁻¹.</p>
           <p>Reference: <a href="https://dictionary.iucr.org/Bragg%27s_law">IUCr Online Dictionary of Crystallography — Bragg's law</a>.</p>
         </details>
