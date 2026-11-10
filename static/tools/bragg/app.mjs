@@ -86,7 +86,6 @@ import { bragg, squareLatticeSpacing, compareTwoPlaneInterference, VERSION } fro
     const thetaArc=`M${A.x+rt} ${A.y} A${rt} ${rt} 0 0 0 ${A.x+rt*cs} ${A.y-rt*sn}`;
     const twoArc=`M${A.x+radius*cs} ${A.y+radius*sn} A${radius} ${radius} 0 0 0 ${A.x+radius*cs} ${A.y-radius*sn}`;
     const labelThetaX=A.x+48*Math.cos(theta/2),labelThetaY=A.y-48*Math.sin(theta/2)-4;
-    const diff=2*r.spacing*sn;
     status.textContent=`θ ${fmt(r.theta)}°  ·  2θ ${fmt(r.twoTheta)}°`;
     svg.innerHTML=`
       <defs>
@@ -110,11 +109,7 @@ import { bragg, squareLatticeSpacing, compareTwoPlaneInterference, VERSION } fro
       <g font-family="system-ui,sans-serif">
         <text x="${labelThetaX}" y="${labelThetaY}" font-size="17" font-weight="800" stroke="#f0f5fc" stroke-width="5" paint-order="stroke" fill="#084b9e">θ</text>
         <text x="${A.x+radius+14}" y="${A.y+5}" font-size="18" font-weight="800" stroke="#f0f5fc" stroke-width="5" paint-order="stroke" fill="#9e382e">2θ</text>
-        <rect x="26" y="27" width="473" height="58" rx="5" fill="#fff" opacity=".95"/>
-        <text x="39" y="49" font-size="15" font-weight="700" fill="#1c3049">Watch the red 2θ arc change</text>
-        <text x="39" y="70" font-size="13" fill="#536e8a">θ = ${fmt(r.theta)}° to planes · 2θ = ${fmt(r.twoTheta)}° between beams</text>
-        <rect x="27" y="306" width="474" height="29" rx="5" fill="#fff" opacity=".94"/>
-        <text x="38" y="324" font-size="13" font-weight="700" fill="#1c3049">2d sinθ = ${fmt(diff)} Å = ${r.order}λ · in-phase condition</text>
+
       </g>`;
   }
 
@@ -156,27 +151,6 @@ import { bragg, squareLatticeSpacing, compareTwoPlaneInterference, VERSION } fro
     $("onBraggPath").textContent="Δpath = "+fmtPath(c.on.pathDifference)+" Å = "+c.order+"λ";
     $("offBraggPath").textContent="Δpath = "+fmtPath(c.off.pathDifference)+" Å = ("+c.order+" − ½)λ";
   }
-  function drawMobileAngle(r,plane){
-    $("mobileLive").hidden=!guided;
-    $("mobileTwoTheta").textContent=r?fmt(r.twoTheta)+"°":"No Bragg angle";
-    $("mobileSpacing").textContent=plane?"d = "+fmt(plane.d)+" Å":(r?"d = "+fmt(r.spacing)+" Å":"—");
-    if(!r){
-      $("mobileMiniAngle").innerHTML='<path d="M10 60H132" stroke="#9badc4" stroke-width="2"/><text x="71" y="44" text-anchor="middle" font-size="14" font-family="sans-serif" fill="#9e382e">No angle</text>';
-      return;
-    }
-    const t=r.theta*Math.PI/180,cx=62,cy=56,len=54;
-    const incx=cx-len*Math.cos(t),incy=cy-len*Math.sin(t);
-    const outx=cx+len*Math.cos(t),outy=cy-len*Math.sin(t);
-    const rr=22;
-    const arc=`M${(cx+rr*Math.cos(t)).toFixed(1)} ${(cy+rr*Math.sin(t)).toFixed(1)} A${rr} ${rr} 0 0 0 ${(cx+rr*Math.cos(t)).toFixed(1)} ${(cy-rr*Math.sin(t)).toFixed(1)}`;
-    $("mobileMiniAngle").innerHTML=`
-      <path d="M6 ${cy}H136" stroke="#b5c6da" stroke-width="1.6"/>
-      <path d="M${incx.toFixed(1)} ${incy.toFixed(1)}L${cx} ${cy}" stroke="#084b9e" stroke-width="3" stroke-linecap="round"/>
-      <path d="M${cx} ${cy}L${outx.toFixed(1)} ${outy.toFixed(1)}" stroke="#9e382e" stroke-width="3" stroke-linecap="round"/>
-      <path d="${arc}" fill="none" stroke="#9e382e" stroke-width="3"/>
-      <text x="94" y="52" font-size="15" font-weight="700" font-family="system-ui,sans-serif" fill="#9e382e">2θ</text>`;
-  }
-
   function update(){
     guided=!$("advancedPanel").open;
     $("guidedControls").hidden=!guided;
@@ -184,12 +158,11 @@ import { bragg, squareLatticeSpacing, compareTwoPlaneInterference, VERSION } fro
     const aInput=number("latticeA");
     $("latticeSliderValue").textContent=Number.isFinite(aInput)?fmt(aInput)+" Å":"Enter a value";
     $("latticeSliderControl").hidden=!guided;
-    $("relationshipChain").hidden=!guided;
     $("qMetric").hidden=guided;
     $("readouts").classList.toggle("advanced-readouts",!guided);
     $("experimentHelper").textContent=guided
-      ?"Move the blue a slider directly above the lattice to see both diagrams respond, or switch plane families."
-      :"Enter a known spacing, 2θ or q. For spacing d, use the slider beside the ray construction; the calculation is independent of the guided square lattice.";
+      ?"Move the lattice slider or choose a different plane family."
+      :"Enter a known d-spacing, measured 2θ, or q. These advanced inputs are independent of the square-lattice example.";
     const guides={
       spacing:["Known spacing → possible peak position","Enter d to find where this plane spacing may satisfy the Bragg condition for your X-ray wavelength."],
       angle:["Measured peak → estimated plane spacing","Enter an experimental 2θ position and known wavelength to calculate the associated d-spacing. This alone does not index or identify the reflection."],
@@ -199,6 +172,7 @@ import { bragg, squareLatticeSpacing, compareTwoPlaneInterference, VERSION } fro
     $("advancedQuestion").textContent=topic[0];
     $("advancedAnswer").textContent=topic[1];
     $("latticePane").hidden=!guided;
+    $("latticeDetails").hidden=!guided;
     $("diagramPair").classList.toggle("advanced-layout",!guided);
     $("value-label").textContent={
       spacing:"Plane spacing d (Å)",angle:"Diffraction angle 2θ (°)",q:"Scattering vector q (Å⁻¹)"
@@ -276,7 +250,6 @@ import { bragg, squareLatticeSpacing, compareTwoPlaneInterference, VERSION } fro
       $("explanation").textContent="Advanced inputs are independent of the guided square-lattice schematic.";
     }
     drawRay(result);
-    drawMobileAngle(result,plane);
     drawInterference(result);
     $("export").disabled=!result;
   }
@@ -312,6 +285,7 @@ import { bragg, squareLatticeSpacing, compareTwoPlaneInterference, VERSION } fro
   });
   $("preset").addEventListener("change",()=>{
     if($("preset").value!=="custom")$("wavelength").value=$("preset").value;
+    else $("wavelengthDetails").open=true;
     update();
   });
   $("tryMeasuredPeak").addEventListener("click",()=>{
