@@ -30,6 +30,7 @@
       </div>
       <div class="nm-transport">
         <button type="button" data-nm="play">Pause animation</button>
+        <button type="button" data-nm="reset-view" title="Restore the recommended 3D orientation">Reset 3D view</button>
         <label class="nm-inline">View
           <select data-nm="view" aria-label="Choose molecular visualization style">
             <option value="ball">Model</option>
@@ -48,7 +49,7 @@
           <input data-nm="speed" type="range" min="0.2" max="2" value="1" step="0.1">
         </label>
       </div>
-      <p class="nm-hint">Drag either molecule to rotate it. Amplitude and speed are exaggerated visual controls, not measured displacements or vibrational frequencies.</p>
+      <p class="nm-hint">Drag to rotate: perspective, sphere shading and foreground bonds reveal depth. Bond-angle readouts are 3D values, not angles measured from the 2D screen. Amplitude and speed are visual exaggerations, not experimental displacements or frequencies.</p>
     </div>
     <aside class="nm-details">
       <p class="nm-eyebrow" data-nm="group">NORMAL MODE</p>
