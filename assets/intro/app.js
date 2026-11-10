@@ -20,23 +20,55 @@ function showLegend(items){
   legendRoot.append(entry);
  }
 }
+function shadeHysteresis(type,X,Y,color){
+ let d='';
+ for(let i=0;i<=120;i++){const p=i/120;d+=(i?'L':'M')+X(p)+' '+Y(isotherm(type,p))+' ';}
+ for(let i=120;i>=0;i--){const p=i/120;d+='L'+X(p)+' '+Y(isotherm(type,p,true))+' ';}
+ el('path',{d:d+'Z',fill:color,'fill-opacity':'.10',stroke:'none','aria-hidden':'true'});
+}
 function showIsothermExplanations(types){
  const node=document.querySelector('#explanation');
  node.replaceChildren();
  for(const [type,color] of types){
   const item=document.createElement('p'),heading=document.createElement('strong');
   item.className='intro-curve-explanation'+(color==='red'?' red':'');
-  heading.textContent='Type '+type+' ('+(color==='blue'?'blue solid':'red dashed')+')';
+  heading.textContent='Type '+type+' ('+(color==='blue'?'Curve A · blue':'Curve B · red')+')';
   item.append(heading,document.createTextNode(descriptions[type]));
   node.append(item);
  }
 }
-function render(){svg.replaceChildren();el('title',{id:'plot-title'},document.title);let summary='',explanation='',key='',legendEntries=[],isothermTypes=null;
+function render(){svg.replaceChildren();el('title',{id:'plot-title'},document.title);let summary='',explanation='',key='',legendEntries=[],isothermTypes=null,hysteresisNote='';
 document.querySelectorAll('input[type=range]').forEach(input=>document.getElementById(input.id+'-value').textContent=input.value);
 switch(root.dataset.explorer){
 case 'superposition':{const w=val('weight'),phase=val('phase')*Math.PI/180,{X,Y}=chart(0,1,-2,4,'Position x / L','Scaled amplitude and probability density');line(X(0),Y(0),X(1),Y(0),'#ccd4db');curve(x=>superposition(x,w,phase).re,X,Y,blue);curve(x=>superposition(x,w,phase).im,X,Y,red,true);curve(x=>superposition(x,w,phase).density,X,Y,green);const left=.5+8*Math.sqrt(w*(1-w))*Math.cos(phase)/(3*Math.PI);summary=`State 2 probability: ${(100*w).toFixed(0)}%. Probability in the left half: ${(100*left).toFixed(1)}%.`;explanation=w===0||w===1?'Only one energy state is occupied. Changing the relative phase cannot change the probability density.':'Changing the relative phase changes interference between the two states. Probability moves between the two halves while the total stays 100%; changing the weight changes the state populations.';key='Wavefunction components can be positive or negative; probability density cannot. Curves use dimensionless scalings: √Lψ for amplitude and L|ψ|² for density.';legendEntries=[{label:'Real part · Re(√Lψ)',color:'blue'},{label:'Imaginary part · Im(√Lψ)',color:'red',dashed:true},{label:'Probability density · L|ψ|²',color:'green'}];break;}
 case 'mixing':{const d=val('gap'),v=val('coupling'),m=mixing(d,v),{X,Y}=chart(0,1,-5,6,'Basis levels → mixed levels','Energy / eV');line(X(.1),Y(0),X(.3),Y(0),blue);line(X(.1),Y(d),X(.3),Y(d),red,true);line(X(.65),Y(m.lower),X(.9),Y(m.lower),blue);line(X(.65),Y(m.upper),X(.9),Y(m.upper),red,true);line(X(.3),Y(Math.min(0,d)),X(.65),Y(m.lower),'#b2bbc4',true);line(X(.3),Y(Math.max(0,d)),X(.65),Y(m.upper),'#b2bbc4',true);summary=`Lower: ${m.lower.toFixed(2)} eV. Upper: ${m.upper.toFixed(2)} eV. `+(m.a===null?'Degenerate: a unique mixing fraction is undefined.':`Lower-state composition: ${(100*m.a).toFixed(1)}% A, ${(100*(1-m.a)).toFixed(1)}% B.`);explanation=m.a===null?'With equal basis energies and zero coupling, any orthonormal combination is allowed. There is no uniquely selected pair of mixed orbitals.':v===0?'Without coupling, the energies remain at the original basis levels.':'Coupling separates the two energies. Mixing is strongest when the basis energies are close compared with the coupling; a large energy mismatch leaves each state mostly one basis orbital.';key='Left: uncoupled basis orbitals. Right: coupled eigenstates. On the right, color indicates energy order, not pure orbital identity.';legendEntries=[{label:'Basis A (left) / lower level (right)',color:'blue'},{label:'Basis B (left) / upper level (right)',color:'red',dashed:true}];break;}
 case 'franck-condon':{const s=val('huang'),p=franckCondon(s),{X,Y}=chart(0,20,0,1,'Final vibrational quantum number n','Relative transition strength');p.forEach((y,n)=>line(X(n),Y(0),X(n),Y(y),n===0?red:blue));summary=`S = ${s.toFixed(2)}. 0 → 0 strength: ${(100*p[0]).toFixed(1)}%. Mean final vibrational quantum number ⟨n⟩ = ${s.toFixed(2)}. Displayed strength: ${(100*p.reduce((a,b)=>a+b,0)).toFixed(3)}%.`;explanation=s===0?'With no displacement, the vibrational ground states overlap perfectly: only the 0 → 0 transition appears.':'Increasing displacement shifts intensity into transitions to higher vibrational levels. It changes the overlap distribution, not the spacing: adjacent lines remain separated by one vibrational energy quantum in this model.';key='Each line is a discrete transition from initial v = 0 to an integer final n (0–20). Its height is the relative strength, not a continuous spectral band; E = E₀₀ + nℏω.';legendEntries=[{label:'0 → 0 transition',color:'red'},{label:'0 → n, n ≥ 1',color:'blue'}];break;}
-case 'isotherms':{const a=str('typea'),b=str('typeb'),p=val('pressure'),{X,Y}=chart(0,1,0,1.1,'Relative pressure p / p₀','Uptake / arbitrary units (schematic)');for(const [type,color,dash] of [[a,blue,false],[b,red,true]]){curve(x=>isotherm(type,x),X,Y,color,dash);if(['IV','V'].includes(type))curve(x=>isotherm(type,x,true),X,Y,color,dash);el('circle',{cx:X(p),cy:Y(isotherm(type,p)),r:6,fill:color});}line(X(p),Y(0),X(p),Y(1.1),'#8995a0',true);summary=`At p/p₀ = ${p.toFixed(2)}: Type ${a} (blue) = ${isotherm(a,p).toFixed(2)} a.u.; Type ${b} (red) = ${isotherm(b,p).toFixed(2)} a.u. on the schematic adsorption branches.`;key='The vertical guide marks the chosen relative pressure. Where a loop appears, the lower branch is adsorption and the upper branch is desorption. Curve heights do not compare real material capacities.';legendEntries=[{label:`Type ${a} · curve A`,color:'blue'},{label:`Type ${b} · curve B`,color:'red',dashed:true}];isothermTypes=[[a,'blue'],[b,'red']];break;}
-}el('desc',{id:'plot-desc'},summary+' '+explanation);document.querySelector('#values').textContent=summary;showLegend(legendEntries);if(isothermTypes)showIsothermExplanations(isothermTypes);else document.querySelector('#explanation').textContent=explanation;document.querySelector('#key').textContent=key;document.querySelector('#mobile-key').textContent=key;}
+case 'isotherms':{
+ const a=str('typea'),b=str('typeb'),p=val('pressure');
+ const {X,Y}=chart(0,1,0,1.1,'Relative pressure p / p₀','Uptake / arbitrary units (schematic)');
+ const choices=[[a,blue,'blue','A'],[b,red,'red','B']],hasLoop=type=>type==='IV'||type==='V';
+ for(const [type,color] of choices)if(hasLoop(type))shadeHysteresis(type,X,Y,color);
+ for(const [type,color,colorName,label] of choices){
+  curve(x=>isotherm(type,x),X,Y,color,false);
+  if(hasLoop(type))curve(x=>isotherm(type,x,true),X,Y,color,true);
+  const ads=isotherm(type,p);
+  el('circle',{cx:X(p),cy:Y(ads),r:6,fill:color,'aria-label':'Curve '+label+' adsorption'});
+  legendEntries.push({label:`Curve ${label} · Type ${type} adsorption`,color:colorName});
+  if(hasLoop(type)){
+   const des=isotherm(type,p,true);
+   el('line',{x1:X(p),y1:Y(ads),x2:X(p),y2:Y(des),stroke:color,'stroke-width':1.8,'stroke-dasharray':'3 3'});
+   el('circle',{cx:X(p),cy:Y(des),r:5,fill:'#fff',stroke:color,'stroke-width':2,'aria-label':'Curve '+label+' desorption'});
+   legendEntries.push({label:`Curve ${label} · Type ${type} desorption`,color:colorName,dashed:true});
+  }
+ }
+ line(X(p),Y(0),X(p),Y(1.1),'#8995a0',true);
+ summary=`At p/p₀ = ${p.toFixed(2)}: Curve A (Type ${a}) adsorption = ${isotherm(a,p).toFixed(2)} a.u.; Curve B (Type ${b}) adsorption = ${isotherm(b,p).toFixed(2)} a.u.`;
+ if(hasLoop(a))summary+=` Curve A desorption = ${isotherm(a,p,true).toFixed(2)} a.u.`;
+ if(hasLoop(b))summary+=` Curve B desorption = ${isotherm(b,p,true).toFixed(2)} a.u.`;
+ key='Blue identifies Curve A and red identifies Curve B. Solid = adsorption as pressure increases; dashed = desorption as pressure decreases. Filled circles mark adsorption; open circles mark desorption at the selected pressure. Curves compare shapes, not real capacities.';
+ hysteresisNote=hasLoop(a)||hasLoop(b)?'Shaded loop = hysteresis: at the same pressure, uptake differs as pressure rises (solid, lower branch) versus falls (dashed, upper branch).':'Neither selected curve has a hysteresis loop. Select Type IV or V to see separate adsorption and desorption paths.';
+ isothermTypes=[[a,'blue'],[b,'red']];
+ break;
+}
+}el('desc',{id:'plot-desc'},summary+' '+explanation+' '+key+' '+hysteresisNote);document.querySelector('#values').textContent=summary;showLegend(legendEntries);if(isothermTypes){showIsothermExplanations(isothermTypes);document.querySelector('#hysteresis-note').textContent=hysteresisNote;}else document.querySelector('#explanation').textContent=explanation;document.querySelector('#key').textContent=key;document.querySelector('#mobile-key').textContent=key;}
 document.querySelector('form').addEventListener('input',render);document.querySelector('form').addEventListener('submit',e=>e.preventDefault());document.querySelector('form').addEventListener('reset',()=>requestAnimationFrame(render));render();
