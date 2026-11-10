@@ -2,6 +2,7 @@
  * Keep static explorers visually aligned with the Hugo site's shared header.
  * Scoped selectors avoid changing scientific figures, sliders and controls.
  */
+.bragg-compact .shell { padding-top: 0; }
 .bragg-compact .fw-site-header {
   position: relative;
   display: flex;
