@@ -39,7 +39,6 @@ function orthogonalModes(atoms, definitions) {
     const b=project(centered.map(p=>cross(e,p)));
     if(b)basis.push(b);
   }
-  const rotational=atoms.length===2 || atoms.every(a=>false) ? 2 : null;
   const rigid=basis.length;
   const modes=definitions.map(d=>{
     const direction=project(d.displacement);
