@@ -90,16 +90,16 @@ import { bragg, squareLatticeSpacing, compareTwoPlaneInterference, VERSION } fro
     status.textContent=`θ ${fmt(r.theta)}°  ·  2θ ${fmt(r.twoTheta)}°`;
     svg.innerHTML=`
       <defs>
-        <marker id="braggBlueArrow" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto"><path d="M0 0L6 3L0 6Z" fill="#084b9e"/></marker>
-        <marker id="braggRedArrow" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto"><path d="M0 0L6 3L0 6Z" fill="#9e382e"/></marker>
+        <marker id="braggBlueArrow" markerWidth="7" markerHeight="7" refX="6" refY="3" orient="auto"><path d="M0 0L6 3L0 6Z" fill="#084b9e"/></marker>
+        <marker id="braggRedArrow" markerWidth="7" markerHeight="7" refX="6" refY="3" orient="auto"><path d="M0 0L6 3L0 6Z" fill="#9e382e"/></marker>
       </defs>
       <rect x="15" y="16" width="490" height="328" rx="9" fill="#f0f5fc" stroke="#d5e1f0"/>
       <path d="M27 ${A.y}H492 M27 ${B.y}H492" stroke="#90a8c4" stroke-width="2.4"/>
       <path d="M469 ${A.y}V${B.y}M463 ${A.y}H475 M463 ${B.y}H475" stroke="#9e382e" stroke-width="2"/>
       <text x="478" y="${(A.y+B.y)/2+5}" font-size="17" fill="#9e382e" font-family="system-ui,sans-serif">d</text>
       <g fill="none" stroke-width="3.6" stroke-linecap="round">
-        <path d="${inc(A)}" stroke="#084b9e" marker-end="url(#braggBlueArrow)"/>
-        <path d="${out(A)}" stroke="#9e382e" marker-end="url(#braggRedArrow)"/>
+        <path d="${inc(A)}" stroke="#084b9e" stroke-linecap="butt" marker-end="url(#braggBlueArrow)"/>
+        <path d="${out(A)}" stroke="#9e382e" stroke-linecap="butt" marker-end="url(#braggRedArrow)"/>
         <path d="${inc(B)}" stroke="#084b9e" opacity=".35"/>
         <path d="${out(B)}" stroke="#9e382e" opacity=".35"/>
       </g>
