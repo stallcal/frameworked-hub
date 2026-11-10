@@ -1,0 +1,35 @@
+{{ define "head-extra" }}
+{{ $css := resources.Get "normal-modes/style.css" | minify | fingerprint }}
+<link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
+{{ end }}
+{{ define "main" }}
+<article class="nm-page">
+  <a class="nm-back" href="/tools/">← All tools</a>
+  <header class="nm-intro">
+    <p class="nm-eyebrow">MOLECULAR SPECTROSCOPY / INTERACTIVE EXPLORER</p>
+    <h1>Molecular normal modes.</h1>
+    <p>Watch atoms move through collective stretching and bending vibrations. Explore why geometry determines the number of modes, why some are degenerate, and which are allowed in infrared and Raman spectroscopy.</p>
+  </header>
+  {{ partial "normal-mode-widget.html" (dict "molecule" "co2" "compact" false) }}
+  <div class="nm-article">
+    <h2>From atomic motion to normal modes</h2>
+    <p>A molecule containing <em>N</em> atoms has <strong>3N Cartesian degrees of freedom</strong>. Three represent translations of the entire molecule. A nonlinear molecule has three rotational degrees of freedom; a linear molecule has two. The remaining motions are internal vibrational normal coordinates.</p>
+    <p><strong>Linear:</strong> 3N − 5 vibrational coordinates. <strong>Nonlinear:</strong> 3N − 6 vibrational coordinates. A degenerate pair or triplet counts as two or three coordinates even when their frequencies are equal.</p>
+    <h2>Why do some vibrations appear in IR or Raman spectra?</h2>
+    <p>In the electric-dipole approximation, an IR-active fundamental requires a nonzero derivative of molecular dipole moment with respect to the normal coordinate, ∂μ/∂Q. For Raman scattering in the polarizability approximation, the corresponding requirement is ∂α/∂Q ≠ 0, where α is molecular polarizability. More formally, the mode's irreducible representation must transform like a Cartesian vector component for IR, or a quadratic coordinate for Raman.</p>
+    <p>Carbon dioxide has inversion symmetry. Its symmetric stretch is Raman active but IR inactive; its asymmetric stretch and the two perpendicular bending coordinates are IR active but Raman inactive in ordinary fundamental spectroscopy. Water lacks inversion symmetry and all three fundamentals are both IR and Raman allowed. Methane's A₁ symmetric stretch and E deformation are Raman allowed but IR forbidden, whereas the F₂ modes are allowed in both.</p>
+    <h2>What the animation does and does not show</h2>
+    <p>These are <strong>schematic, symmetry-adapted normal-mode motions</strong> constructed from approximate equilibrium molecular geometries. Displacements have been mass-orthogonalized against whole-molecule translation and rotation and against previously defined internal modes. They reproduce the key motion patterns and symmetry families, but are not quantitative eigenvectors from an electronic-structure Hessian. Frequencies are approximate gas-phase fundamental values drawn from spectroscopy references, not outputs of this animation model.</p>
+    <p>The animation deliberately slows and exaggerates real vibrations. Its speed and displacement amplitude must not be interpreted as femtosecond dynamics, actual bond stretching amplitudes, or measured frequency. Real spectra can include anharmonicity, rotation–vibration coupling, resonance, overtone and combination bands, and intensity effects beyond simple selection-rule labels.</p>
+    <h3>Sources and further study</h3>
+    <ul>
+      <li><a href="https://lweb.cfa.harvard.edu/hitran/vibrational.html">HITRAN / Harvard–Smithsonian: representative fundamental vibrational wavenumbers</a></li>
+      <li><a href="https://web.mit.edu/course/6/6.734j/www/group-full.pdf">MIT: molecular vibrations, point groups, and IR/Raman selection rules (Chapter 9)</a></li>
+      <li><a href="https://www.physchem.no/physchem_book/chapters-13-vibrational-spectroscopy.html">Physical Chemistry II lecture notes: vibrational spectroscopy and CO₂ normal modes</a></li>
+    </ul>
+    <p>Also explore the <a href="/tools/molecular-vibration/">Molecular Vibration Explorer</a> for isotope-dependent diatomic vibrational energy levels and the <a href="/tools/franck-condon/">Franck–Condon Explorer</a> for vibrational structure in electronic spectra.</p>
+  </div>
+</article>
+{{ $js := resources.Get "normal-modes/app.js" | js.Build (dict "target" "es2020") | fingerprint }}
+<script type="module" src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}"></script>
+{{ end }}
