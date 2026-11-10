@@ -235,7 +235,7 @@ test("arrow marker tips align with their shaft endpoints",()=>{
   assert.match(rays,/stroke="#084b9e" stroke-linecap="butt" marker-end="url\(#braggBlueArrow\)"/);
   assert.match(rays,/stroke="#9e382e" stroke-linecap="butt" marker-end="url\(#braggRedArrow\)"/);
   for(const id of ["intro-blue-tip","intro-red-tip"]){
-    assert.match(primer,new RegExp("id=\\""+id+"\\"[^>]+refX=\\"6\\""));
+    assert.match(primer,new RegExp(`id="${id}"[^>]+refX="6"`));
   }
   assert.equal((primer.match(/stroke-linecap="butt" marker-end="url\(#intro-/g)||[]).length,4);
 });
