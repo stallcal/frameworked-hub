@@ -138,7 +138,12 @@ test('ball-and-stick renderer hides all bond interiors behind opaque atom sphere
         assert.equal(sphereLayer.tag,'g');
         assert.equal(bondLayer.children.length,molecule.bonds.length);
         assert.equal(sphereLayer.children.length,molecule.atoms.length);
-        assert.ok(bondLayer.children.every(g=>g.children.every(child=>child.tag==='line')));
+        // Exactly one flat, uniform stroke per bond in both visual modes.
+        assert.ok(bondLayer.children.every(line=>line.tag==='line'));
+        assert.ok(bondLayer.children.every(line=>line.attrs.stroke==='#718096'));
+        assert.ok(bondLayer.children.every(line=>Number(line.attrs['stroke-width'])===(diagram?6:11)));
+        assert.ok(bondLayer.children.every(line=>line.attrs['stroke-linecap']==='round'));
+        assert.ok(bondLayer.children.every(line=>!('stroke-opacity' in line.attrs)));
         assert.ok(sphereLayer.children.every(g=>g.children[0].tag==='circle'));
         assert.ok(sphereLayer.children.every(g=>g.children[0].attrs.fill!=='none'));
       }
