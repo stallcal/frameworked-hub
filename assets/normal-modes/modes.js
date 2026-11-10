@@ -62,7 +62,7 @@ function definition(id,name,kind,symmetry,frequency,ir,raman,description,displac
 function makeCO2(){
   const atoms=[atom('O',[-1.16,0,0],O),atom('C',[0,0,0],C),atom('O',[1.16,0,0],O)];
   const d=[
-    definition('co2-sym','Symmetric stretch','Stretch','Σg+',1333,false,true,'Both C–O bonds lengthen and shorten together. The dipole remains zero, while the polarizability changes.',[[-1,0,0],[0,0,0],[1,0,0]],'ν1'),
+    definition('co2-sym','Symmetric stretch','Stretch','Σg+',1333,false,true,'Both C–O bonds lengthen and shorten together. The dipole stays zero; polarizability changes. The nominal 1333 cm⁻¹ mode couples to the bending overtone, yielding a Raman Fermi doublet near 1285 and 1388 cm⁻¹.',[[-1,0,0],[0,0,0],[1,0,0]],'ν1'),
     definition('co2-asym','Asymmetric stretch','Stretch','Σu+',2349,true,false,'One C–O bond lengthens as the other shortens. The vibration creates an oscillating dipole along the molecular axis.',[[1,0,0],[0,0,0],[1,0,0]],'ν3'),
     definition('co2-bend-y','Bend · in-plane','Bend','Πu',667,true,false,'The molecule bends in the plane of the screen. A linear molecule has two perpendicular, energetically degenerate bends.',[[0,1,0],[0,0,0],[0,1,0]],'ν2',1,2),
     definition('co2-bend-z','Bend · perpendicular','Bend','Πu',667,true,false,'The companion bend moves perpendicular to the first bending plane. These two coordinates share one fundamental frequency.',[[0,0,1],[0,0,0],[0,0,1]],'ν2',2,2)
