@@ -657,3 +657,273 @@ footer {
   .diagram-slider-head output{font-size:16px}
   .diagram-slider input[type="range"]{height:40px;min-height:40px}
 }
+
+
+/* Neobrutalism pilot: give the work area and primary actions stronger
+   definition without restyling graphs, axes, legends, or mobile controls. */
+.workspace {
+  border: 2px solid var(--navy);
+  box-shadow: 5px 5px 0 var(--navy);
+  margin: 0 5px 5px 0;
+}
+.guided-controls {
+  border: 2px solid var(--navy);
+  border-left: 4px solid var(--blue);
+}
+.actions button {
+  border: 2px solid var(--navy);
+  border-radius: 2px;
+  box-shadow: 3px 3px 0 var(--navy);
+  margin: 0 3px 3px 0;
+  transition: transform 150ms ease, box-shadow 150ms ease;
+}
+.actions button:focus-visible {
+  outline: 3px solid var(--red);
+  outline-offset: 5px;
+}
+.actions button:not(:disabled):active {
+  transform: translate(3px, 3px);
+  box-shadow: none;
+}
+.actions button:disabled { box-shadow: none; }
+@media (hover: hover) {
+  .actions button:not(:disabled):hover {
+    transform: translate(1px, 1px);
+    box-shadow: 2px 2px 0 var(--navy);
+  }
+}
+@media (max-width: 620px) {
+  .workspace { box-shadow: 3px 3px 0 var(--navy); margin-right: 3px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .actions button { transition: none; }
+}
+
+
+/* Reserve real inset space next to the left blue rule. The global math.css
+   loads after this stylesheet, so this selector intentionally outranks its
+   generic .math-display padding rule. */
+.bragg-compact .bragg-equation.math-display {
+  padding: 16px 22px 16px 30px;
+}
+@media (max-width: 620px) {
+  .bragg-compact .bragg-equation.math-display {
+    padding: 13px 15px 13px 23px;
+  }
+}
+
+/* Streamlined Bragg lesson: one visible experiment, with deeper explanations
+   kept accessible in disclosures. Use existing Frameworked brand tokens. */
+.bragg-compact .shell { max-width: 1380px; }
+.bragg-compact .intro.bragg-intro {
+  padding: 35px 0 26px;
+  max-width: none;
+}
+.bragg-compact .intro.bragg-intro h1 {
+  font-size: clamp(42px, 5.3vw, 70px);
+  margin: 8px 0 10px;
+  color: var(--blue);
+}
+.bragg-compact .intro .bragg-deck {
+  max-width: 840px;
+  font-size: clamp(18px, 1.75vw, 23px);
+  line-height: 1.45;
+  margin: 0 0 16px;
+  color: var(--navy);
+}
+.bragg-equation {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 9px 24px;
+  padding: 14px 17px;
+  margin: 0;
+  border-left: 4px solid var(--blue);
+  background: #edf3fb;
+}
+.bragg-equation math { font-size: 25px; color: var(--blue); }
+.bragg-equation > span {
+  flex: 1 1 380px;
+  font: 15px/1.5 Libron, Georgia, serif;
+  color: var(--navy);
+}
+.bragg-compact .workspace {
+  display: grid;
+  grid-template-columns: minmax(235px, 305px) minmax(0, 1fr);
+  gap: 0;
+}
+.bragg-compact .controls {
+  padding: 22px;
+  display: block;
+}
+.bragg-compact .controls h2 { margin: 0 0 16px; font-size: 24px; }
+.bragg-compact .controls .field { margin: 0 0 17px; }
+.bragg-compact .controls label { font-size: 15px; font-weight: 700; }
+.bragg-compact .guided-controls {
+  margin: 0 0 17px;
+  padding: 0;
+  background: transparent;
+  border: 0;
+}
+.bragg-compact .guided-controls .activity-prompt {
+  margin: 0 0 17px;
+  font: 15px/1.52 Libron, Georgia, serif;
+  color: #475f78;
+}
+.bragg-compact .precision-controls {
+  border-top: 1px solid #c9d7e7;
+  padding: 9px 0;
+  margin: 0 0 14px;
+}
+.bragg-compact .precision-controls summary {
+  color: var(--blue);
+  font: 700 13px/1.4 Libron, Georgia, serif;
+  cursor: pointer;
+}
+.bragg-compact .precision-controls[open] .field {
+  margin: 13px 0 3px;
+}
+.bragg-compact .advanced-panel {
+  margin-top: 17px;
+  border-top: 2px solid var(--navy);
+}
+.bragg-compact .advanced-panel summary { font: 700 14px/1.45 Libron, Georgia, serif; }
+.bragg-compact .visual {
+  min-width: 0;
+  padding: 21px clamp(17px, 2.4vw, 31px) 24px;
+  border-left: 1px solid #c5d2e2;
+}
+.bragg-compact .experiment-heading { margin-bottom: 3px; }
+.bragg-compact .experiment-heading h2 {
+  font-size: clamp(23px, 2.5vw, 33px);
+  margin: 3px 0 5px;
+}
+.bragg-compact .experiment-helper {
+  margin: 0 0 15px;
+  font-size: 15px;
+}
+.bragg-compact #explanation { display: none; }
+.bragg-compact .readouts-bragg,
+.bragg-compact .readouts-bragg.advanced-readouts {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.bragg-compact .readouts-bragg:not(.advanced-readouts) .theta-metric {
+  display: none;
+}
+.bragg-compact .readouts-bragg .metric {
+  padding: 12px 15px;
+  min-width: 0;
+  border: 2px solid var(--navy);
+  border-top-width: 4px;
+}
+.bragg-compact .readouts-bragg .metric strong {
+  font-size: clamp(25px, 2.7vw, 37px);
+}
+.bragg-compact .visuals-grid {
+  display: block;
+  margin: 0;
+}
+.bragg-compact .visuals-grid .ray-pane {
+  max-width: none;
+  margin: 0;
+  border: 1px solid #91a9c4;
+  background: #eff5fc;
+}
+.bragg-compact .ray-pane #geometry {
+  display: block;
+  max-height: 465px;
+}
+.bragg-compact .figure-heading { padding: 11px 15px; }
+.bragg-compact .figure-heading strong { font-family: Libron, Georgia, serif; font-size: 17px; }
+.bragg-compact .visuals-grid .ray-pane figcaption {
+  background: #fff;
+  color: #465e79;
+}
+.bragg-compact .bragg-lattice-details {
+  margin-top: 14px;
+  min-width: 0;
+}
+.bragg-compact .bragg-lattice-details > summary {
+  display: list-item;
+  padding: 11px 14px;
+  border: 1px solid #abbfd7;
+  background: #f2f6fc;
+  color: var(--blue);
+  font: 700 15px/1.4 Libron, Georgia, serif;
+  cursor: pointer;
+}
+.bragg-compact .bragg-lattice-details[open] > summary {
+  margin-bottom: 10px;
+}
+.bragg-compact .bragg-lattice-details .lattice-pane {
+  max-width: none;
+  margin: 0;
+  min-width: 0;
+}
+.bragg-compact .bragg-lattice-details .lattice-pane[hidden] { display: none; }
+.bragg-compact .teaching-takeaway {
+  margin: 17px 0 0;
+  padding: 15px 18px;
+}
+.bragg-compact .teaching-takeaway strong { font-size: 19px; }
+.bragg-compact .teaching-takeaway p { font-size: 15px; margin: 4px 0 0; }
+.bragg-compact .bragg-optional,
+.bragg-compact .notes {
+  border: 2px solid var(--navy);
+  background: #fff;
+  margin: 23px 5px 0 0;
+}
+.bragg-compact .bragg-optional > summary,
+.bragg-compact .notes > summary {
+  display: list-item;
+  padding: 18px 20px;
+  color: var(--navy);
+  font: 700 18px/1.35 Libron, Georgia, serif;
+  cursor: pointer;
+}
+.bragg-compact .bragg-optional > summary:hover,
+.bragg-compact .notes > summary:hover { color: var(--blue); }
+.bragg-compact .bragg-optional[open],
+.bragg-compact .notes[open] { box-shadow: 4px 4px 0 var(--navy); }
+.bragg-compact .bragg-optional-body { padding: 0 22px 16px; max-width: 930px; }
+.bragg-compact .bragg-optional-body p { font-size: 17px; line-height: 1.6; }
+.bragg-compact .bragg-optional .interference-lesson {
+  margin: 0;
+  padding: 4px 20px 20px;
+  border: 0;
+}
+.bragg-compact .bragg-optional .interference-heading { margin-bottom: 15px; }
+.bragg-compact .bragg-optional .interference-heading h2 { font-size: 28px; }
+.bragg-compact .notes { padding: 0; }
+.bragg-compact .notes > p { padding: 0 22px; }
+.bragg-compact .notes > p:last-child { padding-bottom: 16px; }
+.bragg-compact .notes summary { margin-bottom: 0; }
+.bragg-compact .bragg-optional:focus-within,
+.bragg-compact .precision-controls:focus-within { outline-offset: 4px; }
+@media (max-width: 1040px) {
+  .bragg-compact .workspace { display: flex; flex-direction: column; }
+  .bragg-compact .visual {
+    order: 0;
+    border-left: 0;
+    border-bottom: 1px solid #c5d2e2;
+  }
+  .bragg-compact .controls { order: 1; }
+}
+@media (max-width: 620px) {
+  .bragg-compact .intro.bragg-intro { padding: 22px 0 20px; }
+  .bragg-compact .bragg-equation { padding: 11px 13px; }
+  .bragg-compact .bragg-equation > span { font-size: 14px; }
+  .bragg-compact .visual { padding: 17px 12px 22px; }
+  .bragg-compact .readouts-bragg,
+  .bragg-compact .readouts-bragg.advanced-readouts { gap: 8px; }
+  .bragg-compact .readouts-bragg .metric { padding: 10px 11px; }
+  .bragg-compact .readouts-bragg .metric strong { font-size: clamp(22px, 6vw, 30px); }
+  .bragg-compact .controls { padding: 18px; }
+  .bragg-compact .bragg-optional > summary,
+  .bragg-compact .notes > summary { padding: 15px; font-size: 16px; }
+  .bragg-compact .bragg-optional .interference-lesson { padding: 0 12px 16px; }
+  .bragg-compact .bragg-optional-body { padding: 0 15px 12px; }
+}

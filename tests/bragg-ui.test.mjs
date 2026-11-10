@@ -54,11 +54,13 @@ function createActivity() {
 const near = (a, b, tolerance = 1e-4) =>
   assert.ok(Math.abs(Number(a) - b) <= tolerance, "Expected " + a + " ≈ " + b);
 
-test("lattice and ray views are simultaneously shown with correct initial angles", () => {
+test("one ray view is primary while the optional lattice model remains calculated", () => {
   const ui = createActivity();
   near(ui.el("d-out").textContent, 4);
   near(ui.el("theta-out").textContent.replace("°", ""), 11.10);
   near(ui.el("angle-out").textContent.replace("°", ""), 22.21);
+  assert.equal(ui.el("latticeDetails").hidden, false);
+  assert.equal(ui.el("latticeDetails").open, false);
   assert.equal(ui.el("latticePane").hidden, false);
   assert.match(ui.el("latticeGeometry").innerHTML, /Lattice points/);
   assert.match(ui.el("geometry").innerHTML, /2θ/);
@@ -81,13 +83,12 @@ test("changing to diagonal (11) planes changes d and two-theta", () => {
   assert.match(ui.el("observation").textContent, /Switching from \(10\) to \(11\)/);
 });
 
-test("impossible wavelengths remove angle readouts and disable export", () => {
+test("impossible wavelengths remove angle readouts and show a meaningful error", () => {
   const ui = createActivity();
   ui.change("wavelength", 20);
   assert.equal(ui.el("angle-out").textContent, "—");
   assert.equal(ui.el("theta-out").textContent, "—");
   assert.equal(ui.el("q-out").textContent, "—");
-  assert.equal(ui.el("export").disabled, true);
   assert.match(ui.el("error").textContent, /No physical Bragg angle/);
   assert.equal(ui.el("latticePane").hidden, false);
   assert.match(ui.el("geometry").innerHTML, /No possible Bragg angle/);
@@ -99,7 +100,8 @@ test("advanced calculator does not pretend to use the guided lattice", () => {
   assert.equal(ui.el("latticePane").hidden, true);
   assert.equal(ui.el("guidedControls").hidden, true);
   assert.match(ui.el("explanation").textContent, /independent of the guided square-lattice schematic/);
-  assert.match(ui.el("experimentHelper").textContent, /independent of the guided square lattice/);
+  assert.match(ui.el("experimentHelper").textContent, /independent of the square-lattice example/);
+  assert.equal(ui.el("latticeDetails").hidden, true);
   ui.change("mode", "angle", "change");
   ui.change("value", 60);
   near(ui.el("d-out").textContent, 1.54, 0.01);
@@ -125,25 +127,21 @@ test("wave comparison updates live at Bragg and an illustrative off-Bragg angle"
   const oldOff=ui.el("offBraggAngle").textContent;
   ui.change("latticeA",5);
   assert.notEqual(ui.el("offBraggAngle").textContent,oldOff);
-  near(ui.el("mobileTwoTheta").textContent.replace("°",""),17.72);
-  assert.match(ui.el("mobileMiniAngle").innerHTML,/2θ/);
 });
-test("invalid Bragg conditions suppress phase comparison and mobile angle",()=>{
+test("invalid Bragg conditions suppress optional phase comparison",()=>{
   const ui=createActivity();
   ui.change("wavelength",20);
   assert.equal(ui.el("interferenceComparison").hidden,true);
-  assert.equal(ui.el("mobileTwoTheta").textContent,"No Bragg angle");
   ui.reset();
   assert.equal(ui.el("interferenceComparison").hidden,false);
-  near(ui.el("mobileTwoTheta").textContent.replace("°",""),22.21);
 });
-test("advanced mode hides guided mobile quick preview",()=>{
+test("advanced mode hides optional guided lattice without hiding wave comparison",()=>{
   const ui=createActivity();
   ui.toggleAdvanced(true);
-  assert.equal(ui.el("mobileLive").hidden,true);
+  assert.equal(ui.el("latticeDetails").hidden,true);
   assert.equal(ui.el("interferenceComparison").hidden,false);
   ui.toggleAdvanced(false);
-  assert.equal(ui.el("mobileLive").hidden,false);
+  assert.equal(ui.el("latticeDetails").hidden,false);
 });
 
 test("blue a bracket spans two lattice points and expands with lattice parameter",()=>{
@@ -163,13 +161,13 @@ test("blue a bracket spans two lattice points and expands with lattice parameter
   assert.match(ui.el("latticeGeometry").innerHTML,/data-distance-px="43"/);
   near(ui.el("d-out").textContent,5/Math.sqrt(2),0.01);
 });
-test("lattice causal explanation appears only in guided mode",()=>{
+test("optional lattice illustration is available only in guided mode",()=>{
   const ui=createActivity();
-  assert.equal(ui.el("relationshipChain").hidden,false);
+  assert.equal(ui.el("latticeDetails").hidden,false);
   ui.toggleAdvanced(true);
-  assert.equal(ui.el("relationshipChain").hidden,true);
+  assert.equal(ui.el("latticeDetails").hidden,true);
   ui.toggleAdvanced(false);
-  assert.equal(ui.el("relationshipChain").hidden,false);
+  assert.equal(ui.el("latticeDetails").hidden,false);
 });
 test("measured PXRD example explains why advanced controls matter",()=>{
   const ui=createActivity();
@@ -221,21 +219,66 @@ test("advanced spacing slider sits alongside ray and hides for angle/q inputs", 
   assert.equal(ui.el("latticeSliderControl").hidden, false);
 });
 
+test("custom wavelength reveals its exact-value input without changing Bragg math", () => {
+  const ui = createActivity();
+  ui.change("preset", "custom", "change");
+  assert.equal(ui.el("wavelengthDetails").open, true);
+  ui.change("wavelength", "1");
+  near(ui.el("d-out").textContent, 4);
+  near(ui.el("angle-out").textContent.replace("°", ""), 14.36, 0.01);
+});
+test("advanced calculation and optional content remain accessible from the simplified page", () => {
+  const html = readFileSync(new URL("../static/tools/bragg/index.html", import.meta.url), "utf8");
+  assert.match(html, /<details class="bragg-lattice-details" id="latticeDetails">/);
+  assert.match(html, /<details class="bragg-optional" id="interferenceLesson">/);
+  assert.match(html, /<details class="advanced-panel" id="advancedPanel">/);
+  assert.equal((html.match(/id="geometry"/g) || []).length, 1);
+});
 
-test("arrow marker tips align with their shaft endpoints",()=>{
-  const ui=createActivity();
-  const rays=ui.el("geometry").innerHTML;
-  const lattice=ui.el("latticeGeometry").innerHTML;
-  const primer=readFileSync(new URL("../static/tools/bragg/index.html",import.meta.url),"utf8");
-  // Previously these ray markers referenced x=5 while their triangular tips
-  // were drawn at x=6, leaving the stroked shaft visible beyond the tip.
-  assert.match(rays,/id="braggBlueArrow"[^>]+refX="6"[^>]*>/);
-  assert.match(rays,/id="braggRedArrow"[^>]+refX="6"[^>]*>/);
-  assert.match(lattice,/id="braggDtip"[^>]+refX="6"[^>]*>/);
-  assert.match(rays,/stroke="#084b9e" stroke-linecap="butt" marker-end="url\(#braggBlueArrow\)"/);
-  assert.match(rays,/stroke="#9e382e" stroke-linecap="butt" marker-end="url\(#braggRedArrow\)"/);
-  for(const id of ["intro-blue-tip","intro-red-tip"]){
-    assert.match(primer,new RegExp(`id="${id}"[^>]+refX="6"`));
+test("Bragg page retains its calculation readouts but omits download controls", () => {
+  const html = readFileSync(new URL("../static/tools/bragg/index.html", import.meta.url), "utf8");
+  assert.match(html, /id="angle-out"/);
+  assert.match(html, /id="d-out"/);
+  assert.doesNotMatch(html, /id="export"/);
+  assert.doesNotMatch(source, /\$\("export"\)/);
+});
+
+test("equation accent rule has a deliberate left inset", () => {
+  const css = readFileSync(new URL("../static/tools/bragg/style.css", import.meta.url), "utf8");
+  assert.match(css, /\.bragg-compact \.bragg-equation\.math-display\s*\{\s*padding:\s*16px 22px 16px 30px/);
+});
+
+test("Bragg explorer header matches Frameworked's main site navigation", () => {
+  const html = readFileSync(new URL("../static/tools/bragg/index.html", import.meta.url), "utf8");
+  const css = readFileSync(new URL("../static/css/frameworked-standalone-header.css", import.meta.url), "utf8");
+  const match = html.match(/<header class="fw-site-header">([\s\S]*?)<\/header>/);
+  assert.ok(match, "Expected modern Frameworked site header");
+  const header = match[1];
+  for (const [path, label] of [
+    ["/", "Home"], ["/articles/", "Articles"], ["/explore/", "Explore"],
+    ["/tools/", "Tools"], ["/about/", "About"]
+  ]) {
+    assert.match(header, new RegExp(`href="${path}"[^>]*>${label}<\\/a>`));
   }
-  assert.equal((primer.match(/stroke-linecap="butt" marker-end="url\(#intro-/g)||[]).length,4);
+  assert.match(header, /src="\/images\/frameworked-mark\.png"/);
+  assert.match(header, /href="\/tools\/" aria-current="page"/);
+  assert.doesNotMatch(header, /All tools/);
+  assert.match(html, /href="\/css\/frameworked-standalone-header\.css"/);
+  assert.match(css, /\.fw-site-nav a\[aria-current\]::after/);
+  assert.match(css, /@media \(max-width: 850px\)/);
+});
+
+
+test("ray arrowhead markers remain aligned with shaft endpoints after branch integration", () => {
+  const ui = createActivity();
+  const rays = ui.el("geometry").innerHTML;
+  const lattice = ui.el("latticeGeometry").innerHTML;
+  const html = readFileSync(new URL("../static/tools/bragg/index.html", import.meta.url), "utf8");
+  for (const id of ["braggBlueArrow", "braggRedArrow"]) {
+    assert.match(rays, new RegExp('id="' + id + '"[^>]*refX="6"'));
+  }
+  assert.match(lattice, /id="braggDtip"[^>]*refX="6"/);
+  assert.match(rays, /stroke="#084b9e" stroke-linecap="butt" marker-end="url\(#braggBlueArrow\)"/);
+  assert.match(rays, /stroke="#9e382e" stroke-linecap="butt" marker-end="url\(#braggRedArrow\)"/);
+  assert.doesNotMatch(html, /id="intro-blue-tip"/);
 });

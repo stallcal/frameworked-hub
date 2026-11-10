@@ -3,7 +3,7 @@
 {{ end }}
 {{ define "main" }}
 <section class="tools-intro" aria-labelledby="tools-title"><div><p class="design-eyebrow">THE WORKBENCH / FRAMEWORKED</p><h1 id="tools-title">Scientific<br>tools.</h1></div><p>Change a parameter, explore a model, and see how the relationships unfold. Calculators and visual explorers for chemistry and materials.</p></section>
-<section class="mini-tools" style="margin:32px 0 64px" aria-label="All scientific tools"><div class="chapter-collection">
+<section class="mini-tools fw-neo-workbench" style="margin:32px 0 64px" aria-label="All scientific tools"><div class="chapter-collection">
 {{ range sort .Pages "Title" }}
 {{ $icon := .Params.icon | default .Params.explorer | default .Params.lab | default .Params.experiment | default "generic" }}
 {{ partial "tool-link.html" (dict "title" .Title "description" .Description "url" .RelPermalink "icon" $icon) }}
