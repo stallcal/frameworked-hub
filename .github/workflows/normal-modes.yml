@@ -1,0 +1,47 @@
+name: Molecular normal modes validation
+
+on:
+  pull_request:
+    paths:
+      - "assets/normal-modes/**"
+      - "layouts/tools/normal-modes.html"
+      - "layouts/partials/normal-mode-widget.html"
+      - "layouts/shortcodes/normal-mode.html"
+      - "site-content/tools/normal-modes.md"
+      - "site-content/articles/co2-vibrational-symmetry/**"
+      - "tests/normal-modes.test.mjs"
+      - ".github/workflows/normal-modes.yml"
+  push:
+    branches: [main]
+    paths:
+      - "assets/normal-modes/**"
+      - "layouts/tools/normal-modes.html"
+      - "layouts/partials/normal-mode-widget.html"
+      - "layouts/shortcodes/normal-mode.html"
+      - "site-content/tools/normal-modes.md"
+      - "tests/normal-modes.test.mjs"
+      - ".github/workflows/normal-modes.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  science-and-hugo:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Check normal-mode geometry and selection rules
+        run: node --test tests/normal-modes.test.mjs
+      - uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: "0.154.5"
+          extended: true
+      - name: Build production site
+        run: hugo --environment production --minify
+      - name: Build draft article embeds
+        run: hugo --environment preview --buildDrafts --minify
