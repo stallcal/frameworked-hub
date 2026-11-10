@@ -83,7 +83,13 @@ function makeH2O(){
 
 function makeNH3(){
   const angles=[0,2*Math.PI/3,4*Math.PI/3];
-  const atoms=[atom('N',[0,0,.38],N),...angles.map(a=>atom('H',[.94*Math.cos(a),.94*Math.sin(a),-.13],H))];
+  // Gas-phase equilibrium NH3: N–H = 1.012 Å, H–N–H = 106.7° (NIST).
+  // The H azimuths are 0°, 120°, and 240° around the C3 symmetry axis.
+  // cos(HNH) = cos²(alpha) + sin²(alpha)cos(120°) = 1.5cos²(alpha)-0.5.
+  const bondLength=1.012, hnh=106.7*Math.PI/180;
+  const axial=bondLength*Math.sqrt((Math.cos(hnh)+.5)/1.5);
+  const radial=Math.sqrt(bondLength*bondLength-axial*axial);
+  const atoms=[atom('N',[0,0,axial/2],N),...angles.map(a=>atom('H',[radial*Math.cos(a),radial*Math.sin(a),-axial/2],H))];
   const bonds=atoms.slice(1).map(a=>unit(minus(a.pos,atoms[0].pos)));
   const d=[
     definition('nh3-sym','Symmetric stretch','Stretch','A₁',3337,true,true,'All three N–H bonds stretch together. This is the nondegenerate A₁ stretching vibration.',[vec(),...bonds],'ν1'),
