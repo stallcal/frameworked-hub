@@ -1,0 +1,79 @@
+/* Frameworked neobrutalism pilot (November 2026).
+   Opt-in styling: the sitewide palette, Libron, article typography, and charts are unchanged.
+   These tokens can be reused as other components are reviewed. */
+:root {
+  --fw-neo-stroke: var(--navy);
+  --fw-neo-shadow: var(--navy);
+  --fw-neo-offset: 5px;
+}
+
+/* Pilot scope: Tools directory only. Other .chapter-link components keep their
+   editorial appearance (homepage, related links, and reading collections). */
+.fw-neo-workbench .chapter-collection {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 26px;
+  padding: 0 var(--fw-neo-offset) var(--fw-neo-offset) 0;
+  border-top: 0;
+}
+.fw-neo-workbench .chapter-link {
+  display: grid;
+  grid-template-columns: 62px minmax(0, 1fr) 24px;
+  gap: 16px;
+  align-items: center;
+  min-width: 0;
+  min-height: 176px;
+  padding: 23px 22px;
+  border: 2px solid var(--fw-neo-stroke);
+  border-radius: 2px;
+  background: #fff;
+  box-shadow: var(--fw-neo-offset) var(--fw-neo-offset) 0 var(--fw-neo-shadow);
+  color: var(--navy);
+  text-decoration: none;
+  transition: transform 150ms ease, box-shadow 150ms ease;
+}
+.fw-neo-workbench .chapter-main { min-width: 0; }
+.fw-neo-workbench .chapter-main strong {
+  font: 700 clamp(22px, 2.1vw, 29px)/1.16 Libron, Georgia, serif;
+  letter-spacing: -.03em;
+}
+.fw-neo-workbench .chapter-main small {
+  color: var(--quiet);
+  font-size: 16px;
+  line-height: 1.48;
+}
+.fw-neo-workbench .chapter-arrow { align-self: center; color: var(--red); }
+.fw-neo-workbench .chapter-link:focus-visible {
+  outline: 3px solid var(--red);
+  outline-offset: 7px;
+}
+.fw-neo-workbench .chapter-link:active {
+  transform: translate(var(--fw-neo-offset), var(--fw-neo-offset));
+  box-shadow: none;
+}
+@media (hover: hover) {
+  .fw-neo-workbench .chapter-link:hover {
+    color: var(--blue);
+    transform: translate(2px, 2px);
+    box-shadow: 3px 3px 0 var(--fw-neo-shadow);
+  }
+}
+@media (max-width: 900px) {
+  .fw-neo-workbench .chapter-collection { grid-template-columns: 1fr; gap: 20px; }
+  .fw-neo-workbench .chapter-link { min-height: 136px; }
+}
+@media (max-width: 520px) {
+  .fw-neo-workbench .chapter-collection { gap: 19px; }
+  .fw-neo-workbench .chapter-link {
+    grid-template-columns: 44px minmax(0, 1fr) 22px;
+    gap: 12px;
+    min-height: 122px;
+    padding: 17px 15px;
+  }
+  .fw-neo-workbench .mini-tool-art { width: 44px; }
+  .fw-neo-workbench .chapter-main strong { font-size: 23px; }
+  .fw-neo-workbench .chapter-main small { font-size: 15px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .fw-neo-workbench .chapter-link { transition: none; }
+}
