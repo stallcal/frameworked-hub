@@ -84,8 +84,16 @@ An isotherm records uptake as pressure changes at fixed temperature. Here p₀ i
 
 **These curves are illustrative drawings generated from shape functions, not measured data or adsorption-model fits.** Uptake is in arbitrary units. Heights do not compare capacities; the cursor is a reading aid. The endpoint at relative pressure 1 is illustrative, not a prediction at bulk saturation.
 
+### What is adsorption hysteresis?
+
+**Hysteresis means uptake follows different paths as pressure rises and falls.** During **adsorption**, gas pressure increases as the material fills. During **desorption**, pressure decreases as the material unloads; at the same pressure, some gas can remain adsorbed that was not present on the way up.
+
+Our plot uses **color for the selected comparison** (blue = Curve A, red = Curve B) and **line style for the path** (solid = adsorption, dashed = desorption). For Type IV or V, the tinted region between the branches highlights hysteresis. A filled circle marks the loading-branch uptake at your chosen pressure; an open circle marks unloading-branch uptake.
+
+Different paths can arise from metastability, capillary condensation in mesopores, pore blocking, or network effects. Flexible MOFs may also exhibit structural transitions. **A loop alone does not identify its physical mechanism.** This schematic does not predict experimental pore properties or hysteresis magnitudes.
+
 ### Reading the families
-The descriptions above summarize six broad IUPAC families. Types I(a) and I(b) distinguish microporous shapes. IV(a) has hysteresis; IV(b) can be reversible. The plotted IV illustrates IV(a). Loop branches represent different adsorption and desorption paths.
+The descriptions above summarize six broad IUPAC families. Types I(a) and I(b) distinguish microporous shapes. IV(a) has hysteresis; IV(b) can be reversible. The plotted IV illustrates IV(a). Type IV(a) is hysteretic, while Type IV(b) can be reversible. Our Type IV illustration specifically represents IV(a); Type V also includes a loop in this simplified plot.
 
 Classification describes morphology. Choosing a fitting equation such as Langmuir or BET requires appropriate assumptions and a valid pressure range. Shape alone does not determine pore size or identify a material.
 
