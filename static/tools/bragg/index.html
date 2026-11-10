@@ -8,15 +8,26 @@
       content="Connect lattice spacing, wavelength, and diffraction angle. Change one quantity and follow what happens to the others."
     />
     <title>Bragg’s law explorer · Frameworked</title>
-    <link rel="stylesheet" href="./style.css" /><link rel="stylesheet" href="/css/math.css" />
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="/css/math.css" />
+    <link rel="stylesheet" href="/css/frameworked-standalone-header.css" />
     <script type="module" src="./app.mjs"></script>
   </head>
   <body class="bragg-compact">
     <a class="skip" href="#main">Skip to tool</a>
     <div class="shell">
-      <header>
-        <a class="brand" href="/">Frameworked.</a
-        ><a href="/tools/">All tools ↗</a>
+      <header class="fw-site-header">
+        <a class="fw-site-brand" href="/" aria-label="Frameworked home">
+          <img src="/images/frameworked-mark.png" alt="" width="34" height="34" />
+          <span>Frameworked<span class="fw-brand-period">.</span></span>
+        </a>
+        <nav class="fw-site-nav" aria-label="Main navigation">
+          <a href="/">Home</a>
+          <a href="/articles/">Articles</a>
+          <a href="/explore/">Explore</a>
+          <a href="/tools/" aria-current="page">Tools</a>
+          <a href="/about/">About</a>
+        </nav>
       </header>
       <main id="main">
         <section class="intro bragg-intro">
