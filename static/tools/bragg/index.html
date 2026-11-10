@@ -19,115 +19,53 @@
         ><a href="/tools/">All tools ↗</a>
       </header>
       <main id="main">
-        <section class="intro">
-          <p class="eyebrow">Learn / Diffraction</p>
-          <h1>Bragg’s law explorer<span>.</span></h1>
-          <p>
-            Discover how families of planes arise from a repeating lattice
-            and why their spacing determines a Bragg diffraction angle.
-          </p>
-          
-          <a class="mobile-activity-link" href="#braggActivity">Jump to the interactive activity ↓</a>
+        <section class="intro bragg-intro">
+          <p class="eyebrow">TOOLS / DIFFRACTION</p>
+          <h1>Bragg’s law<span>.</span></h1>
+          <p class="bragg-deck">Change the spacing between lattice planes and watch the diffraction angle respond.</p>
+          <div class="bragg-equation math-display" aria-label="Bragg's law: n lambda equals two d sine theta">
+            <math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>n</mi><mi>λ</mi><mo>=</mo><mn>2</mn><mi>d</mi><mi mathvariant="normal">sin</mi><mo>⁡</mo><mi>θ</mi></mrow></math>
+            <span>Here, <strong>d</strong> is plane spacing, <strong>λ</strong> is X-ray wavelength, and the diffractometer reports <strong>2θ</strong>.</span>
+          </div>
         </section>
 
-        <section class="bragg-primer" aria-labelledby="bragg-primer-title">
-          <div class="primer-copy">
-            <p class="eyebrow">THE CONCEPT / WHY DIFFRACTION HAPPENS</p>
-            <h2 id="bragg-primer-title">What is Bragg's law?</h2>
-            <p>When X-rays encounter a repeating crystal structure, waves scattered from neighboring lattice planes can reinforce one another. <strong>Bragg's law gives the angles at which that constructive interference is possible.</strong></p>
-            <div class="primer-equation math-display"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>n</mi><mi>λ</mi><mo>=</mo><mn>2</mn><mi>d</mi><mi mathvariant="normal">sin</mi><mo>⁡</mo><mi>θ</mi></mrow></math></div>
-            <p><strong>λ</strong> is the X-ray wavelength; <strong>d</strong> is the distance between planes; <strong>θ</strong> is the angle between the incoming beam and those planes; <strong>n</strong> is the diffraction order. A powder diffractometer typically reports <strong>2θ</strong>, the angle between the incident and diffracted beams.</p>
-            <div class="primer-implication">
-              <strong>Why this matters</strong>
-              <ul class="primer-points">
-                <li><strong>Smaller d → larger 2θ</strong>, at the same wavelength.</li>
-                <li><strong>Longer λ → larger 2θ</strong>, at the same plane spacing, while the Bragg condition remains possible.</li>
-                <li><strong>PXRD connection:</strong> measured peak positions let researchers estimate plane spacings. A shift toward higher 2θ corresponds to smaller d, for the same indexed reflection and wavelength.</li>
-              </ul>
-            </div>
-          </div>
-          <figure class="primer-figure">
-            <svg viewBox="0 0 520 300" role="img" aria-labelledby="primer-svg-title primer-svg-desc">
-              <title id="primer-svg-title">Bragg law angle and lattice-plane spacing</title>
-              <desc id="primer-svg-desc">Schematic with two parallel planes, blue incident X-rays, red diffracted rays, angle theta relative to the planes, scattering angle two theta, and perpendicular spacing d.</desc>
-              <defs>
-                <marker id="intro-blue-tip" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0 0L6 3L0 6Z" fill="#084b9e"/></marker>
-                <marker id="intro-red-tip" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0 0L6 3L0 6Z" fill="#9e382e"/></marker>
-              </defs>
-              <rect x="12" y="12" width="496" height="276" rx="9" fill="#eff5fc"/>
-              <g stroke="#8aa3bf" stroke-width="2.5"><path d="M33 146H488 M33 211H488"/></g>
-              <g fill="#7589a4" font-family="system-ui,sans-serif" font-size="12"><text x="34" y="169">lattice planes</text></g>
-              <g fill="none" stroke-width="4" stroke-linecap="round">
-                <path d="M116 91L236 146" stroke="#084b9e" marker-end="url(#intro-blue-tip)"/>
-                <path d="M236 146L356 91" stroke="#9e382e" marker-end="url(#intro-red-tip)"/>
-                <path d="M166 156L286 211" stroke="#084b9e" marker-end="url(#intro-blue-tip)"/>
-                <path d="M286 211L406 156" stroke="#9e382e" marker-end="url(#intro-red-tip)"/>
-              </g>
-              <path d="M236 146H363 M236 146L350 200" stroke="#869ab4" stroke-dasharray="5 5" stroke-width="1.7"/>
-              <path d="M275 146 A39 39 0 0 0 271.4 129.5" stroke="#9e382e" stroke-width="2.4" fill="none"/>
-              <text x="288" y="133" font-family="system-ui,sans-serif" font-weight="700" font-size="17" fill="#9e382e">θ</text>
-              <path d="M286 169.4 A55 55 0 0 0 286 122.6" stroke="#1c3049" stroke-width="2.3" fill="none"/>
-              <text x="303" y="154" font-family="system-ui,sans-serif" font-weight="700" font-size="16" fill="#1c3049">2θ</text>
-              <path d="M467 146V211 M459 146H475 M459 211H475" fill="none" stroke="#9e382e" stroke-width="2"/>
-              <text x="478" y="184" font-family="system-ui,sans-serif" font-size="17" fill="#9e382e">d</text>
-              <text x="45" y="47" font-family="system-ui,sans-serif" font-size="13" fill="#084b9e" font-weight="700">Incident X-rays</text>
-              <text x="339" y="47" font-family="system-ui,sans-serif" font-size="13" fill="#9e382e" font-weight="700">Diffracted X-rays</text>
-              <rect x="28" y="247" width="464" height="25" rx="4" fill="#fff" opacity=".92"/>
-              <text x="260" y="264" text-anchor="middle" font-family="system-ui,sans-serif" font-size="13" fill="#1c3049">Extra path = 2d sinθ = nλ for constructive interference</text>
-            </svg>
-            <figcaption>Incoming rays are parallel; diffracted rays are parallel. Scattering points are offset intentionally. The diagram is schematic and not to scale.</figcaption>
-          </figure>
-        </section>
         <div class="workspace" id="braggActivity">
           <section class="controls" aria-label="Bragg inputs">
-            <h2>Explore the lattice</h2>
-            <div class="mobile-live" id="mobileLive" aria-live="polite" aria-label="Live Bragg angle preview">
-              <svg id="mobileMiniAngle" viewBox="0 0 142 83" role="img" aria-label="Small schematic of the current diffraction angle"></svg>
-              <div class="mobile-live-copy">
-                <span class="mobile-live-label">LIVE DIFFRACTION ANGLE · 2θ</span>
-                <strong id="mobileTwoTheta">22.21°</strong>
-                <span id="mobileSpacing">d = 4.00 Å</span>
-                <a href="#diagramPair">See the full diagrams ↓</a>
-              </div>
-            </div>
+            <h2>Conditions</h2>
             <div class="guided-controls" id="guidedControls">
-              <p class="activity-label">GUIDED ACTIVITY · SQUARE LATTICE</p>
-              <p class="activity-prompt">Change the lattice spacing or select a plane family. Watch the diffraction angle respond.</p>
+              <p class="activity-prompt">Drag the <strong>a</strong> slider above the figure. Choose a plane family to see how the plane spacing <strong>d</strong> changes.</p>
               <div class="field">
-                <label for="latticeA">1 · Lattice parameter, a (Å)</label>
-                <input id="latticeA" type="number" min="2" max="12" step="0.1" value="4" />
-                <small class="parameter-hint">a is the repeat distance between adjacent blue dots. Move the slider beside the lattice diagram to watch it expand or contract.</small>
-              </div>
-              <div class="field">
-                <label for="planeFamily">2 · Highlight a plane family</label>
+                <label for="planeFamily">Plane family</label>
                 <select id="planeFamily">
-                  <option value="10">(10) · Parallel vertical planes</option>
+                  <option value="10">(10) · Vertical planes</option>
                   <option value="11">(11) · Diagonal planes</option>
                 </select>
-                <small>A two-dimensional square-lattice example; the dots are lattice points, not individual atoms.</small>
+                <small>Ideal 2D square lattice; the dots represent lattice points.</small>
               </div>
+              <details class="precision-controls" id="preciseLattice">
+                <summary>Enter an exact lattice parameter</summary>
+                <div class="field">
+                  <label for="latticeA">Lattice parameter a (Å)</label>
+                  <input id="latticeA" type="number" min="2" max="12" step="0.1" value="4" />
+                </div>
+              </details>
             </div>
             <div class="field">
-              <label for="preset">Wavelength preset</label
-              ><select id="preset">
+              <label for="preset">X-ray wavelength</label>
+              <select id="preset">
                 <option value="1.5406">Cu Kα₁ · 1.5406 Å</option>
                 <option value="0.7093">Mo Kα₁ · 0.7093 Å</option>
                 <option value="custom">Custom wavelength</option>
               </select>
             </div>
-            <div class="field">
-              <label for="wavelength">Wavelength λ (Å)</label
-              ><input
-                id="wavelength"
-                type="number"
-                min="0"
-                step="any"
-                value="1.5406"
-              /><small
-                >Verify the wavelength and optics used for your
-                experiment.</small
-              >
-            </div>
+            <details class="precision-controls" id="wavelengthDetails">
+              <summary>Enter an exact wavelength</summary>
+              <div class="field">
+                <label for="wavelength">Wavelength λ (Å)</label>
+                <input id="wavelength" type="number" min="0" step="any" value="1.5406" />
+                <small>Use the wavelength appropriate for your experimental source and optics.</small>
+              </div>
+            </details>
             <details class="advanced-panel" id="advancedPanel">
               <summary>Advanced calculation · input d, 2θ or q</summary>
               <p class="advanced-note">Use this to interpret a diffraction measurement or explore a known plane spacing. Enter d, 2θ, or q at a chosen X-ray wavelength.</p><button id="tryMeasuredPeak" type="button" class="advanced-example-button">Try a PXRD peak at 2θ = 30°</button>
@@ -158,60 +96,67 @@
             </div>
             </details>
             <div class="wide actions">
-              <button id="reset" class="secondary">Reset example</button>
+              <button id="reset" type="button" class="secondary">Reset</button>
             </div>
           </section>
           <section class="visual" aria-label="Interactive Bragg experiment">
             <div class="experiment-heading">
-              <div><p class="eyebrow">WATCH THE RELATIONSHIP CHANGE</p><h2>From lattice spacing to diffraction angle</h2></div>
-              <div class="experiment-equation math-display"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>n</mi><mi>λ</mi><mo>=</mo><mn>2</mn><mi>d</mi><mi mathvariant="normal">sin</mi><mo>⁡</mo><mi>θ</mi></mrow></math></div>
+              <div><p class="eyebrow">LIVE DIFFRACTION</p><h2>Watch the angle change</h2></div>
             </div>
-            <div class="relationship-chain" id="relationshipChain" role="note" aria-label="Cause and effect: lattice parameter changes plane spacing, which changes the Bragg angle">
-              <span>Change <strong>a</strong></span><span aria-hidden="true">→</span>
-              <span>Plane spacing <strong>d</strong></span><span aria-hidden="true">→</span>
-              <span>Diffraction angle <strong>2θ</strong></span>
-            </div>
-            <p class="experiment-helper" id="experimentHelper">Move the lattice slider to see how changing the repeat distance shifts the diffraction angle.</p>
+            <p class="experiment-helper" id="experimentHelper">Move the slider to change the plane spacing.</p>
             <p id="error" class="error" role="alert"></p>
             <div id="results">
               <div class="readouts readouts-bragg" id="readouts" aria-live="polite">
-                <div class="metric"><span class="label">Plane spacing · d</span><strong id="d-out">—</strong><span class="unit">Å</span></div>
-                <div class="metric"><span class="label">Bragg angle · θ</span><strong id="theta-out">—</strong><span class="unit">degrees to lattice plane</span></div>
-                <div class="metric featured-metric"><span class="label">Diffraction angle · 2θ</span><strong id="angle-out">—</strong><span class="unit">degrees · possible reflection position</span></div>
-                <div class="metric compact-metric" id="qMetric" hidden><span class="label">Scattering-vector magnitude · q</span><strong id="q-out">—</strong><span class="unit">Å⁻¹</span></div>
+                <div class="metric featured-metric"><span class="label">Diffraction angle · 2θ</span><strong id="angle-out">—</strong><span class="unit">degrees</span></div>
+                <div class="metric spacing-metric"><span class="label">Plane spacing · d</span><strong id="d-out">—</strong><span class="unit">Å</span></div>
+                <div class="metric theta-metric"><span class="label">Bragg angle · θ</span><strong id="theta-out">—</strong><span class="unit">degrees to lattice plane</span></div>
+                <div class="metric compact-metric" id="qMetric" hidden><span class="label">Scattering vector · q</span><strong id="q-out">—</strong><span class="unit">Å⁻¹</span></div>
               </div>
               <div class="visuals-grid" id="diagramPair">
-                <figure class="figure lattice-pane" id="latticePane">
-                  <div class="figure-heading"><strong>1 · The repeating lattice</strong><span>Structure / spacing</span></div>
+                <figure class="figure ray-pane" id="rayPane">
+                  <div class="figure-heading"><strong>Diffraction geometry</strong><span id="ray-angle-display">θ — · 2θ —</span></div>
                   <div class="diagram-slider" id="latticeSliderControl">
-                    <div class="diagram-slider-head"><label for="latticeSlider">Adjust lattice parameter <em>a</em></label><output id="latticeSliderValue" for="latticeSlider latticeA">4.00 Å</output></div>
-                    <input id="latticeSlider" type="range" min="2" max="12" step="0.1" value="4" aria-label="Adjust lattice parameter a in angstroms while viewing the lattice" />
+                    <div class="diagram-slider-head"><label for="latticeSlider">Lattice parameter <em>a</em></label><output id="latticeSliderValue" for="latticeSlider latticeA">4.00 Å</output></div>
+                    <input id="latticeSlider" type="range" min="2" max="12" step="0.1" value="4" aria-label="Adjust square lattice parameter a in angstroms" />
                     <div class="diagram-slider-limits" aria-hidden="true"><span>2 Å</span><span>12 Å</span></div>
                   </div>
-                  <svg id="latticeGeometry" viewBox="0 0 760 410" role="img" aria-label="Two-dimensional lattice points and highlighted family of lattice planes"></svg>
-                  <figcaption class="dimension-legend"><span class="dimension-key"><span class="key-blue" aria-hidden="true"></span><strong>Blue a</strong> · lattice repeat</span><span class="dimension-key"><span class="key-red" aria-hidden="true"></span><strong>Red d</strong> · plane spacing</span></figcaption>
-                </figure>
-                <figure class="figure ray-pane" id="rayPane">
-                  <div class="figure-heading"><strong>2 · The diffraction angle</strong><span id="ray-angle-display">θ — · 2θ —</span></div>
                   <div class="diagram-slider" id="advancedSliderControl" hidden>
-                    <div class="diagram-slider-head"><label for="spacing-slider">Adjust plane spacing <em>d</em></label><output id="advancedSliderValue" for="spacing-slider value">3.00 Å</output></div>
-                    <input id="spacing-slider" aria-label="Adjust plane spacing d in angstroms while viewing the ray construction" type="range" min="0.5" max="10" step="0.01" value="3"/>
+                    <div class="diagram-slider-head"><label for="spacing-slider">Plane spacing <em>d</em></label><output id="advancedSliderValue" for="spacing-slider value">3.00 Å</output></div>
+                    <input id="spacing-slider" aria-label="Adjust plane spacing d in angstroms" type="range" min="0.5" max="10" step="0.01" value="3"/>
                     <div class="diagram-slider-limits" aria-hidden="true"><span>0.5 Å</span><span>10 Å</span></div>
                   </div>
                   <svg id="geometry" viewBox="0 0 520 360" role="img" aria-label="Dynamic Bragg ray construction showing incident and diffracted X-rays, angle theta, scattering angle two theta, and plane spacing"></svg>
-                  <figcaption>Blue indicates the incident beam; red indicates a diffracted direction. The red arc labeled <em>2θ</em> expands or contracts as the Bragg angle changes. Ray geometry is schematic.</figcaption>
+                  <figcaption>Blue: incident X-rays. Red: diffracted direction and angle. The ray geometry is schematic, not a literal mirror reflection.</figcaption>
                 </figure>
+                <details class="bragg-lattice-details" id="latticeDetails">
+                  <summary>See how the lattice defines plane spacing <em>d</em></summary>
+                  <figure class="figure lattice-pane" id="latticePane">
+                    <div class="figure-heading"><strong>Square lattice model</strong><span>2D illustration</span></div>
+                    <svg id="latticeGeometry" viewBox="0 0 760 410" role="img" aria-label="Two-dimensional lattice points and highlighted family of lattice planes"></svg>
+                    <figcaption class="dimension-legend"><span class="dimension-key"><span class="key-blue" aria-hidden="true"></span><strong>Blue a</strong> · lattice repeat</span><span class="dimension-key"><span class="key-red" aria-hidden="true"></span><strong>Red d</strong> · plane spacing</span></figcaption>
+                  </figure>
+                </details>
               </div>
               <div class="teaching-takeaway" aria-live="polite" aria-atomic="true">
                 <strong id="takeawayTitle">What changed?</strong>
                 <p id="observation">Smaller plane spacing produces a larger Bragg angle at a fixed wavelength.</p>
               </div>
               <p id="explanation"></p>
-              <div class="actions"><button id="export">Download calculation</button></div>
+              <div class="actions"><button id="export" type="button">Download calculation</button></div>
             </div>
           </section>
         </div>
-        <section class="interference-lesson" id="interferenceLesson" aria-labelledby="interferenceTitle">
+        <details class="bragg-optional bragg-theory">
+          <summary>How does Bragg's law work?</summary>
+          <div class="bragg-optional-body">
+            <p>X-rays scatter from a periodic crystal structure. For certain directions, the path difference between contributions from successive lattice planes equals an integer number of wavelengths, so those contributions reinforce one another.</p>
+            <p>At fixed wavelength and diffraction order, smaller plane spacing <strong>d</strong> gives a larger scattering angle <strong>2θ</strong>. Conversely, a reflection moving to higher 2θ corresponds to a smaller d-spacing when the wavelength and reflection indexing remain unchanged.</p>
+            <p><strong>θ</strong> is the Bragg angle relative to the lattice planes; <strong>2θ</strong> is the angle measured between incident and diffracted beams. The selected (10) and (11) families are an idealized two-dimensional square-lattice example, not a specific crystal structure.</p>
+          </div>
+        </details>
+        <details class="bragg-optional" id="interferenceLesson">
+          <summary>Explore constructive and destructive interference</summary>
+          <section class="interference-lesson" aria-labelledby="interferenceTitle">
           <div class="interference-heading">
             <p class="eyebrow">WHY SOME DIRECTIONS REINFORCE AND OTHERS DO NOT</p>
             <h2 id="interferenceTitle">What happens away from the Bragg angle?</h2>
@@ -242,7 +187,8 @@
             </figure>
           </div>
           <p class="interference-caveat">Scientific scope: this is a two-wave phase illustration, not a simulated diffraction pattern. Real crystalline scattering depends on many planes, finite-size broadening, atomic structure factors, and the instrument. <a href="https://www.iucr.org/what-we-do/education/pamphlets/introduction-calculation-of-structure-factors">IUCr explanation of phase and Bragg diffraction</a>.</p>
-        </section>
+          </section>
+        </details>
         <details class="notes">
           <summary>Model assumptions, limitations &amp; sources</summary>
           <p><strong>What the models represent:</strong> the guided lattice is an ideal 2D square lattice, with d(10) = a and d(11) = a/√2. Dots are lattice points, not atoms or a specific MOF. The wave comparison adds only two equal-amplitude contributions.</p>
