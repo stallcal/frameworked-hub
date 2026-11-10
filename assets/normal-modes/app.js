@@ -91,15 +91,16 @@ function renderMolecule(svg,molecule,mode,phase,amplitude,yaw,pitch,arrows,equil
     const depth=pair=>(screen[pair[0]].z+screen[pair[1]].z)/2;
     return depth(a)-depth(b);
   });
+  // A single neutral connector per bond. Depth comes from opaque atom
+  // occlusion, molecular rotation and softly shaded spheres — not bond stripes.
+  const bondColor='#718096';
   for(const [i,j] of sortedBonds){
     const from=screen[i],to=screen[j];
-    const depth=(from.z+to.z)/2;
-    const opacity=Math.max(.64,Math.min(1,.87+depth*.1));
-    const strokeWidth=(diagram?7:16)*((from.perspective+to.perspective)/2);
-    const group=node('g',{opacity});
-    group.append(node('line',{x1:from.x,y1:from.y,x2:to.x,y2:to.y,stroke:diagram?'#5f748e':'#48596c','stroke-width':strokeWidth,'stroke-linecap':'round'}));
-    if(!diagram)group.append(node('line',{x1:from.x-1,y1:from.y-1,x2:to.x-1,y2:to.y-1,stroke:'#d5e1ed','stroke-width':strokeWidth*.36,'stroke-linecap':'round','stroke-opacity':.9}));
-    bonds.append(group);
+    bonds.append(node('line',{
+      x1:from.x,y1:from.y,x2:to.x,y2:to.y,
+      stroke:bondColor,'stroke-width':diagram?6:11,
+      'stroke-linecap':'round'
+    }));
   }
   scene.append(bonds);
 
