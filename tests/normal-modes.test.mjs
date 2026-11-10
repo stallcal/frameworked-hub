@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
+import {runInNewContext} from 'node:vm';
 import {MOLECULES,degrees,displacedPositions,bondAngle,distance} from '../assets/normal-modes/modes.js';
 
 const expected={co2:4,h2o:3,nh3:6,ch4:9};
@@ -104,4 +105,43 @@ test('schematic displacement arrow shafts stop inside the arrowhead, before its 
   assert.match(source,/shaftY=ty-oy\*headLength\*\.8/);
   assert.match(source,/'stroke-linecap':'butt'/);
   assert.match(source,/'polygon',\{points:tx\+','\+ty/);
+});
+
+
+test('ball-and-stick renderer hides all bond interiors behind opaque atom spheres',()=>{
+
+  const source=readFileSync(new URL('../assets/normal-modes/app.js',import.meta.url),'utf8')
+    .replace(/^import [^\n]+\n/,'')
+    .replace(/document\.querySelectorAll\('\[data-normal-modes\]'\)\.forEach\(attachNormalModes\);/,'');
+  const createNode=(tag)=>{
+    const obj={tag,attrs:{},children:[],dataset:{},
+      setAttribute(name,value){this.attrs[name]=value;},
+      append(...children){this.children.push(...children);},
+      replaceChildren(...children){this.children=[...children];},
+      querySelector(){return null;}};
+    return obj;
+  };
+  const document={createElementNS:(_ns,tag)=>createNode(tag)};
+  const ctx={document};
+  runInNewContext(source+'\nthis.renderMoleculeForTest=renderMolecule;',ctx);
+  for(const molecule of MOLECULES){
+    for(const mode of molecule.modes){
+      for(const diagram of [false,true]){
+        const scene=createNode('g');
+        const svg=createNode('svg');
+        svg.querySelector=()=>scene;
+        ctx.renderMoleculeForTest(svg,molecule,mode,0.7,1.0,0.4,0.3,false,false,diagram);
+        const tags=scene.children.map(child=>child.tag);
+        // Expected painter order: gradients, equilibrium guides, bonds, spheres.
+        const bondLayer=scene.children[2],sphereLayer=scene.children[3];
+        assert.equal(bondLayer.tag,'g');
+        assert.equal(sphereLayer.tag,'g');
+        assert.equal(bondLayer.children.length,molecule.bonds.length);
+        assert.equal(sphereLayer.children.length,molecule.atoms.length);
+        assert.ok(bondLayer.children.every(g=>g.children.every(child=>child.tag==='line')));
+        assert.ok(sphereLayer.children.every(g=>g.children[0].tag==='circle'));
+        assert.ok(sphereLayer.children.every(g=>g.children[0].attrs.fill!=='none'));
+      }
+    }
+  }
 });
