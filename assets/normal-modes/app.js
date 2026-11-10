@@ -152,7 +152,6 @@ function attachNormalModes(root){
 
   function updatePlay(){
     playButton.textContent=running?'Pause animation':'Play animation';
-    playButton.setAttribute('aria-pressed',String(!running));
   }
 
   function updateView(){views.dataset.view=viewInput.value;draw();}
