@@ -220,3 +220,22 @@ test("advanced spacing slider sits alongside ray and hides for angle/q inputs", 
   assert.equal(ui.el("advancedSliderControl").hidden, true);
   assert.equal(ui.el("latticeSliderControl").hidden, false);
 });
+
+
+test("arrow marker tips align with their shaft endpoints",()=>{
+  const ui=createActivity();
+  const rays=ui.el("geometry").innerHTML;
+  const lattice=ui.el("latticeGeometry").innerHTML;
+  const primer=readFileSync(new URL("../static/tools/bragg/index.html",import.meta.url),"utf8");
+  // Previously these ray markers referenced x=5 while their triangular tips
+  // were drawn at x=6, leaving the stroked shaft visible beyond the tip.
+  assert.match(rays,/id="braggBlueArrow"[^>]+refX="6"[^>]*>/);
+  assert.match(rays,/id="braggRedArrow"[^>]+refX="6"[^>]*>/);
+  assert.match(lattice,/id="braggDtip"[^>]+refX="6"[^>]*>/);
+  assert.match(rays,/stroke="#084b9e" stroke-linecap="butt" marker-end="url\(#braggBlueArrow\)"/);
+  assert.match(rays,/stroke="#9e382e" stroke-linecap="butt" marker-end="url\(#braggRedArrow\)"/);
+  for(const id of ["intro-blue-tip","intro-red-tip"]){
+    assert.match(primer,new RegExp(`id="${id}"[^>]+refX="6"`));
+  }
+  assert.equal((primer.match(/stroke-linecap="butt" marker-end="url\(#intro-/g)||[]).length,4);
+});
