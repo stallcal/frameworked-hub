@@ -13,6 +13,8 @@
 {{ $mark := (resources.Get "images/frameworked-mark.png").Resize "160x png" }}<link rel="icon" type="image/png" href="{{ $mark.RelPermalink }}">
 {{ if eq .Section "explore" }}{{ $explore := resources.Get "css/explore.css" | minify | fingerprint }}<link rel="stylesheet" href="{{ $explore.RelPermalink }}" integrity="{{ $explore.Data.Integrity }}">{{ end }}
 {{ block "head-extra" . }}{{ end }}
+{{/* Load opt-in neobrutalist pilot after page styles so scoped cards win without affecting other pages. */}}
+{{ $neo := resources.Get "css/neobrutalism.css" | minify | fingerprint }}<link rel="stylesheet" href="{{ $neo.RelPermalink }}" integrity="{{ $neo.Data.Integrity }}">
 </head><body class="{{ if .IsHome }}home{{ else }}interior{{ end }}{{ if .Params.isAbout }} about-page{{ end }}{{ if eq .Section "tools" }} tools-page{{ end }}">
 <a class="skip-link" href="#main">Skip to content</a>
 <div class="site-shell">
