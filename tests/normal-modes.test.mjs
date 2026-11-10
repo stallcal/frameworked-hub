@@ -122,7 +122,7 @@ test('ball-and-stick renderer hides all bond interiors behind opaque atom sphere
     return obj;
   };
   const document={createElementNS:(_ns,tag)=>createNode(tag)};
-  const ctx={document};
+  const ctx={document,displacedPositions};
   runInNewContext(source+'\nthis.renderMoleculeForTest=renderMolecule;',ctx);
   for(const molecule of MOLECULES){
     for(const mode of molecule.modes){
