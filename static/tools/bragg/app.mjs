@@ -1,10 +1,10 @@
-import { bragg, squareLatticeSpacing, compareTwoPlaneInterference, VERSION } from "./model.mjs";
+import { bragg, squareLatticeSpacing, compareTwoPlaneInterference } from "./model.mjs";
 
   const $=id=>document.getElementById(id);
   const number=id=>$(id).value.trim()===""?NaN:Number($(id).value);
   const fmt=x=>Number(x.toFixed(2)).toFixed(2);
   const fmtPath=x=>Number(x.toFixed(4)).toString();
-  let result=null, guided=true, latestPlane=null, previousGuided=null, previousLatticeA=null;
+  let result=null, guided=true, previousGuided=null, previousLatticeA=null;
 
   function drawLattice(p){
     const {a,h,k,d}=p, step=a*8.6, cx=380,cy=203;
@@ -192,9 +192,8 @@ import { bragg, squareLatticeSpacing, compareTwoPlaneInterference, VERSION } fro
         const a=number("latticeA");
         if(a<2||a>12)throw Error("Choose a square-lattice parameter between 2 and 12 Å.");
         plane=squareLatticeSpacing({a,plane:$("planeFamily").value});
-        latestPlane=plane;
         drawLattice(plane);
-      }else latestPlane=null;
+      }
       result=bragg({
         mode:guided?"spacing":$("mode").value,
         value:guided?plane.d:number("value"),wavelength:lambda,
@@ -214,7 +213,6 @@ import { bragg, squareLatticeSpacing, compareTwoPlaneInterference, VERSION } fro
       $("theta-out").textContent="—";
       $("d-out").textContent=plane?fmt(plane.d):"—";
       $("q-out").textContent="—";
-      latestPlane=plane;
     }
     if(guided&&plane){
       $("takeawayTitle").textContent=result?"What changed — and why?":"No possible first-order Bragg angle";
@@ -251,7 +249,6 @@ import { bragg, squareLatticeSpacing, compareTwoPlaneInterference, VERSION } fro
     }
     drawRay(result);
     drawInterference(result);
-    $("export").disabled=!result;
   }
 
   for(const id of ["value","wavelength","order"]){
@@ -301,21 +298,6 @@ import { bragg, squareLatticeSpacing, compareTwoPlaneInterference, VERSION } fro
     $("latticeA").value=4;$("latticeSlider").value=4;$("planeFamily").value="10";
     $("wavelength").value=1.5406;$("preset").value="1.5406";$("order").value=1;
     previousGuided=null;update();
-  });
-  $("export").addEventListener("click",()=>{
-    if(!result)return;
-    const record={
-      tool:"Frameworked Bragg explorer",version:VERSION,
-      units:{spacing:"Å",wavelength:"Å",angles:"degrees",q:"Å^-1"},
-      ...result,
-      model:"Geometric Bragg diffraction condition, not intensity or structure factor",
-      guidedSquareLattice:guided&&latestPlane?
-        {aAngstrom:latestPlane.a,planeFamily:latestPlane.plane,h:latestPlane.h,k:latestPlane.k}:null
-    };
-    const url=URL.createObjectURL(new Blob([JSON.stringify(record,null,2)],{type:"application/json"}));
-    const a=document.createElement("a");
-    a.href=url;a.download="bragg-calculation.json";a.click();
-    setTimeout(()=>URL.revokeObjectURL(url),1000);
   });
   update();
 
