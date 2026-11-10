@@ -69,3 +69,55 @@ test("scan is attached without removing the existing Bragg ray and disclosures",
   assert.match(html, /src="\.\/scan-view\.mjs"/);
   assert.match(html, /not an experimental PXRD pattern/i);
 });
+
+
+test("detector slider, lattice update, snap-to-peak and advanced mode recalculate the scan", async () => {
+  const defaults = {
+    wavelength: "1.5406", latticeA: "4", planeFamily: "10",
+    mode: "spacing", value: "3", order: "1",
+    scanTwoTheta: "22.2"
+  };
+  const nodes = new Map();
+  function el(id) {
+    if (!nodes.has(id)) {
+      const node = {
+        value: defaults[id] ?? "", open: false, hidden: false,
+        disabled: false, textContent: "", innerHTML: "", handlers: {},
+        addEventListener(event, fn) {
+          (this.handlers[event] ||= []).push(fn);
+        }
+      };
+      nodes.set(id, node);
+    }
+    return nodes.get(id);
+  }
+  globalThis.document = { getElementById: el };
+  try {
+    await import("../static/tools/bragg/scan-view.mjs");
+    assert.match(el("scanPhasors").innerHTML, /N = 8/);
+    assert.match(el("scanIntensity").innerHTML, /stroke="#084b9e"/);
+    assert.match(el("scanPeak").textContent, /22\.21°/);
+
+    const initial = el("scanResponse").textContent;
+    el("scanTwoTheta").value = "45";
+    for (const fn of el("scanTwoTheta").handlers.input) fn();
+    assert.equal(el("scanTwoThetaValue").textContent, "45.0°");
+    assert.notEqual(el("scanResponse").textContent, initial);
+
+    el("latticeA").value = "5";
+    for (const fn of el("latticeA").handlers.input) fn();
+    assert.match(el("scanPeak").textContent, /17\.72°/);
+    // Once the visitor manually scans, do not silently move their detector.
+    assert.equal(el("scanTwoThetaValue").textContent, "45.0°");
+
+    for (const fn of el("scanSnap").handlers.click) fn();
+    assert.equal(el("scanTwoThetaValue").textContent, "17.7°");
+
+    el("advancedPanel").open = true;
+    for (const fn of el("advancedPanel").handlers.toggle) fn();
+    assert.match(el("scanContext").textContent, /advanced calculation/);
+    assert.equal(el("scanPanels").hidden, false);
+  } finally {
+    delete globalThis.document;
+  }
+});
