@@ -1108,3 +1108,138 @@ footer {
   .bragg-scan-figure { padding: 12px 9px 10px; }
   .bragg-scan-figure-title { min-height: auto; }
 }
+
+
+/* Connected Bragg lesson: one angle control above a synchronized ray/plot pair.
+   Earlier separate-card selectors are retained harmlessly for older previews. */
+.bragg-compact .visuals-grid,
+.bragg-compact .visuals-grid.advanced-layout {
+  display: grid;
+  grid-template-columns: repeat(2,minmax(0,1fr));
+  align-items: start;
+  gap: 14px;
+  margin: 0 0 16px;
+}
+.bragg-compact .visuals-grid .bragg-lattice-details {
+  grid-column: 1 / -1;
+  min-width: 0;
+}
+.bragg-compact .visuals-grid .scan-plot-pane {
+  min-width: 0;
+  max-width: none;
+  margin: 0;
+  background: #fff;
+  border: 1px solid #cbd8e8;
+  display: flex;
+  flex-direction: column;
+}
+.bragg-compact .visuals-grid .scan-plot-pane #scanIntensity {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: none;
+  flex: 0 0 auto;
+  padding: 2px 8px 0;
+  box-sizing: border-box;
+}
+.bragg-compact .visuals-grid .scan-plot-pane figcaption {
+  font: 12px/1.5 Libron,Georgia,serif;
+  background: #fff;
+  color: #465e79;
+  padding: 9px 13px 13px;
+  flex: 0 0 auto;
+}
+.bragg-compact .visuals-grid .scan-plot-pane #scanPanels {
+  min-width: 0;
+  padding: 0 3px;
+}
+.bragg-compact .bragg-scan-controls {
+  margin: 2px 0 14px;
+  border-left: 4px solid var(--blue);
+  padding: 12px 15px 12px;
+}
+.bragg-compact .bragg-scan-peak-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  max-width: 100%;
+}
+.bragg-compact .bragg-scan-peak-actions label {
+  font: 700 12px/1.35 system-ui,-apple-system,"Segoe UI",sans-serif;
+  color: var(--navy);
+}
+.bragg-compact .bragg-scan-peak-actions select {
+  min-width: 116px;
+  max-width: 190px;
+  padding: 7px 8px;
+  border: 1.5px solid var(--navy);
+  border-radius: 2px;
+  background: white;
+  color: var(--navy);
+  font: 700 12px/1.35 system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+.bragg-compact .bragg-scan-peak-actions select:focus-visible {
+  outline: 3px solid var(--red);
+  outline-offset: 3px;
+}
+.bragg-compact .scan-plot-pane .bragg-scan-legend {
+  padding: 1px 11px 10px;
+  gap: 6px 11px;
+}
+.bragg-compact .scan-plot-pane .bragg-scan-readout {
+  margin: 0 10px 10px;
+  padding: 10px 12px;
+}
+.bragg-compact .bragg-phase-details {
+  margin: 0 10px 11px;
+  padding: 8px 0;
+  border-block: 1px solid #d1deed;
+  background: #fff;
+}
+.bragg-compact .bragg-phase-details summary {
+  cursor: pointer;
+  font: 700 13px/1.45 Libron,Georgia,serif;
+  color: var(--blue);
+}
+.bragg-compact .bragg-phase-details svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 240px;
+  flex: 0 0 auto;
+  margin: 10px 0;
+}
+.bragg-compact .bragg-phase-details p {
+  color: #4d667f;
+  margin: 0;
+  font: 12px/1.5 Libron,Georgia,serif;
+}
+.bragg-compact .bragg-scan-caveat {
+  margin: 4px 0 16px;
+}
+@media(max-width: 1180px) {
+  .bragg-compact .visuals-grid,
+  .bragg-compact .visuals-grid.advanced-layout {
+    grid-template-columns: minmax(0,1fr);
+  }
+}
+@media(max-width: 620px) {
+  .bragg-compact .bragg-scan-control-foot {
+    align-items: center;
+    gap: 8px;
+  }
+  .bragg-compact .bragg-scan-peak-actions {
+    gap: 6px;
+    flex: 1 1 auto;
+  }
+  .bragg-compact .bragg-scan-peak-actions label {
+    flex-basis: 100%;
+    text-align: center;
+  }
+  .bragg-compact .bragg-scan-peak-actions select {
+    min-width: 110px;
+  }
+  .bragg-compact .bragg-scan-peak { font-size: 12px; }
+}
