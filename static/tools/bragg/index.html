@@ -34,7 +34,7 @@
         <section class="intro bragg-intro">
           <p class="eyebrow">TOOLS / DIFFRACTION</p>
           <h1>Bragg’s law<span>.</span></h1>
-          <p class="bragg-deck">Change the spacing between lattice planes and watch the diffraction angle respond.</p>
+          <p class="bragg-deck">Scan the scattering angle and see how lattice spacing shifts the directions where scattered waves reinforce.</p>
           <div class="bragg-equation math-display" aria-label="Bragg's law: n lambda equals two d sine theta">
             <math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>n</mi><mi>λ</mi><mo>=</mo><mn>2</mn><mi>d</mi><mi mathvariant="normal">sin</mi><mo>⁡</mo><mi>θ</mi></mrow></math>
             <span>Here, <strong>d</strong> is plane spacing, <strong>λ</strong> is X-ray wavelength, and the diffractometer reports <strong>2θ</strong>. Scan that angle below, or change <strong>d</strong> to move the predicted Bragg conditions.</span>
@@ -45,7 +45,7 @@
           <section class="controls" aria-label="Bragg inputs">
             <h2>Conditions</h2>
             <div class="guided-controls" id="guidedControls">
-              <p class="activity-prompt">Drag the <strong>a</strong> slider above the figure. Choose a plane family to see how the plane spacing <strong>d</strong> changes.</p>
+              <p class="activity-prompt">Scan <strong>2θ</strong> in the main experiment. Adjust <strong>a</strong> or the plane family to move the predicted Bragg conditions.</p>
               <div class="field">
                 <label for="planeFamily">Plane family</label>
                 <select id="planeFamily">
@@ -115,7 +115,7 @@
             <div class="experiment-heading">
               <div><p class="eyebrow">LIVE DIFFRACTION</p><h2>Scan the scattering angle</h2></div>
             </div>
-            <p class="experiment-helper" id="experimentHelper">Move the slider to change the plane spacing.</p>
+            <p class="experiment-helper" id="experimentHelper">Sweep the detector angle to compare scattering and interference.</p>
             <p id="error" class="error" role="alert"></p>
             <div id="results">
               <div class="readouts readouts-bragg" id="readouts" aria-live="polite">
