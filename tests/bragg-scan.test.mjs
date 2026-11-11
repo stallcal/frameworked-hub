@@ -6,6 +6,81 @@ import {
   SCAN_MIN_ANGLE, SCAN_MAX_ANGLE
 } from "../static/tools/bragg/scan-model.mjs";
 
+import {
+  PXRD_EXAMPLE_A, PXRD_EXAMPLE_LAMBDA, cubicReflection,
+  simpleCubicExamples, spacingFromTwoTheta
+} from "../static/tools/bragg/pxrd-model.mjs";
+
+test("primitive cubic (100), (110), (111) and (200) spacings yield correct geometric positions", () => {
+  assert.equal(PXRD_EXAMPLE_A, 4);
+  assert.equal(PXRD_EXAMPLE_LAMBDA, 1.5406);
+  const peaks = simpleCubicExamples();
+  assert.deepEqual(peaks.map(p => p.label), ["(100)", "(110)", "(111)", "(200)"]);
+  const expectedD = [4, 4 / Math.sqrt(2), 4 / Math.sqrt(3), 2];
+  const expectedTwoTheta = [22.20619307666478,31.607375344652095,38.96873821328758,45.306105520893105];
+  peaks.forEach((p, index) => {
+    assert.ok(Math.abs(p.d-expectedD[index]) < 1e-10);
+    assert.ok(Math.abs(p.twoTheta-expectedTwoTheta[index]) < 1e-10);
+    assert.ok(p.twoTheta > 0 && p.twoTheta < 180);
+  });
+  // Higher orders of (100) are conventionally indexed as (200), etc.
+  assert.ok(Math.abs(peaks[3].twoTheta -
+    360 / Math.PI * Math.asin(2 * PXRD_EXAMPLE_LAMBDA / (2 * PXRD_EXAMPLE_A))) < 1e-10);
+});
+
+test("measured PXRD angle maps to interplanar spacing and not pore diameter", () => {
+  const d = spacingFromTwoTheta({ twoTheta: 5, wavelength: 1.5406 });
+  assert.ok(Math.abs(d-17.659578607748895) < 1e-10);
+  const recovered = cubicReflection({ a: 4, h: 1, k: 0, l: 0, wavelength: 1.5406 });
+  assert.ok(Math.abs(spacingFromTwoTheta({ twoTheta: recovered.twoTheta, wavelength: 1.5406 }) - 4) < 1e-12);
+  for (const angle of [0,180,NaN,-5,181]) {
+    assert.throws(() => spacingFromTwoTheta({ twoTheta: angle, wavelength: 1.5406 }));
+  }
+  assert.throws(() => spacingFromTwoTheta({ twoTheta: 5, wavelength: 0 }));
+  assert.throws(() => cubicReflection({ a: 4, wavelength: 1.5406, h: 0, k: 0, l: 0 }));
+});
+
+test("the PXRD bridge is optional and explicitly distinguishes geometric from experimental intensities", () => {
+  const html = readFileSync(new URL("../static/tools/bragg/index.html",import.meta.url),"utf8");
+  assert.match(html, /<details class="bragg-pxrd-bridge" id="pxrdBridge">/);
+  assert.match(html, /separate example from the 2D square-lattice model/);
+  assert.match(html, /not predicted experimental intensities/i);
+  assert.match(html, /id="pxrdMeasuredAngle"/);
+  assert.match(html, /id="pxrdMeasuredSpacing"/);
+  assert.match(html, /id="braggModelLine"/);
+  assert.match(html, /src="\.\/pxrd-view\.mjs"/);
+  assert.ok(html.indexOf('id="pxrdBridge"') > html.indexOf('id="crystalSettings"'));
+});
+
+test("PXRD illustration renders indexed positions and converts a changed measured angle", async () => {
+  const defaults = { pxrdMeasuredAngle: "5.00" };
+  const nodes = new Map();
+  const el = id => {
+    if (!nodes.has(id)) {
+      const node = { value: defaults[id] ?? "", innerHTML: "", textContent: "", handlers: {},
+        addEventListener(type, fn) { (this.handlers[type] ||= []).push(fn); } };
+      nodes.set(id,node);
+    }
+    return nodes.get(id);
+  };
+  globalThis.document = {getElementById:el};
+  try {
+    await import("../static/tools/bragg/pxrd-view.mjs");
+    assert.match(el("pxrdPositionChart").innerHTML, /No intensities/);
+    assert.match(el("pxrdReflectionRows").innerHTML, /\(111\)/);
+    assert.equal(el("pxrdMeasuredSpacing").textContent, "17.66 Å");
+    el("pxrdMeasuredAngle").value = "22.20619307666478";
+    el("pxrdMeasuredAngle").handlers.input[0]();
+    assert.equal(el("pxrdMeasuredSpacing").textContent,"4.00 Å");
+    el("pxrdMeasuredAngle").value = "";
+    el("pxrdMeasuredAngle").handlers.change[0]();
+    assert.equal(el("pxrdMeasuredSpacing").textContent,"—");
+    assert.match(el("pxrdConversionError").textContent,/greater than 0°/);
+  } finally {
+    delete globalThis.document;
+  }
+});
+
 const spacing = 4, wavelength = 1.5406;
 const predictedTwoTheta = 360 / Math.PI * Math.asin(wavelength / (2 * spacing));
 
