@@ -49,19 +49,25 @@ function updateBraggChoices({ peaks, totalOrders, visibleOrders, truncated }) {
           p.order + ' · ' + fmt(p.twoTheta, 1) + '°</option>').join("")
       : '<option value="">No Bragg angle in scan</option>';
     lastOptionsKey = key;
+    el("scanPeakButtons").innerHTML = peaks.length
+      ? peaks.slice(0, 8).map(p =>
+        '<button type="button" class="scan-peak-button" data-order="' +
+        p.order + '" aria-label="Jump to order ' + p.order + ' at ' +
+        fmt(p.twoTheta, 1) + ' degrees">n=' + p.order +
+        ' <span>' + fmt(p.twoTheta, 1) + '°</span></button>'
+      ).join("")
+      : '<span class="scan-no-peak">No predicted peaks</span>';
   }
   selector.value = peaks.length ? String(selectedOrder) : "";
   selector.disabled = !peaks.length;
   el("scanSnap").disabled = !peaks.length;
   const summary = peaks.length
-    ? (truncated ? "Showing " + peaks.length + " of " + visibleOrders : String(peaks.length)) + " geometric Bragg " +
-      (peaks.length === 1 ? "condition" : "conditions") +
-      " in the scan: " +
-      peaks.map(p => "n=" + p.order + " at " + fmt(p.twoTheta) + "°").join(" · ") + "."
-    : "No geometric Bragg maximum lies between 2° and 178° for this spacing and wavelength.";
-  el("scanPeak").textContent = summary + (truncated
-    ? " A representative subset is shown; narrow peaks may be under-resolved." : "") +
-    " Higher orders are not guaranteed experimental reflections.";
+    ? (truncated ? "Showing " + peaks.length + " of " + visibleOrders : String(peaks.length)) +
+      (visibleOrders === 1 ? " predicted reinforcement angle" : " predicted reinforcement angles") +
+      " · marked below."
+    : "No Bragg condition is reachable within the selected scan range.";
+  el("scanPeak").textContent = summary +
+    (truncated ? " Very close peaks are not fully resolved." : "");
 }
 
 function drawRay(selectedAngle, spacing, isPeak) {
@@ -114,12 +120,7 @@ function drawRay(selectedAngle, spacing, isPeak) {
         '" font-size="18" font-weight="800" fill="#084b9e">θ</text>' +
       '<text x="' + (A.x + r + 12) + '" y="' + (A.y + 8) +
         '" font-size="18" font-weight="800" fill="#9e382e">2θ</text>' +
-      '<rect x="33" y="303" width="452" height="29" rx="3" fill="#fff" opacity=".96"/>' +
-      '<text x="42" y="323" font-size="13" fill="#1c3049">' +
-        (isPeak ? "Geometric Bragg reinforcement" :
-          "Selected angle: not an integer-order Bragg condition") +
-      '</text>' +
-    '</g>';
+      '</g>';
 }
 
 const pxy = (x, y) => fmt(x) + " " + fmt(y);
@@ -151,6 +152,11 @@ function drawPlot(points, measured, selectedAngle, peaks) {
       svg.push('<text x="' + px +
         '" y="14" text-anchor="middle" font-size="11" fill="#167446">n=' + p.order + '</text>');
     }
+    svg.push('<circle cx="' + px + '" cy="' + fmt(y(1)) +
+      '" r="7" stroke="#fff" stroke-width="1.5" fill="#089e4b" ' +
+      'class="scan-peak-marker" role="button" tabindex="0" data-order="' + p.order +
+      '" aria-label="Go to Bragg order ' + p.order +
+      ' at ' + fmt(p.twoTheta, 1) + ' degrees" />');
   }
   const px = fmt(x(selectedAngle)), py = fmt(y(measured.normalizedIntensity));
   svg.push('<line x1="' + px + '" y1="20" x2="' + px +
@@ -217,16 +223,21 @@ function render() {
     drawPlot(curve, result, selectedAngle, peaks);
     drawPhasors(result);
     el("scanTwoThetaValue").textContent = fmt(selectedAngle, 1) + "°";
+    const fraction = result.normalizedIntensity;
+    const strength = fraction * 100;
+    el("scanStatus").textContent = isPeak && fraction > .9
+      ? "Waves reinforce here"
+      : fraction < .05 ? "Waves nearly cancel"
+      : fraction < .4 ? "Weak interference"
+      : "Partial reinforcement";
     el("scanResponse").textContent =
-      "Path difference between adjacent planes: Δ = " +
-      fmt(result.pathDifference, 3) + " Å = " + fmt(result.cycles, 3) +
-      "λ. The normalized " + DEFAULT_PLANE_COUNT + "-plane response is " +
-      fmt(result.normalizedIntensity * 100, 1) +
-      "% of its ideal coherent maximum." +
-      (isPeak ? " The selected angle meets an integer-order Bragg condition." : "");
-    el("scanContext").textContent = guided
-      ? "d = " + fmt(spacing) + " Å, defined by the selected square-lattice plane family."
-      : "d = " + fmt(spacing) + " Å, inferred from the advanced Bragg calculation.";
+      "Relative interference: " + fmt(strength, 1) + "% of this ideal model's maximum.";
+    el("scanContext").textContent =
+      "Adjacent-plane path difference Δ = " + fmt(result.pathDifference, 3) +
+      " Å = " + fmt(result.cycles, 3) + "λ; " +
+      (guided ? "d = " + fmt(spacing) + " Å for the selected square-lattice plane family."
+              : "d = " + fmt(spacing) + " Å inferred from the advanced Bragg calculation.") +
+      " Blue vectors are contributions, not literal ray paths.";
     el("scanError").textContent = "";
     el("scanPanels").hidden = false;
   } catch (error) {
@@ -242,10 +253,32 @@ el("scanTwoTheta").addEventListener("input", () => {
   followPeak = false;
   render();
 });
-el("scanPeakSelect").addEventListener("change", () => {
-  selectedOrder = Number(el("scanPeakSelect").value);
+function jumpToOrder(order) {
+  if (!lastPeaks.some(p => p.order === order)) return;
+  selectedOrder = order;
   followPeak = true;
   render();
+}
+// SVG peak markers are pointer- and keyboard-operable. Buttons below the
+// plot provide appropriately sized touch targets and accessible alternatives.
+el("scanIntensity").addEventListener("click", event => {
+  const order = Number(event.target?.getAttribute?.("data-order"));
+  if (order > 0) jumpToOrder(order);
+});
+el("scanIntensity").addEventListener("keydown", event => {
+  if (event.key !== "Enter" && event.key !== " ") return;
+  const order = Number(event.target?.getAttribute?.("data-order"));
+  if (order > 0) {
+    event.preventDefault();
+    jumpToOrder(order);
+  }
+});
+el("scanPeakButtons").addEventListener("click", event => {
+  const target = event.target?.closest?.("[data-order]");
+  if (target) jumpToOrder(Number(target.getAttribute("data-order")));
+});
+el("scanPeakSelect").addEventListener("change", () => {
+  jumpToOrder(Number(el("scanPeakSelect").value));
 });
 el("scanSnap").addEventListener("click", () => {
   if (!lastPeaks.length) return;
