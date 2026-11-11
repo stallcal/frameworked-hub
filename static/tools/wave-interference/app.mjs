@@ -55,15 +55,15 @@ function explanation(phi,a2,result) {
   if(a2===0) return ["Only wave A is present",
     "Wave B has zero amplitude, so adding it does not change wave A."];
   if(inPhase) return ["Constructive interference",
-    "The waves are in phase: their amplitudes add at every position."];
+    "The waves are in phase, so their peaks and troughs line up and their amplitudes add."];
   if(opposite&&equal) return ["Complete destructive interference",
-    "The equal-amplitude waves are opposite in phase. Their displacements cancel at every position."];
+    "The waves have equal amplitudes and are 180° out of phase. Their peaks and troughs cancel completely."];
   if(opposite) return ["Destructive interference",
-    "The waves are opposite in phase, but their amplitudes differ, leaving a resultant of "+fmt(result)+"."];
+    "The waves are 180° out of phase, but their amplitudes differ. A smaller wave remains in the sum."];
   if(phi===90||phi===270) return ["Partial interference",
-    "A quarter-cycle phase offset produces a resultant between the reinforcing and opposing limits."];
+    "A 90° phase difference gives a combined amplitude between the fully in-phase and fully out-of-phase cases."];
   return ["Partial interference",
-    "The fixed phase difference produces a resultant with an intermediate amplitude: neither complete reinforcement nor complete cancellation."];
+    "Changing the phase difference changes the amplitude of the combined wave."];
 }
 
 function render() {
@@ -77,8 +77,8 @@ function render() {
   const [title,body]=explanation(phi,a2,r);
   byId("observationTitle").textContent=title;
   byId("observationText").textContent=body+
-    " Relative path offset: ΔL/λ = "+fmt(phaseToPathDifference(phi))+
-    " (modulo one wavelength).";
+    " Equivalent extra path: "+fmt(phaseToPathDifference(phi))+
+    " wavelengths (modulo one wavelength).";
   for(const button of presetButtons){
     button.setAttribute("aria-pressed",String(Number(button.dataset.phase)===phi));
   }
