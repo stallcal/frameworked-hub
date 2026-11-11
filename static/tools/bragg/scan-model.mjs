@@ -81,13 +81,26 @@ export function predictedBraggOrders({
       !Number.isInteger(limit) || limit < 1 || limit > 100) {
     throw Error("Invalid plane spacing, wavelength, scan bounds or peak limit.");
   }
-  const totalOrders = Math.max(0, Math.floor(2 * spacing / wavelength + 1e-12));
-  const peaks = [];
-  for (let order = 1; order <= Math.min(totalOrders, limit); order++) {
-    const sine = order * wavelength / (2 * spacing);
-    if (sine > 1 + 1e-12) break;
-    const twoTheta = 360 / Math.PI * Math.asin(Math.min(1, sine));
-    if (twoTheta >= minAngle && twoTheta <= maxAngle) peaks.push({ order, twoTheta });
+  const ratio = 2 * spacing / wavelength;
+  if (!Number.isFinite(ratio) || ratio > 1e9) {
+    throw Error("Too many orders to resolve with this idealized scan; increase λ or decrease d.");
   }
-  return { peaks, totalOrders, truncated: totalOrders > limit };
+  const totalOrders = Math.max(0, Math.floor(ratio + 1e-12));
+  const first = Math.max(1, Math.ceil(ratio * Math.sin(minAngle * Math.PI / 360) - 1e-12));
+  const last = Math.min(totalOrders, Math.floor(ratio * Math.sin(maxAngle * Math.PI / 360) + 1e-12));
+  const visibleOrders = Math.max(0, last - first + 1);
+  const count = Math.min(limit, visibleOrders);
+  const truncated = visibleOrders > count;
+  const peaks = [];
+  for (let index = 0; index < count; index++) {
+    // When there are too many orders to label, show a representative subset
+    // spanning the entire angular range instead of falsely returning no peaks.
+    const order = truncated
+      ? first + Math.round(index * (visibleOrders - 1) / Math.max(1, count - 1))
+      : first + index;
+    const sine = Math.min(1, order / ratio);
+    const twoTheta = 360 / Math.PI * Math.asin(sine);
+    peaks.push({ order, twoTheta });
+  }
+  return { peaks, totalOrders, visibleOrders, truncated };
 }
