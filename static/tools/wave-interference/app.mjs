@@ -59,7 +59,7 @@ function explanation(phi,a2,result) {
   if(opposite&&equal) return ["Complete destructive interference",
     "Equal waves at 180° cancel completely."];
   if(opposite) return ["Destructive interference",
-    "At 180°, unequal amplitudes leave a remainder."];
+    "The waves oppose, but unequal amplitudes prevent complete cancellation."];
   if(phi===90||phi===270) return ["Partial interference",
     "A quarter-cycle shift produces partial interference."];
   return ["Partial interference",
