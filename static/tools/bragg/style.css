@@ -1243,3 +1243,250 @@ footer {
   }
   .bragg-compact .bragg-scan-peak { font-size: 12px; }
 }
+
+
+/* Focus-first Bragg lesson (PR #46 UX refinement).
+   The detector slider and two linked pictures are the default teaching view. */
+.bragg-compact .workspace {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  max-width: none;
+}
+.bragg-compact .visual {
+  order: 0;
+  width: 100%;
+  border: 0;
+  padding: clamp(18px,2.4vw,30px);
+  box-sizing: border-box;
+}
+.bragg-compact .experiment-heading { margin: 0 0 4px; }
+.bragg-compact .experiment-heading h2 {
+  font-size: clamp(22px,2.7vw,31px);
+  margin: 2px 0 5px;
+}
+.bragg-compact .experiment-helper {
+  margin-bottom: 13px;
+  max-width: 760px;
+  font-size: 14px;
+}
+.bragg-compact .bragg-scan-controls {
+  background: #f0f5fd;
+  border: 1px solid #b7cae3;
+  border-left: 4px solid var(--blue);
+  padding: 12px clamp(12px,2vw,23px) 9px;
+  margin: 0 0 13px;
+}
+.bragg-compact .bragg-scan-controls input[type="range"] {
+  accent-color: var(--blue);
+  height: 38px;
+  margin-top: 5px;
+  margin-bottom: 0;
+}
+.bragg-compact .bragg-scan-control-foot { font-size: 12px; }
+.bragg-compact .bragg-scan-peak {
+  font-size: 12px;
+  color: #516981;
+  margin: 5px 0 0;
+}
+.bragg-compact .visuals-grid,
+.bragg-compact .visuals-grid.advanced-layout {
+  display: grid;
+  grid-template-columns: repeat(2,minmax(0,1fr));
+  gap: 13px;
+  align-items: start;
+  margin: 0 0 11px;
+}
+.bragg-compact .visuals-grid .ray-pane,
+.bragg-compact .visuals-grid .scan-plot-pane {
+  min-width: 0;
+  max-width: none;
+  border: 1px solid #b7c9de;
+  background: #fff;
+  box-shadow: none;
+}
+.bragg-compact .visuals-grid .ray-pane figcaption,
+.bragg-compact .visuals-grid .scan-plot-pane figcaption {
+  font-size: 11px;
+  line-height: 1.35;
+  padding: 5px 12px 10px;
+  border: 0;
+  color: #62758c;
+}
+.bragg-compact .ray-pane #geometry { max-height: 380px; }
+.bragg-compact .scan-plot-pane #scanIntensity {
+  max-height: 330px;
+  padding: 0 6px;
+}
+.bragg-compact .scan-plot-pane .bragg-scan-legend {
+  margin: 0;
+  padding: 0 11px 6px;
+  gap: 6px 13px;
+  font-size: 11px;
+}
+.bragg-compact .scan-plot-pane .bragg-scan-readout {
+  padding: 11px 13px;
+  margin: 3px 10px 9px;
+  border: 0;
+  border-left: 3px solid var(--blue);
+  box-shadow: none;
+  background: #f0f5fd;
+}
+.bragg-compact .scan-plot-pane .bragg-scan-readout strong {
+  font-size: 16px;
+  color: var(--navy);
+}
+.bragg-compact .scan-plot-pane .bragg-scan-readout p {
+  margin: 3px 0 0;
+  font: 13px/1.5 Libron, Georgia, serif;
+  color: #415b75;
+}
+.bragg-compact .scan-peak-buttons {
+  display: flex;
+  gap: 6px;
+  padding: 0 10px 8px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.bragg-compact .scan-peak-button {
+  color: var(--blue);
+  background: #f4f8fe;
+  border: 1px solid #adc4df;
+  border-radius: 3px;
+  cursor: pointer;
+  font: 700 12px/1.3 system-ui,-apple-system,"Segoe UI",sans-serif;
+  padding: 8px 9px;
+  min-height: 37px;
+}
+.bragg-compact .scan-peak-button span { font-weight: 400; color: #516981; }
+.bragg-compact .scan-peak-button:hover,
+.bragg-compact .scan-peak-button:focus-visible {
+  color: #fff;
+  background: var(--blue);
+  outline-offset: 2px;
+}
+.bragg-compact .scan-peak-button:hover span,
+.bragg-compact .scan-peak-button:focus-visible span { color: #fff; }
+.bragg-compact .scan-peak-marker {
+  cursor: pointer;
+  outline-offset: 3px;
+}
+.bragg-compact .scan-peak-marker:focus-visible {
+  stroke: var(--navy);
+  stroke-width: 4;
+}
+.bragg-compact .scan-no-peak { font: 12px/1.5 Libron,Georgia,serif; color: #596c83; }
+.bragg-compact .scan-peak-jump {
+  margin: 0 10px 8px;
+  border-top: 1px solid #d5e0ee;
+  padding: 6px 0 0;
+}
+.bragg-compact .scan-peak-jump > summary {
+  font: 600 12px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif;
+  color: var(--blue);
+  cursor: pointer;
+}
+.bragg-compact .scan-peak-jump .bragg-scan-peak-actions {
+  justify-content: flex-start;
+  padding: 7px 0 2px;
+  gap: 7px;
+}
+.bragg-compact .bragg-phase-details { margin: 0 10px 8px; }
+.bragg-compact .bragg-more-details {
+  border-top: 1px solid #cddcec;
+  margin: 12px 0 0;
+  padding-top: 9px;
+}
+.bragg-compact .bragg-more-details > summary {
+  color: var(--blue);
+  cursor: pointer;
+  font: 700 14px/1.5 Libron,Georgia,serif;
+}
+.bragg-compact .bragg-more-details .readouts-bragg { margin-top: 12px; }
+.bragg-compact .bragg-more-details .readouts-bragg .metric {
+  border: 1px solid #c8d7e8;
+  border-top: 2px solid var(--blue);
+  box-shadow: none;
+}
+.bragg-compact .bragg-more-details .readouts-bragg .metric strong {
+  font-size: clamp(18px,2vw,27px);
+}
+.bragg-compact .bragg-more-details .bragg-scan-caveat {
+  font-size: 12px;
+  margin: 7px 0;
+  color: #58708a;
+}
+.bragg-compact .bragg-more-details .teaching-takeaway {
+  margin: 10px 0 0;
+  padding: 11px 13px;
+  border: 0;
+  background: #f4f8fc;
+}
+.bragg-compact .bragg-more-details .teaching-takeaway strong { font-size: 15px; }
+.bragg-compact .bragg-more-details .teaching-takeaway p { font-size: 13px; }
+.bragg-compact .controls {
+  order: 1;
+  width: 100%;
+  padding: 0;
+  display: block;
+  border: 0;
+  border-top: 1px solid #c7d6e7;
+  box-shadow: none;
+  background: white;
+  box-sizing: border-box;
+}
+.bragg-compact .crystal-settings { margin: 0; }
+.bragg-compact .crystal-settings > summary {
+  display: list-item;
+  padding: 13px clamp(16px,2.3vw,31px);
+  color: var(--navy);
+  background: #f2f6fc;
+  cursor: pointer;
+  font: 700 15px/1.5 Libron,Georgia,serif;
+}
+.bragg-compact .crystal-settings > summary:hover,
+.bragg-compact .crystal-settings > summary:focus-visible { color: var(--blue); }
+.bragg-compact .crystal-settings-body {
+  padding: 17px clamp(16px,2.3vw,31px) 20px;
+  max-width: 850px;
+}
+.bragg-compact .crystal-settings-body > h2 {
+  color: var(--navy);
+  margin: 0 0 9px;
+  font-size: 19px;
+}
+.bragg-compact .crystal-settings-body .diagram-slider {
+  position: static;
+  max-width: 560px;
+  margin-bottom: 14px;
+}
+.bragg-compact .crystal-settings-body .bragg-lattice-details { margin: 0 0 13px; }
+.bragg-compact .crystal-settings-body .guided-controls .activity-prompt {
+  margin: 0 0 9px;
+  font-size: 13px;
+}
+.bragg-compact .crystal-settings-body .advanced-panel { margin: 12px 0; }
+@media (max-width: 960px) {
+  .bragg-compact .visuals-grid,
+  .bragg-compact .visuals-grid.advanced-layout {
+    grid-template-columns: minmax(0,1fr);
+  }
+  .bragg-compact .ray-pane #geometry { max-height: 320px; }
+}
+@media (max-width: 620px) {
+  .bragg-compact .visual { padding: 17px 12px 20px; }
+  .bragg-compact .intro.bragg-intro { padding-bottom: 14px; }
+  .bragg-compact .bragg-scan-controls {
+    position: sticky;
+    top: 5px;
+    z-index: 4;
+    box-shadow: 0 3px 10px #1c304914;
+  }
+  .bragg-compact .ray-pane #geometry { max-height: 290px; }
+  .bragg-compact .visuals-grid .ray-pane figcaption,
+  .bragg-compact .visuals-grid .scan-plot-pane figcaption { padding: 5px 10px 8px; }
+  .bragg-compact .scan-peak-button { min-height: 40px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .bragg-compact .bragg-scan-controls { scroll-behavior: auto; }
+}
