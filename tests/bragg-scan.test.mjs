@@ -2,7 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import {
-  DEFAULT_PLANE_COUNT, finitePlaneInterference, finitePlaneScan,
+  DEFAULT_PLANE_COUNT, finitePlaneInterference, finitePlaneScan, predictedBraggOrders,
   SCAN_MIN_ANGLE, SCAN_MAX_ANGLE
 } from "../static/tools/bragg/scan-model.mjs";
 
@@ -56,6 +56,24 @@ test("finite-stack model rejects unphysical lengths, angles and plane counts", (
   }
 });
 
+test("default geometry predicts five different accessible Bragg angles, not only 22 degrees", () => {
+  const { peaks, totalOrders, truncated } = predictedBraggOrders({ spacing, wavelength });
+  assert.equal(totalOrders, 5);
+  assert.equal(peaks.length, 5);
+  assert.equal(truncated, false);
+  assert.deepEqual(peaks.map(p => p.order), [1, 2, 3, 4, 5]);
+  assert.ok(Math.abs(peaks[0].twoTheta - predictedTwoTheta) < 1e-10);
+  assert.ok(peaks.every(p => p.twoTheta >= SCAN_MIN_ANGLE &&
+    p.twoTheta <= SCAN_MAX_ANGLE));
+  assert.ok(peaks.slice(1).every((p, i) => p.twoTheta > peaks[i].twoTheta));
+});
+
+test("no peaks appear if the wavelength cannot meet an integer Bragg condition", () => {
+  const { peaks, totalOrders } = predictedBraggOrders({ spacing: 4, wavelength: 20 });
+  assert.equal(peaks.length, 0);
+  assert.equal(totalOrders, 0);
+});
+
 test("scan is attached without removing the existing Bragg ray and disclosures", () => {
   const html = readFileSync(new URL("../static/tools/bragg/index.html", import.meta.url), "utf8");
   assert.match(html, /id="geometry"/);
@@ -64,6 +82,8 @@ test("scan is attached without removing the existing Bragg ray and disclosures",
   assert.match(html, /id="interferenceLesson"/);
   assert.match(html, /id="scanTwoTheta"/);
   assert.match(html, /id="scanSnap"/);
+  assert.match(html, /id="scanPeakSelect"/);
+  assert.match(html, /class="figure scan-plot-pane"/);
   assert.match(html, /id="scanPhasors"/);
   assert.match(html, /id="scanIntensity"/);
   assert.match(html, /src="\.\/scan-view\.mjs"/);
@@ -97,12 +117,16 @@ test("detector slider, lattice update, snap-to-peak and advanced mode recalculat
     assert.match(el("scanPhasors").innerHTML, /N = 8/);
     assert.match(el("scanIntensity").innerHTML, /stroke="#084b9e"/);
     assert.match(el("scanPeak").textContent, /22\.21°/);
+    assert.match(el("scanPeak").textContent, /n=5/);
+    assert.match(el("geometry").innerHTML, /Scan/);
+    assert.match(el("geometry").innerHTML, /refX="6"/);
 
     const initial = el("scanResponse").textContent;
     el("scanTwoTheta").value = "45";
     for (const fn of el("scanTwoTheta").handlers.input) fn();
     assert.equal(el("scanTwoThetaValue").textContent, "45.0°");
     assert.notEqual(el("scanResponse").textContent, initial);
+    assert.match(el("ray-angle-display").textContent, /2θ 45\.00°/);
 
     el("latticeA").value = "5";
     for (const fn of el("latticeA").handlers.input) fn();
@@ -111,7 +135,15 @@ test("detector slider, lattice update, snap-to-peak and advanced mode recalculat
     assert.equal(el("scanTwoThetaValue").textContent, "45.0°");
 
     for (const fn of el("scanSnap").handlers.click) fn();
-    assert.equal(el("scanTwoThetaValue").textContent, "17.7°");
+    const secondOrderAngle = 360 / Math.PI * Math.asin(2 * wavelength / (2 * 5));
+    assert.equal(el("scanTwoThetaValue").textContent, secondOrderAngle.toFixed(1) + "°");
+    assert.match(el("scanPeakSelect").value, /^2$/);
+    assert.match(el("ray-angle-display").textContent, /Scan/);
+    el("scanPeakSelect").value = "3";
+    for (const fn of el("scanPeakSelect").handlers.change) fn();
+    assert.equal(el("scanPeakSelect").value, "3");
+    const thirdOrderAngle = 360 / Math.PI * Math.asin(3 * wavelength / (2 * 5));
+    assert.equal(el("scanTwoThetaValue").textContent, thirdOrderAngle.toFixed(1) + "°");
 
     el("advancedPanel").open = true;
     for (const fn of el("advancedPanel").handlers.toggle) fn();
