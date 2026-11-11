@@ -12,7 +12,7 @@ const fmt = (v, places = 2) => Number(v).toFixed(places);
 let followPeak = true;
 let selectedOrder = 1;
 let lastPeaks = [];
-let lastOptionsKey = "";
+let lastOptionsKey = null;
 
 function conditions() {
   const wavelength = num("wavelength");
@@ -37,7 +37,7 @@ function conditions() {
   return { spacing, wavelength, guided };
 }
 
-function updateBraggChoices({ peaks, totalOrders, truncated }) {
+function updateBraggChoices({ peaks, totalOrders, visibleOrders, truncated }) {
   lastPeaks = peaks;
   if (!peaks.some(p => p.order === selectedOrder))
     selectedOrder = peaks.length ? peaks[0].order : 1;
@@ -54,13 +54,13 @@ function updateBraggChoices({ peaks, totalOrders, truncated }) {
   selector.disabled = !peaks.length;
   el("scanSnap").disabled = !peaks.length;
   const summary = peaks.length
-    ? peaks.length + " geometric Bragg " +
+    ? (truncated ? "Showing " + peaks.length + " of " + visibleOrders : String(peaks.length)) + " geometric Bragg " +
       (peaks.length === 1 ? "condition" : "conditions") +
       " in the scan: " +
       peaks.map(p => "n=" + p.order + " at " + fmt(p.twoTheta) + "°").join(" · ") + "."
     : "No geometric Bragg maximum lies between 2° and 178° for this spacing and wavelength.";
   el("scanPeak").textContent = summary + (truncated
-    ? " Only the first 40 orders are enumerated for this model." : "") +
+    ? " A representative subset is shown; narrow peaks may be under-resolved." : "") +
     " Higher orders are not guaranteed experimental reflections.";
 }
 
@@ -200,8 +200,8 @@ function drawPhasors(result) {
 function render() {
   try {
     const { spacing, wavelength, guided } = conditions();
-    const { peaks, totalOrders, truncated } = predictedBraggOrders({ spacing, wavelength });
-    updateBraggChoices({ peaks, totalOrders, truncated });
+    const { peaks, totalOrders, visibleOrders, truncated } = predictedBraggOrders({ spacing, wavelength });
+    updateBraggChoices({ peaks, totalOrders, visibleOrders, truncated });
     const chosen = peaks.find(p => p.order === selectedOrder);
     if (followPeak && chosen) {
       el("scanTwoTheta").value = fmt(chosen.twoTheta, 1);
