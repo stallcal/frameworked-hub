@@ -67,6 +67,7 @@ function updateBraggChoices({ peaks, totalOrders, visibleOrders, truncated }) {
       " · marked below."
     : "No Bragg condition is reachable within the selected scan range.";
   el("scanPeak").textContent = summary +
+    " All marked orders belong to the same selected plane spacing." +
     (truncated ? " Very close peaks are not fully resolved." : "");
 }
 
@@ -206,6 +207,11 @@ function drawPhasors(result) {
 function render() {
   try {
     const { spacing, wavelength, guided } = conditions();
+    el("braggModelLine").textContent = guided
+      ? "Ideal 2D square lattice · (" + el("planeFamily").value + ") plane family" +
+        " · d = " + fmt(spacing) + " Å · λ = " + fmt(wavelength, 4) + " Å"
+      : "Single-spacing interference model · d = " + fmt(spacing) +
+        " Å · λ = " + fmt(wavelength, 4) + " Å";
     const { peaks, totalOrders, visibleOrders, truncated } = predictedBraggOrders({ spacing, wavelength });
     updateBraggChoices({ peaks, totalOrders, visibleOrders, truncated });
     const chosen = peaks.find(p => p.order === selectedOrder);
