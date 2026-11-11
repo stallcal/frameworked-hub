@@ -63,7 +63,7 @@ function explanation(phi,a2,result) {
   if(phi===90||phi===270) return ["Partial interference",
     "A quarter-cycle phase offset produces a resultant between the reinforcing and opposing limits."];
   return ["Partial interference",
-    "The waves are phase-shifted, so they reinforce at some positions and oppose at others in this fixed-time sum."];
+    "The fixed phase difference produces a resultant with an intermediate amplitude: neither complete reinforcement nor complete cancellation."];
 }
 
 function render() {
