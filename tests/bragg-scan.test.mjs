@@ -186,7 +186,7 @@ test("two-wave explanation follows the core experiment, ahead of the optional PX
   assert.ok(experiment >= 0 && experiment < waves && waves < pxrd);
   assert.match(html, /class="bragg-optional interference-bridge" id="interferenceLesson"/);
   assert.match(html, /These two reference cases are calculated for the current plane spacing and wavelength/);
-  assert.match(html, /not<\\/strong> the current position of the detector-angle slider/);
+  assert.match(html, /not<\/strong> the current position of the detector-angle slider/);
   assert.doesNotMatch(html, /<details class="bragg-optional interference-bridge" id="interferenceLesson" open/);
 });
 
