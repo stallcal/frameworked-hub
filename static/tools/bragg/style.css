@@ -1641,3 +1641,48 @@ footer {
   .bragg-compact .bragg-pxrd-body { padding: 0 12px 16px; }
   .bragg-compact .bragg-pxrd-grid > div { padding: 12px; }
 }
+
+
+/* The two-wave explanation now follows the live Bragg experiment.
+   It invites exploration without making general wave theory a primary control. */
+.bragg-compact .interference-bridge {
+  margin-top: 15px;
+  border-color: #b5cae4;
+  border-left: 4px solid var(--blue);
+  box-shadow: none;
+}
+.bragg-compact .interference-bridge > summary {
+  padding: 13px clamp(14px,2.4vw,24px);
+  background: #f4f8fe;
+  color: var(--navy);
+}
+.bragg-compact .interference-bridge > summary .interference-bridge-title {
+  display: block;
+  font: 700 clamp(16px,1.9vw,20px)/1.4 Libron,Georgia,serif;
+}
+.bragg-compact .interference-bridge > summary .interference-bridge-teaser {
+  display: block;
+  margin-top: 2px;
+  font: 12px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif;
+  color: #4d6683;
+  font-weight: 400;
+}
+.bragg-compact .interference-bridge[open] {
+  box-shadow: none;
+}
+.bragg-compact .interference-bridge .interference-heading h2 {
+  font-size: clamp(22px,2.5vw,29px);
+}
+.bragg-compact .interference-bridge .interference-example-scope {
+  margin: 0 0 12px;
+  padding: 7px 11px;
+  border-left: 2px solid #9eb8d8;
+  background: #f5f9fe;
+  font: 12px/1.55 Libron,Georgia,serif;
+  color: #506881;
+}
+@media(max-width: 620px) {
+  .bragg-compact .interference-bridge > summary {
+    padding: 12px 14px;
+  }
+}
