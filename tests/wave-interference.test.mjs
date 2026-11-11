@@ -56,7 +56,7 @@ test("standalone tool is registered without replacing quantum superposition",()=
   assert.match(html,/src="\.\/app\.mjs"/);
   assert.match(html,/same wavelength and frequency/);
   assert.match(html,/How does the phase difference between two waves affect interference\?/);
-  assert.match(html,/Shift the phase between two waves and see how they combine/);
+  assert.match(html,/Change the phase difference to see when two waves reinforce or cancel/);
   assert.doesNotMatch(html,/Why does phase control interference\?/);
   assert.match(html,/Waves and resultant/);
   assert.match(html,/A full wavelength restores the same phase/);
