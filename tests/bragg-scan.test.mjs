@@ -147,7 +147,7 @@ test("detector slider, lattice update, snap-to-peak and advanced mode recalculat
 
     el("advancedPanel").open = true;
     for (const fn of el("advancedPanel").handlers.toggle) fn();
-    assert.match(el("scanContext").textContent, /advanced calculation/);
+    assert.match(el("scanContext").textContent, /advanced Bragg calculation/);
     assert.equal(el("scanPanels").hidden, false);
   } finally {
     delete globalThis.document;
