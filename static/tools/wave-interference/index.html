@@ -22,15 +22,15 @@
     <section class="intro" aria-labelledby="pageTitle">
       <p class="eyebrow">TOOLS / WAVES</p>
       <h1 id="pageTitle">Wave interference<span>.</span></h1>
-      <p class="deck">What happens when two waves overlap? Change their relative phase and watch their combined wave change.</p>
+      <p class="deck">Shift the phase between two waves and see how they combine.</p>
     </section>
     <section class="experiment" id="experiment" aria-labelledby="experimentTitle">
-      <div class="panel-header"><p class="eyebrow">LIVE EXPERIMENT</p><h2 id="experimentTitle">See how two waves combine.</h2></div>
-      <p class="lead">The blue and red waves have the same wavelength and frequency. The green curve shows what you get when you add them together at every position.</p>
+      <div class="panel-header"><p class="eyebrow">LIVE EXPERIMENT</p><h2 id="experimentTitle">Combine two waves.</h2></div>
+      <p class="lead">Blue and red have the same wavelength and frequency. Green shows their sum.</p>
       <div class="phase-control">
         <div class="phase-head"><label for="phase">Relative phase · φ</label><output for="phase" id="phaseValue">0°</output></div>
         <input id="phase" type="range" min="0" max="360" step="1" value="0" />
-        <div class="phase-ends"><span>0° · in phase</span><span>180° · out of phase</span><span>360° · in phase</span></div>
+        <div class="phase-ends"><span>0°</span><span>180°</span><span>360°</span></div>
         <div class="phase-presets" role="group" aria-label="Try example phase differences">
           <button type="button" data-phase="0">In phase · 0°</button>
           <button type="button" data-phase="90">Quarter-cycle · 90°</button>
@@ -38,22 +38,22 @@
         </div>
       </div>
       <figure class="plot">
-        <div class="plot-header"><strong>The two waves and their sum</strong><span>Two wavelengths · one moment in time</span></div>
+        <div class="plot-header"><strong>Waves and resultant</strong><span>One moment in time</span></div>
         <svg id="wavePlot" viewBox="0 0 850 340" role="img" aria-label="Graph of two sinusoidal waves and their point-by-point sum as relative phase changes"></svg>
         <figcaption class="legend" aria-label="Curve legend">
           <span><i class="legend-blue"></i> Wave A</span>
           <span><i class="legend-red"></i> Wave B</span>
-          <span><i class="legend-green"></i> A + B (resultant)</span>
+          <span><i class="legend-green"></i> A + B</span>
         </figcaption>
       </figure>
       <div class="observation" aria-live="polite" aria-atomic="true">
-        <div><span class="observation-label">AT THIS PHASE</span><strong id="observationTitle">Constructive interference</strong><p id="observationText"></p></div>
+        <div><strong id="observationTitle">Constructive interference</strong><p id="observationText"></p></div>
         <div class="amplitude-readout"><span>Resultant amplitude</span><output id="resultantValue">2.00</output><small>Relative units</small></div>
       </div>
       <details class="secondary-controls" id="secondaryControls">
         <summary>Change Wave B’s amplitude</summary>
         <div class="details-body">
-          <p>Wave A stays at amplitude 1. Try changing Wave B: even waves that are 180° out of phase only cancel completely when their amplitudes are equal.</p>
+          <p>Wave A stays at 1. At 180°, complete cancellation requires equal amplitudes.</p>
           <div class="amplitude-control"><label for="amplitudeB">Wave B amplitude</label><output for="amplitudeB" id="amplitudeBValue">1.00</output></div>
           <input id="amplitudeB" type="range" min="0" max="1.5" step="0.05" value="1" />
           <div class="limits"><span>0</span><span>1.5 × wave A</span></div>
@@ -64,17 +64,17 @@
     <details class="theory">
       <summary>How does the phase difference between two waves affect interference?</summary>
       <div class="theory-body">
-        <p>Our model uses two coherent waves with the same wavelength and frequency. Their amplitudes add at every position. When the waves have equal amplitudes, a 0° phase difference doubles the amplitude of their sum; a 180° difference makes them cancel completely.</p>
-        <p>When the amplitudes differ, the result is <strong>R = √(A₁² + A₂² + 2A₁A₂ cos φ)</strong>, where φ is the phase difference. At 180°, the resultant amplitude is |A₁ − A₂|, so unequal waves cannot cancel completely.</p>
-        <p>A phase difference can also arise when one wave travels farther than the other. The equivalent extra path ΔL is related to phase by <strong>φ = 360° × ΔL/λ</strong> (modulo 360°). One extra wavelength returns the waves to the same phase; half a wavelength places them 180° out of phase.</p>
-        <p>The graph is a snapshot of ideal sinusoidal wave amplitudes. It does not show wave intensity, quantum probability density, or how the waves change over time.</p>
+        <p>These waves have the same frequency and wavelength. Their amplitudes add at each point: equal waves reinforce at 0° and cancel at 180°.</p>
+        <p>For amplitudes A₁ and A₂, the resultant amplitude is <strong>R = √(A₁² + A₂² + 2A₁A₂ cos φ)</strong>. At 180°, R = |A₁ − A₂|: unequal waves do not cancel completely.</p>
+        <p>An extra path length ΔL produces a phase difference <strong>φ = 360° × ΔL/λ</strong> (modulo 360°). A full wavelength restores the same phase; half a wavelength reverses it.</p>
+        <p>Model: coherent sinusoidal waves at one instant. The curves show amplitude, not intensity or quantum probability density.</p>
       </div>
     </details>
     <section class="connections" aria-labelledby="connectionsTitle">
       <h2 id="connectionsTitle">Explore related ideas.</h2>
       <div class="connection-links">
-        <a href="/tools/bragg/"><strong>Bragg's law explorer</strong><span>Discover the diffraction angles where scattering contributions reinforce</span></a>
-        <a href="/tools/wave-superposition/"><strong>Wave superposition</strong><span>Explore a different application: quantum-state superposition and probability density</span></a>
+        <a href="/tools/bragg/"><strong>Bragg's law explorer</strong><span>See how wave reinforcement produces diffraction peaks</span></a>
+        <a href="/tools/wave-superposition/"><strong>Wave superposition</strong><span>Explore quantum-state superposition and probability density</span></a>
       </div>
     </section>
   </main>
