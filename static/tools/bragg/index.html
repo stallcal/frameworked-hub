@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="/css/frameworked-standalone-header.css" />
     <script type="module" src="./app.mjs"></script>
     <script type="module" src="./scan-view.mjs"></script>
+    <script type="module" src="./pxrd-view.mjs"></script>
   </head>
   <body class="bragg-compact">
     <a class="skip" href="#main">Skip to tool</a>
@@ -34,7 +35,7 @@
         <section class="intro bragg-intro">
           <p class="eyebrow">TOOLS / DIFFRACTION</p>
           <h1>Bragg’s law<span>.</span></h1>
-          <p class="bragg-deck">Scan the scattering angle and see how lattice spacing shifts the directions where scattered waves reinforce.</p>
+          <p class="bragg-deck">Scan the scattering angle and see how a single plane spacing controls constructive interference.</p>
           <div class="bragg-equation math-display" aria-label="Bragg's law: n lambda equals two d sine theta">
             <math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>n</mi><mi>λ</mi><mo>=</mo><mn>2</mn><mi>d</mi><mi mathvariant="normal">sin</mi><mo>⁡</mo><mi>θ</mi></mrow></math>
             <span>Here, <strong>d</strong> is plane spacing, <strong>λ</strong> is X-ray wavelength, and the diffractometer reports <strong>2θ</strong>. Scan that angle below, or change <strong>d</strong> to move the predicted Bragg conditions.</span>
@@ -47,6 +48,7 @@
               <div><p class="eyebrow">LIVE DIFFRACTION</p><h2>Scan the scattering angle</h2></div>
             </div>
             <p class="experiment-helper" id="experimentHelper">Drag the angle. Watch the ray direction and interference response change together.</p>
+            <p class="bragg-model-line" id="braggModelLine" aria-live="polite">Idealized 2D square lattice · (10) planes · d = 4.00 Å · λ = 1.5406 Å</p>
             <p id="error" class="error" role="alert"></p>
             <div id="results">
               <div class="bragg-scan-controls" id="braggScan" aria-label="Detector angle">
@@ -68,7 +70,7 @@
                   <figcaption>Incident and scattered directions. The scattering angle is 2θ.</figcaption>
                 </figure>
                 <figure class="figure scan-plot-pane" aria-labelledby="scanPlotTitle">
-                  <div class="figure-heading"><strong id="scanPlotTitle">Wave interference</strong><span>Idealized eight-plane response</span></div>
+                  <div class="figure-heading"><strong id="scanPlotTitle">Wave interference</strong><span>One plane spacing · eight contributions</span></div>
                   <p id="scanError" class="error" role="alert"></p>
                   <div id="scanPanels">
                     <svg id="scanIntensity" viewBox="0 0 640 280" role="img" aria-label="Normalized finite-plane interference from two to 178 degrees. Blue: response; green: all predicted Bragg orders; red: current detector angle."></svg>
@@ -96,7 +98,7 @@
                       <p id="scanContext">Blue vectors show phase and amplitude contributions, not literal ray paths. Their red sum gives the interference response.</p>
                     </details>
                   </div>
-                  <figcaption>Ideal geometric reinforcement. Real PXRD reflections may differ or be absent.</figcaption>
+                  <figcaption>These maxima are orders of one selected spacing—not a full powder diffraction pattern.</figcaption>
                 </figure>
               </div>
               <details class="bragg-more-details" id="braggMoreDetails">
@@ -210,6 +212,40 @@
             </details>
           </section>
         </div>
+        <details class="bragg-pxrd-bridge" id="pxrdBridge">
+          <summary>How does this connect to a real PXRD pattern?</summary>
+          <div class="bragg-pxrd-body">
+            <p>Above, the green maxima are higher-order reinforcement conditions for <strong>one spacing</strong>. A powder pattern is different: many crystal-plane families have distinct <em>d</em>-spacings, so their possible reflections occur at different 2θ positions. Peak intensities cannot be calculated from plane spacing alone.</p>
+            <div class="bragg-pxrd-grid">
+              <div class="bragg-pxrd-example">
+                <h3>Several plane families, one 2θ axis</h3>
+                <p>Illustrative <strong>3D primitive cubic geometry</strong>, a = 4.00 Å, Cu Kα₁ (λ = 1.5406 Å). This is a separate example from the 2D square-lattice model above.</p>
+                <svg id="pxrdPositionChart" viewBox="0 0 620 196" role="img" aria-label="Four geometric reflection positions for (100), (110), (111), and (200) in an idealized primitive cubic lattice; no intensities are implied"></svg>
+                <table class="pxrd-position-table">
+                  <caption>Calculated positions (not predicted experimental intensities)</caption>
+                  <thead><tr><th scope="col">Planes</th><th scope="col">d (Å)</th><th scope="col">2θ (°)</th></tr></thead>
+                  <tbody id="pxrdReflectionRows"></tbody>
+                </table>
+                <p class="pxrd-order-note">The (200) position corresponds to second-order reinforcement of (100). PXRD usually labels this as the first-order (200) reflection, using d₂₀₀ = a/2.</p>
+              </div>
+              <div class="bragg-pxrd-convert">
+                <h3>From a measured peak to a spacing</h3>
+                <p>Enter a peak position as you would read it from a PXRD pattern. This calculator uses Cu Kα₁, λ = 1.5406 Å.</p>
+                <label for="pxrdMeasuredAngle">Observed peak position · 2θ (°)</label>
+                <input type="number" id="pxrdMeasuredAngle" value="5.00" min="0.001" max="179.999" step="0.1" inputmode="decimal" />
+                <p id="pxrdConversionError" class="error" role="alert"></p>
+                <div class="pxrd-spacing-answer" aria-live="polite">
+                  <span>Calculated interplanar spacing</span>
+                  <strong id="pxrdMeasuredSpacing">—</strong>
+                  <small id="pxrdMeasuredEquation"></small>
+                </div>
+                <p>This spacing alone does <strong>not</strong> identify the material, index its (hkl) reflection, or measure a MOF pore diameter.</p>
+              </div>
+            </div>
+            <p class="pxrd-evidence-note"><strong>Model limitation:</strong> positions shown are purely geometric. Actual PXRD peak positions can be compared to these predictions, but relative intensities, absences, overlaps, peak widths and background require more structural and experimental information. A credible calculated pattern for a real MOF requires crystal-structure information (typically a CIF) and a diffraction calculation.</p>
+            <p class="pxrd-sources">Further reading: <a href="https://dictionary.iucr.org/Bragg%27s_law" target="_blank" rel="noopener noreferrer">IUCr — Bragg’s law and reflection order</a> · <a href="https://onlinelibrary.wiley.com/iucr/itc/Ha/ch3o2v0001/" target="_blank" rel="noopener noreferrer">International Tables — diffraction from powders</a>.</p>
+          </div>
+        </details>
         <details class="bragg-optional bragg-theory">
           <summary>How does Bragg's law work?</summary>
           <div class="bragg-optional-body">
