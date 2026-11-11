@@ -118,7 +118,7 @@ test("detector slider, lattice update, snap-to-peak and advanced mode recalculat
     assert.match(el("scanIntensity").innerHTML, /stroke="#084b9e"/);
     assert.match(el("scanPeak").textContent, /22\.21°/);
     assert.match(el("scanPeak").textContent, /n=5/);
-    assert.match(el("geometry").innerHTML, /Scan/);
+    assert.match(el("ray-angle-display").textContent, /Scan/);
     assert.match(el("geometry").innerHTML, /refX="6"/);
 
     const initial = el("scanResponse").textContent;
