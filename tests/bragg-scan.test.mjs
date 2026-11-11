@@ -178,6 +178,18 @@ test("scan is attached without removing the existing Bragg ray and disclosures",
 });
 
 
+test("two-wave explanation follows the core experiment, ahead of the optional PXRD bridge", () => {
+  const html = readFileSync(new URL("../static/tools/bragg/index.html", import.meta.url), "utf8");
+  const experiment = html.indexOf('id="braggActivity"');
+  const waves = html.indexOf('id="interferenceLesson"');
+  const pxrd = html.indexOf('id="pxrdBridge"');
+  assert.ok(experiment >= 0 && experiment < waves && waves < pxrd);
+  assert.match(html, /class="bragg-optional interference-bridge" id="interferenceLesson"/);
+  assert.match(html, /These two reference cases are calculated for the current plane spacing and wavelength/);
+  assert.match(html, /not<\\/strong> the current position of the detector-angle slider/);
+  assert.doesNotMatch(html, /<details class="bragg-optional interference-bridge" id="interferenceLesson" open/);
+});
+
 test("visual-first layout hides supporting data and crystal settings until requested", () => {
   const html = readFileSync(new URL("../static/tools/bragg/index.html", import.meta.url), "utf8");
   const idx = piece => html.indexOf(piece);
