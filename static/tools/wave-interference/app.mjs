@@ -1,4 +1,4 @@
-import { sampleWaves, resultantAmplitude, phaseToPathDifference } from "./model.mjs";
+import { sampleWaves, resultantAmplitude } from "./model.mjs";
 
 const byId = id => document.getElementById(id);
 const phase = byId("phase");
@@ -76,9 +76,7 @@ function render() {
   byId("resultantValue").textContent=fmt(r);
   const [title,body]=explanation(phi,a2,r);
   byId("observationTitle").textContent=title;
-  byId("observationText").textContent=body+
-    " Equivalent extra path: "+fmt(phaseToPathDifference(phi))+
-    " wavelengths (modulo one wavelength).";
+  byId("observationText").textContent=body;
   for(const button of presetButtons){
     button.setAttribute("aria-pressed",String(Number(button.dataset.phase)===phi));
   }
