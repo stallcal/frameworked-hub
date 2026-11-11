@@ -37,7 +37,7 @@
           <p class="bragg-deck">Change the spacing between lattice planes and watch the diffraction angle respond.</p>
           <div class="bragg-equation math-display" aria-label="Bragg's law: n lambda equals two d sine theta">
             <math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>n</mi><mi>λ</mi><mo>=</mo><mn>2</mn><mi>d</mi><mi mathvariant="normal">sin</mi><mo>⁡</mo><mi>θ</mi></mrow></math>
-            <span>Here, <strong>d</strong> is plane spacing, <strong>λ</strong> is X-ray wavelength, and the diffractometer reports <strong>2θ</strong>.</span>
+            <span>Here, <strong>d</strong> is plane spacing, <strong>λ</strong> is X-ray wavelength, and the diffractometer reports <strong>2θ</strong>. Scan that angle below, or change <strong>d</strong> to move the predicted Bragg conditions.</span>
           </div>
         </section>
 
@@ -113,16 +113,33 @@
           </section>
           <section class="visual" aria-label="Interactive Bragg experiment">
             <div class="experiment-heading">
-              <div><p class="eyebrow">LIVE DIFFRACTION</p><h2>Watch the angle change</h2></div>
+              <div><p class="eyebrow">LIVE DIFFRACTION</p><h2>Scan the scattering angle</h2></div>
             </div>
             <p class="experiment-helper" id="experimentHelper">Move the slider to change the plane spacing.</p>
             <p id="error" class="error" role="alert"></p>
             <div id="results">
               <div class="readouts readouts-bragg" id="readouts" aria-live="polite">
-                <div class="metric featured-metric"><span class="label">Diffraction angle · 2θ</span><strong id="angle-out">—</strong><span class="unit">degrees</span></div>
+                <div class="metric featured-metric"><span class="label">Predicted Bragg condition · 2θ</span><strong id="angle-out">—</strong><span class="unit">degrees</span></div>
                 <div class="metric spacing-metric"><span class="label">Plane spacing · d</span><strong id="d-out">—</strong><span class="unit">Å</span></div>
                 <div class="metric theta-metric"><span class="label">Bragg angle · θ</span><strong id="theta-out">—</strong><span class="unit">degrees to lattice plane</span></div>
                 <div class="metric compact-metric" id="qMetric" hidden><span class="label">Scattering vector · q</span><strong id="q-out">—</strong><span class="unit">Å⁻¹</span></div>
+              </div>
+              <div class="bragg-scan-controls" id="braggScan" aria-label="Detector angle and Bragg conditions">
+                <div class="bragg-scan-control-head">
+                  <label for="scanTwoTheta">Detector angle · 2θ</label>
+                  <output id="scanTwoThetaValue" for="scanTwoTheta">22.2°</output>
+                </div>
+                <input id="scanTwoTheta" type="range" min="2" max="178" step="0.1" value="22.2" aria-label="Scan the detector scattering angle in degrees, independent of the predicted Bragg angle" />
+                <div class="bragg-scan-control-foot">
+                  <span>2°</span>
+                  <div class="bragg-scan-peak-actions">
+                    <label for="scanPeakSelect">Geometric Bragg order</label>
+                    <select id="scanPeakSelect" aria-label="Select a predicted Bragg condition"></select>
+                    <button type="button" id="scanSnap" class="bragg-scan-snap">Next Bragg angle</button>
+                  </div>
+                  <span>178°</span>
+                </div>
+                <p id="scanPeak" class="bragg-scan-peak" aria-live="polite"></p>
               </div>
               <div class="visuals-grid" id="diagramPair">
                 <figure class="figure ray-pane" id="rayPane">
@@ -138,7 +155,30 @@
                     <div class="diagram-slider-limits" aria-hidden="true"><span>0.5 Å</span><span>10 Å</span></div>
                   </div>
                   <svg id="geometry" viewBox="0 0 520 360" role="img" aria-label="Dynamic Bragg ray construction showing incident and diffracted X-rays, angle theta, scattering angle two theta, and plane spacing"></svg>
-                  <figcaption>Blue: incident X-rays. Red: diffracted direction and angle. The ray geometry is schematic, not a literal mirror reflection.</figcaption>
+                  <figcaption>Blue: incident direction. Red: selected scattering direction. Off-Bragg scattering is still possible; these rays do not imply a measured reflection.</figcaption>
+                </figure>
+                <figure class="figure scan-plot-pane" aria-labelledby="scanPlotTitle">
+                  <div class="figure-heading"><strong id="scanPlotTitle">Interference vs. 2θ</strong><span>8-plane ideal model</span></div>
+                  <p id="scanError" class="error" role="alert"></p>
+                  <div id="scanPanels">
+                    <svg id="scanIntensity" viewBox="0 0 640 280" role="img" aria-label="Normalized finite-plane interference from two to 178 degrees. Blue: response; green: all predicted Bragg orders; red: current detector angle."></svg>
+                    <div class="bragg-scan-legend" aria-hidden="true">
+                      <span><i class="bragg-legend-blue"></i> Relative interference</span>
+                      <span><i class="bragg-legend-red"></i> Scan angle</span>
+                      <span><i class="bragg-legend-green"></i> Predicted Bragg orders</span>
+                    </div>
+                    <div class="bragg-scan-readout" aria-live="polite" aria-atomic="true">
+                      <strong>At the selected angle</strong>
+                      <p id="scanResponse"></p>
+                      <small id="scanContext"></small>
+                    </div>
+                    <details class="bragg-phase-details">
+                      <summary>How the eight scattered contributions add</summary>
+                      <svg id="scanPhasors" viewBox="0 0 500 240" role="img" aria-label="Eight equally spaced planes and the phases of their scattered contributions represented by complex phase vectors"></svg>
+                      <p>Blue vectors show phase and amplitude contributions, not physical ray paths. Their dashed red sum determines the normalized response above.</p>
+                    </details>
+                  </div>
+                  <figcaption>Peaks mark constructive reinforcement in this ideal stack. Real reflections can be weaker or systematically absent.</figcaption>
                 </figure>
                 <details class="bragg-lattice-details" id="latticeDetails">
                   <summary>See how the lattice defines plane spacing <em>d</em></summary>
@@ -149,6 +189,7 @@
                   </figure>
                 </details>
               </div>
+              <p class="bragg-scan-caveat"><strong>Scope:</strong> This is <strong>not an experimental PXRD pattern</strong>. Eight identical coherent plane contributions are summed; atomic structure factors, systematic absences, multiplicity, instrument broadening and experimental background are excluded. Higher orders represent geometric reinforcement, not guaranteed observed peaks.</p>
               <div class="teaching-takeaway" aria-live="polite" aria-atomic="true">
                 <strong id="takeawayTitle">What changed?</strong>
                 <p id="observation">Smaller plane spacing produces a larger Bragg angle at a fixed wavelength.</p>
@@ -157,52 +198,6 @@
             </div>
           </section>
         </div>
-        <section class="bragg-scan" id="braggScan" aria-labelledby="scanHeading">
-          <div class="bragg-scan-heading">
-            <p class="eyebrow">ANGLE SCAN / INTERFERENCE</p>
-            <h2 id="scanHeading">Why are some angles brighter?</h2>
-            <p>The main diagram finds a Bragg angle. Now scan the detector through other angles and watch the contributions from eight equally spaced planes reinforce or cancel.</p>
-          </div>
-          <div class="bragg-scan-controls">
-            <div class="bragg-scan-control-head">
-              <label for="scanTwoTheta">Detector angle · 2θ</label>
-              <output id="scanTwoThetaValue" for="scanTwoTheta">22.2°</output>
-            </div>
-            <input id="scanTwoTheta" type="range" min="2" max="178" step="0.1" value="22.2" aria-label="Scan detector scattering angle, two theta, in degrees" />
-            <div class="bragg-scan-control-foot">
-              <span>2°</span>
-              <button type="button" id="scanSnap" class="bragg-scan-snap">Jump to predicted Bragg angle</button>
-              <span>178°</span>
-            </div>
-            <p id="scanPeak" class="bragg-scan-peak" aria-live="polite"></p>
-          </div>
-          <p id="scanError" class="error" role="alert"></p>
-          <div id="scanPanels">
-            <div class="bragg-scan-grid">
-              <figure class="bragg-scan-figure">
-                <div class="bragg-scan-figure-title"><strong>Interference from a finite stack</strong><span>8 equal-amplitude planes</span></div>
-                <svg id="scanPhasors" viewBox="0 0 500 240" role="img" aria-label="Eight equally spaced planes and the head-to-tail complex phase vectors for their scattering contributions"></svg>
-                <figcaption>The blue vectors represent the phases of the scattered contributions, not X-ray ray paths. The dashed red vector shows their sum.</figcaption>
-              </figure>
-              <figure class="bragg-scan-figure">
-                <div class="bragg-scan-figure-title"><strong>Normalized interference vs. 2θ</strong><span>Ideal finite-plane factor</span></div>
-                <svg id="scanIntensity" viewBox="0 0 640 280" role="img" aria-label="Normalized eight-plane interference factor across detector angles with movable scan angle and predicted Bragg peak marker"></svg>
-                <div class="bragg-scan-legend" aria-hidden="true">
-                  <span><i class="bragg-legend-blue"></i> Interference curve</span>
-                  <span><i class="bragg-legend-red"></i> Scan position</span>
-                  <span><i class="bragg-legend-green"></i> Bragg angle</span>
-                </div>
-                <figcaption>Each maximum is a possible coherent reinforcement direction for this ideal stack; real reflections can have very different intensities or be absent.</figcaption>
-              </figure>
-            </div>
-            <div class="bragg-scan-readout" aria-live="polite" aria-atomic="true">
-              <strong>At this angle</strong>
-              <p id="scanResponse"></p>
-              <small id="scanContext"></small>
-            </div>
-          </div>
-          <p class="bragg-scan-caveat"><strong>Model scope:</strong> This normalized interference factor is <strong>not an experimental PXRD pattern</strong>. It assumes eight equally spaced, identical, coherent contributions and excludes atomic structure factors, systematic absences, multiplicity, thermal motion, instrumental broadening and background. Peak heights should not be interpreted as measured intensities.</p>
-        </section>
         <details class="bragg-optional bragg-theory">
           <summary>How does Bragg's law work?</summary>
           <div class="bragg-optional-body">
