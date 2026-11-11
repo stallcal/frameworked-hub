@@ -53,17 +53,17 @@ function explanation(phi,a2,result) {
   const inPhase=phi===0||phi===360;
   const opposite=phi===180;
   if(a2===0) return ["Only wave A is present",
-    "Wave B has zero amplitude, so adding it does not change wave A."];
+    "Wave B has zero amplitude; only wave A remains."];
   if(inPhase) return ["Constructive interference",
-    "The waves are in phase, so their peaks and troughs line up and their amplitudes add."];
+    "Peaks and troughs align; amplitudes add."];
   if(opposite&&equal) return ["Complete destructive interference",
-    "The waves have equal amplitudes and are 180° out of phase. Their peaks and troughs cancel completely."];
+    "Equal waves at 180° cancel completely."];
   if(opposite) return ["Destructive interference",
-    "The waves are 180° out of phase, but their amplitudes differ. A smaller wave remains in the sum."];
+    "At 180°, unequal amplitudes leave a remainder."];
   if(phi===90||phi===270) return ["Partial interference",
-    "A quarter-cycle offset gives a combined amplitude between the in-phase and out-of-phase limits."];
+    "A quarter-cycle shift produces partial interference."];
   return ["Partial interference",
-    "Changing the phase difference changes the amplitude of the combined wave."];
+    "The phase difference changes the resultant amplitude."];
 }
 
 function render() {
