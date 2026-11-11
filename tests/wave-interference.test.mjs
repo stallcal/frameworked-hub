@@ -55,6 +55,9 @@ test("standalone tool is registered without replacing quantum superposition",()=
   assert.match(html,/\/tools\/bragg\//);
   assert.match(html,/src="\.\/app\.mjs"/);
   assert.match(html,/same wavelength and frequency/);
+  assert.match(html,/How does the phase difference between two waves affect interference\?/);
+  assert.match(html,/What happens when two waves overlap\?/);
+  assert.doesNotMatch(html,/Why does phase control interference\?/);
 });
 test("phase, amplitude and reset update live SVG and the scientific explanation",async()=>{
   const initial={phase:"0",amplitudeB:"1"};
@@ -80,6 +83,8 @@ test("phase, amplitude and reset update live SVG and the scientific explanation"
     await import("../static/tools/wave-interference/app.mjs");
     assert.equal(get("resultantValue").textContent,"2.00");
     assert.match(get("observationTitle").textContent,/Constructive/);
+    assert.match(get("observationText").textContent,/peaks and troughs line up/);
+    assert.doesNotMatch(get("observationText").textContent,/modulo one wavelength/);
     assert.match(get("wavePlot").innerHTML,/stroke="#089e4b"/);
     get("phase").value="90";
     for(const fn of get("phase").handlers.input)fn();
