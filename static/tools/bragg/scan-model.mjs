@@ -62,3 +62,32 @@ export function finitePlaneScan({
     })
   );
 }
+
+
+/**
+ * Geometrically allowed reinforcement orders in the displayed 2θ interval.
+ * An order is NOT necessarily an experimentally observable reflection:
+ * structure factors and selection rules are outside this model.
+ * Cap the enumeration to keep the educational view legible for extreme
+ * custom wavelengths; return truncated=true to disclose that limitation.
+ */
+export function predictedBraggOrders({
+  spacing, wavelength, minAngle = SCAN_MIN_ANGLE,
+  maxAngle = SCAN_MAX_ANGLE, limit = 40
+} = {}) {
+  if (![spacing, wavelength, minAngle, maxAngle].every(Number.isFinite) ||
+      spacing <= 0 || wavelength <= 0 || minAngle < 0 ||
+      maxAngle > 180 || minAngle >= maxAngle ||
+      !Number.isInteger(limit) || limit < 1 || limit > 100) {
+    throw Error("Invalid plane spacing, wavelength, scan bounds or peak limit.");
+  }
+  const totalOrders = Math.max(0, Math.floor(2 * spacing / wavelength + 1e-12));
+  const peaks = [];
+  for (let order = 1; order <= Math.min(totalOrders, limit); order++) {
+    const sine = order * wavelength / (2 * spacing);
+    if (sine > 1 + 1e-12) break;
+    const twoTheta = 360 / Math.PI * Math.asin(Math.min(1, sine));
+    if (twoTheta >= minAngle && twoTheta <= maxAngle) peaks.push({ order, twoTheta });
+  }
+  return { peaks, totalOrders, truncated: totalOrders > limit };
+}
