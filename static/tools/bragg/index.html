@@ -212,6 +212,45 @@
             </details>
           </section>
         </div>
+        <details class="bragg-optional interference-bridge" id="interferenceLesson">
+          <summary>
+            <span class="interference-bridge-title">Why do some angles reinforce while others cancel?</span>
+            <span class="interference-bridge-teaser">See two waves add together—or cancel—in a short visual explanation.</span>
+          </summary>
+          <section class="interference-lesson" aria-labelledby="interferenceTitle">
+          <div class="interference-heading">
+            <p class="eyebrow">WHY SOME DIRECTIONS REINFORCE AND OTHERS DO NOT</p>
+            <h2 id="interferenceTitle">What happens away from the Bragg angle?</h2>
+            <p>Scattered waves are still present away from the Bragg condition, but they generally arrive with different phases. Compare two ideal equal-amplitude contributions from neighboring planes. When their path difference is a whole number of wavelengths, they reinforce; at a half-integer offset, these two contributions cancel.</p>
+          </div>
+          <p class="interference-example-scope">These two reference cases are calculated for the current plane spacing and wavelength. They illustrate phase addition; they are <strong>not</strong> the current position of the detector-angle slider.</p>
+          <div id="interferenceComparison" class="interference-grid" aria-live="polite">
+            <figure class="interference-case constructive">
+              <div class="interference-case-head">
+                <strong><span class="interference-mark" aria-hidden="true">✓</span> Bragg condition satisfied</strong>
+                <span>Constructive · in phase</span>
+              </div>
+              <svg id="constructiveWaves" viewBox="0 0 420 224" role="img" aria-label="Two equal-amplitude waves in phase add to produce a larger resulting wave"></svg>
+              <div class="interference-values">
+                <span id="onBraggAngle">2θ = —</span><span id="onBraggPath">Extra path = nλ</span>
+              </div>
+              <figcaption>Successive contributions reinforce one another in this direction. This is a possible diffraction-peak position, not a predicted peak intensity.</figcaption>
+            </figure>
+            <figure class="interference-case destructive">
+              <div class="interference-case-head">
+                <strong><span class="interference-mark" aria-hidden="true">×</span> An off-Bragg direction</strong>
+                <span>Destructive · half-cycle offset</span>
+              </div>
+              <svg id="destructiveWaves" viewBox="0 0 420 224" role="img" aria-label="Two equal-amplitude waves shifted by half a cycle cancel in a simple two-wave interference example"></svg>
+              <div class="interference-values">
+                <span id="offBraggAngle">2θ = —</span><span id="offBraggPath">Extra path = (n − ½)λ</span>
+              </div>
+              <figcaption>At this specifically chosen off-Bragg angle, two ideal equal-amplitude contributions cancel. That does <em>not</em> mean real crystals scatter zero intensity at all off-Bragg angles.</figcaption>
+            </figure>
+          </div>
+          <p class="interference-caveat">Scientific scope: this is a two-wave phase illustration, not a simulated diffraction pattern. Real crystalline scattering depends on many planes, finite-size broadening, atomic structure factors, and the instrument. <a href="https://www.iucr.org/what-we-do/education/pamphlets/introduction-calculation-of-structure-factors">IUCr explanation of phase and Bragg diffraction</a>.</p>
+          </section>
+        </details>
         <details class="bragg-pxrd-bridge" id="pxrdBridge">
           <summary>How does this connect to a real PXRD pattern?</summary>
           <div class="bragg-pxrd-body">
@@ -253,41 +292,6 @@
             <p>At fixed wavelength and diffraction order, smaller plane spacing <strong>d</strong> gives a larger scattering angle <strong>2θ</strong>. Conversely, a reflection moving to higher 2θ corresponds to a smaller d-spacing when the wavelength and reflection indexing remain unchanged.</p>
             <p><strong>θ</strong> is the Bragg angle relative to the lattice planes; <strong>2θ</strong> is the angle measured between incident and diffracted beams. The selected (10) and (11) families are an idealized two-dimensional square-lattice example, not a specific crystal structure.</p>
           </div>
-        </details>
-        <details class="bragg-optional" id="interferenceLesson">
-          <summary>Explore constructive and destructive interference</summary>
-          <section class="interference-lesson" aria-labelledby="interferenceTitle">
-          <div class="interference-heading">
-            <p class="eyebrow">WHY SOME DIRECTIONS REINFORCE AND OTHERS DO NOT</p>
-            <h2 id="interferenceTitle">What happens away from the Bragg angle?</h2>
-            <p>Scattered waves are still present away from the Bragg condition, but they generally arrive with different phases. Compare two equal-amplitude contributions from neighboring planes: they add when their extra path is a whole number of wavelengths, and cancel when that path difference is a half-integer number of wavelengths.</p>
-          </div>
-          <div id="interferenceComparison" class="interference-grid" aria-live="polite">
-            <figure class="interference-case constructive">
-              <div class="interference-case-head">
-                <strong><span class="interference-mark" aria-hidden="true">✓</span> Bragg condition satisfied</strong>
-                <span>Constructive · in phase</span>
-              </div>
-              <svg id="constructiveWaves" viewBox="0 0 420 224" role="img" aria-label="Two equal-amplitude waves in phase add to produce a larger resulting wave"></svg>
-              <div class="interference-values">
-                <span id="onBraggAngle">2θ = —</span><span id="onBraggPath">Extra path = nλ</span>
-              </div>
-              <figcaption>Successive contributions reinforce one another in this direction. This is a possible diffraction-peak position, not a predicted peak intensity.</figcaption>
-            </figure>
-            <figure class="interference-case destructive">
-              <div class="interference-case-head">
-                <strong><span class="interference-mark" aria-hidden="true">×</span> An off-Bragg direction</strong>
-                <span>Destructive · half-cycle offset</span>
-              </div>
-              <svg id="destructiveWaves" viewBox="0 0 420 224" role="img" aria-label="Two equal-amplitude waves shifted by half a cycle cancel in a simple two-wave interference example"></svg>
-              <div class="interference-values">
-                <span id="offBraggAngle">2θ = —</span><span id="offBraggPath">Extra path = (n − ½)λ</span>
-              </div>
-              <figcaption>At this specifically chosen off-Bragg angle, two ideal equal-amplitude contributions cancel. That does <em>not</em> mean real crystals scatter zero intensity at all off-Bragg angles.</figcaption>
-            </figure>
-          </div>
-          <p class="interference-caveat">Scientific scope: this is a two-wave phase illustration, not a simulated diffraction pattern. Real crystalline scattering depends on many planes, finite-size broadening, atomic structure factors, and the instrument. <a href="https://www.iucr.org/what-we-do/education/pamphlets/introduction-calculation-of-structure-factors">IUCr explanation of phase and Bragg diffraction</a>.</p>
-          </section>
         </details>
         <details class="notes">
           <summary>Model assumptions, limitations &amp; sources</summary>
