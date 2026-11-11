@@ -68,6 +68,18 @@ test("default geometry predicts five different accessible Bragg angles, not only
   assert.ok(peaks.slice(1).every((p, i) => p.twoTheta > peaks[i].twoTheta));
 });
 
+test("extreme but finite short wavelengths yield sampled peaks, never a false claim of no reflections", () => {
+  const { peaks, visibleOrders, truncated } = predictedBraggOrders({
+    spacing: 4, wavelength: 0.001
+  });
+  assert.equal(peaks.length, 40);
+  assert.ok(visibleOrders > 40);
+  assert.equal(truncated, true);
+  assert.ok(peaks[0].twoTheta >= SCAN_MIN_ANGLE);
+  assert.ok(peaks.at(-1).twoTheta <= SCAN_MAX_ANGLE);
+  assert.ok(peaks.at(-1).twoTheta > peaks[0].twoTheta);
+});
+
 test("no peaks appear if the wavelength cannot meet an integer Bragg condition", () => {
   const { peaks, totalOrders } = predictedBraggOrders({ spacing: 4, wavelength: 20 });
   assert.equal(peaks.length, 0);
