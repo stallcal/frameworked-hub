@@ -103,6 +103,19 @@ test("scan is attached without removing the existing Bragg ray and disclosures",
 });
 
 
+test("visual-first layout hides supporting data and crystal settings until requested", () => {
+  const html = readFileSync(new URL("../static/tools/bragg/index.html", import.meta.url), "utf8");
+  const idx = piece => html.indexOf(piece);
+  assert.ok(idx('class="visual"') < idx('id="crystalSettings"'));
+  assert.ok(idx('id="scanTwoTheta"') < idx('id="geometry"'));
+  assert.ok(idx('id="geometry"') < idx('id="scanIntensity"'));
+  assert.ok(idx('id="crystalSettings"') < idx('id="advancedPanel"'));
+  assert.match(html, /<details class="bragg-more-details" id="braggMoreDetails">/);
+  assert.match(html, /<details class="scan-peak-jump" id="scanPeakJump">/);
+  assert.match(html, /id="scanPeakButtons"/);
+  assert.doesNotMatch(html, /<details class="crystal-settings" id="crystalSettings" open/);
+});
+
 test("detector slider, lattice update, snap-to-peak and advanced mode recalculate the scan", async () => {
   const defaults = {
     wavelength: "1.5406", latticeA: "4", planeFamily: "10",
@@ -128,8 +141,10 @@ test("detector slider, lattice update, snap-to-peak and advanced mode recalculat
     await import("../static/tools/bragg/scan-view.mjs");
     assert.match(el("scanPhasors").innerHTML, /N = 8/);
     assert.match(el("scanIntensity").innerHTML, /stroke="#084b9e"/);
-    assert.match(el("scanPeak").textContent, /22\.21°/);
-    assert.match(el("scanPeak").textContent, /n=5/);
+    assert.match(el("scanPeak").textContent, /5 predicted reinforcement angles/);
+    assert.match(el("scanIntensity").innerHTML, /data-order="5"/);
+    assert.match(el("scanPeakButtons").innerHTML, /data-order="5"/);
+    assert.match(el("scanStatus").textContent, /reinforce/);
     assert.match(el("ray-angle-display").textContent, /Scan/);
     assert.match(el("geometry").innerHTML, /refX="6"/);
 
@@ -142,7 +157,7 @@ test("detector slider, lattice update, snap-to-peak and advanced mode recalculat
 
     el("latticeA").value = "5";
     for (const fn of el("latticeA").handlers.input) fn();
-    assert.match(el("scanPeak").textContent, /17\.72°/);
+    assert.match(el("scanPeakSelect").innerHTML, /17\.7°/);
     // Once the visitor manually scans, do not silently move their detector.
     assert.equal(el("scanTwoThetaValue").textContent, "45.0°");
 
@@ -156,6 +171,14 @@ test("detector slider, lattice update, snap-to-peak and advanced mode recalculat
     assert.equal(el("scanPeakSelect").value, "3");
     const thirdOrderAngle = 360 / Math.PI * Math.asin(3 * wavelength / (2 * 5));
     assert.equal(el("scanTwoThetaValue").textContent, thirdOrderAngle.toFixed(1) + "°");
+
+    // The accessible peak shortcuts jump without requiring the redundant dropdown.
+    el("scanPeakButtons").handlers.click[0]({
+      target: { closest: () => ({ getAttribute: () => "2" }) }
+    });
+    assert.equal(el("scanPeakSelect").value, "2");
+    assert.ok(el("scanIntensity").innerHTML.includes('class="scan-peak-marker"'));
+    assert.match(el("scanResponse").textContent, /Relative interference/);
 
     el("advancedPanel").open = true;
     for (const fn of el("advancedPanel").handlers.toggle) fn();
