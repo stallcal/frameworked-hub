@@ -61,7 +61,7 @@ function explanation(phi,a2,result) {
   if(opposite) return ["Destructive interference",
     "The waves are 180° out of phase, but their amplitudes differ. A smaller wave remains in the sum."];
   if(phi===90||phi===270) return ["Partial interference",
-    "A 90° phase difference gives a combined amplitude between the fully in-phase and fully out-of-phase cases."];
+    "A quarter-cycle offset gives a combined amplitude between the in-phase and out-of-phase limits."];
   return ["Partial interference",
     "Changing the phase difference changes the amplitude of the combined wave."];
 }
