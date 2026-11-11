@@ -1490,3 +1490,154 @@ footer {
 @media (prefers-reduced-motion: reduce) {
   .bragg-compact .bragg-scan-controls { scroll-behavior: auto; }
 }
+
+
+/* PXRD connection: intentionally secondary to the simple angle-scan lesson. */
+.bragg-compact .bragg-model-line {
+  display: inline-block;
+  margin: 0 0 14px;
+  color: #3d5978;
+  background: #f0f5fd;
+  border-left: 3px solid #084b9e;
+  padding: 6px 11px;
+  font: 12px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+.bragg-compact .bragg-pxrd-bridge {
+  margin: 17px 0 0;
+  background: #fff;
+  border: 2px solid var(--navy);
+  box-shadow: 3px 3px 0 var(--navy);
+}
+.bragg-compact .bragg-pxrd-bridge > summary {
+  display: list-item;
+  padding: 16px clamp(15px,2.5vw,26px);
+  cursor: pointer;
+  font: 700 clamp(16px,1.75vw,21px)/1.4 Libron,Georgia,serif;
+  color: var(--navy);
+}
+.bragg-compact .bragg-pxrd-bridge > summary:hover,
+.bragg-compact .bragg-pxrd-bridge > summary:focus-visible {
+  color: var(--blue);
+}
+.bragg-compact .bragg-pxrd-body {
+  padding: 0 clamp(15px,2.5vw,26px) 20px;
+}
+.bragg-compact .bragg-pxrd-body > p:first-child {
+  max-width: 980px;
+  margin: 0 0 16px;
+  font: 15px/1.6 Libron,Georgia,serif;
+  color: var(--navy);
+}
+.bragg-compact .bragg-pxrd-grid {
+  display: grid;
+  grid-template-columns: minmax(0,1.4fr) minmax(280px,1fr);
+  align-items: start;
+  gap: 15px;
+}
+.bragg-compact .bragg-pxrd-grid > div {
+  min-width: 0;
+  background: #f6f9fd;
+  border: 1px solid #c6d7e9;
+  padding: clamp(12px,2vw,18px);
+}
+.bragg-compact .bragg-pxrd-grid h3 {
+  color: var(--navy);
+  font: 700 clamp(17px,2vw,21px)/1.3 Libron,Georgia,serif;
+  margin: 0 0 7px;
+}
+.bragg-compact .bragg-pxrd-grid p {
+  font: 13px/1.55 Libron,Georgia,serif;
+  color: #445d7a;
+  margin: 0 0 12px;
+}
+.bragg-compact .bragg-pxrd-example svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 760px;
+  border: 1px solid #d1e0ef;
+  background: #fff;
+  margin: 0 0 12px;
+}
+.bragg-compact .pxrd-position-table {
+  border-collapse: collapse;
+  width: 100%;
+  max-width: 760px;
+  font: 13px/1.4 system-ui,-apple-system,"Segoe UI",sans-serif;
+  color: var(--navy);
+  font-variant-numeric: tabular-nums;
+}
+.bragg-compact .pxrd-position-table caption {
+  text-align: left;
+  font: 12px/1.4 Libron,Georgia,serif;
+  color: #506882;
+  margin-bottom: 7px;
+}
+.bragg-compact .pxrd-position-table th,
+.bragg-compact .pxrd-position-table td {
+  text-align: right;
+  padding: 6px 9px;
+  border-bottom: 1px solid #ccd9e7;
+}
+.bragg-compact .pxrd-position-table th:first-child,
+.bragg-compact .pxrd-position-table td:first-child { text-align: left; }
+.bragg-compact .pxrd-position-table thead th { color: var(--navy); font-weight: 700; }
+.bragg-compact .pxrd-position-table tbody th { font-weight: 600; }
+.bragg-compact .pxrd-order-note { margin-top: 12px !important; }
+.bragg-compact .bragg-pxrd-convert label {
+  color: var(--navy);
+  font: 700 13px/1.4 system-ui,-apple-system,"Segoe UI",sans-serif;
+  display: block;
+  margin: 10px 0 6px;
+}
+.bragg-compact #pxrdMeasuredAngle {
+  width: 100%;
+  max-width: 220px;
+  padding: 10px 12px;
+  color: var(--navy);
+  border: 1.5px solid var(--navy);
+  background: #fff;
+  border-radius: 2px;
+  font: 17px/1.3 system-ui,-apple-system,"Segoe UI",sans-serif;
+  box-sizing: border-box;
+}
+.bragg-compact #pxrdMeasuredAngle:focus-visible {
+  outline: 3px solid var(--blue);
+  outline-offset: 3px;
+}
+.bragg-compact .pxrd-spacing-answer {
+  border-left: 3px solid var(--blue);
+  padding: 12px 15px;
+  background: #eaf2fd;
+  margin: 14px 0 12px;
+}
+.bragg-compact .pxrd-spacing-answer span,
+.bragg-compact .pxrd-spacing-answer small { display: block; }
+.bragg-compact .pxrd-spacing-answer span { font: 600 13px/1.4 system-ui,sans-serif; }
+.bragg-compact .pxrd-spacing-answer strong {
+  display: block;
+  font: 700 30px/1.3 Libron,Georgia,serif;
+  color: var(--blue);
+  margin: 3px 0;
+}
+.bragg-compact .pxrd-spacing-answer small {
+  color: #4c6782;
+  font: 12px/1.45 system-ui,sans-serif;
+}
+.bragg-compact .pxrd-evidence-note,
+.bragg-compact .pxrd-sources {
+  font: 12px/1.6 Libron,Georgia,serif;
+  color: #506983;
+  max-width: 1040px;
+  margin: 12px 0 0;
+}
+.bragg-compact .pxrd-sources a { color: var(--blue); text-decoration: underline; }
+@media(max-width: 850px) {
+  .bragg-compact .bragg-pxrd-grid { grid-template-columns: minmax(0,1fr); }
+}
+@media(max-width: 620px) {
+  .bragg-compact .bragg-model-line { font-size: 11px; }
+  .bragg-compact .bragg-pxrd-bridge > summary { padding: 14px; }
+  .bragg-compact .bragg-pxrd-body { padding: 0 12px 16px; }
+  .bragg-compact .bragg-pxrd-grid > div { padding: 12px; }
+}
