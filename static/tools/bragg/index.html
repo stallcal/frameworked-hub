@@ -42,8 +42,104 @@
         </section>
 
         <div class="workspace" id="braggActivity">
+          <section class="visual" aria-label="Interactive Bragg experiment">
+            <div class="experiment-heading">
+              <div><p class="eyebrow">LIVE DIFFRACTION</p><h2>Scan the scattering angle</h2></div>
+            </div>
+            <p class="experiment-helper" id="experimentHelper">Drag the angle. Watch the ray direction and interference response change together.</p>
+            <p id="error" class="error" role="alert"></p>
+            <div id="results">
+              <div class="bragg-scan-controls" id="braggScan" aria-label="Detector angle">
+                <div class="bragg-scan-control-head">
+                  <label for="scanTwoTheta">Detector angle · 2θ</label>
+                  <output id="scanTwoThetaValue" for="scanTwoTheta">22.2°</output>
+                </div>
+                <input id="scanTwoTheta" type="range" min="2" max="178" step="0.1" value="22.2" aria-label="Scan the detector scattering angle in degrees, independent of the predicted Bragg angle" />
+                <div class="bragg-scan-control-foot">
+                  <span>2°</span>
+                  <span>178°</span>
+                </div>
+                <p id="scanPeak" class="bragg-scan-peak" aria-live="polite"></p>
+              </div>
+              <div class="visuals-grid" id="diagramPair">
+                <figure class="figure ray-pane" id="rayPane">
+                  <div class="figure-heading"><strong>Diffraction geometry</strong><span id="ray-angle-display">θ — · 2θ —</span></div>
+                  <svg id="geometry" viewBox="0 0 520 360" role="img" aria-label="Dynamic Bragg ray construction showing incident and diffracted X-rays, angle theta, scattering angle two theta, and plane spacing"></svg>
+                  <figcaption>Incident and scattered directions. The scattering angle is 2θ.</figcaption>
+                </figure>
+                <figure class="figure scan-plot-pane" aria-labelledby="scanPlotTitle">
+                  <div class="figure-heading"><strong id="scanPlotTitle">Wave interference</strong><span>Idealized eight-plane response</span></div>
+                  <p id="scanError" class="error" role="alert"></p>
+                  <div id="scanPanels">
+                    <svg id="scanIntensity" viewBox="0 0 640 280" role="img" aria-label="Normalized finite-plane interference from two to 178 degrees. Blue: response; green: all predicted Bragg orders; red: current detector angle."></svg>
+                    <div id="scanPeakButtons" class="scan-peak-buttons" aria-label="Jump to predicted Bragg angles"></div>
+                    <details class="scan-peak-jump" id="scanPeakJump">
+                      <summary>Choose a predicted Bragg angle</summary>
+                  <div class="bragg-scan-peak-actions">
+                    <label for="scanPeakSelect">Geometric Bragg order</label>
+                    <select id="scanPeakSelect" aria-label="Select a predicted Bragg condition"></select>
+                    <button type="button" id="scanSnap" class="bragg-scan-snap">Next Bragg angle</button>
+                  </div>
+                    </details>
+                    <div class="bragg-scan-legend" aria-hidden="true">
+                      <span><i class="bragg-legend-blue"></i> Relative interference</span>
+                      <span><i class="bragg-legend-red"></i> Scan angle</span>
+                      <span><i class="bragg-legend-green"></i> Predicted Bragg orders</span>
+                    </div>
+                    <div class="bragg-scan-readout" aria-live="polite" aria-atomic="true">
+                      <strong id="scanStatus">Observe how the waves add</strong>
+                      <p id="scanResponse"></p>
+                    </div>
+                    <details class="bragg-phase-details">
+                      <summary>How the eight scattered contributions add</summary>
+                      <svg id="scanPhasors" viewBox="0 0 500 240" role="img" aria-label="Eight equally spaced planes and the phases of their scattered contributions represented by complex phase vectors"></svg>
+                      <p id="scanContext">Blue vectors show phase and amplitude contributions, not literal ray paths. Their red sum gives the interference response.</p>
+                    </details>
+                  </div>
+                  <figcaption>Ideal geometric reinforcement. Real PXRD reflections may differ or be absent.</figcaption>
+                </figure>
+                <details class="bragg-lattice-details" id="latticeDetails">
+                  <summary>See how the lattice defines plane spacing <em>d</em></summary>
+                  <figure class="figure lattice-pane" id="latticePane">
+                    <div class="figure-heading"><strong>Square lattice model</strong><span>2D illustration</span></div>
+                    <svg id="latticeGeometry" viewBox="0 0 760 410" role="img" aria-label="Two-dimensional lattice points and highlighted family of lattice planes"></svg>
+                    <figcaption class="dimension-legend"><span class="dimension-key"><span class="key-blue" aria-hidden="true"></span><strong>Blue a</strong> · lattice repeat</span><span class="dimension-key"><span class="key-red" aria-hidden="true"></span><strong>Red d</strong> · plane spacing</span></figcaption>
+                  </figure>
+                </details>
+              </div>
+              <details class="bragg-more-details" id="braggMoreDetails">
+                <summary>Calculated values, model assumptions &amp; explanation</summary>
+              <div class="readouts readouts-bragg" id="readouts" aria-live="polite">
+                <div class="metric featured-metric"><span class="label">Predicted Bragg condition · 2θ</span><strong id="angle-out">—</strong><span class="unit">degrees</span></div>
+                <div class="metric spacing-metric"><span class="label">Plane spacing · d</span><strong id="d-out">—</strong><span class="unit">Å</span></div>
+                <div class="metric theta-metric"><span class="label">Bragg angle · θ</span><strong id="theta-out">—</strong><span class="unit">degrees to lattice plane</span></div>
+                <div class="metric compact-metric" id="qMetric" hidden><span class="label">Scattering vector · q</span><strong id="q-out">—</strong><span class="unit">Å⁻¹</span></div>
+              </div>
+              <p class="bragg-scan-caveat"><strong>Scope:</strong> This is <strong>not an experimental PXRD pattern</strong>. Eight identical coherent plane contributions are summed; atomic structure factors, systematic absences, multiplicity, instrument broadening and experimental background are excluded. Higher orders represent geometric reinforcement, not guaranteed observed peaks.</p>
+              <div class="teaching-takeaway" aria-live="polite" aria-atomic="true">
+                <strong id="takeawayTitle">What changed?</strong>
+                <p id="observation">Smaller plane spacing produces a larger Bragg angle at a fixed wavelength.</p>
+              </div>
+              <p id="explanation"></p>
+              </details>
+            </div>
+          </section>
           <section class="controls" aria-label="Bragg inputs">
-            <h2>Conditions</h2>
+            <details class="crystal-settings" id="crystalSettings">
+              <summary>Crystal settings &amp; advanced calculations</summary>
+              <div class="crystal-settings-body">
+            <h2>Crystal parameters</h2>
+                  <div class="diagram-slider" id="latticeSliderControl">
+                    <div class="diagram-slider-head"><label for="latticeSlider">Lattice parameter <em>a</em></label><output id="latticeSliderValue" for="latticeSlider latticeA">4.00 Å</output></div>
+                    <input id="latticeSlider" type="range" min="2" max="12" step="0.1" value="4" aria-label="Adjust square lattice parameter a in angstroms" />
+                    <div class="diagram-slider-limits" aria-hidden="true"><span>2 Å</span><span>12 Å</span></div>
+                  </div>
+                  <div class="diagram-slider" id="advancedSliderControl" hidden>
+                    <div class="diagram-slider-head"><label for="spacing-slider">Plane spacing <em>d</em></label><output id="advancedSliderValue" for="spacing-slider value">3.00 Å</output></div>
+                    <input id="spacing-slider" aria-label="Adjust plane spacing d in angstroms" type="range" min="0.5" max="10" step="0.01" value="3"/>
+                    <div class="diagram-slider-limits" aria-hidden="true"><span>0.5 Å</span><span>10 Å</span></div>
+                  </div>
+
             <div class="guided-controls" id="guidedControls">
               <p class="activity-prompt">Scan <strong>2θ</strong> in the main experiment. Adjust <strong>a</strong> or the plane family to move the predicted Bragg conditions.</p>
               <div class="field">
@@ -109,92 +205,8 @@
             </details>
             <div class="wide actions">
               <button id="reset" type="button" class="secondary">Reset</button>
-            </div>
-          </section>
-          <section class="visual" aria-label="Interactive Bragg experiment">
-            <div class="experiment-heading">
-              <div><p class="eyebrow">LIVE DIFFRACTION</p><h2>Scan the scattering angle</h2></div>
-            </div>
-            <p class="experiment-helper" id="experimentHelper">Sweep the detector angle to compare scattering and interference.</p>
-            <p id="error" class="error" role="alert"></p>
-            <div id="results">
-              <div class="readouts readouts-bragg" id="readouts" aria-live="polite">
-                <div class="metric featured-metric"><span class="label">Predicted Bragg condition · 2θ</span><strong id="angle-out">—</strong><span class="unit">degrees</span></div>
-                <div class="metric spacing-metric"><span class="label">Plane spacing · d</span><strong id="d-out">—</strong><span class="unit">Å</span></div>
-                <div class="metric theta-metric"><span class="label">Bragg angle · θ</span><strong id="theta-out">—</strong><span class="unit">degrees to lattice plane</span></div>
-                <div class="metric compact-metric" id="qMetric" hidden><span class="label">Scattering vector · q</span><strong id="q-out">—</strong><span class="unit">Å⁻¹</span></div>
               </div>
-              <div class="bragg-scan-controls" id="braggScan" aria-label="Detector angle and Bragg conditions">
-                <div class="bragg-scan-control-head">
-                  <label for="scanTwoTheta">Detector angle · 2θ</label>
-                  <output id="scanTwoThetaValue" for="scanTwoTheta">22.2°</output>
-                </div>
-                <input id="scanTwoTheta" type="range" min="2" max="178" step="0.1" value="22.2" aria-label="Scan the detector scattering angle in degrees, independent of the predicted Bragg angle" />
-                <div class="bragg-scan-control-foot">
-                  <span>2°</span>
-                  <div class="bragg-scan-peak-actions">
-                    <label for="scanPeakSelect">Geometric Bragg order</label>
-                    <select id="scanPeakSelect" aria-label="Select a predicted Bragg condition"></select>
-                    <button type="button" id="scanSnap" class="bragg-scan-snap">Next Bragg angle</button>
-                  </div>
-                  <span>178°</span>
-                </div>
-                <p id="scanPeak" class="bragg-scan-peak" aria-live="polite"></p>
-              </div>
-              <div class="visuals-grid" id="diagramPair">
-                <figure class="figure ray-pane" id="rayPane">
-                  <div class="figure-heading"><strong>Diffraction geometry</strong><span id="ray-angle-display">θ — · 2θ —</span></div>
-                  <div class="diagram-slider" id="latticeSliderControl">
-                    <div class="diagram-slider-head"><label for="latticeSlider">Lattice parameter <em>a</em></label><output id="latticeSliderValue" for="latticeSlider latticeA">4.00 Å</output></div>
-                    <input id="latticeSlider" type="range" min="2" max="12" step="0.1" value="4" aria-label="Adjust square lattice parameter a in angstroms" />
-                    <div class="diagram-slider-limits" aria-hidden="true"><span>2 Å</span><span>12 Å</span></div>
-                  </div>
-                  <div class="diagram-slider" id="advancedSliderControl" hidden>
-                    <div class="diagram-slider-head"><label for="spacing-slider">Plane spacing <em>d</em></label><output id="advancedSliderValue" for="spacing-slider value">3.00 Å</output></div>
-                    <input id="spacing-slider" aria-label="Adjust plane spacing d in angstroms" type="range" min="0.5" max="10" step="0.01" value="3"/>
-                    <div class="diagram-slider-limits" aria-hidden="true"><span>0.5 Å</span><span>10 Å</span></div>
-                  </div>
-                  <svg id="geometry" viewBox="0 0 520 360" role="img" aria-label="Dynamic Bragg ray construction showing incident and diffracted X-rays, angle theta, scattering angle two theta, and plane spacing"></svg>
-                  <figcaption>Blue: incident direction. Red: selected scattering direction. Off-Bragg scattering is still possible; these rays do not imply a measured reflection.</figcaption>
-                </figure>
-                <figure class="figure scan-plot-pane" aria-labelledby="scanPlotTitle">
-                  <div class="figure-heading"><strong id="scanPlotTitle">Interference vs. 2θ</strong><span>8-plane ideal model</span></div>
-                  <p id="scanError" class="error" role="alert"></p>
-                  <div id="scanPanels">
-                    <svg id="scanIntensity" viewBox="0 0 640 280" role="img" aria-label="Normalized finite-plane interference from two to 178 degrees. Blue: response; green: all predicted Bragg orders; red: current detector angle."></svg>
-                    <div class="bragg-scan-legend" aria-hidden="true">
-                      <span><i class="bragg-legend-blue"></i> Relative interference</span>
-                      <span><i class="bragg-legend-red"></i> Scan angle</span>
-                      <span><i class="bragg-legend-green"></i> Predicted Bragg orders</span>
-                    </div>
-                    <div class="bragg-scan-readout" aria-live="polite" aria-atomic="true">
-                      <strong>At the selected angle</strong>
-                      <p id="scanResponse"></p>
-                      <small id="scanContext"></small>
-                    </div>
-                    <details class="bragg-phase-details">
-                      <summary>How the eight scattered contributions add</summary>
-                      <svg id="scanPhasors" viewBox="0 0 500 240" role="img" aria-label="Eight equally spaced planes and the phases of their scattered contributions represented by complex phase vectors"></svg>
-                      <p>Blue vectors show phase and amplitude contributions, not physical ray paths. Their dashed red sum determines the normalized response above.</p>
-                    </details>
-                  </div>
-                  <figcaption>Peaks mark constructive reinforcement in this ideal stack. Real reflections can be weaker or systematically absent.</figcaption>
-                </figure>
-                <details class="bragg-lattice-details" id="latticeDetails">
-                  <summary>See how the lattice defines plane spacing <em>d</em></summary>
-                  <figure class="figure lattice-pane" id="latticePane">
-                    <div class="figure-heading"><strong>Square lattice model</strong><span>2D illustration</span></div>
-                    <svg id="latticeGeometry" viewBox="0 0 760 410" role="img" aria-label="Two-dimensional lattice points and highlighted family of lattice planes"></svg>
-                    <figcaption class="dimension-legend"><span class="dimension-key"><span class="key-blue" aria-hidden="true"></span><strong>Blue a</strong> · lattice repeat</span><span class="dimension-key"><span class="key-red" aria-hidden="true"></span><strong>Red d</strong> · plane spacing</span></figcaption>
-                  </figure>
-                </details>
-              </div>
-              <p class="bragg-scan-caveat"><strong>Scope:</strong> This is <strong>not an experimental PXRD pattern</strong>. Eight identical coherent plane contributions are summed; atomic structure factors, systematic absences, multiplicity, instrument broadening and experimental background are excluded. Higher orders represent geometric reinforcement, not guaranteed observed peaks.</p>
-              <div class="teaching-takeaway" aria-live="polite" aria-atomic="true">
-                <strong id="takeawayTitle">What changed?</strong>
-                <p id="observation">Smaller plane spacing produces a larger Bragg angle at a fixed wavelength.</p>
-              </div>
-              <p id="explanation"></p>
+            </details>
             </div>
           </section>
         </div>
