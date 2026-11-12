@@ -10,7 +10,12 @@
 <link rel="preload" href="{{ "fonts/libron/Libron-Regular.woff2" | relURL }}" as="font" type="font/woff2" crossorigin>
 {{ $css := resources.Get "css/frameworked.css" | minify | fingerprint }}<link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
 {{ $design := resources.Get "css/editorial-redesign.css" | minify | fingerprint }}<link rel="stylesheet" href="{{ $design.RelPermalink }}" integrity="{{ $design.Data.Integrity }}">
-{{ $mark := (resources.Get "images/frameworked-mark.png").Resize "160x png" }}<link rel="icon" type="image/png" href="{{ $mark.RelPermalink }}">
+{{ $logoSource := resources.Get "images/frameworked-logo.webp" }}
+{{ $mark := $logoSource.Resize "96x png" }}
+{{ $favicon := $logoSource.Resize "32x png" }}
+{{ $touchIcon := $logoSource.Resize "180x png" }}
+<link rel="icon" type="image/png" sizes="32x32" href="{{ $favicon.RelPermalink }}">
+<link rel="apple-touch-icon" sizes="180x180" href="{{ $touchIcon.RelPermalink }}">
 {{ if eq .Section "explore" }}{{ $explore := resources.Get "css/explore.css" | minify | fingerprint }}<link rel="stylesheet" href="{{ $explore.RelPermalink }}" integrity="{{ $explore.Data.Integrity }}">{{ end }}
 {{ block "head-extra" . }}{{ end }}
 {{/* Load opt-in neobrutalist pilot after page styles so scoped cards win without affecting other pages. */}}
