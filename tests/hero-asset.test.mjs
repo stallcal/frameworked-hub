@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import {readFileSync} from "node:fs";
+import {readFileSync, existsSync} from "node:fs";
 
 const home = readFileSync("layouts/index.html", "utf8");
 const base = readFileSync("layouts/_default/baseof.html", "utf8");
@@ -36,4 +36,17 @@ test("Header, favicon, touch icon and standalone tools use transparent artwork",
   assert.match(base, /rel="apple-touch-icon"/);
   assert.match(bragg, /src="\/images\/frameworked-mark\.png"/);
   assert.match(scherrer, /src="\/images\/frameworked-mark\.png"/);
+});
+
+test("High-resolution transparent logo is opt-in with safe existing PNG fallback", () => {
+  assert.match(base, /resources.Get "images\/frameworked-logo-hd\.png"/);
+  assert.match(home, /resources.Get "images\/frameworked-logo-hd\.png"/);
+  assert.match(home, /width="1024" height="1024"/);
+  assert.match(home, /frameworked-hero-png\.png/);
+  const hdPath = "assets/images/frameworked-logo-hd.png";
+  if (existsSync(hdPath)) {
+    const hd = readFileSync(hdPath);
+    assert.ok(isTransparentPng(hd), "High-resolution source must preserve actual alpha transparency");
+    assert.ok(hd.readUInt32BE(16) >= 1024 && hd.readUInt32BE(20) >= 1024);
+  }
 });
