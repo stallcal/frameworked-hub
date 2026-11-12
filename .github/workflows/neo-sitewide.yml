@@ -7,6 +7,10 @@ on:
       - 'tests/neo-sitewide.test.mjs'
       - 'tests/articles-neo.test.mjs'
       - 'assets/css/articles-neo-refresh.css'
+      - 'assets/css/home-neo-refresh.css'
+      - 'static/images/frameworked-hero-vector.svg'
+      - 'tests/hero-asset.test.mjs'
+      - 'layouts/index.html'
       - 'layouts/_default/list.html'
       - '.github/workflows/neo-sitewide.yml'
   push:
@@ -27,4 +31,4 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - run: node --test tests/neo-sitewide.test.mjs tests/articles-neo.test.mjs
+      - run: node --test tests/neo-sitewide.test.mjs tests/articles-neo.test.mjs tests/hero-asset.test.mjs

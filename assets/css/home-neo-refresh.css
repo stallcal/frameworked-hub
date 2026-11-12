@@ -82,13 +82,14 @@
   opacity: .95;
 }
 .home .fw-neo-hero-art img {
-  width: min(90%, 405px);
+  width: auto;
   height: auto;
-  max-height: 420px;
+  max-width: min(100%, 520px);
+  max-height: 505px;
   object-fit: contain;
   position: relative;
   z-index: 1;
-  filter: drop-shadow(4px 0px 0 #fff) drop-shadow(-4px 0px 0 #fff) drop-shadow(0px 5px 0 #fff) drop-shadow(6px 9px 0 rgba(28,48,73,.22));
+  filter: none; /* Avoid stacked halos that appeared blurry in the preview. */
 }
 .home .fw-neo-art-caption {
   position: absolute;
@@ -268,4 +269,16 @@
   .home .fw-neo-secondary-action,
   .home .fw-neo-feature-card,
   .home .fw-topic-card { transition:none; }
+}
+
+/* Large portrait ratio of the original framework: preserve proportions and enlarge motif. */
+@media (min-width: 851px) {
+ .home .fw-neo-hero-art { min-height: 525px; padding: 0 12px 0; }
+ .home .fw-neo-hero-art img { max-width: 100%; max-height: 525px; }
+}
+@media (max-width:850px) {
+ .home .fw-neo-hero-art img { max-height: 350px; width: auto; }
+}
+@media (max-width:560px) {
+ .home .fw-neo-hero-art img { max-height: 290px; width: auto; }
 }
