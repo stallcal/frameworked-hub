@@ -10,7 +10,9 @@
 <link rel="preload" href="{{ "fonts/libron/Libron-Regular.woff2" | relURL }}" as="font" type="font/woff2" crossorigin>
 {{ $css := resources.Get "css/frameworked.css" | minify | fingerprint }}<link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
 {{ $design := resources.Get "css/editorial-redesign.css" | minify | fingerprint }}<link rel="stylesheet" href="{{ $design.RelPermalink }}" integrity="{{ $design.Data.Integrity }}">
+{{/* Prefer the higher-resolution transparent PNG when uploaded to assets/images. */}}
 {{ $logoSource := resources.Get "images/frameworked-mark.png" }}
+{{ with resources.Get "images/frameworked-logo-hd.png" }}{{ $logoSource = . }}{{ end }}
 {{ $mark := $logoSource.Resize "96x png" }}
 {{ $favicon := $logoSource.Resize "32x png" }}
 {{ $touchIcon := $logoSource.Resize "180x png" }}
