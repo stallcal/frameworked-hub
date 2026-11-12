@@ -15,16 +15,34 @@
 {{ block "head-extra" . }}{{ end }}
 {{/* Load opt-in neobrutalist pilot after page styles so scoped cards win without affecting other pages. */}}
 {{ $neo := resources.Get "css/neobrutalism.css" | minify | fingerprint }}<link rel="stylesheet" href="{{ $neo.RelPermalink }}" integrity="{{ $neo.Data.Integrity }}">
+{{ $headerRefresh := resources.Get "css/header-neo-refresh.css" | minify | fingerprint }}<link rel="stylesheet" href="{{ $headerRefresh.RelPermalink }}" integrity="{{ $headerRefresh.Data.Integrity }}">
+{{ if .IsHome }}{{ $homeRefresh := resources.Get "css/home-neo-refresh.css" | minify | fingerprint }}<link rel="stylesheet" href="{{ $homeRefresh.RelPermalink }}" integrity="{{ $homeRefresh.Data.Integrity }}">{{ end }}
 </head><body class="{{ if .IsHome }}home{{ else }}interior{{ end }}{{ if .Params.isAbout }} about-page{{ end }}{{ if eq .Section "tools" }} tools-page{{ end }}">
 <a class="skip-link" href="#main">Skip to content</a>
 <div class="site-shell">
-<header class="site-header"><a class="site-brand" href="{{ "/" | relURL }}" aria-label="Frameworked home"><img src="{{ $mark.RelPermalink }}" alt="" width="36" height="36"><span>Frameworked<span class="brand-period">.</span></span></a><nav aria-label="Main navigation">
-<a href="{{ "/" | relURL }}" {{ if .IsHome }}aria-current="page"{{ end }}>Home</a>
+<header class="site-header fw-design-header">
+  <a class="site-brand" href="{{ "/" | relURL }}" aria-label="Frameworked home">
+    <img src="{{ $mark.RelPermalink }}" alt="" width="48" height="48">
+    <span class="fw-brand-text"><strong>Frameworked<span class="brand-period">.</span></strong><small>Exploring chemistry, one building block at a time.</small></span>
+  </a>
+  <nav class="fw-primary-nav" aria-label="Main navigation">
+    <a href="{{ "/" | relURL }}" {{ if .IsHome }}aria-current="page"{{ end }}>Home</a>
 <a href="{{ "/articles/" | relURL }}" {{ if in (slice "articles" "learn" "series") .Section }}aria-current="page"{{ end }}>Articles</a>
-<a href="{{ "/explore/" | relURL }}" {{ if eq .Section "atlas" }}aria-current="location"{{ else if eq .Section "explore" }}aria-current="page"{{ end }}>Explore</a>
 <a href="{{ "/tools/" | relURL }}" {{ if eq .Section "tools" }}aria-current="page"{{ end }}>Tools</a>
+<a href="{{ "/explore/" | relURL }}" {{ if eq .Section "atlas" }}aria-current="location"{{ else if eq .Section "explore" }}aria-current="page"{{ end }}>Explore</a>
 <a href="{{ "/about/" | relURL }}" {{ if .Params.isAbout }}aria-current="page"{{ end }}>About</a>
-</nav></header>
+  </nav>
+  <details class="fw-mobile-menu">
+    <summary><span>Menu</span><svg viewBox="0 0 24 24" width="21" height="21" aria-hidden="true" focusable="false"><path d="M4 6H20M4 12H20M4 18H20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg></summary>
+    <nav aria-label="Mobile navigation">
+      <a href="{{ "/" | relURL }}" {{ if .IsHome }}aria-current="page"{{ end }}>Home</a>
+<a href="{{ "/articles/" | relURL }}" {{ if in (slice "articles" "learn" "series") .Section }}aria-current="page"{{ end }}>Articles</a>
+<a href="{{ "/tools/" | relURL }}" {{ if eq .Section "tools" }}aria-current="page"{{ end }}>Tools</a>
+<a href="{{ "/explore/" | relURL }}" {{ if eq .Section "atlas" }}aria-current="location"{{ else if eq .Section "explore" }}aria-current="page"{{ end }}>Explore</a>
+<a href="{{ "/about/" | relURL }}" {{ if .Params.isAbout }}aria-current="page"{{ end }}>About</a>
+    </nav>
+  </details>
+</header>
 <main id="main" tabindex="-1">{{ block "main" . }}{{ end }}</main>
 <footer class="site-footer"><div class="footer-top"><div><a class="footer-wordmark" href="{{ "/" | relURL }}">Frameworked<span>.</span></a><p>Exploring chemistry, one building block at a time.</p></div></div><div class="footer-bottom"><span>© {{ now.Year }} Frameworked · An independent science communication project</span><nav aria-label="Footer navigation"><a href="{{ "/articles/" | relURL }}">Articles</a><a href="{{ "/explore/" | relURL }}">Explore</a><a href="{{ "/tools/" | relURL }}">Tools</a><a href="{{ "/about/" | relURL }}">About</a></nav><a href="#main">Back to top ↑</a></div></footer>
 </div></body></html>

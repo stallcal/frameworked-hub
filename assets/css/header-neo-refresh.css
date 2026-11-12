@@ -1,0 +1,181 @@
+/* Frameworked header exploration — sitewide, isolated under .fw-design-header.
+   Extends the existing neobrutalist design tokens, without modifying tools or articles. */
+.fw-design-header {
+  min-height: 94px;
+  padding: 13px 0 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: clamp(18px, 2.5vw, 38px);
+  border-bottom: 2px solid var(--fw-neo-stroke, #1C3049);
+  position: relative;
+  z-index: 20;
+}
+.fw-design-header .site-brand {
+  display: inline-flex;
+  align-items: center;
+  flex: 0 1 auto;
+  gap: 12px;
+  margin: 0;
+  min-width: 0;
+  color: var(--navy);
+  text-decoration: none;
+}
+.fw-design-header .site-brand img {
+  display: block;
+  width: clamp(40px, 4.5vw, 52px);
+  height: clamp(40px, 4.5vw, 52px);
+  flex: none;
+  object-fit: contain;
+}
+.fw-design-header .fw-brand-text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  gap: 4px;
+}
+.fw-design-header .fw-brand-text strong {
+  color: var(--navy);
+  font: 700 clamp(26px, 2.65vw, 38px)/1.04 'Libron', Georgia, serif;
+  letter-spacing: -.052em;
+}
+.fw-design-header .fw-brand-text small {
+  color: var(--navy);
+  font: 700 10px/1.25 'Courier New', monospace;
+  letter-spacing: .025em;
+}
+.fw-design-header .fw-primary-nav {
+  display: flex;
+  position: static;
+  left: auto;
+  top: auto;
+  transform: none;
+  margin: 0 0 0 auto;
+  align-items: center;
+  justify-content: flex-end;
+  gap: clamp(7px, 1vw, 15px);
+  overflow: visible;
+  width: auto;
+  flex-wrap: nowrap;
+}
+.fw-design-header .fw-primary-nav a {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  padding: 10px 12px;
+  margin: 0;
+  border: 2px solid transparent;
+  border-radius: 3px;
+  font: 700 clamp(14px, 1.15vw, 17px)/1.2 'Libron', Georgia, serif;
+  text-decoration: none;
+  color: var(--navy);
+  white-space: nowrap;
+  transition: background-color .14s ease, box-shadow .14s ease, transform .14s ease;
+}
+.fw-design-header .fw-primary-nav a[aria-current],
+.fw-design-header .fw-primary-nav a[aria-current="location"] {
+  color: #fff;
+  background: var(--red);
+  border-color: var(--navy);
+  box-shadow: 3px 3px 0 var(--navy);
+}
+.fw-design-header .fw-primary-nav a[aria-current]::after { display:none; }
+@media (hover:hover) {
+  .fw-design-header .fw-primary-nav a:not([aria-current]):hover {
+    color: var(--blue);
+    background: #eaf1f9;
+    border-color: var(--navy);
+    box-shadow: 3px 3px 0 var(--navy);
+  }
+}
+.fw-design-header .fw-mobile-menu { display:none; }
+@media (max-width: 1210px) {
+  .fw-design-header .fw-brand-text small { display:none; }
+}
+@media (max-width: 900px) {
+  .fw-design-header {
+    min-height: 70px;
+    padding: 10px 0 12px;
+    flex-wrap: nowrap;
+    gap: 12px;
+  }
+  .fw-design-header .site-brand { margin: 0; }
+  .fw-design-header .fw-brand-text strong { font-size: clamp(23px, 4.7vw, 33px); }
+  .fw-design-header > .fw-primary-nav { display:none; }
+  .fw-design-header .fw-mobile-menu {
+    display: block;
+    position: relative;
+    margin-left: auto;
+    flex: none;
+  }
+  .fw-design-header .fw-mobile-menu summary {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    list-style: none;
+    cursor: pointer;
+    background: #fff;
+    border: 2px solid var(--navy);
+    box-shadow: 3px 3px 0 var(--navy);
+    color: var(--navy);
+    border-radius: 2px;
+    padding: 9px 10px;
+    font: 700 14px/1.15 system-ui, sans-serif;
+  }
+  .fw-design-header .fw-mobile-menu summary::-webkit-details-marker { display:none; }
+  .fw-design-header .fw-mobile-menu[open] summary { background: var(--red); color: white; }
+  .fw-design-header .fw-mobile-menu summary:focus-visible {
+    outline: 3px solid var(--red);
+    outline-offset: 5px;
+  }
+  .fw-design-header .fw-mobile-menu nav {
+    position: absolute;
+    right: 0;
+    left: auto;
+    top: calc(100% + 9px);
+    z-index: 60;
+    transform: none;
+    margin: 0;
+    width: min(295px, calc(100vw - 36px));
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    flex-wrap: nowrap;
+    gap: 8px;
+    padding: 13px;
+    border: 2px solid var(--navy);
+    box-shadow: 6px 6px 0 var(--navy);
+    border-radius: 3px;
+    background: var(--paper);
+    overflow: visible;
+  }
+  .fw-design-header .fw-mobile-menu nav a {
+    display: block;
+    padding: 10px 13px;
+    color: var(--navy);
+    text-decoration: none;
+    font: 700 18px/1.2 'Libron', Georgia, serif;
+    border: 2px solid var(--navy);
+    background: #fff;
+    box-shadow: 2px 2px 0 var(--navy);
+  }
+  .fw-design-header .fw-mobile-menu nav a[aria-current] {
+    color: #fff;
+    background: var(--red);
+  }
+  .fw-design-header .fw-mobile-menu nav a:focus-visible {
+    outline: 3px solid var(--blue);
+    outline-offset: 2px;
+  }
+  .fw-design-header .fw-mobile-menu nav a[aria-current]::after { display:none; }
+}
+@media(max-width: 390px) {
+  .fw-design-header .fw-brand-text strong { font-size: 22px; }
+  .fw-design-header .site-brand img { width: 36px; height:36px; }
+  .fw-design-header .fw-mobile-menu summary { padding: 8px; gap: 6px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .fw-design-header .fw-primary-nav a { transition: none; }
+}
