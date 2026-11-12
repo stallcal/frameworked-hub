@@ -1,31 +1,123 @@
 {{ define "main" }}
-<section class="editorial-hero" aria-labelledby="hero-title">
-  <div class="hero-writing">
-    <p class="design-eyebrow"><span class="mini-rule"></span> EXPLORING CHEMISTRY, ONE BUILDING BLOCK AT A TIME <span class="eyebrow-number">/ 001</span></p>
-    <h1 id="hero-title">A closer look<br>at what <em>matter</em><br>can become<span class="hero-stop">.</span></h1>
-    <p class="hero-deck">From metal–organic frameworks to the wider world of chemistry, Frameworked is a place to explore the evidence, ask questions, and make connections.</p>
-    <div class="hero-buttons"><a class="editorial-button" href="{{ "/articles/" | relURL }}">Explore the articles <span aria-hidden="true">{{ partial "frameworked-arrow.html" . }}</span></a><a class="inline-link" href="{{ "/tools/" | relURL }}">Visit the workbench <span aria-hidden="true">{{ partial "frameworked-arrow.html" . }}</span></a></div>
-    <p class="hero-byline"><span class="status-pin" aria-hidden="true"></span> CHEMISTRY / RESEARCH / CURIOSITY</p>
+<section class="fw-neo-hero" aria-labelledby="hero-title">
+  <div class="fw-neo-hero-copy">
+    <p class="design-eyebrow"><span class="mini-rule" aria-hidden="true"></span> EXPLORING CHEMISTRY / FRAMEWORKED</p>
+    <h1 id="hero-title">A closer look at<br>what matter<br><span>can become.</span></h1>
+    <p class="fw-neo-hero-deck">Interactive explorers, visual explanations, and curated resources for chemistry, materials, and the environment.</p>
+    <div class="fw-neo-hero-actions">
+      <a class="editorial-button fw-neo-primary-action" href="{{ "/tools/" | relURL }}">Explore the tools <span aria-hidden="true">{{ partial "frameworked-arrow.html" . }}</span></a>
+      <a class="fw-neo-secondary-action" href="{{ "/explore/resources/" | relURL }}">Browse the library <span aria-hidden="true">{{ partial "frameworked-arrow.html" . }}</span></a>
+    </div>
   </div>
-  <div class="hero-illustration">
-    <div class="illustration-caption"><span>FRAMEWORK STUDIES</span><span>FIGURE 001 — CONCEPTUAL</span></div>
-    <svg class="molecular-art" viewBox="0 0 570 610" role="img" aria-label="Conceptual node–linker framework with blue connecting bonds, red nodes, and a large translucent green sphere centered in the main framework opening, behind three strong foreground spokes and in front of three faded rear spokes, indicating depth in the conceptual pore volume. The pore-space sphere is a visualization aid, not an atom. Not a crystallographic model of a specific MOF.">
-      <defs><radialGradient id="pore-space-gradient" cx="34%" cy="29%" r="74%"><stop offset="0" stop-color="#F3FFF6" stop-opacity=".86"/><stop offset=".43" stop-color="#9BDAB4" stop-opacity=".70"/><stop offset=".83" stop-color="#52AC7D" stop-opacity=".65"/><stop offset="1" stop-color="#248C59" stop-opacity=".57"/></radialGradient></defs>
-      <!-- Three rear spokes recede behind the pore volume. -->
-      <g class="framework-rear-bonds"><path d="M285 82L285 260 M145 348L285 260 M425 348L285 260"/></g>
-      <!-- The sphere visualizes empty volume, not an atom or an occupied guest site. -->
-      <g class="framework-pore-ball" aria-hidden="true"><circle class="pore-ball-shadow" cx="289" cy="265" r="132"/><circle class="pore-ball" cx="285" cy="260" r="132"/><ellipse class="pore-ball-highlight" cx="238" cy="208" rx="32" ry="19" transform="rotate(-28 238 208)"/></g>
-      <!-- Outer framework and the three front spokes remain visible over the sphere. -->
-      <g class="framework-bonds"><path d="M285 82L425 172V348L285 438L145 348V172Z M145 172L285 260 M425 172L285 260 M285 260L285 438"/></g>
-      <g class="framework-secondary"><path d="M145 172L92 137 M425 172L476 138 M145 348L94 383 M425 348L478 390 M285 82V26 M285 438V494"/></g>
-      <g class="framework-nodes"><circle cx="285" cy="82" r="19"/><circle cx="425" cy="172" r="19"/><circle cx="425" cy="348" r="19"/><circle cx="285" cy="438" r="19"/><circle cx="145" cy="348" r="19"/><circle cx="145" cy="172" r="19"/><circle cx="285" cy="260" r="21"/></g>
-      <g class="framework-labels"><path d="M302 75L362 54H425"/><text x="367" y="43">NODE</text><path d="M203 209L136 239H76"/><text x="78" y="228">LINKER</text><path d="M408 294L442 312H544"/><text class="pore-label" x="460" y="300">PORE SPACE</text></g>
-    </svg>
-    <div class="illustration-bottom"><a href="/tools/node-and-linker/">Explore nodes and linkers {{ partial "frameworked-arrow.html" . }}</a><span class="schematic-note">Schematic only · not crystallographic data</span></div>
+  <div class="fw-neo-hero-art" aria-label="Frameworked geometric framework mark">
+    <div class="fw-neo-art-backdrop" aria-hidden="true"></div>
+    <img src="{{ "/images/frameworked-mark.png" | relURL }}" alt="" width="440" height="440" decoding="async">
+    <span class="fw-neo-art-caption">FRAMEWORKED / A BUILDING-BLOCK MOTIF</span>
   </div>
 </section>
 
-<section class="home-chapters fw-neo-home-nav" aria-labelledby="chapters-title"><div class="chapter-intro"><p class="design-eyebrow">START HERE / 01</p><h2 id="chapters-title">Explore<br>Frameworked.</h2><p>Read about the chemistry, work through a scientific tool, or learn about the research behind the site.</p></div><div class="chapter-collection"><a class="chapter-link" href="{{ "/articles/" | relURL }}"><span class="chapter-index">01 / READ</span><span class="chapter-main"><strong>Articles and explainers</strong><small>Explanations and research stories, built around the evidence.</small></span><span class="chapter-arrow" aria-hidden="true">{{ partial "frameworked-arrow.html" . }}</span></a><a class="chapter-link" href="{{ "/tools/" | relURL }}"><span class="chapter-index">02 / ANALYZE</span><span class="chapter-main"><strong>Scientific tools</strong><small>Explore diffraction patterns and calculate reagent ratios.</small></span><span class="chapter-arrow" aria-hidden="true">{{ partial "frameworked-arrow.html" . }}</span></a><a class="chapter-link" href="{{ "/about/" | relURL }}"><span class="chapter-index">03 / ABOUT</span><span class="chapter-main"><strong>About Frameworked</strong><small>The project, its current MOF focus, and where it may grow.</small></span><span class="chapter-arrow" aria-hidden="true">{{ partial "frameworked-arrow.html" . }}</span></a></div></section>
+<section class="fw-neo-featured" aria-labelledby="fw-featured-title">
+  <div class="fw-neo-section-heading">
+    <h2 id="fw-featured-title">Featured explorers</h2>
+    <p>Explore the science by changing a parameter and seeing what happens.</p>
+  </div>
+  <div class="fw-neo-featured-grid">
+    <a class="fw-neo-feature-card fw-feature-bragg" href="{{ "/tools/bragg/" | relURL }}" aria-label="Open Bragg's law explorer">
+      <span class="fw-feature-visual" aria-hidden="true">
+        <svg viewBox="0 0 300 220" focusable="false">
+          <g stroke="#9E382E" stroke-width="3" fill="none"><path d="M24 108H277M24 148H277M24 188H277"/></g>
+          <g fill="#9E382E" stroke="#1C3049" stroke-width="1.9">
+            <circle cx="40" cy="108" r="6"/><circle cx="85" cy="108" r="6"/><circle cx="130" cy="108" r="6"/><circle cx="175" cy="108" r="6"/><circle cx="220" cy="108" r="6"/><circle cx="265" cy="108" r="6"/>
+            <circle cx="40" cy="148" r="6"/><circle cx="85" cy="148" r="6"/><circle cx="130" cy="148" r="6"/><circle cx="175" cy="148" r="6"/><circle cx="220" cy="148" r="6"/><circle cx="265" cy="148" r="6"/>
+            <circle cx="40" cy="188" r="6"/><circle cx="85" cy="188" r="6"/><circle cx="130" cy="188" r="6"/><circle cx="175" cy="188" r="6"/><circle cx="220" cy="188" r="6"/><circle cx="265" cy="188" r="6"/>
+          </g>
+          <g stroke="#084B9E" stroke-width="4.5" fill="none" stroke-linecap="round"><path d="M55 16L150 108L246 16"/></g>
+          <g fill="#084B9E"><path d="M55 16L62 41L76 28Z"/><path d="M246 16L221 28L235 42Z"/></g>
+          <path d="M150 108V23" stroke="#1C3049" stroke-width="2" stroke-dasharray="5 5"/>
+          <path d="M132 91Q119 64 131 46M168 91Q181 64 169 46" fill="none" stroke="#1C3049" stroke-width="2"/>
+          <text x="109" y="64" fill="#1C3049" font-size="17" font-family="Georgia,serif">θ</text>
+          <text x="185" y="64" fill="#1C3049" font-size="17" font-family="Georgia,serif">θ</text>
+          <path d="M14 108V148M8 108H20M8 148H20" stroke="#084B9E" stroke-width="2" fill="none"/>
+          <text x="3" y="132" fill="#084B9E" font-size="14" font-family="Georgia,serif">d</text>
+          <text x="148" y="211" text-anchor="middle" fill="#526A82" font-size="10" font-family="monospace">PLANE STACK / SCHEMATIC</text>
+        </svg>
+      </span>
+      <span class="fw-feature-copy">
+        <span class="fw-feature-eyebrow">01 / DIFFRACTION</span>
+        <strong>Bragg explorer</strong>
+        <span class="fw-feature-description">Scan diffraction angles to see where an idealized plane stack reinforces scattered waves.</span>
+        <span class="fw-feature-open">Open explorer <span aria-hidden="true">{{ partial "frameworked-arrow.html" . }}</span></span>
+      </span>
+    </a>
+    {{ if fileExists "static/tools/wave-interference/index.html" }}
+    <a class="fw-neo-feature-card fw-feature-wave" href="{{ "/tools/wave-interference/" | relURL }}" aria-label="Open Wave Interference Explorer">
+      <span class="fw-feature-visual" aria-hidden="true">
+        <svg viewBox="0 0 300 220" focusable="false">
+          <path d="M20 20C36 2 52 2 68 20S100 38 116 20S148 2 164 20S196 38 212 20S244 2 260 20S276 38 290 20" fill="none" stroke="#084B9E" stroke-width="4"/>
+          <text x="26" y="70" fill="#1C3049" font-size="22" font-weight="700">+</text>
+          <path d="M20 96C36 78 52 78 68 96S100 114 116 96S148 78 164 96S196 114 212 96S244 78 260 96S276 114 290 96" fill="none" stroke="#9E382E" stroke-width="4"/>
+          <text x="26" y="142" fill="#1C3049" font-size="22" font-weight="700">=</text>
+          <path d="M20 178C36 142 52 142 68 178S100 214 116 178S148 142 164 178S196 214 212 178S244 142 260 178S276 214 290 178" fill="none" stroke="#089E4B" stroke-width="5"/>
+        </svg>
+      </span>
+      <span class="fw-feature-copy">
+        <span class="fw-feature-eyebrow">02 / WAVES</span>
+        <strong>Wave interference</strong>
+        <span class="fw-feature-description">Change the phase difference between coherent waves and watch their resultant change.</span>
+        <span class="fw-feature-open">Open explorer <span aria-hidden="true">{{ partial "frameworked-arrow.html" . }}</span></span>
+      </span>
+    </a>
+    {{ else }}
+    <a class="fw-neo-feature-card fw-feature-wave" href="{{ "/tools/normal-modes/" | relURL }}" aria-label="Open Molecular Normal Mode Explorer">
+      <span class="fw-feature-visual" aria-hidden="true">
+        <svg viewBox="0 0 300 220" focusable="false">
+          <g stroke="#1C3049" stroke-width="11" stroke-linecap="round"><path d="M82 108H218"/></g>
+          <g stroke="#fff" stroke-width="4" stroke-linecap="round"><path d="M82 108H218"/></g>
+          <circle cx="62" cy="108" r="29" fill="#9E382E" stroke="#1C3049" stroke-width="4"/>
+          <circle cx="150" cy="108" r="22" fill="#34465B" stroke="#1C3049" stroke-width="4"/>
+          <circle cx="238" cy="108" r="29" fill="#9E382E" stroke="#1C3049" stroke-width="4"/>
+          <g stroke="#084B9E" stroke-width="3.5" stroke-linecap="round"><path d="M45 59H17M255 59H283M150 148V178"/></g>
+          <g fill="#084B9E"><path d="M17 59L29 52V66Z"/><path d="M283 59L271 52V66Z"/><path d="M150 178L142 164H158Z"/></g>
+          <text x="150" y="204" fill="#526A82" text-anchor="middle" font-size="11" font-family="monospace">CO₂ / CONCEPTUAL MOTION</text>
+        </svg>
+      </span>
+      <span class="fw-feature-copy">
+        <span class="fw-feature-eyebrow">02 / SPECTROSCOPY</span>
+        <strong>Molecular normal modes</strong>
+        <span class="fw-feature-description">Animate molecular vibrations and explore mode counting and IR/Raman activity.</span>
+        <span class="fw-feature-open">Open explorer <span aria-hidden="true">{{ partial "frameworked-arrow.html" . }}</span></span>
+      </span>
+    </a>
+    {{ end }}
+  </div>
+</section>
+
+<section class="fw-neo-topics" aria-labelledby="fw-topics-title">
+  <div class="fw-neo-section-heading">
+    <h2 id="fw-topics-title">Explore by topic</h2>
+    <p>Start with a subject, then follow the chemistry.</p>
+  </div>
+  <div class="fw-neo-topic-grid">
+    <a class="fw-topic-card" href="{{ "/tools/node-and-linker/" | relURL }}">
+      <span class="fw-topic-icon fw-topic-blue" aria-hidden="true"><svg viewBox="0 0 60 60"><g fill="none" stroke="currentColor" stroke-width="2.5"><path d="M30 7L50 20V41L30 53L10 41V20Z M30 7V30L10 41 M30 30L50 41"/></g><g fill="currentColor"><circle cx="30" cy="7" r="4"/><circle cx="50" cy="20" r="4"/><circle cx="50" cy="41" r="4"/><circle cx="30" cy="53" r="4"/><circle cx="10" cy="41" r="4"/><circle cx="10" cy="20" r="4"/><circle cx="30" cy="30" r="4"/></g></svg></span>
+      <span class="fw-topic-title">Materials &amp;<br>frameworks</span><span class="fw-topic-arrow" aria-hidden="true">{{ partial "frameworked-arrow.html" . }}</span>
+    </a>
+    <a class="fw-topic-card" href="{{ "/tools/normal-modes/" | relURL }}">
+      <span class="fw-topic-icon fw-topic-red" aria-hidden="true"><svg viewBox="0 0 60 60"><path d="M3 36H10L16 18L24 47L31 25L39 34L45 10L52 36H57" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/></svg></span>
+      <span class="fw-topic-title">Spectroscopy &amp;<br>vibrations</span><span class="fw-topic-arrow" aria-hidden="true">{{ partial "frameworked-arrow.html" . }}</span>
+    </a>
+    <a class="fw-topic-card" href="{{ "/tools/reagent-ratios/" | relURL }}">
+      <span class="fw-topic-icon fw-topic-blue" aria-hidden="true"><svg viewBox="0 0 60 60"><path d="M24 6H36M27 6V22L13 48Q11 53 18 53H42Q49 53 47 48L33 22V6" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M19 39H41" stroke="currentColor" stroke-width="2"/><circle cx="27" cy="46" r="2" fill="currentColor"/><circle cx="36" cy="43" r="2" fill="currentColor"/></svg></span>
+      <span class="fw-topic-title">Core<br>chemistry</span><span class="fw-topic-arrow" aria-hidden="true">{{ partial "frameworked-arrow.html" . }}</span>
+    </a>
+    <a class="fw-topic-card" href="{{ "/articles/pfas-groundwater/" | relURL }}">
+      <span class="fw-topic-icon fw-topic-red" aria-hidden="true"><svg viewBox="0 0 60 60"><path d="M10 50C12 25 32 12 53 9C51 31 40 47 16 50Z M10 52Q26 33 42 23" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      <span class="fw-topic-title">Environment &amp;<br>sustainability</span><span class="fw-topic-arrow" aria-hidden="true">{{ partial "frameworked-arrow.html" . }}</span>
+    </a>
+  </div>
+</section>
+
+<div class="fw-neo-mission" aria-label="Frameworked tagline"><span>Exploring chemistry, one building block at a time.</span></div>
 
 {{ $published := where (partial "readings.html" .) "Draft" false }}
 {{ with first 1 (where $published "Params.featured" true) }}<section class="home-section" aria-labelledby="featured-title"><p class="design-eyebrow">THE READING ROOM / FEATURED</p><h2 id="featured-title">Featured <em>story.</em></h2>{{ range . }}{{ partial "content-card.html" . }}{{ end }}</section>{{ end }}
