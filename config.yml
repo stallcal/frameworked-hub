@@ -11,7 +11,7 @@ params:
   description: "Exploring chemistry, one building block at a time. Rooted in metal-organic framework research and scientific curiosity."
   author: Frameworked
   startSeries: introduction-to-mofs
-  uiVersion: "0.1.0" # First explicit public interface version; increment with subsequent UI releases
+  uiVersion: "0.1.1" # Science Resources readability refresh
 markup:
   goldmark:
     renderer:

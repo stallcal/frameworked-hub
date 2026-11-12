@@ -28,6 +28,7 @@
 {{ if and (eq .Section "articles") (eq .Kind "section") }}{{ $readingRoomStyle := resources.Get "css/articles-neo-refresh.css" | minify | fingerprint }}<link rel="stylesheet" href="{{ $readingRoomStyle.RelPermalink }}" integrity="{{ $readingRoomStyle.Data.Integrity }}">{{ end }}
 {{ if .Params.isAbout }}{{ $aboutRefresh := resources.Get "css/about-neo-refresh.css" | minify | fingerprint }}<link rel="stylesheet" href="{{ $aboutRefresh.RelPermalink }}" integrity="{{ $aboutRefresh.Data.Integrity }}">{{ end }}
 {{ $layoutPolish := resources.Get "css/layout-spacing-polish.css" | minify | fingerprint }}<link rel="stylesheet" href="{{ $layoutPolish.RelPermalink }}" integrity="{{ $layoutPolish.Data.Integrity }}">
+{{ if .Params.isResourceLibrary }}{{ $resourceRefresh := resources.Get "css/resource-library-refresh.css" | minify | fingerprint }}<link rel="stylesheet" href="{{ $resourceRefresh.RelPermalink }}" integrity="{{ $resourceRefresh.Data.Integrity }}">{{ end }}
 </head><body class="{{ if .IsHome }}home{{ else }}interior{{ end }}{{ if .Params.isAbout }} about-page{{ end }}{{ if eq .Section "tools" }} tools-page{{ end }}">
 <a class="skip-link" href="#main">Skip to content</a>
 <div class="site-shell">
