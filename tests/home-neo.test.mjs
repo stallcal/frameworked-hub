@@ -41,3 +41,11 @@ test("design remains scoped, responsive and reduced-motion accessible",()=>{
   assert.match(homeCss, /focus-visible/);
   assert.doesNotMatch(home, /https?:\/\//);
 });
+
+test("homepage omits redundant tagline ribbon while footer retains the brand line",()=>{
+  assert.doesNotMatch(home, /fw-neo-mission/);
+  assert.doesNotMatch(homeCss, /fw-neo-mission/);
+  assert.match(base, /Exploring chemistry, one building block at a time\./);
+  assert.match(home, /Explore by topic/);
+  assert.match(home, /\{\{ \$published :=/);
+});

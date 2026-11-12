@@ -121,8 +121,6 @@
   </div>
 </section>
 
-<div class="fw-neo-mission" aria-label="Frameworked tagline"><span>Exploring chemistry, one building block at a time.</span></div>
-
 {{ $published := where (partial "readings.html" .) "Draft" false }}
 {{ with first 1 (where $published "Params.featured" true) }}<section class="home-section" aria-labelledby="featured-title"><p class="design-eyebrow">THE READING ROOM / FEATURED</p><h2 id="featured-title">Featured <em>story.</em></h2>{{ range . }}{{ partial "content-card.html" . }}{{ end }}</section>{{ end }}
 {{ with site.GetPage (printf "/series/%s" site.Params.startSeries) }}{{ $stories := sort (intersect .Pages $published) "Params.series_order" "asc" }}{{ with $stories }}<section class="home-section" aria-labelledby="start-title"><p class="design-eyebrow">A GOOD PLACE TO BEGIN</p><h2 id="start-title">Start <em>here.</em></h2><p class="section-intro">An introduction to MOFs, one question at a time.</p>{{ range first 3 . }}{{ partial "content-card.html" . }}{{ end }}</section>{{ end }}{{ end }}
