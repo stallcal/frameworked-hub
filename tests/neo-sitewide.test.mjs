@@ -70,7 +70,7 @@ test("global spacing and inset footer polish preserve page layout and metadata",
   assert.match(base, /class="footer-version"/);
   assert.match(base, /class="footer-back-top"/);
   assert.match(base, /site\.Params\.uiVersion/);
-  assert.match(config, /uiVersion: "0\.1\.1"/);
+  assert.match(config, /uiVersion: "0\.1\.2"/);
   assert.match(polish, /\.interior \.fw-reading-room-hero/);
   assert.match(polish, /\.about-page \.fw-about-hero/);
   assert.match(polish, /\.tools-page \.tools-intro/);
@@ -118,4 +118,43 @@ test("Science Resources styling is isolated, legible and reachable from topic li
   assert.match(libraryCss, /max-width: 620px/);
   assert.match(libraryCss, /forced-colors: active/);
   assert.doesNotMatch(libraryCss, /(?:^|\n)\s*(?:canvas|\.article-body|\.atlas-page|\.home)\s*\{/);
+});
+
+test("Science Resources catalog retains stable IDs, unique URLs and valid topical filters", () => {
+  const data = JSON.parse(readFileSync("data/science_resources.json", "utf8"));
+  const topics = new Set(data.topics.map(t => t.id));
+  const kinds = new Set(data.kinds.map(k => k.id));
+  const ids = new Set();
+  const urls = new Set();
+  for (const resource of data.resources) {
+    assert.ok(typeof resource.id === "string" && resource.id.length > 0);
+    assert.ok(!ids.has(resource.id), "Duplicate resource ID: " + resource.id);
+    ids.add(resource.id);
+    assert.ok(kinds.has(resource.kind), "Unknown resource kind: " + resource.id);
+    assert.ok(Array.isArray(resource.topics) && resource.topics.length > 0);
+    for (const topic of resource.topics) assert.ok(topics.has(topic), "Unknown topic: " + topic);
+    assert.ok(typeof resource.title === "string" && resource.title.trim());
+    const link = resource.doi ? "https://doi.org/" + resource.doi : resource.url;
+    assert.ok(typeof link === "string" && /^https:\/\/[^\s]+$/.test(link), "Invalid URL: " + resource.id);
+    const normalized = link.toLowerCase().replace(/\/$/, "");
+    assert.ok(!urls.has(normalized), "Duplicate link: " + resource.id);
+    urls.add(normalized);
+  }
+  for (const topic of ["mathematics", "engineering", "space"]) {
+    assert.ok(topics.has(topic), "Missing requested STEM topic " + topic);
+  }
+  assert.ok(kinds.has("podcasts"));
+  assert.ok(data.resources.length >= 92);
+  for (const requested of [
+    "symotter", "crystals-otterbein", "mof-anatomy", "wriedt-lab-home",
+    "nasa", "nasa-science", "nasa-jpl", "nasa-goddard", "nasa-johnson",
+    "jantec-engineering", "professor-derricotte", "the-rest-is-science",
+    "three-blue-one-brown", "the-rest-is-science-podcast", "episodic-table",
+    "chemicalforce", "prussian-blue", "chads-prep", "acs-reactions", "ut-dallas"
+  ]) assert.ok(ids.has(requested), "Missing vetted requested source " + requested);
+  const page = readFileSync("layouts/explore/list.html", "utf8");
+  assert.match(page, /range \$catalog\.topics/);
+  assert.match(page, /range \$catalog\.kinds/);
+  assert.match(page, /data-resource-entry/);
+  assert.match(page, /len \$catalog\.resources/);
 });

@@ -29,6 +29,21 @@
       "id": "physics",
       "label": "Physics & General Science",
       "short": "Physics"
+    },
+    {
+      "id": "mathematics",
+      "label": "Mathematics & Visualization",
+      "short": "Mathematics"
+    },
+    {
+      "id": "engineering",
+      "label": "Engineering & Technology",
+      "short": "Engineering"
+    },
+    {
+      "id": "space",
+      "label": "Space & Astronomy",
+      "short": "Space"
     }
   ],
   "kinds": [
@@ -51,6 +66,11 @@
       "id": "references",
       "label": "Websites, tools & references",
       "description": "External organizations, databases, guidance and learning material"
+    },
+    {
+      "id": "podcasts",
+      "label": "Podcasts & audio",
+      "description": "Science-focused audio shows and podcast series"
     }
   ],
   "resources": [
@@ -659,6 +679,407 @@
         "crystallography"
       ],
       "meta": "Hoskins & Robson · JACS · 1989"
+    },
+    {
+      "id": "symotter",
+      "title": "Symmetry@Otterbein",
+      "kind": "references",
+      "url": "https://symotter.org/",
+      "topics": [
+        "crystallography",
+        "chemistry"
+      ],
+      "description": "Interactive molecular symmetry tutorials, point-group galleries, symmetry operations and practice challenges."
+    },
+    {
+      "id": "crystals-otterbein",
+      "title": "Crystals@Otterbein",
+      "kind": "references",
+      "url": "https://crystals.symotter.org/",
+      "topics": [
+        "crystallography",
+        "chemistry"
+      ],
+      "description": "Interactive crystal structures, unit-cell visualization, space-group symmetry and diffraction teaching tools."
+    },
+    {
+      "id": "mof-anatomy",
+      "title": "MOF Anatomy",
+      "kind": "references",
+      "url": "https://mofanatomy.com/",
+      "topics": [
+        "mofs",
+        "crystallography"
+      ],
+      "description": "An illustrated collection of simplified MOF structure visualizations, including frameworks, pores and building units."
+    },
+    {
+      "id": "wriedt-lab-home",
+      "title": "Wriedt Research Group — UT Dallas",
+      "kind": "references",
+      "url": "https://labs.utdallas.edu/wriedt/",
+      "topics": [
+        "mofs",
+        "pfas",
+        "crystallography",
+        "climate"
+      ],
+      "description": "Official research-group website covering porous functional materials, metal–organic frameworks, crystallography and environmental applications."
+    },
+    {
+      "id": "hannah-fry",
+      "title": "Hannah Fry — Official Website",
+      "kind": "references",
+      "url": "https://hannahfry.co.uk/",
+      "topics": [
+        "mathematics",
+        "physics"
+      ],
+      "description": "Mathematician and science presenter's official site, with information about her books, broadcasting and public engagement."
+    },
+    {
+      "id": "dave-mckeegan",
+      "title": "Dave McKeegan",
+      "kind": "channels",
+      "url": "https://www.youtube.com/@davemckeegan",
+      "topics": [
+        "physics",
+        "climate"
+      ],
+      "description": "Evidence-based explanations and investigations of science, technology and environmental claims."
+    },
+    {
+      "id": "real-engineering",
+      "title": "Real Engineering",
+      "kind": "channels",
+      "url": "https://www.youtube.com/@RealEngineering",
+      "topics": [
+        "engineering",
+        "physics"
+      ],
+      "description": "Visual explanations of engineering systems, aviation, energy and the technologies behind them."
+    },
+    {
+      "id": "kurzgesagt",
+      "title": "Kurzgesagt – In a Nutshell",
+      "kind": "channels",
+      "url": "https://www.youtube.com/@kurzgesagt",
+      "topics": [
+        "physics",
+        "space",
+        "climate"
+      ],
+      "description": "Animated explorations of science, space, biology and big-picture questions."
+    },
+    {
+      "id": "nasa",
+      "title": "NASA",
+      "kind": "channels",
+      "url": "https://www.youtube.com/@NASA",
+      "topics": [
+        "space",
+        "engineering",
+        "physics"
+      ],
+      "description": "Official NASA mission updates, exploration footage and space-science programming."
+    },
+    {
+      "id": "nasa-science",
+      "title": "NASA Science",
+      "kind": "channels",
+      "url": "https://www.youtube.com/@NASAScience",
+      "topics": [
+        "space",
+        "physics",
+        "climate"
+      ],
+      "description": "Research and discoveries from NASA's science missions, including planetary and Earth science."
+    },
+    {
+      "id": "nasa-goddard",
+      "title": "NASA Goddard",
+      "kind": "channels",
+      "url": "https://www.youtube.com/@NASAGoddard",
+      "topics": [
+        "space",
+        "climate",
+        "engineering"
+      ],
+      "description": "Spacecraft, astronomy, Earth observations and science from Goddard Space Flight Center."
+    },
+    {
+      "id": "nasa-jpl",
+      "title": "NASA Jet Propulsion Laboratory",
+      "kind": "channels",
+      "url": "https://www.youtube.com/@NASAJPL",
+      "topics": [
+        "space",
+        "engineering"
+      ],
+      "description": "Robotic exploration, space science, engineering and mission updates from JPL."
+    },
+    {
+      "id": "nasa-johnson",
+      "title": "NASA Johnson",
+      "kind": "channels",
+      "url": "https://www.youtube.com/@ReelNASA",
+      "topics": [
+        "space",
+        "engineering"
+      ],
+      "description": "Human spaceflight, astronaut training and mission operations from Johnson Space Center."
+    },
+    {
+      "id": "nasa-solar-system",
+      "title": "NASA Solar System",
+      "kind": "channels",
+      "url": "https://www.youtube.com/@NASASolarSystem",
+      "topics": [
+        "space",
+        "physics"
+      ],
+      "description": "Solar-system exploration and planetary-science media from NASA."
+    },
+    {
+      "id": "jantec-engineering",
+      "title": "JanTec Engineering",
+      "kind": "channels",
+      "url": "https://www.youtube.com/@JanTecEngineering",
+      "topics": [
+        "engineering",
+        "physics"
+      ],
+      "description": "3D printing, filament testing, electrical engineering and practical material comparisons."
+    },
+    {
+      "id": "professor-derricotte",
+      "title": "Professor Derricotte",
+      "kind": "channels",
+      "url": "https://www.youtube.com/@ProfessorDerricotte",
+      "topics": [
+        "chemistry",
+        "physics"
+      ],
+      "description": "College-level chemistry instruction including thermodynamics, kinetics, quantum chemistry and spectroscopy."
+    },
+    {
+      "id": "the-rest-is-science",
+      "title": "The Rest Is Science",
+      "kind": "channels",
+      "url": "https://www.youtube.com/@TheRestIsScience",
+      "topics": [
+        "physics",
+        "mathematics",
+        "chemistry"
+      ],
+      "description": "Science conversations hosted by Hannah Fry and Michael Stevens (Vsauce)."
+    },
+    {
+      "id": "three-blue-one-brown",
+      "title": "3Blue1Brown",
+      "kind": "channels",
+      "url": "https://www.youtube.com/@3blue1brown",
+      "topics": [
+        "mathematics",
+        "physics"
+      ],
+      "description": "Animated mathematical intuition, including calculus, linear algebra and applications to physics."
+    },
+    {
+      "id": "minutephysics",
+      "title": "minutephysics",
+      "kind": "channels",
+      "url": "https://www.youtube.com/@MinutePhysics",
+      "topics": [
+        "physics",
+        "space"
+      ],
+      "description": "Concise illustrated physics explanations and thought experiments."
+    },
+    {
+      "id": "startalk",
+      "title": "StarTalk",
+      "kind": "channels",
+      "url": "https://www.youtube.com/@StarTalk",
+      "topics": [
+        "space",
+        "physics"
+      ],
+      "description": "Science conversations and astronomy discussions hosted by Neil deGrasse Tyson and guests."
+    },
+    {
+      "id": "smarter-every-day",
+      "title": "Smarter Every Day",
+      "kind": "channels",
+      "url": "https://www.youtube.com/@SmarterEveryDay",
+      "topics": [
+        "physics",
+        "engineering"
+      ],
+      "description": "Hands-on experiments, slow-motion demonstrations and engineering investigations."
+    },
+    {
+      "id": "domain-of-science",
+      "title": "Domain of Science",
+      "kind": "channels",
+      "url": "https://www.youtube.com/@ScienceMaps",
+      "topics": [
+        "physics",
+        "mathematics",
+        "chemistry"
+      ],
+      "description": "Visual maps of science, mathematics and physics concepts."
+    },
+    {
+      "id": "mission-unstoppable",
+      "title": "Mission Unstoppable",
+      "kind": "channels",
+      "url": "https://www.youtube.com/@cbsunstoppable",
+      "topics": [
+        "physics",
+        "engineering",
+        "chemistry"
+      ],
+      "description": "STEM stories highlighting women working in science, engineering and technology."
+    },
+    {
+      "id": "chemistorian",
+      "title": "Chemistorian",
+      "kind": "channels",
+      "url": "https://www.youtube.com/@Chemistorian",
+      "topics": [
+        "chemistry"
+      ],
+      "description": "Stories from the history of chemistry, element discoveries and early scientific ideas."
+    },
+    {
+      "id": "chemicalforce",
+      "title": "ChemicalForce",
+      "kind": "channels",
+      "url": "https://www.youtube.com/@chemicalforce",
+      "topics": [
+        "chemistry"
+      ],
+      "description": "Chemical demonstrations and visually striking laboratory experiments; not a substitute for lab-safety guidance."
+    },
+    {
+      "id": "chads-prep",
+      "title": "Chad's Prep",
+      "kind": "channels",
+      "url": "https://www.youtube.com/@ChadsPrep",
+      "topics": [
+        "chemistry",
+        "physics"
+      ],
+      "description": "Tutorial lessons for general chemistry, organic chemistry and physics, including pre-health coursework."
+    },
+    {
+      "id": "prussian-blue",
+      "title": "Prussian Blue",
+      "kind": "channels",
+      "url": "https://www.youtube.com/channel/UC0aRbU6guMEMY8RpGMP_ayw",
+      "topics": [
+        "chemistry"
+      ],
+      "description": "Chemistry experiments and science humor; demonstrations are not intended as laboratory tutorials."
+    },
+    {
+      "id": "professor-leonard",
+      "title": "Professor Leonard",
+      "kind": "channels",
+      "url": "https://www.youtube.com/@ProfessorLeonard",
+      "topics": [
+        "mathematics"
+      ],
+      "description": "Full-length college mathematics lectures, including calculus."
+    },
+    {
+      "id": "organic-chemistry-tutor",
+      "title": "The Organic Chemistry Tutor",
+      "kind": "channels",
+      "url": "https://www.youtube.com/@TheOrganicChemistryTutor",
+      "topics": [
+        "chemistry",
+        "mathematics",
+        "physics"
+      ],
+      "description": "Worked examples in general and organic chemistry, physics and mathematics."
+    },
+    {
+      "id": "floatheadphysics",
+      "title": "FloatHeadPhysics",
+      "kind": "channels",
+      "url": "https://www.youtube.com/@Mahesh_Shenoy",
+      "topics": [
+        "physics"
+      ],
+      "description": "Visual and intuitive explanations of relativity, mechanics and other physics topics."
+    },
+    {
+      "id": "ut-dallas",
+      "title": "UT Dallas — Official Channel",
+      "kind": "channels",
+      "url": "https://www.youtube.com/@UT_Dallas",
+      "topics": [
+        "chemistry",
+        "engineering",
+        "physics"
+      ],
+      "description": "Official University of Texas at Dallas videos covering campus, research, education and student life."
+    },
+    {
+      "id": "utd-geoscience-studios",
+      "title": "UTD Geoscience Studios",
+      "kind": "channels",
+      "url": "https://www.youtube.com/channel/UCGRcGfZpcWMCihRgpCrjXFA",
+      "topics": [
+        "climate",
+        "physics"
+      ],
+      "description": "Geoscience animations and educational videos created by UT Dallas students and faculty."
+    },
+    {
+      "id": "acs-youtube",
+      "title": "American Chemical Society",
+      "kind": "channels",
+      "url": "https://www.youtube.com/@AmerChemSociety",
+      "topics": [
+        "chemistry",
+        "mofs"
+      ],
+      "description": "Official ACS videos highlighting chemistry research, education, careers and scientific news."
+    },
+    {
+      "id": "acs-reactions",
+      "title": "Reactions — American Chemical Society",
+      "kind": "channels",
+      "url": "https://www.youtube.com/@ACSReactions",
+      "topics": [
+        "chemistry"
+      ],
+      "description": "Chemistry explanations of everyday phenomena, produced by the American Chemical Society."
+    },
+    {
+      "id": "episodic-table",
+      "title": "The Episodic Table of Elements",
+      "kind": "podcasts",
+      "url": "https://episodictable.com/",
+      "topics": [
+        "chemistry"
+      ],
+      "description": "Audio stories exploring the discovery, history and chemistry of each element in the periodic table."
+    },
+    {
+      "id": "the-rest-is-science-podcast",
+      "title": "The Rest Is Science — Podcast",
+      "kind": "podcasts",
+      "url": "https://therestis.com/science",
+      "topics": [
+        "physics",
+        "mathematics",
+        "chemistry"
+      ],
+      "description": "A science conversation podcast with Hannah Fry and Vsauce's Michael Stevens, exploring everyday questions and surprising phenomena."
     }
   ]
 }

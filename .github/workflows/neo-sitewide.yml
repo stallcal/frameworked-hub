@@ -5,6 +5,8 @@ on:
       - 'assets/css/neo-sitewide-extensions.css'
       - 'layouts/_default/baseof.html'
       - 'tests/neo-sitewide.test.mjs'
+      - 'data/science_resources.json'
+      - 'config.yml'
       - 'tests/articles-neo.test.mjs'
       - 'assets/css/articles-neo-refresh.css'
       - 'assets/css/home-neo-refresh.css'
@@ -19,6 +21,8 @@ on:
       - 'assets/css/neo-sitewide-extensions.css'
       - 'layouts/_default/baseof.html'
       - 'tests/neo-sitewide.test.mjs'
+      - 'data/science_resources.json'
+      - 'config.yml'
 permissions:
   contents: read
 jobs:
