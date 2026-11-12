@@ -6,6 +6,10 @@
 
 The repository MIT license does not replace the separate image license.
 
+## High-resolution logo activation
+
+Upload the verified transparent 1024 × 1024 PNG as `assets/images/frameworked-logo-hd.png` and commit it to `main`. The Hugo site automatically uses this image for the homepage and derives the header PNG, favicon and Apple touch icon from it. The existing transparent assets remain fallbacks until the higher-resolution file is present. This image must have actual alpha transparency (RGBA or PNG `tRNS`), not an opaque white background.
+
 ## Typeface
 
 Libron v0.31 by Nico Verbruggen, based on Readerly and Newsreader. Official unmodified Regular, Italic, Bold and BoldItalic WOFF2 files from https://github.com/nicoverbruggen/libron/releases/tag/v0.31 . Distributed under SIL Open Font License 1.1; license and copyright notices are included in static/fonts/libron/. Archive SHA-256: a1fcb64e6f49900491c5f9f5e1c589b0a757d6497aaff5117978783d7e70ed6b.
