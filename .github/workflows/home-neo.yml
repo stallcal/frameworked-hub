@@ -1,0 +1,31 @@
+name: Homepage and header design QA
+on:
+  pull_request:
+    paths:
+      - 'layouts/index.html'
+      - 'layouts/_default/baseof.html'
+      - 'assets/css/home-neo-refresh.css'
+      - 'assets/css/header-neo-refresh.css'
+      - 'tests/home-neo.test.mjs'
+      - '.github/workflows/home-neo.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'layouts/index.html'
+      - 'layouts/_default/baseof.html'
+      - 'assets/css/home-neo-refresh.css'
+      - 'assets/css/header-neo-refresh.css'
+      - 'tests/home-neo.test.mjs'
+permissions:
+  contents: read
+jobs:
+  home-qa:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node --test tests/home-neo.test.mjs

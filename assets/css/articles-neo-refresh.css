@@ -1,0 +1,161 @@
+/* Reading Room directory — scoped counterpart to the Frameworked homepage.
+   Article prose, citations, references and data figures remain unchanged. */
+.fw-reading-room { color: var(--navy); }
+.fw-reading-room-hero {
+  display:grid;
+  grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);
+  gap:clamp(22px,4vw,72px);
+  align-items:stretch;
+  padding:clamp(40px,5.5vw,86px) 0 clamp(50px,6vw,83px);
+  border-bottom:3px solid var(--navy);
+}
+.fw-reading-room-copy { min-width:0; align-self:center; }
+.fw-reading-room-copy .design-eyebrow { margin:0 0 23px; }
+.fw-reading-room-copy h1 {
+  margin:0 0 22px;
+  max-width:850px;
+  color:var(--navy);
+  font:700 clamp(53px,5.6vw,90px)/1.04 'Libron',Georgia,serif;
+  letter-spacing:-.055em;
+}
+.fw-reading-room-copy h1 em { font-style:normal; color:var(--red); }
+.fw-reading-room-intro {
+  margin:0;
+  max-width:615px;
+  color:#40566e;
+  font-size:clamp(19px,1.65vw,24px);
+  line-height:1.46;
+}
+.fw-reading-room-actions {
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:18px 24px;
+  margin-top:30px;
+  padding:0 7px 7px 0;
+}
+.fw-reading-room-button {
+  display:inline-flex;
+  align-items:center;
+  gap:16px;
+  min-height:54px;
+  padding:11px 18px;
+  border:2px solid var(--navy);
+  border-radius:3px;
+  box-shadow:5px 5px 0 var(--navy);
+  color:#fff;
+  background:var(--red);
+  font-weight:700;
+  font-size:17px;
+  text-decoration:none;
+}
+.fw-reading-room-button:hover { background:#822F27; color:#fff; }
+.fw-reading-room-link { display:inline-flex; align-items:center; gap:10px; color:var(--blue); font-weight:700; font-size:17px; }
+.fw-reading-room-link .fw-arrow-icon,.fw-reading-room-button .fw-arrow-icon { width:18px;height:18px; }
+.fw-reading-room-feature {
+  min-width:0;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  gap:12px;
+  padding:clamp(22px,3vw,38px);
+  border:2px solid var(--navy);
+  border-radius:4px;
+  box-shadow:7px 7px 0 var(--red);
+  background:var(--navy);
+  color:#fff;
+}
+.fw-reading-room-feature-top,
+.fw-reading-room-feature-bottom {
+  color:#b9d4ee;
+  font:700 11px/1.35 'Courier New',monospace;
+  letter-spacing:.07em;
+}
+.fw-reading-room-feature-top { display:flex;gap:10px;justify-content:space-between; }
+.fw-reading-room-feature svg { width:100%; max-width:300px; height:auto; align-self:center; }
+.fw-reading-room-feature h2 {
+  color:#fff;
+  font:700 clamp(31px,3vw,46px)/1.12 'Libron',Georgia,serif;
+  letter-spacing:-.04em;
+}
+.fw-reading-room-feature>p:not(.fw-reading-room-feature-top) {
+  color:#d5e3f2;
+  font-size:17px;
+  line-height:1.4;
+  max-width:420px;
+}
+.fw-reading-room .collection-section { border-bottom:3px solid var(--navy); padding-top:38px; }
+.fw-reading-room .collection-section h2 { color:var(--navy); }
+.fw-reading-room .fw-reading-room-list {
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:20px;
+  padding:30px 6px 6px 0;
+}
+.fw-reading-room .fw-reading-room-list>.section-title {
+  grid-column:1/-1;
+  margin:0 0 4px;
+  font:700 clamp(32px,3.5vw,47px)/1.12 'Libron',Georgia,serif;
+  letter-spacing:-.04em;
+}
+.fw-reading-room .fw-reading-room-list>.reading-row {
+  display:flex;
+  flex-direction:column;
+  gap:13px;
+  min-width:0;
+  min-height:225px;
+  margin:0;
+  padding:clamp(19px,2.3vw,30px);
+}
+.fw-reading-room .fw-reading-room-list .card-meta { order:0; }
+.fw-reading-room .fw-reading-room-list .reading-row>div:last-child { order:1; }
+.fw-reading-room .fw-reading-room-list .reading-row h2 { font-size:clamp(24px,2.4vw,32px); line-height:1.15; }
+.fw-reading-room .fw-reading-room-list .reading-row p { font-size:16px; line-height:1.48; }
+.fw-reading-room-empty {
+  grid-column:1/-1;
+  border:2px solid var(--navy);
+  border-radius:3px;
+  padding:clamp(24px,3.5vw,44px);
+  box-shadow:6px 6px 0 var(--blue);
+  background:#fff;
+}
+.fw-reading-room-kicker { color:var(--red);font:700 11px/1.4 'Courier New',monospace;letter-spacing:.07em; }
+.fw-reading-room-empty h2 {
+  margin:16px 0 12px;
+  font:700 clamp(34px,4vw,54px)/1.1 'Libron',Georgia,serif;
+  letter-spacing:-.04em;
+}
+.fw-reading-room-empty>p:not(.fw-reading-room-kicker) {
+  font-size:19px;
+  color:#4b6179;
+  max-width:660px;
+  line-height:1.52;
+}
+.fw-reading-room-empty-links { display:flex; flex-wrap:wrap; gap:16px 28px; margin-top:24px; }
+.fw-reading-room-empty-links a { display:inline-flex; gap:12px; align-items:center; color:var(--blue);font-weight:700; }
+.fw-reading-room-empty-links .fw-arrow-icon { width:17px;height:17px; }
+.fw-reading-room a:focus-visible { outline:3px solid var(--red);outline-offset:6px; }
+@media(max-width:1000px) {
+  .fw-reading-room-hero { gap:26px; }
+  .fw-reading-room-copy h1 { font-size:clamp(48px,6.8vw,74px); }
+  .fw-reading-room-feature { padding:24px; }
+}
+@media(max-width:800px) {
+  .fw-reading-room-hero { grid-template-columns:1fr; }
+  .fw-reading-room-feature { max-width:630px; }
+  .fw-reading-room-feature svg { max-width:220px; }
+}
+@media(max-width:560px) {
+  .fw-reading-room-hero { padding:37px 0 45px;gap:25px; }
+  .fw-reading-room-copy h1 { font-size:clamp(43px,10vw,60px); }
+  .fw-reading-room-intro { font-size:18px; }
+  .fw-reading-room-actions { gap:17px; }
+  .fw-reading-room-button { width:100%;justify-content:space-between; }
+  .fw-reading-room-feature { padding:20px; }
+  .fw-reading-room-feature svg { max-width:175px; }
+  .fw-reading-room .fw-reading-room-list { grid-template-columns:1fr; }
+  .fw-reading-room .fw-reading-room-list>.reading-row { min-height:0; }
+}
+@media(prefers-reduced-motion:reduce) {
+  .fw-reading-room-button { transition:none; }
+}
