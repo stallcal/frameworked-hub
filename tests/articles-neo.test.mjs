@@ -23,3 +23,10 @@ test("Articles stylesheet is only included for article sections",()=>{
   assert.match(css, /@media\(max-width:560px\)/);
   assert.match(css, /focus-visible/);
 });
+
+test("Reading Room hero displays an accurately labeled isometric cubic framework schematic",()=>{
+  assert.match(page, /Isometric cubic framework schematic/);
+  assert.match(page, /not the structure of a specific metal-organic framework/);
+  assert.match(page, /CUBIC FRAMEWORK \/ SCHEMATIC/);
+  assert.doesNotMatch(page, /viewBox="0 0 290 166"/);
+});
