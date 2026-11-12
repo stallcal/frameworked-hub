@@ -1,0 +1,57 @@
+{{ define "main" }}
+<article class="fw-about" aria-labelledby="fw-about-title">
+  <header class="fw-about-hero">
+    <div class="fw-about-hero-copy">
+      <p class="design-eyebrow"><span class="mini-rule" aria-hidden="true"></span> FRAMEWORKED / ABOUT THE PROJECT</p>
+      <h1 id="fw-about-title">About <span>Frameworked.</span></h1>
+      <p class="fw-about-deck">{{ .Description }}</p>
+      <div class="fw-about-actions">
+        <a class="fw-about-primary" href="{{ "/tools/" | relURL }}">Explore the tools <span aria-hidden="true">{{ partial "frameworked-arrow.html" . }}</span></a>
+        <a class="fw-about-secondary" href="{{ "/articles/" | relURL }}">Visit the reading room <span aria-hidden="true">{{ partial "frameworked-arrow.html" . }}</span></a>
+      </div>
+    </div>
+    <aside class="fw-about-feature" aria-label="Frameworked's approach">
+      <div class="fw-about-feature-top"><span>THE APPROACH / 01</span><span>CHEMISTRY · MATERIALS · STEM</span></div>
+      <div class="fw-about-feature-statement">
+        <strong>Explore the model.</strong>
+        <strong>Understand the limits.</strong>
+        <strong>Follow the evidence.</strong>
+      </div>
+      <p>Interactive explanations and research-informed resources built to make complex chemistry more accessible without losing its detail.</p>
+      <span class="fw-about-feature-footer">EXPLORING CHEMISTRY, ONE BUILDING BLOCK AT A TIME.</span>
+    </aside>
+  </header>
+
+  <section class="fw-about-story" aria-labelledby="fw-about-story-title">
+    <div class="fw-about-story-label">
+      <p class="design-eyebrow">THE STORY / 02</p>
+      <h2 id="fw-about-story-title">Where it starts.</h2>
+      <p>Frameworks are the starting point. The questions go further.</p>
+    </div>
+    <div class="fw-about-content prose">
+      {{ .Content }}
+    </div>
+  </section>
+
+  <nav class="fw-about-next" aria-label="Explore Frameworked">
+    <div class="fw-about-next-intro">
+      <p class="design-eyebrow">KEEP EXPLORING / 03</p>
+      <h2>See the science in action.</h2>
+    </div>
+    <div class="fw-about-next-links">
+      <a href="{{ "/tools/" | relURL }}">
+        <span class="fw-about-next-number">01 / INTERACT</span>
+        <strong>Scientific tools</strong>
+        <small>Change a parameter and see what the model predicts.</small>
+        <span class="fw-about-next-arrow" aria-hidden="true">{{ partial "frameworked-arrow.html" . }}</span>
+      </a>
+      <a href="{{ "/explore/resources/" | relURL }}">
+        <span class="fw-about-next-number">02 / DISCOVER</span>
+        <strong>Explore library</strong>
+        <small>Find useful science resources and places to learn more.</small>
+        <span class="fw-about-next-arrow" aria-hidden="true">{{ partial "frameworked-arrow.html" . }}</span>
+      </a>
+    </div>
+  </nav>
+</article>
+{{ end }}

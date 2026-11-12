@@ -40,3 +40,23 @@ test("mobile, keyboard, motion and high contrast support are present", () => {
   assert.match(css, /prefers-reduced-motion: reduce/);
   assert.match(css, /forced-colors: active/);
 });
+
+test("About page uses the dedicated scoped design without losing source content", () => {
+  const about = readFileSync("layouts/about/single.html", "utf8");
+  const aboutCss = readFileSync("assets/css/about-neo-refresh.css", "utf8");
+  const aboutSource = readFileSync("site-content/about/index.md", "utf8");
+  assert.match(aboutSource, /isAbout: true/);
+  assert.match(about, /define "main"/);
+  assert.match(about, /class="fw-about"/);
+  assert.match(about, /\{\{ \.Content \}\}/);
+  assert.match(about, /fw-about-next-links/);
+  assert.match(about, /relURL/);
+  assert.match(base, /if \.Params\.isAbout/);
+  assert.match(base, /css\/about-neo-refresh\.css/);
+  assert.match(aboutCss, /\.fw-about-hero/);
+  assert.match(aboutCss, /\.fw-about-content/);
+  assert.match(aboutCss, /focus-visible/);
+  assert.match(aboutCss, /prefers-reduced-motion: reduce/);
+  assert.match(aboutCss, /max-width: 560px/);
+  assert.doesNotMatch(aboutCss, /(?:^|\n)\s*(?:\.home|\.tools-page|\.article-body|\.atlas-page)\s*\{/);
+});
