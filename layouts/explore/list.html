@@ -3,17 +3,31 @@
 {{ if .Params.isResourceLibrary }}
 <div class="explore-layout resource-library">
   <nav class="explore-breadcrumb" aria-label="Breadcrumb"><a href="{{ "/explore/" | relURL }}">Explore</a><span aria-hidden="true">/</span><span aria-current="page">Resource Library</span></nav>
-  <header class="explore-lead">
-    <p class="design-eyebrow">EXPLORE / RESOURCE LIBRARY</p>
-    <h1>Science <em>resources.</em></h1>
-    <p>Good science is worth sharing. Browse channels, videos, primary papers, and useful references from across the web.</p>
+  <header class="explore-lead fw-resource-hero">
+    <div class="fw-resource-hero-copy">
+      <p class="design-eyebrow">FRAMEWORKED / THE RESOURCE LIBRARY</p>
+      <h1>Science <em>resources.</em></h1>
+      <p>Find useful starting points for learning chemistry, materials science, and environmental topics. Explore creators, scientific papers, and reference sites in one place.</p>
+    </div>
+    <aside class="fw-resource-summary" aria-label="Library overview">
+      <p class="fw-resource-summary-kicker">THE COLLECTION / AT A GLANCE</p>
+      <div class="fw-resource-summary-stats">
+        <div><strong>{{ len $catalog.resources }}</strong><span>links</span></div>
+        <div><strong>{{ len $catalog.topics }}</strong><span>subjects</span></div>
+        <div><strong>{{ len $catalog.kinds }}</strong><span>formats</span></div>
+      </div>
+      <p>A curated place to begin—not a ranking or endorsement. Use the filters below to find what is relevant.</p>
+    </aside>
   </header>
 
   <section class="resource-topics" aria-labelledby="subject-heading">
-    <div class="resource-section-top"><div><p class="design-eyebrow">START WITH A SUBJECT</p><h2 id="subject-heading">Browse a topic.</h2></div></div>
+    <div class="resource-section-top">
+      <div><p class="design-eyebrow">START WITH A SUBJECT</p><h2 id="subject-heading">Browse a topic.</h2></div>
+      <p class="resource-topic-help">Select a subject to jump to matching resources.</p>
+    </div>
     <div class="topic-grid">
-      {{ range first 4 $catalog.topics }}
-      <a class="topic-card" href="{{ printf "/explore/resources/?topic=%s" .id | relURL }}"><span class="topic-card-kicker">COLLECTION</span><strong>{{ .label }}</strong><span aria-hidden="true" class="topic-arrow">{{ partial "frameworked-arrow.html" . }}</span></a>
+      {{ range $catalog.topics }}
+      <a class="topic-card" href="{{ printf "/explore/resources/?topic=%s#all-resources-heading" .id | relURL }}"><span class="topic-card-kicker">COLLECTION</span><strong>{{ .label }}</strong><span aria-hidden="true" class="topic-arrow">{{ partial "frameworked-arrow.html" . }}</span></a>
       {{ end }}
     </div>
   </section>
