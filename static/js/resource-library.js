@@ -37,7 +37,7 @@
     if (topic.value !== 'all') query.set('topic', topic.value);
     if (kind.value !== 'all') query.set('kind', kind.value);
     if (search.value.trim()) query.set('q', search.value.trim());
-    const url = window.location.pathname + (query.toString() ? '?' + query.toString() : '');
+    const url = window.location.pathname + (query.toString() ? '?' + query.toString() : '') + window.location.hash;
     window.history.replaceState(null, '', url);
   }
   form.addEventListener('input', update);
