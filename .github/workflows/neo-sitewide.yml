@@ -1,0 +1,27 @@
+name: Frameworked neobrutalism surface QA
+on:
+  pull_request:
+    paths:
+      - 'assets/css/neo-sitewide-extensions.css'
+      - 'layouts/_default/baseof.html'
+      - 'tests/neo-sitewide.test.mjs'
+      - '.github/workflows/neo-sitewide.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'assets/css/neo-sitewide-extensions.css'
+      - 'layouts/_default/baseof.html'
+      - 'tests/neo-sitewide.test.mjs'
+permissions:
+  contents: read
+jobs:
+  css-qa:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node --test tests/neo-sitewide.test.mjs

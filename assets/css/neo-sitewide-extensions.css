@@ -1,0 +1,292 @@
+/* Frameworked — neobrutalist surface extension (November 2026).
+ * Intentional targets: navigation cards, collection previews, resource controls,
+ * selected article asides and the footer. Not applied to scientific plots, map
+ * tiles, article body text, citations, or interactive visualization canvases.
+ * Loaded after existing component-specific styles. */
+:root {
+  --fw-neo-paper: #ffffff;
+  --fw-neo-wash: #eaf1f9;
+  --fw-neo-offset-sm: 3px;
+  --fw-neo-focus: var(--red);
+}
+
+/* Consistent tactile affordances without permanently shifting links on tap. */
+.explore-layout .explore-destination,
+.explore-layout .topic-card,
+.explore-layout .resource-reset,
+.reading-list .reading-row,
+.home-section .reading-row,
+.series-grid .series-card {
+  transition: transform 150ms ease, box-shadow 150ms ease, background-color 150ms ease;
+}
+.explore-layout a:focus-visible,
+.reading-list .reading-row a:focus-visible,
+.home-section .reading-row a:focus-visible,
+.series-grid a:focus-visible,
+.site-footer a:focus-visible,
+.article-aside summary:focus-visible,
+.article-body .related a:focus-visible {
+  outline: 3px solid var(--fw-neo-focus);
+  outline-offset: 4px;
+}
+
+/* Workbench: keep attention on the actual tools, not extra decoration.
+   The existing directory cards remain unchanged; emphasize only its header. */
+.tools-page .tools-intro {
+  position: relative;
+  padding-top: clamp(50px, 7vw, 95px);
+  padding-bottom: clamp(35px, 5vw, 65px);
+  border-bottom: 3px solid var(--navy);
+}
+.tools-page .tools-intro .design-eyebrow {
+  display: inline-block;
+  padding: 5px 9px;
+  margin-bottom: 16px;
+  border: 2px solid var(--navy);
+  color: var(--navy);
+  background: var(--fw-neo-wash);
+}
+.tools-page .tools-intro h1 { color: var(--navy); }
+.tools-page .fw-neo-workbench .chapter-link:focus-visible {
+  outline: 3px solid var(--fw-neo-focus);
+  outline-offset: 5px;
+}
+
+/* Explore landing: treat the destinations as prominent tactile routes. */
+.explore-layout .explore-lead { border-bottom: 3px solid var(--navy); }
+.explore-layout .explore-lead h1 { color: var(--navy); }
+.explore-layout .explore-destinations {
+  gap: clamp(16px, 2vw, 28px);
+  padding: 0 7px 7px 0;
+}
+.explore-layout .explore-destination {
+  border: 2px solid var(--navy);
+  border-radius: 3px;
+  background: var(--fw-neo-paper);
+  box-shadow: 6px 6px 0 var(--navy);
+  color: var(--navy);
+}
+.explore-layout .explore-destination:nth-child(2) {
+  box-shadow: 6px 6px 0 var(--blue);
+}
+.explore-layout .explore-destination-body strong { color: var(--navy); }
+.explore-layout .explore-destination-index {
+  color: var(--navy);
+  font-weight: 700;
+}
+.explore-layout .explore-destination:hover { border-color: var(--navy); }
+.explore-layout .topic-grid { gap: 18px; padding: 0 6px 6px 0; }
+.explore-layout .topic-card {
+  border: 2px solid var(--navy);
+  border-radius: 2px;
+  background: #fff;
+  color: var(--navy);
+  box-shadow: 5px 5px 0 var(--navy);
+  min-height: 150px;
+}
+.explore-layout .topic-card:hover { background: #eff5fc; border-color: var(--navy); }
+.explore-layout .topic-card-kicker { color: var(--blue); }
+.explore-layout .topic-card strong { color: var(--navy); }
+.explore-layout .topic-arrow { color: var(--red); }
+
+/* Resource Library: a single outlined filter panel; entries stay unboxed
+   to avoid hundreds of shadows and to preserve rapid scanning. */
+.resource-library .resource-section-top h2,
+.explore-layout .explore-featured h2 { color: var(--navy); }
+.resource-library .resource-filters {
+  border: 2px solid var(--navy);
+  border-radius: 2px;
+  box-shadow: 5px 5px 0 var(--navy);
+  margin-bottom: 21px;
+  padding: 19px;
+}
+.resource-library .resource-filters input,
+.resource-library .resource-filters select {
+  border: 2px solid #8298ad;
+  border-radius: 2px;
+  background: #fff;
+  min-height: 44px;
+}
+.resource-library .resource-filters input:focus-visible,
+.resource-library .resource-filters select:focus-visible {
+  outline: 3px solid var(--fw-neo-focus);
+  outline-offset: 2px;
+}
+.resource-library .resource-reset {
+  color: #fff;
+  background: var(--blue);
+  border: 2px solid var(--navy);
+  border-radius: 2px;
+  box-shadow: 3px 3px 0 var(--navy);
+  font-weight: 700;
+}
+.resource-library .resource-reset:hover { background: #063d80; color:#fff; }
+.resource-library .resource-reset:focus-visible {
+  outline: 3px solid var(--fw-neo-focus);
+  outline-offset: 5px;
+}
+.resource-library .resource-group-heading {
+  border-bottom: 3px solid var(--navy);
+}
+.resource-library .resource-group-heading h3 { color: var(--navy); }
+.resource-library .resource-entry {
+  border-color: #c1cfde;
+  padding-block: 24px;
+}
+.resource-library .resource-entry-tags span {
+  background: #fff;
+  border: 1px solid var(--navy);
+  border-radius: 2px;
+  color: var(--navy);
+}
+
+/* Article listing previews and series: visual consistency without moving the
+   established readable text layouts into multi-column cards on mobile. */
+.reading-list .reading-row,
+.home-section .reading-row {
+  border: 2px solid var(--navy);
+  border-radius: 2px;
+  background: #fff;
+  box-shadow: 4px 4px 0 var(--navy);
+  margin: 0 5px 23px 0;
+  padding: clamp(19px, 2.3vw, 30px);
+  gap: clamp(12px, 2.3vw, 30px);
+  min-width: 0;
+}
+.reading-list .reading-row > div,
+.home-section .reading-row > div { min-width: 0; }
+.reading-list .reading-row h2,
+.home-section .reading-row h2 {
+  font-size: clamp(24px, 2.5vw, 36px);
+  line-height: 1.16;
+  color: var(--navy);
+}
+.reading-list .reading-row h2 a,
+.home-section .reading-row h2 a {
+  text-decoration: none;
+}
+.reading-list .reading-row h2 a:hover,
+.home-section .reading-row h2 a:hover { color: var(--blue); }
+.reading-list .reading-row p,
+.home-section .reading-row p { font-size: clamp(16px, 1.4vw, 19px); }
+.reading-list .card-meta,
+.home-section .card-meta { font-size: 12px; }
+.collection-section .series-grid {
+  gap: 20px;
+  padding: 0 5px 6px 0;
+}
+.collection-section .series-grid .series-card {
+  border: 2px solid var(--navy);
+  border-radius: 2px;
+  background: #f0f5fb;
+  box-shadow: 4px 4px 0 var(--navy);
+  padding: 20px 21px;
+  min-width: 0;
+}
+.collection-section .series-card h3 { margin: 9px 0; font-size:clamp(23px, 2.2vw, 30px); }
+.collection-section .series-card h3 a { text-decoration: none; }
+.collection-section .series-card h3 a:hover { color:var(--red); }
+.collection-section .series-card > p:last-child { font-size: 16px; }
+
+/* Article pages: only supporting navigational chrome; leave prose,
+   equations, figures, references and data tables typographically quiet. */
+.article .article-aside {
+  border: 2px solid var(--navy);
+  border-radius: 2px;
+  background: #fff;
+  box-shadow: 4px 4px 0 #b6c6d6;
+  padding: clamp(13px, 2vw, 19px);
+}
+.article .article-aside summary {
+  font-weight: 700;
+  color: var(--navy);
+  cursor: pointer;
+}
+.article .related a {
+  border-bottom-color: #b2c3d5;
+  text-decoration-color: #aac0d7;
+}
+.article .primer-links,
+.article .related { border-top: 2px solid var(--navy); }
+
+/* Footer: stronger identity and navigable chips, without graphic effects
+   competing with long scientific pages or the Atlas. */
+.site-footer {
+  border-top: 3px solid var(--navy);
+  background: #edf3fa;
+  padding-top: clamp(28px, 4vw, 54px);
+}
+.site-footer .footer-wordmark { color: var(--navy); }
+.site-footer .footer-top p { color: #4c637b; }
+.site-footer .footer-bottom { border-top: 2px solid var(--navy); }
+.site-footer .footer-bottom nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+}
+.site-footer .footer-bottom nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 38px;
+  padding: 5px 10px;
+  background: #fff;
+  border: 1px solid var(--navy);
+  border-radius: 2px;
+  text-decoration: none;
+  font: 700 13px/1.25 'Libron', Georgia, serif;
+  color: var(--navy);
+}
+.site-footer .footer-bottom nav a:hover { background: #dbe9f8; color:var(--blue); }
+
+/* Desktop hover is distinct from active/touch behavior. */
+@media (hover:hover) {
+  .explore-layout .explore-destination:hover,
+  .explore-layout .topic-card:hover,
+  .reading-list .reading-row:hover,
+  .home-section .reading-row:hover,
+  .collection-section .series-card:hover {
+    transform: translate(2px, 2px);
+    box-shadow: 3px 3px 0 var(--navy);
+  }
+  .resource-library .resource-reset:hover {
+    transform: translate(1px,1px);
+    box-shadow: 2px 2px 0 var(--navy);
+  }
+}
+@media (max-width: 850px) {
+  .explore-layout .explore-destination { min-height: 240px; }
+  .resource-library .resource-filters { padding: 15px; }
+  .reading-list .reading-row,
+  .home-section .reading-row { grid-template-columns: 1fr; }
+}
+@media (max-width: 560px) {
+  .explore-layout .explore-destinations { gap: 19px; }
+  .explore-layout .explore-destination { padding: 20px; min-height: 215px; }
+  .explore-layout .topic-grid { grid-template-columns: 1fr; gap: 15px; }
+  .explore-layout .topic-card { min-height: 106px; padding: 15px; }
+  .reading-list .reading-row,
+  .home-section .reading-row { padding: 17px 15px; margin-bottom: 20px; }
+  .reading-list .card-meta, .home-section .card-meta { gap: 6px 13px; }
+  .collection-section .series-grid { grid-template-columns: 1fr; }
+  .site-footer .footer-bottom nav a { padding: 7px 10px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .explore-layout .explore-destination,
+  .explore-layout .topic-card,
+  .explore-layout .resource-reset,
+  .reading-list .reading-row,
+  .home-section .reading-row,
+  .series-grid .series-card { transition:none; }
+}
+@media (forced-colors: active) {
+  .explore-layout .explore-destination,
+  .explore-layout .topic-card,
+  .reading-list .reading-row,
+  .home-section .reading-row,
+  .collection-section .series-card,
+  .resource-library .resource-filters,
+  .site-footer .footer-bottom nav a {
+    box-shadow: none;
+    border-color: CanvasText;
+  }
+}
