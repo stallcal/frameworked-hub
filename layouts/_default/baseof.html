@@ -18,6 +18,7 @@
 {{ $headerRefresh := resources.Get "css/header-neo-refresh.css" | minify | fingerprint }}<link rel="stylesheet" href="{{ $headerRefresh.RelPermalink }}" integrity="{{ $headerRefresh.Data.Integrity }}">
 {{ if .IsHome }}{{ $homeRefresh := resources.Get "css/home-neo-refresh.css" | minify | fingerprint }}<link rel="stylesheet" href="{{ $homeRefresh.RelPermalink }}" integrity="{{ $homeRefresh.Data.Integrity }}">{{ end }}
 {{ $neoExtensions := resources.Get "css/neo-sitewide-extensions.css" | minify | fingerprint }}<link rel="stylesheet" href="{{ $neoExtensions.RelPermalink }}" integrity="{{ $neoExtensions.Data.Integrity }}">
+{{ if and (eq .Section "articles") (eq .Kind "section") }}{{ $readingRoomStyle := resources.Get "css/articles-neo-refresh.css" | minify | fingerprint }}<link rel="stylesheet" href="{{ $readingRoomStyle.RelPermalink }}" integrity="{{ $readingRoomStyle.Data.Integrity }}">{{ end }}
 </head><body class="{{ if .IsHome }}home{{ else }}interior{{ end }}{{ if .Params.isAbout }} about-page{{ end }}{{ if eq .Section "tools" }} tools-page{{ end }}">
 <a class="skip-link" href="#main">Skip to content</a>
 <div class="site-shell">

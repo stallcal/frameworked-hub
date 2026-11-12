@@ -1,10 +1,40 @@
 {{ define "main" }}
 {{ $isArticles := eq .Section "articles" }}
+{{ if $isArticles }}
+<div class="fw-reading-room">
+  <header class="fw-reading-room-hero" aria-labelledby="reading-title">
+    <div class="fw-reading-room-copy">
+      <p class="design-eyebrow"><span class="mini-rule" aria-hidden="true"></span> FRAMEWORKED / THE READING ROOM</p>
+      <h1 id="reading-title">Take a closer look at <em>the science.</em></h1>
+      <p class="fw-reading-room-intro">Follow a question into the chemistry. Read the evidence, examine the assumptions, and make connections between research and the world around us.</p>
+      <div class="fw-reading-room-actions">
+        <a class="fw-reading-room-button" href="#fw-stories">Browse the stories <span aria-hidden="true">{{ partial "frameworked-arrow.html" . }}</span></a>
+        <a class="fw-reading-room-link" href="{{ "/explore/resources/" | relURL }}">Explore the resource library <span aria-hidden="true">{{ partial "frameworked-arrow.html" . }}</span></a>
+      </div>
+    </div>
+    <aside class="fw-reading-room-feature" aria-label="Frameworked editorial approach">
+      <p class="fw-reading-room-feature-top">THE FRAMEWORKED APPROACH <span> / 01</span></p>
+      <svg viewBox="0 0 290 166" role="img" aria-label="Decorative connected building blocks, representing questions and evidence">
+        <g fill="none" stroke="#c4ddf4" stroke-width="6" stroke-linecap="round">
+          <path d="M48 75L144 26 241 75 144 138Z M48 75L144 138M241 75L144 138"/>
+        </g>
+        <g stroke="#1C3049" stroke-width="4" fill="#e8f1fb">
+          <circle cx="48" cy="75" r="17"/><circle cx="241" cy="75" r="17"/><circle cx="144" cy="138" r="17"/>
+        </g>
+        <circle cx="144" cy="26" r="19" stroke="#1C3049" stroke-width="4" fill="#9E382E"/>
+      </svg>
+      <h2>Good questions.<br>Better evidence.</h2>
+      <p>Explanations grounded in scientific sources, with room for what we still don't know.</p>
+      <span class="fw-reading-room-feature-bottom">STRUCTURES / REACTIONS / ENVIRONMENT</span>
+    </aside>
+  </header>
+{{ else }}
 <header class="page-heading">
   <p class="eyebrow">{{ if $isArticles }}THE READING ROOM{{ else }}FRAMEWORKED{{ end }}</p>
   <h1>{{ .Title }}</h1>
   <p class="intro">{{ .Description }}</p>
 </header>
+{{ end }}
 {{ $pages := .RegularPages }}
 {{ if $isArticles }}
   {{ $pages = where site.RegularPages "Section" "in" (slice "articles" "learn") }}
@@ -16,9 +46,17 @@
 {{ end }}
 {{ $readings := where $pages "Params.example" "ne" true }}
 {{ $published := where $readings "Draft" false }}
-<section class="reading-list" aria-label="{{ if $isArticles }}Published stories{{ else }}Published pages{{ end }}">
+<section class="reading-list{{ if $isArticles }} fw-reading-room-list{{ end }}" {{ if $isArticles }}id="fw-stories"{{ end }} aria-label="{{ if $isArticles }}Published stories{{ else }}Published pages{{ end }}">
   {{ if and $isArticles $published }}<h2 class="section-title">Latest stories</h2>{{ end }}
-  {{ range $published.ByDate.Reverse }}{{ partial "content-card.html" . }}{{ else }}<div class="empty-state"><p>{{ if eq $.Section "explore" }}The first structure profiles are in preparation.{{ else }}The first stories are in preparation.{{ end }}</p>{{ if $isArticles }}<a class="inline-link" href="{{ "/tools/scherrer/" | relURL }}">Try the Scherrer calculator <span aria-hidden="true">{{ partial "frameworked-arrow.html" . }}</span></a>{{ end }}</div>{{ end }}
+  {{ range $published.ByDate.Reverse }}{{ partial "content-card.html" . }}{{ else }}{{ if $isArticles }}<div class="fw-reading-room-empty">
+    <p class="fw-reading-room-kicker">IN PREPARATION / THE READING ROOM</p>
+    <h2>Stories are taking shape.</h2>
+    <p>Our articles are still being prepared and reviewed. In the meantime, explore the interactive tools or browse the curated science library.</p>
+    <div class="fw-reading-room-empty-links">
+      <a href="{{ "/tools/" | relURL }}">Try an explorer <span aria-hidden="true">{{ partial "frameworked-arrow.html" . }}</span></a>
+      <a href="{{ "/explore/resources/" | relURL }}">Browse science resources <span aria-hidden="true">{{ partial "frameworked-arrow.html" . }}</span></a>
+    </div>
+  </div>{{ else }}<div class="empty-state"><p>{{ if eq $.Section "explore" }}The first structure profiles are in preparation.{{ else }}The first stories are in preparation.{{ end }}</p></div>{{ end }}{{ end }}
 </section>
 {{ with where $readings "Draft" true }}
 <section class="draft-collection" aria-labelledby="drafts-title">
@@ -28,4 +66,5 @@
 </section>
 {{ end }}
 {{ with where $pages "Params.example" true }}<details class="format-examples"><summary>Format examples <span>(preview drafts)</span></summary><div class="reading-list">{{ range .ByWeight }}{{ partial "content-card.html" . }}{{ end }}</div></details>{{ end }}
+{{ if $isArticles }}</div>{{ end }}
 {{ end }}
