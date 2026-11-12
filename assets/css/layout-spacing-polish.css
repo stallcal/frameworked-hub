@@ -1,0 +1,72 @@
+/* Shared editorial spacing, footer insets and version label.
+   Loaded last for Hugo-rendered pages; standalone scientific tool canvases
+   and diagrams are deliberately unaffected. */
+.site-shell {
+  --fw-content-top: clamp(30px, 3.4vw, 52px);
+}
+
+/* Consistent, tighter space immediately below the primary navigation. */
+.home .fw-neo-hero,
+.interior .fw-reading-room-hero,
+.about-page .fw-about-hero,
+.tools-page .tools-intro,
+.interior .page-heading {
+  padding-top: var(--fw-content-top);
+}
+.interior .article,
+.interior .explore-layout {
+  padding-top: var(--fw-content-top);
+}
+
+/* Preserve a visible pause before the footer. Avoid text sitting flush against
+   either edge of the tinted footer panel, especially on wide screens. */
+.site-shell > .site-footer {
+  margin-top: clamp(36px, 4.5vw, 72px);
+  padding: clamp(34px, 4vw, 55px) clamp(24px, 4.2vw, 74px) clamp(28px, 3vw, 43px);
+}
+.site-footer .footer-bottom {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  align-items: center;
+  column-gap: clamp(16px, 2vw, 32px);
+  row-gap: 18px;
+}
+.site-footer .footer-meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  min-width: 0;
+}
+.site-footer .footer-version {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 7px;
+  border: 1px solid #8295aa;
+  border-radius: 2px;
+  color: var(--navy);
+  background: #fff;
+  font: 700 11px/1.4 'Courier New', monospace;
+  white-space: nowrap;
+}
+.site-footer .footer-back-top {
+  justify-self: end;
+  padding: 7px 4px;
+  white-space: nowrap;
+}
+
+/* Medium screens: metadata gets its own line before the navigation chips. */
+@media (max-width: 1040px) {
+  .site-footer .footer-bottom { grid-template-columns: minmax(0, 1fr) auto; }
+  .site-footer .footer-meta { grid-column: 1 / -1; }
+}
+@media (max-width: 620px) {
+  .site-shell { --fw-content-top: 28px; }
+  .site-shell > .site-footer {
+    margin-top: 40px;
+    padding: 32px 22px 34px;
+  }
+  .site-footer .footer-bottom { grid-template-columns: minmax(0, 1fr); gap: 17px; }
+  .site-footer .footer-meta { grid-column: auto; }
+  .site-footer .footer-back-top { justify-self: start; }
+}
