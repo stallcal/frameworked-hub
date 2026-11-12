@@ -60,3 +60,23 @@ test("About page uses the dedicated scoped design without losing source content"
   assert.match(aboutCss, /max-width: 560px/);
   assert.doesNotMatch(aboutCss, /(?:^|\n)\s*(?:\.home|\.tools-page|\.article-body|\.atlas-page)\s*\{/);
 });
+
+test("global spacing and inset footer polish preserve page layout and metadata",()=>{
+  const polish = readFileSync("assets/css/layout-spacing-polish.css","utf8");
+  const config = readFileSync("config.yml","utf8");
+  assert.match(base, /css\/layout-spacing-polish\.css/);
+  assert.ok(base.indexOf("css/layout-spacing-polish.css") > base.indexOf("css/about-neo-refresh.css"));
+  assert.match(base, /class="footer-meta"/);
+  assert.match(base, /class="footer-version"/);
+  assert.match(base, /class="footer-back-top"/);
+  assert.match(base, /site\.Params\.uiVersion/);
+  assert.match(config, /uiVersion: "0\.1\.0"/);
+  assert.match(polish, /\.interior \.fw-reading-room-hero/);
+  assert.match(polish, /\.about-page \.fw-about-hero/);
+  assert.match(polish, /\.tools-page \.tools-intro/);
+  assert.match(polish, /\.interior \.explore-layout/);
+  assert.match(polish, /\.site-shell > \.site-footer/);
+  assert.match(polish, /padding: clamp\(34px, 4vw, 55px\)/);
+  assert.match(polish, /@media \(max-width: 620px\)/);
+  assert.doesNotMatch(polish, /(?:^|\n)\s*(?:canvas|\.molecular-art|\.atlas-page)\s*\{/);
+});
