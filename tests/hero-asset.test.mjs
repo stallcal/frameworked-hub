@@ -37,3 +37,20 @@ test("Header, favicon, touch icon and standalone tools use transparent artwork",
   assert.match(bragg, /src="\/images\/frameworked-mark\.png"/);
   assert.match(scherrer, /src="\/images\/frameworked-mark\.png"/);
 });
+
+test("High-resolution transparent logo is opt-in with safe existing PNG fallback", () => {
+  assert.match(base, /resources.Get "images\/frameworked-logo-hd\.png"/);
+  assert.match(home, /resources.Get "images\/frameworked-logo-hd\.png"/);
+  assert.match(home, /width="1024" height="1024"/);
+  assert.match(home, /frameworked-hero-png\.png/);
+  const {existsSync} = requireForTest();
+  const hdPath = "assets/images/frameworked-logo-hd.png";
+  if (existsSync(hdPath)) {
+    const hd = readFileSync(hdPath);
+    assert.ok(isTransparentPng(hd), "High-resolution source must preserve actual alpha transparency");
+    assert.ok(hd.readUInt32BE(16) >= 1024 && hd.readUInt32BE(20) >= 1024);
+  }
+});
+function requireForTest() {
+  return {existsSync: (path) => {try {readFileSync(path); return true;} catch (error) {if (error.code === "ENOENT") return false; throw error;} }};
+}
