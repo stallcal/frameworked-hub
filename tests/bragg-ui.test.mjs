@@ -260,7 +260,7 @@ test("Bragg explorer header matches Frameworked's main site navigation", () => {
   ]) {
     assert.match(header, new RegExp(`href="${path}"[^>]*>${label}<\\/a>`));
   }
-  assert.match(header, /src="\/images\/frameworked-logo\.webp"/);
+  assert.match(header, /src="\/images\/frameworked-mark\.png"/);
   assert.match(header, /href="\/tools\/" aria-current="page"/);
   assert.doesNotMatch(header, /All tools/);
   assert.match(html, /href="\/css\/frameworked-standalone-header\.css"/);
