@@ -2,6 +2,18 @@
   'use strict';
   const form = document.getElementById('resource-filters');
   if (!form) return;
+
+  // Basic avatar: keep initials visible until the real channel image finishes.
+  // A failed upstream image never renders as a browser broken-image icon.
+  for (const img of document.querySelectorAll('.resource-avatar-image')) {
+    const avatar = img.closest('.resource-avatar');
+    if (!avatar) continue;
+    const loaded = () => avatar.classList.add('is-loaded');
+    const failed = () => avatar.classList.remove('is-loaded');
+    img.addEventListener('load', loaded, { once: true });
+    img.addEventListener('error', failed, { once: true });
+    if (img.complete && img.naturalWidth > 0) loaded();
+  }
   const search = document.getElementById('resource-search');
   const topic = document.getElementById('resource-topic');
   const kind = document.getElementById('resource-kind');
