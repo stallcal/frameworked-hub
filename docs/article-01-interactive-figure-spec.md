@@ -1,5 +1,8 @@
 # Article 01 — interactive figure specification
 
+> **Implementation update (November 13, 2026):** This document records the *earlier design proposal*, not the current implementation. Figure 1 is now the rotatable 3D viewer in [draft PR #64](https://github.com/stallcal/frameworked-hub/pull/64): four direct building-stage buttons (not a slider), a solid opaque Frameworked-green sphere with conceptual radius 0.580 model units, and a camera-focus control. The current palette uses exact Frameworked base colors. The old SVG, translucent-ball and slider instructions below are superseded and must not override the approved-for-continuation preview. Figure 2 remains pending independent MOF-5 experimental CIF and reuse-rights review.
+
+
 **Status:** proposed design, review before implementation. **Not approved as crystallographic model or article copy.**  
 **Parent:** [Article 01 editorial storyboard](article-01-interactive-storyboard.md) · canonical draft `site-content/articles/build-with-molecules/index.md`.  
 **Reference only:** [ChemTube3D's MOF-5 explorer](https://www.chemtube3d.com/MOF-MOF5/) demonstrates useful cavity, unit-cell and cutaway controls. Build a distinct, original Frameworked interaction; do not copy its interface or 3D assets.
