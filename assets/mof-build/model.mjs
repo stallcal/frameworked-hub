@@ -28,19 +28,29 @@ export function buildCubicGraph(n) {
   return {n, nodes, edges, blocks: n ** 3};
 }
 
-export function projectIsometric({x, y, z}) {
-  // Lengths below are drawing-unit ratios only, not crystallographic lengths.
-  return {x: (x - y) * 0.87, y: (x + y) * 0.49 - z * 1.06};
+// Oblique three-quarter projection: x is visibly horizontal, z is vertical,
+// and depth (y) recedes up and right. These are *drawing* axes, not a claim
+// about any specific crystallographic cell or a perspective-correct camera.
+export function projectThreeQuarter({x, y, z}) {
+  return {x: x + y * 0.52, y: -z - y * 0.36};
 }
 
+// Choose a near/front opening so the marker is visible rather than hidden in
+// the middle of an opaque 3×3×3 line drawing. One marker represents one void.
 export function poreAnchor(n) {
   if (!Number.isInteger(n) || n < 1 || n > 3) throw new RangeError('Unsupported repeat count.');
-  const middle = Math.floor((n - 1) / 2) + 0.5;
-  return {x: middle, y: middle, z: middle};
+  const center = Math.floor(n / 2) + 0.5;
+  return {x: center, y: 0.5, z: center};
+}
+
+export function poreMarkerRadius(scale) {
+  if (!Number.isFinite(scale) || scale <= 0) throw new RangeError('Drawing scale must be positive.');
+  // Radius in SVG drawing units. No physical length or radius is implied.
+  return Math.max(18, Math.min(56, scale * 0.34));
 }
 
 export function sceneExtents(nodes) {
-  const points = nodes.map(projectIsometric);
+  const points = nodes.map(projectThreeQuarter);
   return {
     minX: Math.min(...points.map(p => p.x)),
     maxX: Math.max(...points.map(p => p.x)),
