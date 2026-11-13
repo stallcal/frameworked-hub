@@ -1,0 +1,15 @@
+{{ define "head-extra" }}<meta name="robots" content="noindex,nofollow">{{ end }}
+{{ define "main" }}
+<article class="article">
+  <header class="article-heading">
+    <p class="eyebrow">FRAMEWORKED / VISUAL LAB / UNPUBLISHED PROTOTYPE</p>
+    <h1>{{ .Title }}</h1>
+    <p class="intro">{{ .Description }}</p>
+  </header>
+  <div class="article-layout">
+    <div class="article-body">
+      <div class="prose">{{ .Content }}</div>
+    </div>
+  </div>
+</article>
+{{ end }}
