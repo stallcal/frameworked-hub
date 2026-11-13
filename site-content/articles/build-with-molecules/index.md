@@ -42,9 +42,11 @@ Open with a familiar structural-engineering example: connecting beams and joints
 
 ## Building blocks at a different scale
 
-{{< figure-placeholder number="1" title="Building a MOF" >}}
-Original conceptual scheme: metal ions or metal-containing clusters + organic linkers → an extended metal–organic framework. Label the drawing as a conceptual illustration, not a specific crystal. Keep nodes, linkers, labels, and the assembly arrow in independent SVG groups for later animation.
-{{< /figure-placeholder >}}
+{{< mof-build >}}
+
+{{< editor-note >}}
+Interactive Figure 1 is a **conceptual cubic network**, not a model of measured MOF-5 atom positions. Check 1×/2×/3× repetition, labels, the single potential-void marker, non-color cues, and the mobile reading experience before finalizing surrounding narration. The original independent Figure 2 / crystallographic-data verification remains an unpublished editorial placeholder.
+{{< /editor-note >}}
 
 {{< editor-note >}}
 Introduce metal-containing units and organic linkers in plain language. Verify the definition against the IUPAC recommendations; avoid implying that every coordination network has measured permanent porosity.
