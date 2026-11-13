@@ -1,0 +1,69 @@
+{{- $id := printf "fw-mof-build-%d" .Ordinal -}}
+{{- if not (.Page.Scratch.Get "mofBuildAssetsLoaded") -}}
+  {{- .Page.Scratch.Set "mofBuildAssetsLoaded" true -}}
+  {{- $css := resources.Get "mof-build/style.css" | minify | fingerprint -}}
+  <link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
+  {{- $js := resources.Get "mof-build/app.js" | js.Build (dict "target" "es2020") | fingerprint -}}
+  <script type="module" src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}"></script>
+{{- end -}}
+<figure class="fw-mof-build" data-mof-build data-mof-id="{{ $id }}" aria-labelledby="{{ $id }}-title">
+  <div class="fw-mof-build__heading">
+    <span class="fw-mof-build__eyebrow">FRAMEWORKED / BUILDING BLOCKS</span>
+    <h3 id="{{ $id }}-title">Watch a framework take shape.</h3>
+    <p class="fw-mof-build__subtitle">An interactive schematic, not an atomic model or measured pore geometry.</p>
+  </div>
+  <div class="fw-mof-build__stage">
+    <span class="fw-mof-build__stage-label" aria-hidden="true">CONCEPTUAL NETWORK / NOT TO SCALE</span>
+    <svg data-build-svg viewBox="0 0 640 390" role="img" aria-labelledby="{{ $id }}-svg-title {{ $id }}-svg-desc">
+      <title id="{{ $id }}-svg-title" data-build-svg-title>Separate node and linker</title>
+      <desc id="{{ $id }}-svg-desc" data-build-svg-desc>One red circular node and one blue bar appear separately. Move the slider to reveal a conceptual repeating framework.</desc>
+      <defs>
+        <radialGradient id="{{ $id }}-pore-gradient" cx="35%" cy="30%" r="70%">
+          <stop offset="0%" stop-color="#E7F7EB" stop-opacity=".96"></stop>
+          <stop offset="65%" stop-color="#A5D5B4" stop-opacity=".82"></stop>
+          <stop offset="100%" stop-color="#089E4B" stop-opacity=".65"></stop>
+        </radialGradient>
+      </defs>
+      <g data-build-scene>
+        <circle cx="180" cy="188" r="26" fill="#E7AFAC" stroke="#1C3049" stroke-width="3"></circle>
+        <rect x="341" y="174" width="112" height="24" rx="11" fill="#BAD7EF" stroke="#1C3049" stroke-width="3"></rect>
+        <text x="180" y="257" text-anchor="middle" font-size="20" fill="#1C3049">Node</text>
+        <text x="397" y="257" text-anchor="middle" font-size="20" fill="#1C3049">Linker</text>
+      </g>
+    </svg>
+  </div>
+  <div class="fw-mof-build__legend" aria-label="Figure key">
+    <span><i class="fw-mof-build__key fw-mof-build__key--node" aria-hidden="true"></i> Metal-containing node*</span>
+    <span><i class="fw-mof-build__key fw-mof-build__key--linker" aria-hidden="true"></i> Organic linker*</span>
+    <span data-build-void-key hidden><i class="fw-mof-build__key fw-mof-build__key--pore" aria-hidden="true"></i> Potential void*</span>
+  </div>
+  <div class="fw-mof-build__controls">
+    <div class="fw-mof-build__range-head">
+      <label for="{{ $id }}-range">Build the repeating structure</label>
+      <output for="{{ $id }}-range" data-build-output>Pieces</output>
+    </div>
+    <input id="{{ $id }}-range" data-build-range type="range" min="0" max="3" step="1" value="0" aria-describedby="{{ $id }}-range-hint">
+    <div class="fw-mof-build__ticks" aria-hidden="true">
+      <span>Pieces</span><span>1×1×1</span><span>2×2×2</span><span>3×3×3</span>
+    </div>
+    <p id="{{ $id }}-range-hint" class="fw-mof-build__hint">The view automatically zooms to fit each larger network. Each individual opening stays the same size in the model.</p>
+    <div class="fw-mof-build__control-row">
+      <label class="fw-mof-build__toggle">
+        <input type="checkbox" data-build-pore disabled>
+        <span>Show a potential void</span>
+      </label>
+      <button class="fw-mof-build__reset" type="button" data-build-reset>Reset</button>
+    </div>
+    <p class="fw-mof-build__pore-hint" data-pore-hint>Build one block first to show a potential void.</p>
+  </div>
+  <figcaption class="fw-mof-build__caption">
+    <div class="fw-mof-build__caption-top">
+      <span class="fw-mof-build__step" data-build-step>01 / THE PIECES</span>
+      <strong data-build-title>Start with the pieces</strong>
+    </div>
+    <p data-build-explanation>A metal-containing building unit and an organic linker are two kinds of pieces in our simplified model.</p>
+    <p data-build-pore-caption hidden><strong>Potential void:</strong> this ball is an illustrative marker of possible space—not a molecule, measured diameter, or proof of accessible porosity.</p>
+    <small>* Colors represent conceptual roles, not chemical elements. This illustration is not a measured MOF-5 unit cell or an adsorption simulation.</small>
+  </figcaption>
+  <noscript><p class="fw-mof-build__noscript">Enable JavaScript to move between the four diagram states. Without it, the figure shows a labeled node and linker, the starting point of the explanation.</p></noscript>
+</figure>
