@@ -22,7 +22,7 @@ function attach(root){
   if(![mount,loader,fallback,output,step,title,description,pore,poreNote,
     focus,reset,turnLeft,turnRight,help].every(Boolean) ||
     stageButtons.length!==STAGES.length ||
-    stageButtons.some((button,i)=>Number(button.dataset.stageInvalid ?? button.dataset['3dStage'])!==i))return;
+    stageButtons.some((button,i)=>Number(button.getAttribute('data-3d-stage'))!==i))return;
 
   let viewer=null;
   let currentStage=0;
