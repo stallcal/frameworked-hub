@@ -1,0 +1,138 @@
+/* Article 01 conceptual THREE-DIMENSIONAL viewer. Fully scoped: never alter global site controls. */
+.fw-mof-3d {
+  --fw3-navy:#1C3049;
+  --fw3-blue:#084B9E;
+  --fw3-red:#9E382E;
+  --fw3-green:#089E4B;
+  box-sizing:border-box;
+  margin:34px 0 42px;
+  padding:clamp(13px,2.7vw,26px);
+  background:#F7F9FC;
+  color:var(--fw3-navy);
+  border:2px solid var(--fw3-navy);
+  border-radius:4px;
+  box-shadow:5px 5px 0 var(--fw3-navy);
+  font-family:'Libron',Georgia,serif;
+}
+.fw-mof-3d *, .fw-mof-3d *::before, .fw-mof-3d *::after {box-sizing:border-box}
+.fw-mof-3d [hidden] {display:none!important}
+.fw-mof-3d__head {margin:0 0 14px}
+.fw-mof-3d__eyebrow,
+.fw-mof-3d__viewport-top,
+.fw-mof-3d__caption-line>span,
+.fw-mof-3d__viewer-buttons>span,
+.fw-mof-3d__ticks {
+  font-family:'Courier New',monospace;font-weight:700;letter-spacing:.035em;
+}
+.fw-mof-3d__eyebrow {display:block;color:var(--fw3-blue);font-size:11px;line-height:1.4}
+.fw-mof-3d__head h3 {margin:8px 0 5px;color:var(--fw3-navy);font:700 clamp(22px,2.7vw,29px)/1.18 'Libron',Georgia,serif}
+.fw-mof-3d__head p {margin:0;color:#465B72;font:400 14px/1.45 'Libron',Georgia,serif}
+.fw-mof-3d__viewport {
+  position:relative;
+  overflow:hidden;
+  background:radial-gradient(ellipse at 48% 43%, #fff 0%,#EEF7FC 72%,#E4F0F9 100%);
+  border:2px solid var(--fw3-navy);
+  border-radius:3px;
+}
+.fw-mof-3d__viewport-top {
+  display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;
+  padding:10px 13px 0;position:relative;z-index:2;
+  font-size:10px;line-height:1.3;color:#3C566D;pointer-events:none;
+}
+.fw-mof-3d__mount {height:clamp(275px,46vw,430px);position:relative;isolation:isolate}
+.fw-mof-3d__mount canvas {
+  display:block;width:100%;height:100%;outline-offset:-4px;
+  cursor:grab;
+}
+.fw-mof-3d__mount canvas:active {cursor:grabbing}
+.fw-mof-3d__mount canvas:focus-visible {outline:3px solid var(--fw3-blue)}
+.fw-mof-3d__fallback {
+  position:absolute;inset:0;display:grid;place-items:center;
+  padding:15px;
+}
+.fw-mof-3d__fallback svg {display:block;width:100%;max-height:100%;max-width:520px}
+.fw-mof-3d__status {
+  position:absolute;left:10px;right:10px;bottom:50px;z-index:2;
+  margin:0;padding:9px 12px;
+  background:#fff;border:1.5px solid #819BB2;color:#1C3049;
+  font:700 12px/1.4 'Libron',Georgia,serif;
+}
+.fw-mof-3d__viewer-buttons {
+  min-height:45px;display:flex;align-items:center;justify-content:space-between;
+  padding:5px 10px;border-top:1.5px solid #B1C4D6;gap:9px;background:#EDF5FC;
+}
+.fw-mof-3d__viewer-buttons>span {font-size:10px;color:#57708A}
+.fw-mof-3d button {
+  min-height:41px;border:2px solid var(--fw3-navy);border-radius:2px;
+  background:#fff;color:var(--fw3-navy);padding:7px 12px;
+  font:700 13px/1.25 'Libron',Georgia,serif;cursor:pointer;
+}
+.fw-mof-3d button:hover:not(:disabled) {background:#DFEDFA}
+.fw-mof-3d button:disabled {opacity:.52;cursor:not-allowed}
+.fw-mof-3d button:focus-visible, .fw-mof-3d input:focus-visible {
+  outline:3px solid var(--fw3-blue);outline-offset:3px;
+}
+.fw-mof-3d__viewer-buttons button {min-width:81px;background:#F6FAFF}
+.fw-mof-3d__viewer-buttons button span {font-size:20px;line-height:.5}
+.fw-mof-3d__legend {
+  display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;
+  margin:13px 0 17px;color:#2B4660;
+  font:700 12px/1.4 'Courier New',monospace;
+}
+.fw-mof-3d__legend span {display:inline-flex;align-items:center;gap:7px}
+.fw-mof-3d__swatch {display:inline-block;width:13px;height:13px;border-radius:50%;border:1.5px solid var(--fw3-navy)}
+.fw-mof-3d__swatch--node {background:#EEC5C0;border-color:var(--fw3-red)}
+.fw-mof-3d__swatch--link {width:19px;height:9px;border-radius:5px;background:#A7C5E7;border-color:var(--fw3-blue)}
+.fw-mof-3d__swatch--void {background:#A3DDB7;border-color:var(--fw3-green)}
+.fw-mof-3d__controls {
+  padding:clamp(12px,2vw,18px);background:#F2F7FC;
+  border:1.5px solid #9BB1C6;border-radius:3px;
+}
+.fw-mof-3d__control-head {display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:8px}
+.fw-mof-3d__control-head label {font:700 16px/1.35 'Libron',Georgia,serif;color:var(--fw3-navy)}
+.fw-mof-3d__control-head output {
+  border:1.5px solid var(--fw3-navy);padding:4px 8px;background:#DCEBFA;
+  font:700 12px/1.25 'Courier New',monospace;color:var(--fw3-navy);
+}
+.fw-mof-3d__controls input[type=range] {
+  display:block;width:100%;margin:19px 0 9px;accent-color:var(--fw3-blue);cursor:pointer;
+}
+.fw-mof-3d__ticks {display:flex;justify-content:space-between;gap:6px;color:#36536B;font-size:11px}
+.fw-mof-3d__hint {margin:12px 0 14px;color:#465B70;font:400 13px/1.5 'Libron',Georgia,serif}
+.fw-mof-3d__hint--last {margin:9px 0 0;font-size:12px}
+.fw-mof-3d__actions {display:flex;align-items:center;flex-wrap:wrap;gap:10px}
+.fw-mof-3d__check {
+  display:inline-flex;align-items:center;gap:10px;margin-right:auto;min-height:43px;
+  color:var(--fw3-navy);font:700 14px/1.25 'Libron',Georgia,serif;cursor:pointer;
+}
+.fw-mof-3d__check:has(input:disabled) {opacity:.6;cursor:not-allowed}
+.fw-mof-3d__check input {width:21px;height:21px;margin:0;accent-color:var(--fw3-green)}
+.fw-mof-3d__caption {display:block;padding:15px 0 0;margin:0;color:#32495E}
+.fw-mof-3d__caption-line {display:flex;align-items:baseline;flex-wrap:wrap;gap:8px 14px}
+.fw-mof-3d__caption-line>span {font-size:11px;color:var(--fw3-blue)}
+.fw-mof-3d__caption-line strong {font:700 18px/1.25 'Libron',Georgia,serif;color:var(--fw3-navy)}
+.fw-mof-3d__caption p {margin:9px 0 0;font:400 15px/1.55 'Libron',Georgia,serif}
+.fw-mof-3d__caption .fw-mof-3d__caution {
+  border-left:3px solid var(--fw3-green);padding:10px 12px;background:#EAF7EF;
+  color:#215238;font-size:14px;
+}
+.fw-mof-3d__caption small {display:block;margin-top:11px;color:#52667A;font:400 12px/1.5 'Libron',Georgia,serif}
+.fw-mof-3d__noscript {margin:10px 0 0;font:400 13px/1.5 'Libron',Georgia,serif}
+@media(max-width:620px) {
+  .fw-mof-3d {margin:25px 0 31px;padding:11px;box-shadow:3px 3px 0 var(--fw3-navy)}
+  .fw-mof-3d__viewport-top {padding:7px 8px 0;font-size:9px}
+  .fw-mof-3d__mount {height:clamp(265px,70vw,345px)}
+  .fw-mof-3d__legend {gap:7px 12px;font-size:10px}
+  .fw-mof-3d__ticks {font-size:10px}
+  .fw-mof-3d__controls {padding:12px}
+  .fw-mof-3d__actions {gap:7px}
+  .fw-mof-3d__actions button {font-size:12px;padding:7px 10px}
+  .fw-mof-3d__viewer-buttons button {min-width:65px}
+  .fw-mof-3d__viewer-buttons>span {font-size:9px}
+}
+@media (forced-colors:active) {
+  .fw-mof-3d,.fw-mof-3d__viewport,.fw-mof-3d__controls,.fw-mof-3d button {border-color:CanvasText;box-shadow:none}
+}
+@media (prefers-reduced-motion:reduce) {
+  .fw-mof-3d * {transition:none!important;animation:none!important}
+}
