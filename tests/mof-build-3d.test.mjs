@@ -45,8 +45,8 @@ test('3D cubic graph has unique shared nodes and edges at all sizes',()=>{
 
 test('pore sphere is dimensionally consistent within the schematic, not a physical pore value',()=>{
   assert.equal(PITCH,1); // input pitch = 1 arbitrary model unit
-  assert.equal(VOID_RADIUS,.4); // sphere radius in the same model units
-  assert.equal(2*VOID_RADIUS,.8*PITCH); // diameter is 80% of the pitch
+  assert.equal(VOID_RADIUS,.58); // sphere radius in the same model units
+  assert.equal(2*VOID_RADIUS,1.16*PITCH); // diameter is 116% of the pitch
   assert.ok(VOID_RADIUS < schematicClearance(),'sphere smaller than edge clearance');
   for(let n=1;n<=3;n++){
     const graph=makeGraph(n);
@@ -75,7 +75,11 @@ test('shortcode provides pinned module imports and an accessible no-JS fallback'
   assert.match(html,/src="\{\{ "\/js\/mof-build-3d\/app\.js" \| relURL \}\}"/);
   assert.match(html,/data-mof-build-3d/);
   assert.match(html,/data-3d-mount/);
-  assert.match(html,/type="range" min="0" max="3" step="1" value="0"/);
+  assert.equal((html.match(/data-3d-stage="[0-3]"/g)||[]).length,4);
+  assert.match(html,/data-3d-stage="0" aria-pressed="true"/);
+  assert.match(html,/data-3d-stage="3" aria-pressed="false"/);
+  assert.match(html,/role="group" aria-labelledby/);
+  assert.doesNotMatch(html,/data-3d-range/);
   assert.match(html,/data-3d-pore disabled/);
   assert.match(html,/data-3d-focus disabled/);
   assert.match(html,/data-3d-reset/);
@@ -98,6 +102,11 @@ test('viewer implements instanced meshes, orbit controls, lazy loading and no id
   const css=read('../assets/mof-build-3d/style.css');
   assert.match(scene,/import \* as THREE from 'three'/);
   assert.match(scene,/OrbitControls/);
+  assert.match(scene,/color:MODEL_PORE,roughness:1,metalness:0/);
+  assert.match(scene,/transparent:false,opacity:1,depthWrite:true/);
+  assert.doesNotMatch(scene,/poreRim|emissiveIntensity|wireframe:true/);
+  assert.match(scene,/new THREE\.HemisphereLight\(0xffffff,0xc1cfdd,1\.15\)/);
+  assert.doesNotMatch(scene,/slider to change repeats/);
   assert.match(scene,/new THREE\.InstancedMesh/g);
   assert.match(scene,/group\.add\(nodesMesh,edgesMesh\)/);
   assert.match(scene,/controls\.enablePan=false/);
@@ -110,10 +119,16 @@ test('viewer implements instanced meshes, orbit controls, lazy loading and no id
   assert.match(scene,/new ResizeObserver\(resize\)/);
   assert.match(app,/import\('\.\/scene\.js'\)/);
   assert.match(app,/IntersectionObserver/);
+  assert.match(app,/stageButtons\.forEach\(\(button,i\)=>button\.addEventListener\('click',\(\)=>selectStage\(i\)\)\)/);
+  assert.match(app,/button\.setAttribute\('aria-pressed',String\(i===n\)\)/);
+  assert.match(app,/focus\.hidden=!\(visible&&viewer\)/);
   assert.match(app,/webglcontextlost/);
   assert.match(app,/fallback\.hidden=true/);
   assert.match(app,/loader\.textContent='3D is unavailable here/);
   assert.match(css,/\.fw-mof-3d__mount canvas/);
+  assert.match(css,/\.fw-mof-3d__stages \{/);
+  assert.match(css,/aria-pressed="true"/);
+  assert.match(css,/grid-template-columns:repeat\(2,minmax\(0,1fr\)\)/);
   assert.match(css,/@media\(max-width:620px\)/);
   assert.match(css,/forced-colors:active/);
   assert.match(css,/prefers-reduced-motion:reduce/);
