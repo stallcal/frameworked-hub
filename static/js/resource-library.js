@@ -8,11 +8,11 @@
   for (const img of document.querySelectorAll('.resource-avatar-image')) {
     const avatar = img.closest('.resource-avatar');
     if (!avatar) continue;
-    const loaded = () => avatar.classList.add('is-loaded');
-    const failed = () => avatar.classList.remove('is-loaded');
+    const loaded = () => { avatar.classList.remove('is-failed'); avatar.classList.add('is-loaded'); };
+    const failed = () => { avatar.classList.add('is-failed'); avatar.classList.remove('is-loaded'); };
     img.addEventListener('load', loaded, { once: true });
     img.addEventListener('error', failed, { once: true });
-    if (img.complete && img.naturalWidth > 0) loaded();
+    if (img.complete) (img.naturalWidth > 0 ? loaded : failed)();
   }
   const search = document.getElementById('resource-search');
   const topic = document.getElementById('resource-topic');

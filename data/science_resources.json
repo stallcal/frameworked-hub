@@ -83,7 +83,7 @@
         "chemistry"
       ],
       "description": "Chemistry experiments and synthesis.",
-      "avatar": "https://unavatar.io/youtube/NileRed"
+      "avatar": "https://avatarsapi.com/youtube/@NileRed?size=112"
     },
     {
       "id": "apoptosis",
@@ -94,7 +94,7 @@
         "chemistry"
       ],
       "description": "Laboratory chemistry and organic synthesis.",
-      "avatar": "https://unavatar.io/youtube/integral_chemistry"
+      "avatar": "https://avatarsapi.com/youtube/@integral_chemistry?size=112"
     },
     {
       "id": "professor-dave",
@@ -106,7 +106,7 @@
         "physics"
       ],
       "description": "Structured science and mathematics lessons.",
-      "avatar": "https://unavatar.io/youtube/ProfessorDaveExplains"
+      "avatar": "https://avatarsapi.com/youtube/@ProfessorDaveExplains?size=112"
     },
     {
       "id": "veritasium",
@@ -118,7 +118,7 @@
         "climate"
       ],
       "description": "Science experiments, demonstrations and explanations.",
-      "avatar": "https://unavatar.io/youtube/veritasium"
+      "avatar": "https://avatarsapi.com/youtube/@veritasium?size=112"
     },
     {
       "id": "vsauce",
@@ -129,7 +129,7 @@
         "physics"
       ],
       "description": "Explorations of science and curiosity.",
-      "avatar": "https://unavatar.io/youtube/Vsauce"
+      "avatar": "https://avatarsapi.com/youtube/@Vsauce?size=112"
     },
     {
       "id": "steve-mould",
@@ -140,7 +140,7 @@
         "physics"
       ],
       "description": "Physical phenomena and hands-on demonstrations.",
-      "avatar": "https://unavatar.io/youtube/SteveMould"
+      "avatar": "https://avatarsapi.com/youtube/@SteveMould?size=112"
     },
     {
       "id": "crash-course",
@@ -153,7 +153,7 @@
         "climate"
       ],
       "description": "Short-form courses across science and other disciplines.",
-      "avatar": "https://unavatar.io/youtube/crashcourse"
+      "avatar": "https://avatarsapi.com/youtube/@crashcourse?size=112"
     },
     {
       "id": "periodic-videos",
@@ -164,7 +164,7 @@
         "chemistry"
       ],
       "description": "Elements, reactions and laboratory chemistry from Nottingham.",
-      "avatar": "https://unavatar.io/youtube/periodicvideos"
+      "avatar": "https://avatarsapi.com/youtube/@periodicvideos?size=112"
     },
     {
       "id": "what-is-a-mof-nobel",
@@ -755,7 +755,7 @@
         "climate"
       ],
       "description": "Evidence-based explanations and investigations of science, technology and environmental claims.",
-      "avatar": "https://unavatar.io/youtube/davemckeegan"
+      "avatar": "https://avatarsapi.com/youtube/@davemckeegan?size=112"
     },
     {
       "id": "real-engineering",
@@ -767,7 +767,7 @@
         "physics"
       ],
       "description": "Visual explanations of engineering systems, aviation, energy and the technologies behind them.",
-      "avatar": "https://unavatar.io/youtube/RealEngineering"
+      "avatar": "https://avatarsapi.com/youtube/@RealEngineering?size=112"
     },
     {
       "id": "kurzgesagt",
@@ -780,7 +780,7 @@
         "climate"
       ],
       "description": "Animated explorations of science, space, biology and big-picture questions.",
-      "avatar": "https://unavatar.io/youtube/kurzgesagt"
+      "avatar": "https://avatarsapi.com/youtube/@kurzgesagt?size=112"
     },
     {
       "id": "nasa",
@@ -793,7 +793,7 @@
         "physics"
       ],
       "description": "Official NASA mission updates, exploration footage and space-science programming.",
-      "avatar": "https://unavatar.io/youtube/NASA"
+      "avatar": "https://avatarsapi.com/youtube/@NASA?size=112"
     },
     {
       "id": "nasa-science",
@@ -806,7 +806,7 @@
         "climate"
       ],
       "description": "Research and discoveries from NASA's science missions, including planetary and Earth science.",
-      "avatar": "https://unavatar.io/youtube/NASAScience"
+      "avatar": "https://avatarsapi.com/youtube/@NASAScience?size=112"
     },
     {
       "id": "nasa-goddard",
@@ -819,7 +819,7 @@
         "engineering"
       ],
       "description": "Spacecraft, astronomy, Earth observations and science from Goddard Space Flight Center.",
-      "avatar": "https://unavatar.io/youtube/NASAGoddard"
+      "avatar": "https://avatarsapi.com/youtube/@NASAGoddard?size=112"
     },
     {
       "id": "nasa-jpl",
@@ -831,7 +831,7 @@
         "engineering"
       ],
       "description": "Robotic exploration, space science, engineering and mission updates from JPL.",
-      "avatar": "https://unavatar.io/youtube/NASAJPL"
+      "avatar": "https://avatarsapi.com/youtube/@NASAJPL?size=112"
     },
     {
       "id": "nasa-johnson",
@@ -843,7 +843,7 @@
         "engineering"
       ],
       "description": "Human spaceflight, astronaut training and mission operations from Johnson Space Center.",
-      "avatar": "https://unavatar.io/youtube/ReelNASA"
+      "avatar": "https://avatarsapi.com/youtube/@ReelNASA?size=112"
     },
     {
       "id": "nasa-solar-system",
@@ -855,7 +855,7 @@
         "physics"
       ],
       "description": "Solar-system exploration and planetary-science media from NASA.",
-      "avatar": "https://unavatar.io/youtube/NASASolarSystem"
+      "avatar": "https://avatarsapi.com/youtube/@NASASolarSystem?size=112"
     },
     {
       "id": "jantec-engineering",
@@ -867,7 +867,7 @@
         "physics"
       ],
       "description": "3D printing, filament testing, electrical engineering and practical material comparisons.",
-      "avatar": "https://unavatar.io/youtube/JanTecEngineering"
+      "avatar": "https://avatarsapi.com/youtube/@JanTecEngineering?size=112"
     },
     {
       "id": "professor-derricotte",
@@ -879,7 +879,7 @@
         "physics"
       ],
       "description": "College-level chemistry instruction including thermodynamics, kinetics, quantum chemistry and spectroscopy.",
-      "avatar": "https://unavatar.io/youtube/ProfessorDerricotte"
+      "avatar": "https://avatarsapi.com/youtube/@ProfessorDerricotte?size=112"
     },
     {
       "id": "the-rest-is-science",
@@ -892,7 +892,7 @@
         "chemistry"
       ],
       "description": "Science conversations hosted by Hannah Fry and Michael Stevens (Vsauce).",
-      "avatar": "https://unavatar.io/youtube/TheRestIsScience"
+      "avatar": "https://avatarsapi.com/youtube/@TheRestIsScience?size=112"
     },
     {
       "id": "three-blue-one-brown",
@@ -904,7 +904,7 @@
         "physics"
       ],
       "description": "Animated mathematical intuition, including calculus, linear algebra and applications to physics.",
-      "avatar": "https://unavatar.io/youtube/3blue1brown"
+      "avatar": "https://avatarsapi.com/youtube/@3blue1brown?size=112"
     },
     {
       "id": "minutephysics",
@@ -916,7 +916,7 @@
         "space"
       ],
       "description": "Concise illustrated physics explanations and thought experiments.",
-      "avatar": "https://unavatar.io/youtube/MinutePhysics"
+      "avatar": "https://avatarsapi.com/youtube/@MinutePhysics?size=112"
     },
     {
       "id": "startalk",
@@ -928,7 +928,7 @@
         "physics"
       ],
       "description": "Science conversations and astronomy discussions hosted by Neil deGrasse Tyson and guests.",
-      "avatar": "https://unavatar.io/youtube/StarTalk"
+      "avatar": "https://avatarsapi.com/youtube/@StarTalk?size=112"
     },
     {
       "id": "smarter-every-day",
@@ -940,7 +940,7 @@
         "engineering"
       ],
       "description": "Hands-on experiments, slow-motion demonstrations and engineering investigations.",
-      "avatar": "https://unavatar.io/youtube/SmarterEveryDay"
+      "avatar": "https://avatarsapi.com/youtube/@SmarterEveryDay?size=112"
     },
     {
       "id": "domain-of-science",
@@ -953,7 +953,7 @@
         "chemistry"
       ],
       "description": "Visual maps of science, mathematics and physics concepts.",
-      "avatar": "https://unavatar.io/youtube/ScienceMaps"
+      "avatar": "https://avatarsapi.com/youtube/@ScienceMaps?size=112"
     },
     {
       "id": "mission-unstoppable",
@@ -966,7 +966,7 @@
         "chemistry"
       ],
       "description": "STEM stories highlighting women working in science, engineering and technology.",
-      "avatar": "https://unavatar.io/youtube/cbsunstoppable"
+      "avatar": "https://avatarsapi.com/youtube/@cbsunstoppable?size=112"
     },
     {
       "id": "chemistorian",
@@ -977,7 +977,7 @@
         "chemistry"
       ],
       "description": "Stories from the history of chemistry, element discoveries and early scientific ideas.",
-      "avatar": "https://unavatar.io/youtube/Chemistorian"
+      "avatar": "https://avatarsapi.com/youtube/@Chemistorian?size=112"
     },
     {
       "id": "chemicalforce",
@@ -988,7 +988,7 @@
         "chemistry"
       ],
       "description": "Chemical demonstrations and visually striking laboratory experiments; not a substitute for lab-safety guidance.",
-      "avatar": "https://unavatar.io/youtube/chemicalforce"
+      "avatar": "https://avatarsapi.com/youtube/@chemicalforce?size=112"
     },
     {
       "id": "chads-prep",
@@ -1000,7 +1000,7 @@
         "physics"
       ],
       "description": "Tutorial lessons for general chemistry, organic chemistry and physics, including pre-health coursework.",
-      "avatar": "https://unavatar.io/youtube/ChadsPrep"
+      "avatar": "https://avatarsapi.com/youtube/@ChadsPrep?size=112"
     },
     {
       "id": "prussian-blue",
@@ -1011,7 +1011,7 @@
         "chemistry"
       ],
       "description": "Chemistry experiments and science humor; demonstrations are not intended as laboratory tutorials.",
-      "avatar": "https://unavatar.io/youtube/UC0aRbU6guMEMY8RpGMP_ayw"
+      "avatar": "https://banner.yt/UC0aRbU6guMEMY8RpGMP_ayw?type=avatar&width=112&height=112"
     },
     {
       "id": "professor-leonard",
@@ -1022,7 +1022,7 @@
         "mathematics"
       ],
       "description": "Full-length college mathematics lectures, including calculus.",
-      "avatar": "https://unavatar.io/youtube/ProfessorLeonard"
+      "avatar": "https://avatarsapi.com/youtube/@ProfessorLeonard?size=112"
     },
     {
       "id": "organic-chemistry-tutor",
@@ -1035,7 +1035,7 @@
         "physics"
       ],
       "description": "Worked examples in general and organic chemistry, physics and mathematics.",
-      "avatar": "https://unavatar.io/youtube/TheOrganicChemistryTutor"
+      "avatar": "https://avatarsapi.com/youtube/@TheOrganicChemistryTutor?size=112"
     },
     {
       "id": "floatheadphysics",
@@ -1046,7 +1046,7 @@
         "physics"
       ],
       "description": "Visual and intuitive explanations of relativity, mechanics and other physics topics.",
-      "avatar": "https://unavatar.io/youtube/Mahesh_Shenoy"
+      "avatar": "https://avatarsapi.com/youtube/@Mahesh_Shenoy?size=112"
     },
     {
       "id": "ut-dallas",
@@ -1059,7 +1059,7 @@
         "physics"
       ],
       "description": "Official University of Texas at Dallas videos covering campus, research, education and student life.",
-      "avatar": "https://unavatar.io/youtube/UT_Dallas"
+      "avatar": "https://avatarsapi.com/youtube/@UT_Dallas?size=112"
     },
     {
       "id": "utd-geoscience-studios",
@@ -1071,7 +1071,7 @@
         "physics"
       ],
       "description": "Geoscience animations and educational videos created by UT Dallas students and faculty.",
-      "avatar": "https://unavatar.io/youtube/UCGRcGfZpcWMCihRgpCrjXFA"
+      "avatar": "https://banner.yt/UCGRcGfZpcWMCihRgpCrjXFA?type=avatar&width=112&height=112"
     },
     {
       "id": "acs-youtube",
@@ -1083,7 +1083,7 @@
         "mofs"
       ],
       "description": "Official ACS videos highlighting chemistry research, education, careers and scientific news.",
-      "avatar": "https://unavatar.io/youtube/AmerChemSociety"
+      "avatar": "https://avatarsapi.com/youtube/@AmerChemSociety?size=112"
     },
     {
       "id": "acs-reactions",
@@ -1094,7 +1094,7 @@
         "chemistry"
       ],
       "description": "Chemistry explanations of everyday phenomena, produced by the American Chemical Society.",
-      "avatar": "https://unavatar.io/youtube/ACSReactions"
+      "avatar": "https://avatarsapi.com/youtube/@ACSReactions?size=112"
     },
     {
       "id": "episodic-table",
