@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
-import {buildCubicGraph, projectIsometric, poreAnchor, sceneExtents, STATES} from '../assets/mof-build/model.mjs';
+import {buildCubicGraph, projectThreeQuarter, poreAnchor, poreMarkerRadius, sceneExtents, STATES} from '../assets/mof-build/model.mjs';
 
 const read = p => readFileSync(new URL(p, import.meta.url), 'utf8');
 
@@ -40,15 +40,38 @@ test('each cubic segment has deduplicated shared vertices and links', () => {
       assert.ok(c > 0 && c < n);
       assert.equal(c % 1, 0.5);
     }
+    assert.equal(center.y, 0.5, 'selected opening should be near the front');
+    const scale = 100 / n;
+    const markerRadius = poreMarkerRadius(scale);
+    assert.ok(markerRadius >= 18 && markerRadius <= 56);
+    assert.ok(markerRadius > Math.min(23, scale * 0.16),
+      'new marker is larger than the original design');
     const bounds = sceneExtents(graph.nodes);
     assert.ok(bounds.maxX > bounds.minX);
     assert.ok(bounds.maxY > bounds.minY);
     for (const node of graph.nodes) {
-      const p = projectIsometric(node);
+      const p = projectThreeQuarter(node);
       assert.ok(Number.isFinite(p.x));
       assert.ok(Number.isFinite(p.y));
     }
   }
+});
+
+test('three-quarter view shows a square front plane and angled depth', () => {
+  const origin = projectThreeQuarter({x:0,y:0,z:0});
+  const right = projectThreeQuarter({x:1,y:0,z:0});
+  const up = projectThreeQuarter({x:0,y:0,z:1});
+  const depth = projectThreeQuarter({x:0,y:1,z:0});
+  assert.equal(right.y, origin.y, 'x axis should be horizontal');
+  assert.equal(up.x, origin.x, 'z axis should be vertical');
+  assert.ok(right.x > origin.x);
+  assert.ok(up.y < origin.y);
+  assert.ok(depth.x > origin.x && depth.y < origin.y,
+    'y axis should recede diagonally up and right');
+  assert.ok(poreMarkerRadius(230) >= 50,
+    'single-block highlight should be visibly prominent');
+  assert.ok(poreMarkerRadius(78) > 25,
+    '3x3x3 highlight should remain visible after fit-to-view');
 });
 
 test('Hugo widget is scoped, accessible, with no-JS starting view and independent assets', () => {
@@ -75,6 +98,19 @@ test('Hugo widget is scoped, accessible, with no-JS starting view and independen
   assert.match(js, /poreKey\.hidden = !showPore/);
   assert.match(js, /range\.setAttribute\('aria-valuetext', valueText\)/);
   assert.match(css, /\.fw-mof-build__stage svg/);
+  assert.match(widget, /data-build-overlay-note/);
+  assert.match(widget, /data-build-pore-detail/);
+  assert.match(widget, /One opening, magnified/);
+  assert.match(widget, /deliberately exaggerated/);
+  assert.match(js, /paintOpening\(scene, view, anchor\)/);
+  assert.match(js, /poreMarkerRadius\(view\.scale\)/);
+  assert.match(js, /poreDetail\.hidden = !showPore/);
+  assert.match(js, /overlayNote\.hidden = !showPore/);
+  assert.match(css, /\.fw-mof-build__pore-detail\[hidden\]/);
+  assert.match(css, /\.fw-mof-build__pore-window/);
+  assert.match(css, /#084B9E/);
+  assert.match(css, /#9E382E/);
+  assert.match(css, /#089E4B/);
   assert.match(css, /@media \(max-width: 620px\)/);
   assert.match(css, /prefers-reduced-motion/);
   assert.match(css, /forced-colors: active/);
