@@ -15,7 +15,10 @@ export const STAGES = Object.freeze([
 export const PITCH = 1; // arbitrary drawing/model units per conceptual edge
 export const NODE_RADIUS = 0.115; // arbitrary model units
 export const LINK_RADIUS = 0.052; // arbitrary model units
-export const VOID_RADIUS = 0.4; // arbitrary model units; diameter = 0.8 of one repeat pitch
+// Deliberately generous, diagram-only marker: diameter = 1.16 model units.
+// It approaches but does not intersect the nearest idealized struts.
+// It can cross an imaginary repeat-cell face; that face is not a solid wall.
+export const VOID_RADIUS = 0.58; // radius in arbitrary model units; NOT a measured pore radius
 
 export function makeGraph(n) {
   if (![1,2,3].includes(n) || !Number.isInteger(n)) throw new RangeError('Expected 1–3 repeats.');
