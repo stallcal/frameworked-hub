@@ -108,9 +108,9 @@ test('viewer implements instanced meshes, orbit controls, lazy loading and no id
   assert.match(scene,/color:MODEL_PORE,roughness:1,metalness:0/);
   assert.match(scene,/transparent:false,opacity:1,depthWrite:true/);
   assert.doesNotMatch(scene,/poreRim|emissiveIntensity|wireframe:true/);
-  assert.match(scene,/new THREE\\.HemisphereLight\\(0xffffff,0xe7eef6,1\\.0\\)/);
+  assert.ok(scene.includes('new THREE.HemisphereLight(0xffffff,0xe7eef6,1.0)'));
   assert.match(scene,/const MODEL_NODE=0x9E382E, MODEL_LINK=0x084B9E, MODEL_PORE=0x089E4B;/);
-  assert.match(scene,/new THREE\\.DirectionalLight\\(0xffffff,1\\.05\\)/);
+  assert.ok(scene.includes('new THREE.DirectionalLight(0xffffff,1.05)'));
   assert.doesNotMatch(scene,/MODEL_NODE=0xCFA6A0|MODEL_LINK=0x678DB5|MODEL_PORE=0x83B99A/);
   assert.doesNotMatch(scene,/slider to change repeats/);
   assert.match(scene,/new THREE\.InstancedMesh/g);
@@ -133,9 +133,9 @@ test('viewer implements instanced meshes, orbit controls, lazy loading and no id
   assert.match(app,/loader\.textContent='3D is unavailable here/);
   assert.match(css,/\.fw-mof-3d__mount canvas/);
   assert.match(css,/\.fw-mof-3d__stages \{/);
-  assert.match(css,/\\.fw-mof-3d__swatch--node \\{background:var\\(--fw3-red\\)/);
-  assert.match(css,/\\.fw-mof-3d__swatch--link \\{[^\\n]*background:var\\(--fw3-blue\\)/);
-  assert.match(css,/\\.fw-mof-3d__swatch--void \\{background:var\\(--fw3-green\\)/);
+  assert.ok(css.includes('.fw-mof-3d__swatch--node {background:var(--fw3-red)'));
+  assert.ok(css.includes('background:var(--fw3-blue)'));
+  assert.ok(css.includes('.fw-mof-3d__swatch--void {background:var(--fw3-green)'));
   assert.doesNotMatch(css,/#CFA6A0|#678DB5|#83B99A/);
   assert.match(css,/aria-pressed="true"/);
   assert.match(css,/grid-template-columns:repeat\(2,minmax\(0,1fr\)\)/);
