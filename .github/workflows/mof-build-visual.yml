@@ -4,21 +4,29 @@ on:
   pull_request:
     paths:
       - 'assets/mof-build/**'
+      - 'assets/mof-build-3d/**'
+      - 'static/js/mof-build-3d/**'
       - 'layouts/shortcodes/mof-build.html'
+      - 'layouts/shortcodes/mof-build-3d.html'
       - 'layouts/preview/single.html'
       - 'site-content/articles/build-with-molecules/**'
       - 'site-content/preview/mof-build/**'
       - 'tests/mof-build-visual.test.mjs'
+      - 'tests/mof-build-3d.test.mjs'
       - '.github/workflows/mof-build-visual.yml'
   push:
     branches: [main]
     paths:
       - 'assets/mof-build/**'
+      - 'assets/mof-build-3d/**'
+      - 'static/js/mof-build-3d/**'
       - 'layouts/shortcodes/mof-build.html'
+      - 'layouts/shortcodes/mof-build-3d.html'
       - 'layouts/preview/single.html'
       - 'site-content/articles/build-with-molecules/**'
       - 'site-content/preview/mof-build/**'
       - 'tests/mof-build-visual.test.mjs'
+      - 'tests/mof-build-3d.test.mjs'
 
 permissions:
   contents: read
@@ -34,7 +42,7 @@ jobs:
         with:
           node-version: '22'
       - name: Check procedural geometry and figure integration
-        run: node --test tests/mof-build-visual.test.mjs
+        run: node --test tests/mof-build-visual.test.mjs tests/mof-build-3d.test.mjs
       - uses: peaceiris/actions-hugo@v3
         with:
           hugo-version: '0.154.5'
@@ -44,11 +52,16 @@ jobs:
           hugo --buildDrafts --environment preview --destination public-preview --cleanDestinationDir
           test -f public-preview/articles/build-with-molecules/index.html
           test -f public-preview/preview/mof-build/index.html
-          grep -q 'data-mof-build' public-preview/articles/build-with-molecules/index.html
-          grep -q 'data-build-range' public-preview/preview/mof-build/index.html
+          grep -q 'data-mof-build-3d' public-preview/articles/build-with-molecules/index.html
+          grep -q 'data-3d-range' public-preview/preview/mof-build/index.html
+          grep -q 'type="importmap"' public-preview/preview/mof-build/index.html
       - name: Validate production isolation
         run: |
           hugo --environment production --destination public-production --cleanDestinationDir
           test ! -e public-production/articles/build-with-molecules/index.html
           test -f public-production/preview/mof-build/index.html
           grep -q 'noindex,nofollow' public-production/preview/mof-build/index.html
+          grep -q 'data-mof-build-3d' public-production/preview/mof-build/index.html
+          test -f public-production/js/mof-build-3d/app.js
+          test -f public-production/js/mof-build-3d/scene.js
+          test -f public-production/js/mof-build-3d/model.js
