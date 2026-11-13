@@ -4,9 +4,10 @@ import * as THREE from 'three';
 import {OrbitControls} from 'three/addons/controls/OrbitControls.js';
 import {makeGraph,voidCenter,centerCoordinate,PITCH,NODE_RADIUS,LINK_RADIUS,VOID_RADIUS} from './model.js';
 
-// Muted material tints preserve Frameworked's navy/blue/red/green identity
-// without using the intense interface colors as brightly lit plastic meshes.
-const MODEL_NODE=0xCFA6A0, MODEL_LINK=0x678DB5, MODEL_PORE=0x83B99A;
+// Exact Frameworked brand colors are material base colors. The rough, nonmetallic
+// surfaces and moderate neutral lighting create depth without desaturating the
+// underlying palette with arbitrary pastel substitutes.
+const MODEL_NODE=0x9E382E, MODEL_LINK=0x084B9E, MODEL_PORE=0x089E4B;
 const UP=new THREE.Vector3(0,1,0);
 const VEC=new THREE.Vector3();
 const viewDir=new THREE.Vector3(1.16,.88,1.42).normalize();
@@ -25,11 +26,11 @@ export function createMofScene(mount) {
   renderer.domElement.style.touchAction='none';
   mount.append(renderer.domElement);
 
-  scene.add(new THREE.HemisphereLight(0xffffff,0xc1cfdd,1.15));
-  const key=new THREE.DirectionalLight(0xffffff,1.25);
+  scene.add(new THREE.HemisphereLight(0xffffff,0xe7eef6,1.0));
+  const key=new THREE.DirectionalLight(0xffffff,1.05);
   key.position.set(5,8,7);
   scene.add(key);
-  const fill=new THREE.DirectionalLight(0xc8d8eb,.35);
+  const fill=new THREE.DirectionalLight(0xffffff,.25);
   fill.position.set(-6,-2,-4);
   scene.add(fill);
 
