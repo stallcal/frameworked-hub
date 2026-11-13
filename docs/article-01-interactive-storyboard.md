@@ -14,27 +14,49 @@ Keep **“What If We Could Build With Molecules?”** as the existing working na
 **Learning outcome:** recognize the two kinds of building units; distinguish chemical structure from topological abstraction; recognize why a pictured void does not establish experimentally measured accessible porosity.  
 **Narrative target:** roughly 400–650 words of main text, plus concise labels, captions, interaction prompts, and linked primary sources; let clarity win over a fixed count. Reusable as narration for a future video.
 
-## Six-beat storyboard
+## Revised article outline: five distinct sections
 
-| Beat | Reading question and editorial job | Illustration / reader action | What must remain explicit |
+**One governing thought:** “Chemists can link metal-containing units and organic molecules into repeating structures. The space in those structures is interesting—but what it can actually do is a separate experimental question.” Place the point early. This follows the CDC [Clear Communication Index](https://www.cdc.gov/ccindex/) guidance to organize around one main message and to let visuals reinforce rather than duplicate words.
+
+**Recommended working H1:** *What If We Could Build With Molecules?*  
+**Search-forward subtitle/deck:** *How metal-containing units and organic linkers create metal–organic frameworks—and what the open space does (and doesn't) tell us.*  
+The final title and draft prose remain subject to the author's approval. Retain one introductory article rather than publishing two nearly identical “What is a MOF?” pieces.
+
+| Section / reader question | The section's **only** new job | Visual cue and interaction | Deliberately leave out |
 | --- | --- | --- | --- |
-| **1 · A structure from pieces** | “What if the pieces of a building could be molecules?” Use beams-and-joints only as an entry point. | Original **conceptual** nodes and connectors, initially separated; button **Connect the pieces** reveals a small repeated network. | Chemical coordination and synthesis are not literal manual assembly. Label *schematic, not a specific MOF*. |
-| **2 · What are the pieces?** | Introduce metal-containing units and organic ligands/linkers in plain language. A node may be a whole metal–oxygen cluster rather than one metal atom. | Interactive figure highlights **metal-containing unit** or **organic linker**, with text labels and separate non-color cues. | Do not imply every MOF is assembled from the same cluster or has the same connectivity. |
-| **3 · Meet MOF-5** | Ground the abstraction in Li et al.'s 1999 MOF-5: Zn₄O-containing secondary building units and benzene-1,4-dicarboxylate (BDC) links. | Move from **schematic** to **MOF-5 representation** only after verifying the structural asset. Show ball-and-stick or polyhedral model and an aligned simplified **pcu** net. | Label the representation and data source. Zn₄O core geometry is *not* the same as the six-connected connectivity of the contracted SBU. |
-| **4 · Why does the pattern repeat?** | Explain the idea of an extended periodic network, in one short paragraph. | Use **Show neighboring cells** to expand the view without changing connectivity; reset restores a readable default. | Do not describe one drawn cube automatically as the crystallographic unit cell. Verify the reduction used to assign the net. |
-| **5 · Space versus evidence** | Introduce “potential voids” and why a drawing alone is not a measured adsorption result. | Highlight a cavity; pair the picture with an explicit **Evidence check**, not a fake animated adsorption process. | Accessible porosity and capacity need experimental conditions/data. Different MOFs may respond to activation and guest removal differently. |
-| **6 · The question to carry forward** | Reader answers “Does a structure picture prove a gas-storage capacity?” then receives a short explanation and follows a source link. | Accessible two-option self-check, immediate explanation, original paper and IUPAC links; optional route to Article 02 when actually available. | State *No* without implying diagrams are scientifically useless. Do not surface links to unpublished pages. |
+| **1 · What if we could build with molecules?** | A short, specific hook: what changes when you connect small building units into a material? Briefly introduce the central question, not a glossary. | One teaser frame of the separate building blocks; no full lesson in the intro. | Repeating the definition, premature gas-storage applications, or a long construction analogy. |
+| **2 · What are the pieces?** | Introduce a metal-containing building unit and an organic linker. Say what each does, then name the language of *nodes* and *links* in a simplified model. | **Slider 0**: identify each labeled piece. | Re-explaining the opening hook or confusing a node with one atom in every MOF. |
+| **3 · How does one connection become a framework?** | Explain repetition in three dimensions and meet **MOF-5** as a specific example with Zn₄O-containing units and BDC linkers. State that a simplified net is not an atom-by-atom structure. | **Slider 1→2→3:** conceptual **1×1×1 → 2×2×2 → 3×3×3 repeating blocks**. Optional actual MOF-5 chemistry mode only after its dataset and representation are verified. | A second separate “building blocks” explanation, a topology taxonomy, numerical capacities, or calling the schematic cube an experimental unit cell. |
+| **4 · What's inside the structure?** | Direct attention to the *potential void*. Explain briefly why the visible cavity matters and what the representation cannot tell us. | **Show a pore**: one small sphere marks a possible void in the conceptual scene, labeled *illustrative, not to scale*. | Implied guest diffusion, a fabricated pore diameter, or claiming gas uptake from a drawing. |
+| **5 · What would prove it?** | Give the reader the scientific habit: structural evidence describes the arrangement; adsorption/other measurements under stated conditions test material behavior. End with a self-check and primary sources. | Short **Does a visible hole prove storage capacity?** answer/explanation, with cited MOF-5 and IUPAC sources. | Another definition, a full isotherm tutorial, broad application claims, or an empty next-article teaser. |
 
-### Interaction 01: one modest reusable in-article module
+**Pacing target:** roughly 450–650 words of main prose, excluding figure UI, compact captions and references. Aim for 1–3 short paragraphs per section, not five mini-textbook chapters. Each sentence should add new information, give an example, advance the reader's question, or connect a claim to evidence. If the slider already shows a relationship, the text should explain its *meaning* rather than narrate every motion.
 
-A single visual module with these ordered states (not six unrelated tools):  
-**A · Schematic pieces → B · Connected conceptual network → C · MOF-5 chemistry → D · Simplified connectivity net.**  
-Use four clearly labeled buttons, plus optional highlight toggles (**metal unit / organic linker / void**). Provide an always-visible current-view caption, a concise “what changed” sentence, and a **Reset** control. Repeating units should remain traceable by the same visual anchors through each permitted state. The **MOF-5 chemistry state may not ship** until its coordinate provenance and reduction are approved; a labeled static MOF-5 reference image can serve as a temporary editorial placeholder.
+### Main illustration (single source of truth)
 
-- No numerical input, simulated adsorption capacity, predicted pore access, or unsupported synthetic outcomes in Article 01.
-- Prefer reusing the existing node-and-linker rendering/data model after auditing its accuracy, selection accessibility and cell-boundary logic. Do not copy it verbatim into an unrelated article script.
-- Architecture: reusable Hugo shortcode + scoped JS/CSS, following the existing `normal-mode` shortcode pattern. Maintain independent widget IDs if ever embedded more than once. Page content remains meaningful with JavaScript disabled.
-- On mobile, keep controls adjacent to the figure. Avoid full-screen overlays, auto-rotation, forced scroll, tiny touch targets, and text placed inside an illegibly shrinking SVG. Support buttons/keyboard focus, non-color identification, alt/long descriptions, reduced motion, and a no-JS fallback.
+See **[Article 01 interactive figure specification](article-01-interactive-figure-spec.md)**. It supersedes the earlier button-driven four-view concept. The core control is now **one discrete scale slider** with stages **pieces → 1³ → 2³ → 3³**, supported by a **Show a pore** overlay. A separate **schematic/verified-chemistry** representation switch is deferred until MOF-5 structure-data provenance passes review. Do not present the conceptual 1³ block as an experimentally verified crystallographic cell.
+
+The pore sphere marks **potential void space** only—not a measured diameter, guest molecule, or accessibility calculation. If a quantitative comparison is introduced later, distinguish cavity from window, radius from diameter, and model geometry from experimental uptake.
+
+### Writing and science communication checklist
+
+Use [CDC Clear Communication Index](https://www.cdc.gov/ccindex/) and [NIH plain-language guidance](https://www.nih.gov/institutes-nih/nih-office-director/office-communications-public-liaison/clear-communication/plain-language-nih) as review aids, not as an excuse to oversimplify chemistry.
+
+- **Begin with a meaningful visual question**, then promptly deliver an actual idea. Avoid three rhetorical questions in a row, hype like “magical sponges,” and “imagine a world where…” filler.
+- **Define each term once, exactly when needed:** building unit, linker, coordination network, MOF, potential void, and (only if essential) crystallographic unit cell. Do not introduce pcu as an unexplained acronym in the main body; reserve its formal meaning for a caption, tooltip or optional deep dive.
+- **Use active, concrete verbs** (“connect,” “repeat,” “occupy,” “measure”); vary sentence lengths. Explain real chemistry without sounding like a lab report or pretending bonds are literal hand-built beams.
+- **Put captions beside the relevant visual.** A sentence that says only “Here, we can see the nodes and linkers…” belongs in a label or should be removed.
+- **Separate observed facts, conceptual models and open questions** in wording. Describe MOF-5's sourced structural units accurately; withhold quantitative porosity claims until measured methods and conditions are cited.
+- **Use one purposeful check for understanding**, not a quiz after every scroll. Readers should be able to say what the model illustrates *and* what it cannot establish.
+- **Test with a non-specialist reader** after scientific review: ask what they think the sphere means and whether they understand the distinction between a schematic and crystallographic data. Revise wherever those answers drift.
+
+### Tone probe — not final manuscript copy
+
+> Most materials are easiest to describe once they're finished. Metal–organic frameworks invite a different question: what if we looked closely at the pieces, and then watched how they connect?
+>
+> Some of those pieces contain metal atoms; others are organic molecules that can link them together. The interesting part isn't just the pieces themselves. It's the larger pattern they can form—and the spaces that can appear inside it.
+
+This is a **proposed voice sample**, not a replacement for the author's missing working manuscript. Its role is to test warmth and clarity against the actual figure before drafting the full piece. Verify and refine scientific wording as the figure and source decisions settle.
 
 ## Scientific claim ledger: current basis and release gate
 
@@ -68,8 +90,9 @@ Use four clearly labeled buttons, plus optional highlight toggles (**metal unit 
 
 ## Decision points for the next review
 
-1. **Headline:** keep `What If We Could Build With Molecules?` as H1 (existing manuscript direction) with MOF definition in the deck, or use the search-forward `What Is a Metal–Organic Framework?` as H1 and keep the narrative title as the opening.
-2. **First interaction:** approve the four-state figure (conceptual pieces → connections → molecular MOF-5 → pcu net) or reduce to three states for tighter scope.
-3. **Real-structure gate:** before the MOF-5 chemistry view goes live, choose an audited dataset or keep an attributed static structure image in the first preview.
+1. **Narrative title and tone:** confirm the working H1/deck and whether the proposed two-paragraph tone probe matches the author's voice.
+2. **Slider and scene language:** approve **pieces → 1³ → 2³ → 3³ conceptual repeats**, with a fixed-view/auto-fit explanation rather than falsely calling every cube a crystallographic unit cell.
+3. **Pore marker:** approve a single illustrative, unlabeled-by-size sphere to signify *potential voids*, not a guest-size or uptake result.
+4. **Scientific gate:** review the existing calculated MOF-5 coordinate source and choose whether an atomistic/verified chemistry mode is feasible for the first preview or should follow later.
 
-**Next execution step, after this review:** build a **draft-only** Hugo shortcode prototype in an isolated branch, integrate it into the existing Article 01 outline, and test science + mobile behavior. Do not merge a published article until the narrative manuscript and scientific review are complete.
+**Next execution step, after this review:** build a **draft-only** Hugo shortcode prototype using the [figure spec](article-01-interactive-figure-spec.md) in an isolated branch, then evaluate the diagram and a tightly edited opening together. Keep the source article a draft. Do not publish until the author-approved manuscript, source validation, figures, and mobile tests are complete.
