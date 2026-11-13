@@ -1,5 +1,8 @@
 # Article 01 review checklist
 
+> **November 13 design status:** The accepted-for-continuation Figure 1 is the 3D widget in [draft PR #64](https://github.com/stallcal/frameworked-hub/pull/64), with four stage buttons, solid green schematic pore marker and exact Frameworked material base colors. Older SVG/slider tasks listed below are historical, not release requirements. Material polish can be revisited. Figure 2 requires vetted experimental MOF-5 structure, source and reuse terms. Article 01 remains draft.
+
+
 **Updated planning references:** [Five-section editorial storyboard](article-01-interactive-storyboard.md) and [discrete scale-slider / potential-void figure specification](article-01-interactive-figure-spec.md). These replace the earlier proposed four-button interaction; they do not approve a live structure model.
 
 Page: `site-content/articles/build-with-molecules/index.md`.
