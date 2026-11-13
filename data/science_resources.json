@@ -82,7 +82,8 @@
       "topics": [
         "chemistry"
       ],
-      "description": "Chemistry experiments and synthesis."
+      "description": "Chemistry experiments and synthesis.",
+      "avatar": "https://unavatar.io/youtube/NileRed"
     },
     {
       "id": "apoptosis",
@@ -92,7 +93,8 @@
       "topics": [
         "chemistry"
       ],
-      "description": "Laboratory chemistry and organic synthesis."
+      "description": "Laboratory chemistry and organic synthesis.",
+      "avatar": "https://unavatar.io/youtube/integral_chemistry"
     },
     {
       "id": "professor-dave",
@@ -103,7 +105,8 @@
         "chemistry",
         "physics"
       ],
-      "description": "Structured science and mathematics lessons."
+      "description": "Structured science and mathematics lessons.",
+      "avatar": "https://unavatar.io/youtube/ProfessorDaveExplains"
     },
     {
       "id": "veritasium",
@@ -114,7 +117,8 @@
         "physics",
         "climate"
       ],
-      "description": "Science experiments, demonstrations and explanations."
+      "description": "Science experiments, demonstrations and explanations.",
+      "avatar": "https://unavatar.io/youtube/veritasium"
     },
     {
       "id": "vsauce",
@@ -124,7 +128,8 @@
       "topics": [
         "physics"
       ],
-      "description": "Explorations of science and curiosity."
+      "description": "Explorations of science and curiosity.",
+      "avatar": "https://unavatar.io/youtube/Vsauce"
     },
     {
       "id": "steve-mould",
@@ -134,7 +139,8 @@
       "topics": [
         "physics"
       ],
-      "description": "Physical phenomena and hands-on demonstrations."
+      "description": "Physical phenomena and hands-on demonstrations.",
+      "avatar": "https://unavatar.io/youtube/SteveMould"
     },
     {
       "id": "crash-course",
@@ -146,7 +152,8 @@
         "physics",
         "climate"
       ],
-      "description": "Short-form courses across science and other disciplines."
+      "description": "Short-form courses across science and other disciplines.",
+      "avatar": "https://unavatar.io/youtube/crashcourse"
     },
     {
       "id": "periodic-videos",
@@ -156,7 +163,8 @@
       "topics": [
         "chemistry"
       ],
-      "description": "Elements, reactions and laboratory chemistry from Nottingham."
+      "description": "Elements, reactions and laboratory chemistry from Nottingham.",
+      "avatar": "https://unavatar.io/youtube/periodicvideos"
     },
     {
       "id": "what-is-a-mof-nobel",
@@ -746,7 +754,8 @@
         "physics",
         "climate"
       ],
-      "description": "Evidence-based explanations and investigations of science, technology and environmental claims."
+      "description": "Evidence-based explanations and investigations of science, technology and environmental claims.",
+      "avatar": "https://unavatar.io/youtube/davemckeegan"
     },
     {
       "id": "real-engineering",
@@ -757,7 +766,8 @@
         "engineering",
         "physics"
       ],
-      "description": "Visual explanations of engineering systems, aviation, energy and the technologies behind them."
+      "description": "Visual explanations of engineering systems, aviation, energy and the technologies behind them.",
+      "avatar": "https://unavatar.io/youtube/RealEngineering"
     },
     {
       "id": "kurzgesagt",
@@ -769,7 +779,8 @@
         "space",
         "climate"
       ],
-      "description": "Animated explorations of science, space, biology and big-picture questions."
+      "description": "Animated explorations of science, space, biology and big-picture questions.",
+      "avatar": "https://unavatar.io/youtube/kurzgesagt"
     },
     {
       "id": "nasa",
@@ -781,7 +792,8 @@
         "engineering",
         "physics"
       ],
-      "description": "Official NASA mission updates, exploration footage and space-science programming."
+      "description": "Official NASA mission updates, exploration footage and space-science programming.",
+      "avatar": "https://unavatar.io/youtube/NASA"
     },
     {
       "id": "nasa-science",
@@ -793,7 +805,8 @@
         "physics",
         "climate"
       ],
-      "description": "Research and discoveries from NASA's science missions, including planetary and Earth science."
+      "description": "Research and discoveries from NASA's science missions, including planetary and Earth science.",
+      "avatar": "https://unavatar.io/youtube/NASAScience"
     },
     {
       "id": "nasa-goddard",
@@ -805,7 +818,8 @@
         "climate",
         "engineering"
       ],
-      "description": "Spacecraft, astronomy, Earth observations and science from Goddard Space Flight Center."
+      "description": "Spacecraft, astronomy, Earth observations and science from Goddard Space Flight Center.",
+      "avatar": "https://unavatar.io/youtube/NASAGoddard"
     },
     {
       "id": "nasa-jpl",
@@ -816,7 +830,8 @@
         "space",
         "engineering"
       ],
-      "description": "Robotic exploration, space science, engineering and mission updates from JPL."
+      "description": "Robotic exploration, space science, engineering and mission updates from JPL.",
+      "avatar": "https://unavatar.io/youtube/NASAJPL"
     },
     {
       "id": "nasa-johnson",
@@ -827,7 +842,8 @@
         "space",
         "engineering"
       ],
-      "description": "Human spaceflight, astronaut training and mission operations from Johnson Space Center."
+      "description": "Human spaceflight, astronaut training and mission operations from Johnson Space Center.",
+      "avatar": "https://unavatar.io/youtube/ReelNASA"
     },
     {
       "id": "nasa-solar-system",
@@ -838,7 +854,8 @@
         "space",
         "physics"
       ],
-      "description": "Solar-system exploration and planetary-science media from NASA."
+      "description": "Solar-system exploration and planetary-science media from NASA.",
+      "avatar": "https://unavatar.io/youtube/NASASolarSystem"
     },
     {
       "id": "jantec-engineering",
@@ -849,7 +866,8 @@
         "engineering",
         "physics"
       ],
-      "description": "3D printing, filament testing, electrical engineering and practical material comparisons."
+      "description": "3D printing, filament testing, electrical engineering and practical material comparisons.",
+      "avatar": "https://unavatar.io/youtube/JanTecEngineering"
     },
     {
       "id": "professor-derricotte",
@@ -860,7 +878,8 @@
         "chemistry",
         "physics"
       ],
-      "description": "College-level chemistry instruction including thermodynamics, kinetics, quantum chemistry and spectroscopy."
+      "description": "College-level chemistry instruction including thermodynamics, kinetics, quantum chemistry and spectroscopy.",
+      "avatar": "https://unavatar.io/youtube/ProfessorDerricotte"
     },
     {
       "id": "the-rest-is-science",
@@ -872,7 +891,8 @@
         "mathematics",
         "chemistry"
       ],
-      "description": "Science conversations hosted by Hannah Fry and Michael Stevens (Vsauce)."
+      "description": "Science conversations hosted by Hannah Fry and Michael Stevens (Vsauce).",
+      "avatar": "https://unavatar.io/youtube/TheRestIsScience"
     },
     {
       "id": "three-blue-one-brown",
@@ -883,7 +903,8 @@
         "mathematics",
         "physics"
       ],
-      "description": "Animated mathematical intuition, including calculus, linear algebra and applications to physics."
+      "description": "Animated mathematical intuition, including calculus, linear algebra and applications to physics.",
+      "avatar": "https://unavatar.io/youtube/3blue1brown"
     },
     {
       "id": "minutephysics",
@@ -894,7 +915,8 @@
         "physics",
         "space"
       ],
-      "description": "Concise illustrated physics explanations and thought experiments."
+      "description": "Concise illustrated physics explanations and thought experiments.",
+      "avatar": "https://unavatar.io/youtube/MinutePhysics"
     },
     {
       "id": "startalk",
@@ -905,7 +927,8 @@
         "space",
         "physics"
       ],
-      "description": "Science conversations and astronomy discussions hosted by Neil deGrasse Tyson and guests."
+      "description": "Science conversations and astronomy discussions hosted by Neil deGrasse Tyson and guests.",
+      "avatar": "https://unavatar.io/youtube/StarTalk"
     },
     {
       "id": "smarter-every-day",
@@ -916,7 +939,8 @@
         "physics",
         "engineering"
       ],
-      "description": "Hands-on experiments, slow-motion demonstrations and engineering investigations."
+      "description": "Hands-on experiments, slow-motion demonstrations and engineering investigations.",
+      "avatar": "https://unavatar.io/youtube/SmarterEveryDay"
     },
     {
       "id": "domain-of-science",
@@ -928,7 +952,8 @@
         "mathematics",
         "chemistry"
       ],
-      "description": "Visual maps of science, mathematics and physics concepts."
+      "description": "Visual maps of science, mathematics and physics concepts.",
+      "avatar": "https://unavatar.io/youtube/ScienceMaps"
     },
     {
       "id": "mission-unstoppable",
@@ -940,7 +965,8 @@
         "engineering",
         "chemistry"
       ],
-      "description": "STEM stories highlighting women working in science, engineering and technology."
+      "description": "STEM stories highlighting women working in science, engineering and technology.",
+      "avatar": "https://unavatar.io/youtube/cbsunstoppable"
     },
     {
       "id": "chemistorian",
@@ -950,7 +976,8 @@
       "topics": [
         "chemistry"
       ],
-      "description": "Stories from the history of chemistry, element discoveries and early scientific ideas."
+      "description": "Stories from the history of chemistry, element discoveries and early scientific ideas.",
+      "avatar": "https://unavatar.io/youtube/Chemistorian"
     },
     {
       "id": "chemicalforce",
@@ -960,7 +987,8 @@
       "topics": [
         "chemistry"
       ],
-      "description": "Chemical demonstrations and visually striking laboratory experiments; not a substitute for lab-safety guidance."
+      "description": "Chemical demonstrations and visually striking laboratory experiments; not a substitute for lab-safety guidance.",
+      "avatar": "https://unavatar.io/youtube/chemicalforce"
     },
     {
       "id": "chads-prep",
@@ -971,7 +999,8 @@
         "chemistry",
         "physics"
       ],
-      "description": "Tutorial lessons for general chemistry, organic chemistry and physics, including pre-health coursework."
+      "description": "Tutorial lessons for general chemistry, organic chemistry and physics, including pre-health coursework.",
+      "avatar": "https://unavatar.io/youtube/ChadsPrep"
     },
     {
       "id": "prussian-blue",
@@ -981,7 +1010,8 @@
       "topics": [
         "chemistry"
       ],
-      "description": "Chemistry experiments and science humor; demonstrations are not intended as laboratory tutorials."
+      "description": "Chemistry experiments and science humor; demonstrations are not intended as laboratory tutorials.",
+      "avatar": "https://unavatar.io/youtube/UC0aRbU6guMEMY8RpGMP_ayw"
     },
     {
       "id": "professor-leonard",
@@ -991,7 +1021,8 @@
       "topics": [
         "mathematics"
       ],
-      "description": "Full-length college mathematics lectures, including calculus."
+      "description": "Full-length college mathematics lectures, including calculus.",
+      "avatar": "https://unavatar.io/youtube/ProfessorLeonard"
     },
     {
       "id": "organic-chemistry-tutor",
@@ -1003,7 +1034,8 @@
         "mathematics",
         "physics"
       ],
-      "description": "Worked examples in general and organic chemistry, physics and mathematics."
+      "description": "Worked examples in general and organic chemistry, physics and mathematics.",
+      "avatar": "https://unavatar.io/youtube/TheOrganicChemistryTutor"
     },
     {
       "id": "floatheadphysics",
@@ -1013,7 +1045,8 @@
       "topics": [
         "physics"
       ],
-      "description": "Visual and intuitive explanations of relativity, mechanics and other physics topics."
+      "description": "Visual and intuitive explanations of relativity, mechanics and other physics topics.",
+      "avatar": "https://unavatar.io/youtube/Mahesh_Shenoy"
     },
     {
       "id": "ut-dallas",
@@ -1025,7 +1058,8 @@
         "engineering",
         "physics"
       ],
-      "description": "Official University of Texas at Dallas videos covering campus, research, education and student life."
+      "description": "Official University of Texas at Dallas videos covering campus, research, education and student life.",
+      "avatar": "https://unavatar.io/youtube/UT_Dallas"
     },
     {
       "id": "utd-geoscience-studios",
@@ -1036,7 +1070,8 @@
         "climate",
         "physics"
       ],
-      "description": "Geoscience animations and educational videos created by UT Dallas students and faculty."
+      "description": "Geoscience animations and educational videos created by UT Dallas students and faculty.",
+      "avatar": "https://unavatar.io/youtube/UCGRcGfZpcWMCihRgpCrjXFA"
     },
     {
       "id": "acs-youtube",
@@ -1047,7 +1082,8 @@
         "chemistry",
         "mofs"
       ],
-      "description": "Official ACS videos highlighting chemistry research, education, careers and scientific news."
+      "description": "Official ACS videos highlighting chemistry research, education, careers and scientific news.",
+      "avatar": "https://unavatar.io/youtube/AmerChemSociety"
     },
     {
       "id": "acs-reactions",
@@ -1057,7 +1093,8 @@
       "topics": [
         "chemistry"
       ],
-      "description": "Chemistry explanations of everyday phenomena, produced by the American Chemical Society."
+      "description": "Chemistry explanations of everyday phenomena, produced by the American Chemical Society.",
+      "avatar": "https://unavatar.io/youtube/ACSReactions"
     },
     {
       "id": "episodic-table",
