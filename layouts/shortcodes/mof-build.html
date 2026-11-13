@@ -33,6 +33,26 @@
     </svg>
     <span class="fw-mof-build__overlay-note" data-build-overlay-note hidden><span class="fw-mof-build__overlay-dot" aria-hidden="true"></span>POTENTIAL VOID / SCHEMATIC</span>
   </div>
+  <div class="fw-mof-build__pore-detail" data-build-pore-detail hidden>
+    <svg viewBox="0 0 250 150" role="img" aria-labelledby="{{ $id }}-pore-detail-title {{ $id }}-pore-detail-desc">
+      <title id="{{ $id }}-pore-detail-title">One opening, magnified</title>
+      <desc id="{{ $id }}-pore-detail-desc">A simplified cutaway cube with a large green sphere marking possible empty space, deliberately enlarged for legibility and not to scale.</desc>
+      <path d="M60 49L92 17H204L172 49Z" fill="#E8F3FC" stroke="#084B9E" stroke-width="2.5"/>
+      <path d="M172 49L204 17V117L172 143Z" fill="#DCECF9" stroke="#084B9E" stroke-width="2.5"/>
+      <path d="M92 17V117H204" fill="none" stroke="#1C3049" stroke-width="2" opacity=".48"/>
+      <circle cx="133" cy="91" r="42" fill="url(#{{ $id }}-pore-gradient)" stroke="#089E4B" stroke-width="3"/>
+      <ellipse cx="119" cy="75" rx="12" ry="8" fill="#FFFFFF" fill-opacity=".65"/>
+      <path d="M60 49H172V143H60Z" fill="none" stroke="#084B9E" stroke-width="3" stroke-dasharray="8 5" opacity=".72"/>
+      <g fill="#EEC5C0" stroke="#9E382E" stroke-width="2">
+        <circle cx="60" cy="49" r="5"/><circle cx="172" cy="49" r="5"/>
+        <circle cx="60" cy="143" r="5"/><circle cx="172" cy="143" r="5"/>
+      </g>
+    </svg>
+    <div class="fw-mof-build__pore-detail-copy">
+      <strong>One opening, magnified</strong>
+      <p>The green marker makes the potential void easier to see. Its size is deliberately exaggerated and does not represent a measured pore or a molecule.</p>
+    </div>
+  </div>
   <div class="fw-mof-build__legend" aria-label="Figure key">
     <span><i class="fw-mof-build__key fw-mof-build__key--node" aria-hidden="true"></i> Metal-containing node*</span>
     <span><i class="fw-mof-build__key fw-mof-build__key--linker" aria-hidden="true"></i> Organic linker*</span>
