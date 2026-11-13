@@ -81,7 +81,7 @@ test('shortcode provides pinned module imports and an accessible no-JS fallback'
   assert.match(html,/role="group" aria-labelledby/);
   assert.doesNotMatch(html,/data-3d-range/);
   assert.match(html,/data-3d-pore disabled/);
-  assert.match(html,/data-3d-focus disabled/);
+  assert.match(html,/data-3d-focus hidden disabled/);
   assert.match(html,/data-3d-reset/);
   assert.match(html,/data-3d-left disabled/);
   assert.match(html,/data-3d-right disabled/);
