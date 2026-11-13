@@ -53,23 +53,33 @@
   </div>
   <div class="fw-mof-3d__controls">
     <div class="fw-mof-3d__control-head">
-      <label for="{{ $id }}-scale">Build the repeating structure</label>
-      <output for="{{ $id }}-scale" data-3d-output>Pieces</output>
+      <strong id="{{ $id }}-stages-label">Build the framework</strong>
+      <output data-3d-output aria-live="polite">Pieces</output>
     </div>
-    <input id="{{ $id }}-scale" data-3d-range type="range" min="0" max="3" step="1" value="0" aria-describedby="{{ $id }}-scale-help">
-    <div class="fw-mof-3d__ticks" aria-hidden="true">
-      <span>Pieces</span><span>1×1×1</span><span>2×2×2</span><span>3×3×3</span>
+    <div class="fw-mof-3d__stages" role="group" aria-labelledby="{{ $id }}-stages-label" aria-describedby="{{ $id }}-stage-help">
+      <button type="button" class="fw-mof-3d__stage" data-3d-stage="0" aria-pressed="true">
+        <span class="fw-mof-3d__stage-num" aria-hidden="true">01</span><span>Pieces</span>
+      </button>
+      <button type="button" class="fw-mof-3d__stage" data-3d-stage="1" aria-pressed="false">
+        <span class="fw-mof-3d__stage-num" aria-hidden="true">02</span><span>1×1×1</span>
+      </button>
+      <button type="button" class="fw-mof-3d__stage" data-3d-stage="2" aria-pressed="false">
+        <span class="fw-mof-3d__stage-num" aria-hidden="true">03</span><span>2×2×2</span>
+      </button>
+      <button type="button" class="fw-mof-3d__stage" data-3d-stage="3" aria-pressed="false">
+        <span class="fw-mof-3d__stage-num" aria-hidden="true">04</span><span>3×3×3</span>
+      </button>
     </div>
-    <p id="{{ $id }}-scale-help" class="fw-mof-3d__hint">The camera moves back as more blocks appear. Their spacing stays the same in the model.</p>
+    <p id="{{ $id }}-stage-help" class="fw-mof-3d__hint">Choose a stage to reveal more connections. The camera pulls back as the structure grows; the spacing between nodes stays constant.</p>
     <div class="fw-mof-3d__actions">
       <label class="fw-mof-3d__check">
         <input type="checkbox" data-3d-pore disabled>
         <span>Show a potential void</span>
       </label>
-      <button type="button" data-3d-focus disabled>Focus on pore</button>
+      <button type="button" data-3d-focus hidden disabled>Focus on pore</button>
       <button type="button" data-3d-reset>Reset</button>
     </div>
-    <p class="fw-mof-3d__hint fw-mof-3d__hint--last" data-3d-help>Move the slider to build the first open block.</p>
+    <p class="fw-mof-3d__hint fw-mof-3d__hint--last" data-3d-help>Select 1×1×1 to build the first open block.</p>
   </div>
   <figcaption class="fw-mof-3d__caption">
     <div class="fw-mof-3d__caption-line">
@@ -79,7 +89,7 @@
     <p data-3d-explanation>Two building-block roles: a metal-containing node and an organic linker.</p>
     <p class="fw-mof-3d__caution" data-3d-pore-note hidden>
       <strong>What does the green sphere mean?</strong>
-      It sits inside one conceptual opening at a fixed ratio to the network spacing. It is not a gas molecule, a measured pore diameter, or evidence of adsorption. Use <em>Focus on pore</em> to inspect its position.
+      The solid sage sphere fills much of one conceptual opening without intersecting the drawn struts. It is not a gas molecule, a measured pore diameter, or evidence of adsorption. Use <em>Focus on pore</em> to inspect its position.
     </p>
     <small>* Colors show roles, not chemical elements. A repeating block is not automatically a crystallographic unit cell. No real pore diameter or guest accessibility is predicted.</small>
   </figcaption>
