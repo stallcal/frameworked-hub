@@ -161,7 +161,7 @@ import { bragg, squareLatticeSpacing, compareTwoPlaneInterference } from "./mode
     $("qMetric").hidden=guided;
     $("readouts").classList.toggle("advanced-readouts",!guided);
     $("experimentHelper").textContent=guided
-      ?"Move the lattice slider or choose a different plane family."
+      ?"Sweep the detector angle to compare interference, then change the lattice spacing to move the predicted Bragg conditions."
       :"Enter a known d-spacing, measured 2θ, or q. These advanced inputs are independent of the square-lattice example.";
     const guides={
       spacing:["Known spacing → possible peak position","Enter d to find where this plane spacing may satisfy the Bragg condition for your X-ray wavelength."],
@@ -218,7 +218,7 @@ import { bragg, squareLatticeSpacing, compareTwoPlaneInterference } from "./mode
       $("takeawayTitle").textContent=result?"What changed — and why?":"No possible first-order Bragg angle";
       if(result){
         const now={a:plane.a,plane:plane.plane,lambda,angle:result.twoTheta,d:result.spacing};
-        let message="Move the lattice slider or change plane families. Watch both the red plane-spacing arrow and the red 2θ arc.";
+        let message="Change the lattice parameter or plane family to shift the predicted Bragg conditions, then scan 2θ to find reinforcement.";
         if(previousGuided&&previousGuided.lambda===lambda&&previousGuided.plane===plane.plane&&previousGuided.a!==now.a){
           message=now.a>previousGuided.a?
             `You increased a, so d grew and 2θ decreased from ${fmt(previousGuided.angle)}° to ${fmt(now.angle)}°.`

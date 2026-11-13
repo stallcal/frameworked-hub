@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="/css/math.css" />
     <link rel="stylesheet" href="/css/frameworked-standalone-header.css" />
     <script type="module" src="./app.mjs"></script>
+    <script type="module" src="./scan-view.mjs"></script>
+    <script type="module" src="./pxrd-view.mjs"></script>
   </head>
   <body class="bragg-compact">
     <a class="skip" href="#main">Skip to tool</a>
@@ -33,18 +35,115 @@
         <section class="intro bragg-intro">
           <p class="eyebrow">TOOLS / DIFFRACTION</p>
           <h1>Bragg’s law<span>.</span></h1>
-          <p class="bragg-deck">Change the spacing between lattice planes and watch the diffraction angle respond.</p>
+          <p class="bragg-deck">Scan the scattering angle and see how a single plane spacing controls constructive interference.</p>
           <div class="bragg-equation math-display" aria-label="Bragg's law: n lambda equals two d sine theta">
             <math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>n</mi><mi>λ</mi><mo>=</mo><mn>2</mn><mi>d</mi><mi mathvariant="normal">sin</mi><mo>⁡</mo><mi>θ</mi></mrow></math>
-            <span>Here, <strong>d</strong> is plane spacing, <strong>λ</strong> is X-ray wavelength, and the diffractometer reports <strong>2θ</strong>.</span>
+            <span>Here, <strong>d</strong> is plane spacing, <strong>λ</strong> is X-ray wavelength, and the diffractometer reports <strong>2θ</strong>. Scan that angle below, or change <strong>d</strong> to move the predicted Bragg conditions.</span>
           </div>
         </section>
 
         <div class="workspace" id="braggActivity">
+          <section class="visual" aria-label="Interactive Bragg experiment">
+            <div class="experiment-heading">
+              <div><p class="eyebrow">LIVE DIFFRACTION</p><h2>Scan the scattering angle</h2></div>
+            </div>
+            <p class="experiment-helper" id="experimentHelper">Drag the angle. Watch the ray direction and interference response change together.</p>
+            <p class="bragg-model-line" id="braggModelLine" aria-live="polite">Idealized 2D square lattice · (10) planes · d = 4.00 Å · λ = 1.5406 Å</p>
+            <p id="error" class="error" role="alert"></p>
+            <div id="results">
+              <div class="bragg-scan-controls" id="braggScan" aria-label="Detector angle">
+                <div class="bragg-scan-control-head">
+                  <label for="scanTwoTheta">Detector angle · 2θ</label>
+                  <output id="scanTwoThetaValue" for="scanTwoTheta">22.2°</output>
+                </div>
+                <input id="scanTwoTheta" type="range" min="2" max="178" step="0.1" value="22.2" aria-label="Scan the detector scattering angle in degrees, independent of the predicted Bragg angle" />
+                <div class="bragg-scan-control-foot">
+                  <span>2°</span>
+                  <span>178°</span>
+                </div>
+                <p id="scanPeak" class="bragg-scan-peak" aria-live="polite"></p>
+              </div>
+              <div class="visuals-grid" id="diagramPair">
+                <figure class="figure ray-pane" id="rayPane">
+                  <div class="figure-heading"><strong>Diffraction geometry</strong><span id="ray-angle-display">θ — · 2θ —</span></div>
+                  <svg id="geometry" viewBox="0 0 520 360" role="img" aria-label="Dynamic Bragg ray construction showing incident and diffracted X-rays, angle theta, scattering angle two theta, and plane spacing"></svg>
+                  <figcaption>Incident and scattered directions. The scattering angle is 2θ.</figcaption>
+                </figure>
+                <figure class="figure scan-plot-pane" aria-labelledby="scanPlotTitle">
+                  <div class="figure-heading"><strong id="scanPlotTitle">Wave interference</strong><span>One plane spacing · eight contributions</span></div>
+                  <p id="scanError" class="error" role="alert"></p>
+                  <div id="scanPanels">
+                    <svg id="scanIntensity" viewBox="0 0 640 280" role="img" aria-label="Normalized finite-plane interference from two to 178 degrees. Blue: response; green: all predicted Bragg orders; red: current detector angle."></svg>
+                    <div id="scanPeakButtons" class="scan-peak-buttons" aria-label="Jump to predicted Bragg angles"></div>
+                    <details class="scan-peak-jump" id="scanPeakJump">
+                      <summary>Choose a predicted Bragg angle</summary>
+                  <div class="bragg-scan-peak-actions">
+                    <label for="scanPeakSelect">Geometric Bragg order</label>
+                    <select id="scanPeakSelect" aria-label="Select a predicted Bragg condition"></select>
+                    <button type="button" id="scanSnap" class="bragg-scan-snap">Next Bragg angle</button>
+                  </div>
+                    </details>
+                    <div class="bragg-scan-legend" aria-hidden="true">
+                      <span><i class="bragg-legend-blue"></i> Relative interference</span>
+                      <span><i class="bragg-legend-red"></i> Scan angle</span>
+                      <span><i class="bragg-legend-green"></i> Predicted Bragg orders</span>
+                    </div>
+                    <div class="bragg-scan-readout" aria-live="polite" aria-atomic="true">
+                      <strong id="scanStatus">Observe how the waves add</strong>
+                      <p id="scanResponse"></p>
+                    </div>
+                    <details class="bragg-phase-details">
+                      <summary>How the eight scattered contributions add</summary>
+                      <svg id="scanPhasors" viewBox="0 0 500 240" role="img" aria-label="Eight equally spaced planes and the phases of their scattered contributions represented by complex phase vectors"></svg>
+                      <p id="scanContext">Blue vectors show phase and amplitude contributions, not literal ray paths. Their red sum gives the interference response.</p>
+                    </details>
+                  </div>
+                  <figcaption>These maxima are orders of one selected spacing—not a full powder diffraction pattern.</figcaption>
+                </figure>
+              </div>
+              <details class="bragg-more-details" id="braggMoreDetails">
+                <summary>Calculated values, model assumptions &amp; explanation</summary>
+              <div class="readouts readouts-bragg" id="readouts" aria-live="polite">
+                <div class="metric featured-metric"><span class="label">Predicted Bragg condition · 2θ</span><strong id="angle-out">—</strong><span class="unit">degrees</span></div>
+                <div class="metric spacing-metric"><span class="label">Plane spacing · d</span><strong id="d-out">—</strong><span class="unit">Å</span></div>
+                <div class="metric theta-metric"><span class="label">Bragg angle · θ</span><strong id="theta-out">—</strong><span class="unit">degrees to lattice plane</span></div>
+                <div class="metric compact-metric" id="qMetric" hidden><span class="label">Scattering vector · q</span><strong id="q-out">—</strong><span class="unit">Å⁻¹</span></div>
+              </div>
+              <p class="bragg-scan-caveat"><strong>Scope:</strong> This is <strong>not an experimental PXRD pattern</strong>. Eight identical coherent plane contributions are summed; atomic structure factors, systematic absences, multiplicity, instrument broadening and experimental background are excluded. Higher orders represent geometric reinforcement, not guaranteed observed peaks.</p>
+              <div class="teaching-takeaway" aria-live="polite" aria-atomic="true">
+                <strong id="takeawayTitle">What changed?</strong>
+                <p id="observation">Smaller plane spacing produces a larger Bragg angle at a fixed wavelength.</p>
+              </div>
+              <p id="explanation"></p>
+              </details>
+            </div>
+          </section>
           <section class="controls" aria-label="Bragg inputs">
-            <h2>Conditions</h2>
+            <details class="crystal-settings" id="crystalSettings">
+              <summary>Crystal settings &amp; advanced calculations</summary>
+              <div class="crystal-settings-body">
+            <h2>Crystal parameters</h2>
+                  <div class="diagram-slider" id="latticeSliderControl">
+                    <div class="diagram-slider-head"><label for="latticeSlider">Lattice parameter <em>a</em></label><output id="latticeSliderValue" for="latticeSlider latticeA">4.00 Å</output></div>
+                    <input id="latticeSlider" type="range" min="2" max="12" step="0.1" value="4" aria-label="Adjust square lattice parameter a in angstroms" />
+                    <div class="diagram-slider-limits" aria-hidden="true"><span>2 Å</span><span>12 Å</span></div>
+                  </div>
+                  <div class="diagram-slider" id="advancedSliderControl" hidden>
+                    <div class="diagram-slider-head"><label for="spacing-slider">Plane spacing <em>d</em></label><output id="advancedSliderValue" for="spacing-slider value">3.00 Å</output></div>
+                    <input id="spacing-slider" aria-label="Adjust plane spacing d in angstroms" type="range" min="0.5" max="10" step="0.01" value="3"/>
+                    <div class="diagram-slider-limits" aria-hidden="true"><span>0.5 Å</span><span>10 Å</span></div>
+                  </div>
+
+                <details class="bragg-lattice-details" id="latticeDetails">
+                  <summary>See how the lattice defines plane spacing <em>d</em></summary>
+                  <figure class="figure lattice-pane" id="latticePane">
+                    <div class="figure-heading"><strong>Square lattice model</strong><span>2D illustration</span></div>
+                    <svg id="latticeGeometry" viewBox="0 0 760 410" role="img" aria-label="Two-dimensional lattice points and highlighted family of lattice planes"></svg>
+                    <figcaption class="dimension-legend"><span class="dimension-key"><span class="key-blue" aria-hidden="true"></span><strong>Blue a</strong> · lattice repeat</span><span class="dimension-key"><span class="key-red" aria-hidden="true"></span><strong>Red d</strong> · plane spacing</span></figcaption>
+                  </figure>
+                </details>
             <div class="guided-controls" id="guidedControls">
-              <p class="activity-prompt">Drag the <strong>a</strong> slider above the figure. Choose a plane family to see how the plane spacing <strong>d</strong> changes.</p>
+              <p class="activity-prompt">Scan <strong>2θ</strong> in the main experiment. Adjust <strong>a</strong> or the plane family to move the predicted Bragg conditions.</p>
               <div class="field">
                 <label for="planeFamily">Plane family</label>
                 <select id="planeFamily">
@@ -109,69 +208,22 @@
             <div class="wide actions">
               <button id="reset" type="button" class="secondary">Reset</button>
             </div>
-          </section>
-          <section class="visual" aria-label="Interactive Bragg experiment">
-            <div class="experiment-heading">
-              <div><p class="eyebrow">LIVE DIFFRACTION</p><h2>Watch the angle change</h2></div>
-            </div>
-            <p class="experiment-helper" id="experimentHelper">Move the slider to change the plane spacing.</p>
-            <p id="error" class="error" role="alert"></p>
-            <div id="results">
-              <div class="readouts readouts-bragg" id="readouts" aria-live="polite">
-                <div class="metric featured-metric"><span class="label">Diffraction angle · 2θ</span><strong id="angle-out">—</strong><span class="unit">degrees</span></div>
-                <div class="metric spacing-metric"><span class="label">Plane spacing · d</span><strong id="d-out">—</strong><span class="unit">Å</span></div>
-                <div class="metric theta-metric"><span class="label">Bragg angle · θ</span><strong id="theta-out">—</strong><span class="unit">degrees to lattice plane</span></div>
-                <div class="metric compact-metric" id="qMetric" hidden><span class="label">Scattering vector · q</span><strong id="q-out">—</strong><span class="unit">Å⁻¹</span></div>
               </div>
-              <div class="visuals-grid" id="diagramPair">
-                <figure class="figure ray-pane" id="rayPane">
-                  <div class="figure-heading"><strong>Diffraction geometry</strong><span id="ray-angle-display">θ — · 2θ —</span></div>
-                  <div class="diagram-slider" id="latticeSliderControl">
-                    <div class="diagram-slider-head"><label for="latticeSlider">Lattice parameter <em>a</em></label><output id="latticeSliderValue" for="latticeSlider latticeA">4.00 Å</output></div>
-                    <input id="latticeSlider" type="range" min="2" max="12" step="0.1" value="4" aria-label="Adjust square lattice parameter a in angstroms" />
-                    <div class="diagram-slider-limits" aria-hidden="true"><span>2 Å</span><span>12 Å</span></div>
-                  </div>
-                  <div class="diagram-slider" id="advancedSliderControl" hidden>
-                    <div class="diagram-slider-head"><label for="spacing-slider">Plane spacing <em>d</em></label><output id="advancedSliderValue" for="spacing-slider value">3.00 Å</output></div>
-                    <input id="spacing-slider" aria-label="Adjust plane spacing d in angstroms" type="range" min="0.5" max="10" step="0.01" value="3"/>
-                    <div class="diagram-slider-limits" aria-hidden="true"><span>0.5 Å</span><span>10 Å</span></div>
-                  </div>
-                  <svg id="geometry" viewBox="0 0 520 360" role="img" aria-label="Dynamic Bragg ray construction showing incident and diffracted X-rays, angle theta, scattering angle two theta, and plane spacing"></svg>
-                  <figcaption>Blue: incident X-rays. Red: diffracted direction and angle. The ray geometry is schematic, not a literal mirror reflection.</figcaption>
-                </figure>
-                <details class="bragg-lattice-details" id="latticeDetails">
-                  <summary>See how the lattice defines plane spacing <em>d</em></summary>
-                  <figure class="figure lattice-pane" id="latticePane">
-                    <div class="figure-heading"><strong>Square lattice model</strong><span>2D illustration</span></div>
-                    <svg id="latticeGeometry" viewBox="0 0 760 410" role="img" aria-label="Two-dimensional lattice points and highlighted family of lattice planes"></svg>
-                    <figcaption class="dimension-legend"><span class="dimension-key"><span class="key-blue" aria-hidden="true"></span><strong>Blue a</strong> · lattice repeat</span><span class="dimension-key"><span class="key-red" aria-hidden="true"></span><strong>Red d</strong> · plane spacing</span></figcaption>
-                  </figure>
-                </details>
-              </div>
-              <div class="teaching-takeaway" aria-live="polite" aria-atomic="true">
-                <strong id="takeawayTitle">What changed?</strong>
-                <p id="observation">Smaller plane spacing produces a larger Bragg angle at a fixed wavelength.</p>
-              </div>
-              <p id="explanation"></p>
-            </div>
+            </details>
           </section>
         </div>
-        <details class="bragg-optional bragg-theory">
-          <summary>How does Bragg's law work?</summary>
-          <div class="bragg-optional-body">
-            <p>X-rays scatter from a periodic crystal structure. For certain directions, the path difference between contributions from successive lattice planes equals an integer number of wavelengths, so those contributions reinforce one another.</p>
-            <p>At fixed wavelength and diffraction order, smaller plane spacing <strong>d</strong> gives a larger scattering angle <strong>2θ</strong>. Conversely, a reflection moving to higher 2θ corresponds to a smaller d-spacing when the wavelength and reflection indexing remain unchanged.</p>
-            <p><strong>θ</strong> is the Bragg angle relative to the lattice planes; <strong>2θ</strong> is the angle measured between incident and diffracted beams. The selected (10) and (11) families are an idealized two-dimensional square-lattice example, not a specific crystal structure.</p>
-          </div>
-        </details>
-        <details class="bragg-optional" id="interferenceLesson">
-          <summary>Explore constructive and destructive interference</summary>
+        <details class="bragg-optional interference-bridge" id="interferenceLesson">
+          <summary>
+            <span class="interference-bridge-title">Why do some angles reinforce while others cancel?</span>
+            <span class="interference-bridge-teaser">See two waves add together—or cancel—in a short visual explanation.</span>
+          </summary>
           <section class="interference-lesson" aria-labelledby="interferenceTitle">
           <div class="interference-heading">
             <p class="eyebrow">WHY SOME DIRECTIONS REINFORCE AND OTHERS DO NOT</p>
             <h2 id="interferenceTitle">What happens away from the Bragg angle?</h2>
-            <p>Scattered waves are still present away from the Bragg condition, but they generally arrive with different phases. Compare two equal-amplitude contributions from neighboring planes: they add when their extra path is a whole number of wavelengths, and cancel when that path difference is a half-integer number of wavelengths.</p>
+            <p>Scattered waves are still present away from the Bragg condition, but they generally arrive with different phases. Compare two ideal equal-amplitude contributions from neighboring planes. When their path difference is a whole number of wavelengths, they reinforce; at a half-integer offset, these two contributions cancel.</p>
           </div>
+          <p class="interference-example-scope">These two reference cases are calculated for the current plane spacing and wavelength. They illustrate phase addition; they are <strong>not</strong> the current position of the detector-angle slider.</p>
           <div id="interferenceComparison" class="interference-grid" aria-live="polite">
             <figure class="interference-case constructive">
               <div class="interference-case-head">
@@ -199,10 +251,52 @@
           <p class="interference-caveat">Scientific scope: this is a two-wave phase illustration, not a simulated diffraction pattern. Real crystalline scattering depends on many planes, finite-size broadening, atomic structure factors, and the instrument. <a href="https://www.iucr.org/what-we-do/education/pamphlets/introduction-calculation-of-structure-factors">IUCr explanation of phase and Bragg diffraction</a>.</p>
           </section>
         </details>
+        <details class="bragg-pxrd-bridge" id="pxrdBridge">
+          <summary>How does this connect to a real PXRD pattern?</summary>
+          <div class="bragg-pxrd-body">
+            <p>Above, the green maxima are higher-order reinforcement conditions for <strong>one spacing</strong>. A powder pattern is different: many crystal-plane families have distinct <em>d</em>-spacings, so their possible reflections occur at different 2θ positions. Peak intensities cannot be calculated from plane spacing alone.</p>
+            <div class="bragg-pxrd-grid">
+              <div class="bragg-pxrd-example">
+                <h3>Selected plane families, one 2θ axis</h3>
+                <p>Illustrative <strong>3D primitive cubic geometry</strong>, a = 4.00 Å, Cu Kα₁ (λ = 1.5406 Å). This is a separate example from the 2D square-lattice model above. The (100) position matches the first default peak above because both examples happen to have d = 4.00 Å—not because they are the same crystal.</p>
+                <svg id="pxrdPositionChart" viewBox="0 0 620 196" role="img" aria-label="Four geometric reflection positions for (100), (110), (111), and (200) in an idealized primitive cubic lattice; no intensities are implied"></svg>
+                <table class="pxrd-position-table">
+                  <caption>Calculated positions (not predicted experimental intensities)</caption>
+                  <thead><tr><th scope="col">Planes</th><th scope="col">d (Å)</th><th scope="col">2θ (°)</th></tr></thead>
+                  <tbody id="pxrdReflectionRows"></tbody>
+                </table>
+                <p class="pxrd-order-note">The (200) position corresponds to second-order reinforcement of (100). PXRD usually labels this as the first-order (200) reflection, using d₂₀₀ = a/2.</p>
+              </div>
+              <div class="bragg-pxrd-convert">
+                <h3>From a measured peak to a spacing</h3>
+                <p>Enter a peak position as you would read it from a PXRD pattern. This calculator uses Cu Kα₁, λ = 1.5406 Å.</p>
+                <label for="pxrdMeasuredAngle">Observed peak position · 2θ (°)</label>
+                <input type="number" id="pxrdMeasuredAngle" value="5.00" min="0.001" max="179.999" step="0.1" inputmode="decimal" />
+                <p id="pxrdConversionError" class="error" role="alert"></p>
+                <div class="pxrd-spacing-answer" aria-live="polite">
+                  <span>Calculated interplanar spacing</span>
+                  <strong id="pxrdMeasuredSpacing">—</strong>
+                  <small id="pxrdMeasuredEquation"></small>
+                </div>
+                <p>This spacing alone does <strong>not</strong> identify the material, index its (hkl) reflection, or measure a MOF pore diameter.</p>
+              </div>
+            </div>
+            <p class="pxrd-evidence-note"><strong>Model limitation:</strong> positions shown are purely geometric. Actual PXRD peak positions can be compared to these predictions, but relative intensities, absences, overlaps, peak widths and background require more structural and experimental information. A credible calculated pattern for a real MOF requires crystal-structure information (typically a CIF) and a diffraction calculation.</p>
+            <p class="pxrd-sources">Further reading: <a href="https://dictionary.iucr.org/Bragg%27s_law" target="_blank" rel="noopener noreferrer">IUCr — Bragg’s law and reflection order</a> · <a href="https://onlinelibrary.wiley.com/iucr/itc/Ha/ch3o2v0001/" target="_blank" rel="noopener noreferrer">International Tables — diffraction from powders</a>.</p>
+          </div>
+        </details>
+        <details class="bragg-optional bragg-theory">
+          <summary>How does Bragg's law work?</summary>
+          <div class="bragg-optional-body">
+            <p>X-rays scatter from a periodic crystal structure. For certain directions, the path difference between contributions from successive lattice planes equals an integer number of wavelengths, so those contributions reinforce one another.</p>
+            <p>At fixed wavelength and diffraction order, smaller plane spacing <strong>d</strong> gives a larger scattering angle <strong>2θ</strong>. Conversely, a reflection moving to higher 2θ corresponds to a smaller d-spacing when the wavelength and reflection indexing remain unchanged.</p>
+            <p><strong>θ</strong> is the Bragg angle relative to the lattice planes; <strong>2θ</strong> is the angle measured between incident and diffracted beams. The selected (10) and (11) families are an idealized two-dimensional square-lattice example, not a specific crystal structure.</p>
+          </div>
+        </details>
         <details class="notes">
           <summary>Model assumptions, limitations &amp; sources</summary>
           <p><strong>What the models represent:</strong> the guided lattice is an ideal 2D square lattice, with d(10) = a and d(11) = a/√2. Dots are lattice points, not atoms or a specific MOF. The wave comparison adds only two equal-amplitude contributions.</p>
-          <p><strong>What the models cannot determine:</strong> peak intensity, phase identity, structural factors, systematic absences, full diffraction patterns, or experimental uncertainty. Real diffraction arises from scattering and interference, not literal mirror reflections from atomic planes.</p>
+          <p><strong>What the models cannot determine:</strong> experimental peak intensities, phase identity, atomic structure factors, systematic absences, full diffraction patterns, or experimental uncertainty. The scan gives only an idealized normalized finite-stack interference factor. Real diffraction arises from scattering and interference, not literal mirror reflections from atomic planes.</p>
           <p><strong>Measurements:</strong> wavelength presets are rounded values; detector calibration, instrumental effects and uncertainty propagation are not included. Here q = 4πsinθ/λ = 2πn/d, with q in Å⁻¹.</p>
           <p>Reference: <a href="https://dictionary.iucr.org/Bragg%27s_law">IUCr Online Dictionary of Crystallography — Bragg's law</a>.</p>
         </details>
