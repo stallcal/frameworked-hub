@@ -186,8 +186,8 @@ test("Basic neobrutalist YouTube avatars use valid sources and resilient lazy fa
   assert.match(page, /decoding="async"/);
   assert.match(page, /referrerpolicy="no-referrer"/);
   assert.match(page, /Avatars by|avatar lookups are powered by/);
-  assert.match(page, /avatarsapi\\.com/);
-  assert.match(page, /banner\\.yt/);
+  assert.match(page, /avatarsapi\.com/);
+  assert.match(page, /banner\.yt/);
   assert.match(css, /\.resource-library \.resource-entry-with-avatar/);
   assert.match(css, /border-radius: 50%/);
   assert.match(css, /\.resource-avatar\.is-failed \.resource-avatar-image/);
