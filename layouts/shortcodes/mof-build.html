@@ -13,24 +13,25 @@
     <p class="fw-mof-build__subtitle">An interactive schematic, not an atomic model or measured pore geometry.</p>
   </div>
   <div class="fw-mof-build__stage">
-    <span class="fw-mof-build__stage-label" aria-hidden="true">CONCEPTUAL NETWORK / NOT TO SCALE</span>
+    <span class="fw-mof-build__stage-label" aria-hidden="true">SCHEMATIC 3/4 VIEW / NOT TO SCALE</span>
     <svg data-build-svg viewBox="0 0 640 390" role="img" aria-labelledby="{{ $id }}-svg-title {{ $id }}-svg-desc">
       <title id="{{ $id }}-svg-title" data-build-svg-title>Separate node and linker</title>
-      <desc id="{{ $id }}-svg-desc" data-build-svg-desc>One red circular node and one blue bar appear separately. Move the slider to reveal a conceptual repeating framework.</desc>
+      <desc id="{{ $id }}-svg-desc" data-build-svg-desc>One oxide-red circular node and one Frameworked-blue bar appear separately. Move the slider to reveal a conceptual repeating framework.</desc>
       <defs>
         <radialGradient id="{{ $id }}-pore-gradient" cx="35%" cy="30%" r="70%">
-          <stop offset="0%" stop-color="#E7F7EB" stop-opacity=".96"></stop>
-          <stop offset="65%" stop-color="#A5D5B4" stop-opacity=".82"></stop>
-          <stop offset="100%" stop-color="#089E4B" stop-opacity=".65"></stop>
+          <stop offset="0%" stop-color="#F1FFF4" stop-opacity=".96"></stop>
+          <stop offset="65%" stop-color="#A1DEB6" stop-opacity=".82"></stop>
+          <stop offset="100%" stop-color="#089E4B" stop-opacity=".92"></stop>
         </radialGradient>
       </defs>
       <g data-build-scene>
-        <circle cx="180" cy="188" r="26" fill="#E7AFAC" stroke="#1C3049" stroke-width="3"></circle>
-        <rect x="341" y="174" width="112" height="24" rx="11" fill="#BAD7EF" stroke="#1C3049" stroke-width="3"></rect>
+        <circle cx="180" cy="188" r="26" fill="#EEC5C0" stroke="#9E382E" stroke-width="3"></circle>
+        <rect x="341" y="174" width="112" height="24" rx="11" fill="#ACCBEA" stroke="#084B9E" stroke-width="3"></rect>
         <text x="180" y="257" text-anchor="middle" font-size="20" fill="#1C3049">Node</text>
         <text x="397" y="257" text-anchor="middle" font-size="20" fill="#1C3049">Linker</text>
       </g>
     </svg>
+    <span class="fw-mof-build__overlay-note" data-build-overlay-note hidden><span class="fw-mof-build__overlay-dot" aria-hidden="true"></span>POTENTIAL VOID / SCHEMATIC</span>
   </div>
   <div class="fw-mof-build__legend" aria-label="Figure key">
     <span><i class="fw-mof-build__key fw-mof-build__key--node" aria-hidden="true"></i> Metal-containing node*</span>
@@ -62,7 +63,7 @@
       <strong data-build-title>Start with the pieces</strong>
     </div>
     <p data-build-explanation>A metal-containing building unit and an organic linker are two kinds of pieces in our simplified model.</p>
-    <p data-build-pore-caption hidden><strong>Potential void:</strong> this ball is an illustrative marker of possible space—not a molecule, measured diameter, or proof of accessible porosity.</p>
+    <p data-build-pore-caption hidden><strong>Potential void:</strong> the enlarged green ball is an illustrative marker of space, not a molecule, measured diameter, or proof of accessible porosity. Nearby front struts are faded to show where it sits.</p>
     <small>* Colors represent conceptual roles, not chemical elements. This illustration is not a measured MOF-5 unit cell or an adsorption simulation.</small>
   </figcaption>
   <noscript><p class="fw-mof-build__noscript">Enable JavaScript to move between the four diagram states. Without it, the figure shows a labeled node and linker, the starting point of the explanation.</p></noscript>
