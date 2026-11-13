@@ -99,7 +99,7 @@ function paintNetwork(scene, n, showPore, id) {
     const depth = (edge.a.y + edge.b.y) / (2*n);
     const isCutaway = showPore && edge.a.y===0 && edge.b.y===0 &&
       [edge.a,edge.b].every(p=>p.x>=x0 && p.x<=x1 && p.z>=z0 && p.z<=z1);
-    const opacity = isCutaway ? .21 : .52 + .46*(1-depth);
+    const opacity = isCutaway ? .52 : .52 + .46*(1-depth);
     const cls = isCutaway ? 'fw-mof-build__cutaway-edge' : 'fw-mof-build__strut';
     struts.append(
       element('line', {...attrs, 'stroke-width':outerWidth, stroke:'#1C3049',
@@ -155,10 +155,11 @@ function attach(widget) {
   const poreHint = widget.querySelector('[data-pore-hint]');
   const poreKey = widget.querySelector('[data-build-void-key]');
   const overlayNote = widget.querySelector('[data-build-overlay-note]');
+  const poreDetail = widget.querySelector('[data-build-pore-detail]');
   const svgTitle = widget.querySelector('[data-build-svg-title]');
   const svgDesc = widget.querySelector('[data-build-svg-desc]');
   if (![range, pore, reset, scene, output, title, explanation, stepText, poreCaption,
-    poreHint, poreKey, overlayNote, svgTitle, svgDesc].every(Boolean)) return;
+    poreHint, poreKey, overlayNote, poreDetail, svgTitle, svgDesc].every(Boolean)) return;
 
   function render() {
     const n = Number(range.value);
@@ -183,6 +184,7 @@ function attach(widget) {
     poreCaption.hidden = !showPore;
     poreKey.hidden = !showPore;
     overlayNote.hidden = !showPore;
+    poreDetail.hidden = !showPore;
     svgTitle.textContent = n === 0 ? 'Separate conceptual node and linker' :
       n + ' by ' + n + ' by ' + n + ' connected conceptual repeating blocks';
     svgDesc.textContent = n === 0
