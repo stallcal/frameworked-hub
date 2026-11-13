@@ -154,10 +154,11 @@ function attach(widget) {
   const poreCaption = widget.querySelector('[data-build-pore-caption]');
   const poreHint = widget.querySelector('[data-pore-hint]');
   const poreKey = widget.querySelector('[data-build-void-key]');
+  const overlayNote = widget.querySelector('[data-build-overlay-note]');
   const svgTitle = widget.querySelector('[data-build-svg-title]');
   const svgDesc = widget.querySelector('[data-build-svg-desc]');
   if (![range, pore, reset, scene, output, title, explanation, stepText, poreCaption,
-    poreHint, poreKey, svgTitle, svgDesc].every(Boolean)) return;
+    poreHint, poreKey, overlayNote, svgTitle, svgDesc].every(Boolean)) return;
 
   function render() {
     const n = Number(range.value);
@@ -181,6 +182,7 @@ function attach(widget) {
       'The ball marks possible space, not a measured pore or a gas molecule.';
     poreCaption.hidden = !showPore;
     poreKey.hidden = !showPore;
+    overlayNote.hidden = !showPore;
     svgTitle.textContent = n === 0 ? 'Separate conceptual node and linker' :
       n + ' by ' + n + ' by ' + n + ' connected conceptual repeating blocks';
     svgDesc.textContent = n === 0
