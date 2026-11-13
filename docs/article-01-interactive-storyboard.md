@@ -1,5 +1,8 @@
 # Interactive MOF Article 01 — editorial storyboard and science gate
 
+> **Current figure (November 13, 2026):** Preserve this five-section narrative arc, but supersede the earlier slider/SVG references below. The Figure 1 implementation is now the rotatable 3D conceptual viewer in [draft PR #64](https://github.com/stallcal/frameworked-hub/pull/64) with four direct stage choices, a solid illustrative potential-void sphere and camera focus. The website remains unpublished. A later experimental MOF-5 rendering must be distinguished from the existing calculated PBEsol source and separately verified.
+
+
 **Status:** proposal for joint editorial and scientific review; **not approved for publication**.  
 **Created:** 2026-11-12.  
 **Canonical existing draft:** `site-content/articles/build-with-molecules/index.md` (still `draft: true`, `editorial_status: outline`).  
