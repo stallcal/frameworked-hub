@@ -190,10 +190,11 @@ test("Basic neobrutalist YouTube avatars use valid sources and resilient lazy fa
   assert.match(page, /banner\\.yt/);
   assert.match(css, /\.resource-library \.resource-entry-with-avatar/);
   assert.match(css, /border-radius: 50%/);
-  assert.match(css, /\.resource-avatar\.is-loaded \.resource-avatar-image/);
+  assert.match(css, /\.resource-avatar\.is-failed \.resource-avatar-image/);
   assert.match(css, /@media \(max-width: 620px\)/);
   assert.match(js, /img\.addEventListener\('error', failed/);
   assert.match(js, /img\.addEventListener\('load', loaded/);
-  assert.match(js, /img\.complete && img\.naturalWidth > 0/);
+  assert.match(js, /img\.complete/);
+  assert.match(js, /img\.naturalWidth > 0 \? loaded : failed/);
   assert.match(js, /\bupdate\(\);/);
 });
