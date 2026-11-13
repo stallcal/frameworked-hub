@@ -1,4 +1,4 @@
-import {STATES, buildCubicGraph, projectIsometric, poreAnchor, sceneExtents} from './model.mjs';
+import {STATES, buildCubicGraph, projectThreeQuarter, poreAnchor, poreMarkerRadius, sceneExtents} from './model.mjs';
 
 const NS = 'http://www.w3.org/2000/svg';
 const WIDTH = 640;
@@ -31,58 +31,117 @@ function fitProjection(nodes) {
   return {
     scale,
     point(coords) {
-      const p = projectIsometric(coords);
+      const p = projectThreeQuarter(coords);
       return {x: WIDTH / 2 + (p.x - midX) * scale, y: HEIGHT / 2 + (p.y - midY) * scale};
     }
   };
 }
 
+function polygonPoints(view, points) {
+  return points.map(coords => {
+    const p = view.point(coords);
+    return p.x.toFixed(2) + ',' + p.y.toFixed(2);
+  }).join(' ');
+}
+
+// The highlighted cuboid is a schematic *opening*. Its faces are translucent
+// teaching cues, not a computed accessible pore surface or a physical unit cell.
+function paintOpening(scene, view, center) {
+  const x0 = center.x - 0.5, x1 = center.x + 0.5;
+  const z0 = center.z - 0.5, z1 = center.z + 0.5;
+  const y0 = 0, y1 = 1;
+
+  const faces = [
+    // Back panel, faintest.
+    [{x:x0,y:y1,z:z0},{x:x1,y:y1,z:z0},{x:x1,y:y1,z:z1},{x:x0,y:y1,z:z1}],
+    // Side and upper surfaces suggest depth without hiding the struts.
+    [{x:x1,y:y0,z:z0},{x:x1,y:y1,z:z0},{x:x1,y:y1,z:z1},{x:x1,y:y0,z:z1}],
+    [{x:x0,y:y0,z:z1},{x:x1,y:y0,z:z1},{x:x1,y:y1,z:z1},{x:x0,y:y1,z:z1}]
+  ];
+  for (let i=0;i<faces.length;i++) {
+    scene.append(element('polygon', {
+      points: polygonPoints(view, faces[i]),
+      class: 'fw-mof-build__pore-face fw-mof-build__pore-face--' + i
+    }));
+  }
+  const outline = [
+    {x:x0,y:0,z:z0},{x:x1,y:0,z:z0},
+    {x:x1,y:0,z:z1},{x:x0,y:0,z:z1}
+  ];
+  scene.append(element('polygon', {
+    points: polygonPoints(view, outline),
+    class: 'fw-mof-build__pore-window'
+  }));
+}
+
 function paintNetwork(scene, n, showPore, id) {
   const graph = buildCubicGraph(n);
   const view = fitProjection(graph.nodes);
+  const anchor = poreAnchor(n);
+  if (showPore) paintOpening(scene, view, anchor);
 
-  if (showPore) {
-    const center = view.point(poreAnchor(n));
-    const radius = Math.max(11, Math.min(23, view.scale * 0.16));
-    scene.append(
-      element('circle', {cx: center.x, cy: center.y, r: radius * 1.45, class: 'fw-mof-build__pore-halo'}),
-      element('circle', {cx: center.x, cy: center.y, r: radius, fill: 'url(#' + id + '-pore-gradient)', class: 'fw-mof-build__pore-ball'}),
-      element('circle', {cx: center.x - radius * 0.26, cy: center.y - radius * 0.27, r: radius * 0.2, class: 'fw-mof-build__pore-glint'})
-    );
-  }
-
+  // Rear planes are drawn first and softened: the near square face reads
+  // clearly, with depth links travelling diagonally up and right.
   const struts = element('g', {class: 'fw-mof-build__struts'});
-  const edges = [...graph.edges].sort((a, b) =>
-    (a.a.x + a.a.y + a.a.z + a.b.x + a.b.y + a.b.z) -
-    (b.a.x + b.a.y + b.a.z + b.b.x + b.b.y + b.b.z)
+  const edges = [...graph.edges].sort((a,b) =>
+    (b.a.y+b.b.y)-(a.a.y+a.b.y) ||
+    (a.a.z+a.b.z)-(b.a.z+b.b.z)
   );
-  const outerWidth = n === 3 ? 5.4 : n === 2 ? 6.5 : 8.6;
-  const innerWidth = n === 3 ? 3.1 : n === 2 ? 3.8 : 5.2;
+  const outerWidth = n === 3 ? 5.7 : n === 2 ? 6.8 : 8.8;
+  const innerWidth = n === 3 ? 3.5 : n === 2 ? 4.2 : 5.5;
+  const x0 = anchor.x - .5, x1 = anchor.x + .5;
+  const z0 = anchor.z - .5, z1 = anchor.z + .5;
 
   for (const edge of edges) {
     const a = view.point(edge.a);
     const b = view.point(edge.b);
-    const attrs = {x1: a.x, y1: a.y, x2: b.x, y2: b.y, 'stroke-linecap': 'round'};
-    const darkness = (edge.a.x + edge.a.y + edge.a.z + edge.b.x + edge.b.y + edge.b.z) / (6 * n);
-    const opacity = (0.64 + darkness * 0.34).toFixed(2);
+    const attrs = {x1:a.x, y1:a.y, x2:b.x, y2:b.y, 'stroke-linecap':'round'};
+    const depth = (edge.a.y + edge.b.y) / (2*n);
+    const isCutaway = showPore && edge.a.y===0 && edge.b.y===0 &&
+      [edge.a,edge.b].every(p=>p.x>=x0 && p.x<=x1 && p.z>=z0 && p.z<=z1);
+    const opacity = isCutaway ? .21 : .52 + .46*(1-depth);
+    const cls = isCutaway ? 'fw-mof-build__cutaway-edge' : 'fw-mof-build__strut';
     struts.append(
-      element('line', {...attrs, 'stroke-width': outerWidth, stroke: '#1C3049', opacity}),
-      element('line', {...attrs, 'stroke-width': innerWidth, stroke: '#9FC4E8', opacity})
+      element('line', {...attrs, 'stroke-width':outerWidth, stroke:'#1C3049',
+        opacity:opacity.toFixed(2), class:cls}),
+      element('line', {...attrs, 'stroke-width':innerWidth, stroke:'#084B9E',
+        opacity:opacity.toFixed(2), class:cls})
     );
   }
   scene.append(struts);
 
-  // Painter's order: spheres lie above all struts, hiding their interiors at vertices.
-  const nodeLayer = element('g', {class: 'fw-mof-build__nodes'});
-  const radius = n === 3 ? 5.5 : n === 2 ? 7.1 : 9.4;
-  const sorted = [...graph.nodes].sort((a, b) => (a.x + a.y + a.z) - (b.x + b.y + b.z));
+  // The pore ball is deliberately large and near the front, with its radius
+  // set by illustration scale rather than a physical pore/guest measurement.
+  if (showPore) {
+    const center = view.point(anchor);
+    const radius = poreMarkerRadius(view.scale);
+    scene.append(
+      element('circle', {cx:center.x, cy:center.y, r:radius*1.18,
+        class:'fw-mof-build__pore-halo'}),
+      element('circle', {cx:center.x, cy:center.y, r:radius,
+        fill:'url(#' + id + '-pore-gradient)', class:'fw-mof-build__pore-ball'}),
+      element('circle', {cx:center.x-radius*.28, cy:center.y-radius*.27,
+        r:radius*.19, class:'fw-mof-build__pore-glint'})
+    );
+  }
+
+  // Spheres sit above linkers to hide the linker interiors at joints.
+  // Back-layer nodes are toned down; front-layer nodes remain high contrast.
+  const nodeLayer = element('g', {class:'fw-mof-build__nodes'});
+  const radius = n===3 ? 5.8 : n===2 ? 7.3 : 9.7;
+  const sorted = [...graph.nodes].sort((a,b) =>
+    b.y-a.y || a.z-b.z
+  );
   for (const coords of sorted) {
     const p = view.point(coords);
-    nodeLayer.append(element('circle', {cx: p.x, cy: p.y, r: radius, class: 'fw-mof-build__node'}));
+    const fade = .6 + .4*(1-coords.y/n);
+    nodeLayer.append(element('circle', {
+      cx:p.x, cy:p.y, r:radius, opacity:fade.toFixed(2),
+      class:'fw-mof-build__node'
+    }));
   }
   scene.append(nodeLayer);
 }
-
 function attach(widget) {
   const range = widget.querySelector('[data-build-range]');
   const pore = widget.querySelector('[data-build-pore]');
@@ -125,11 +184,11 @@ function attach(widget) {
     svgTitle.textContent = n === 0 ? 'Separate conceptual node and linker' :
       n + ' by ' + n + ' by ' + n + ' connected conceptual repeating blocks';
     svgDesc.textContent = n === 0
-      ? 'One red circular node and one blue bar appear separately.'
-      : 'A fixed isometric schematic shows ' + n ** 3 + ' repeating cubic blocks with ' +
+      ? 'One oxide-red circular node and one Frameworked-blue bar appear separately.'
+      : 'An angled three-quarter schematic shows ' + n ** 3 + ' repeating cubic blocks with ' +
         (n + 1) ** 3 + ' shared corner nodes and ' + 3 * n * (n + 1) ** 2 +
         ' links. ' + (showPore
-          ? 'One green sphere marks a potential void; it is illustrative and not to scale.'
+          ? 'One enlarged green sphere highlights a near-facing potential void. Front links are lightly faded to reveal the space. The sphere is illustrative and not to scale.'
           : 'The optional potential-void marker is not displayed.');
   }
 
