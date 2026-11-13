@@ -1,0 +1,50 @@
+name: Footer deployment reference QA
+
+on:
+  pull_request:
+    paths:
+      - "config.yml"
+      - "layouts/_default/baseof.html"
+      - "tests/footer-build-ref.test.mjs"
+      - ".github/workflows/footer-build-ref.yml"
+  push:
+    branches: [main]
+    paths:
+      - "config.yml"
+      - "layouts/_default/baseof.html"
+      - "tests/footer-build-ref.test.mjs"
+
+permissions:
+  contents: read
+
+jobs:
+  deployment-reference:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Footer and existing site regression checks
+        run: node --test tests/footer-build-ref.test.mjs tests/neo-sitewide.test.mjs
+      - uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: "0.154.5"
+          extended: true
+      - name: Simulated Cloudflare build embeds deployment commit
+        env:
+          CF_PAGES_COMMIT_SHA: "0123456789abcdef0123456789abcdef01234567"
+        run: |
+          hugo --environment production --destination public-deploy --cleanDestinationDir
+          grep -q 'UI v0.1.4' public-deploy/index.html
+          grep -q 'ref 01234567' public-deploy/index.html
+          grep -q 'github.com/stallcal/frameworked-hub/commit/0123456789abcdef0123456789abcdef01234567' public-deploy/index.html
+          ! grep -q 'ref unavailable' public-deploy/index.html
+      - name: Local build never fabricates a deployment commit
+        run: |
+          env -u CF_PAGES_COMMIT_SHA hugo --environment production --destination public-local --cleanDestinationDir
+          grep -q 'UI v0.1.4' public-local/index.html
+          grep -q 'ref unavailable' public-local/index.html
+          ! grep -Eq 'ref [0-9a-f]{8}' public-local/index.html
