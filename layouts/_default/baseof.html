@@ -1,5 +1,7 @@
 <!doctype html>
 {{ partialCached "validate-editorial.html" .Site .Site.Language.Lang }}
+{{/* Cloudflare Pages injects the exact commit for this deployment, unlike the manual UI version. */}}
+{{- $buildSHA := os.Getenv "CF_PAGES_COMMIT_SHA" -}}
 <html lang="en"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#F7F9FC">
@@ -56,5 +58,5 @@
   </details>
 </header>
 <main id="main" tabindex="-1">{{ block "main" . }}{{ end }}</main>
-<footer class="site-footer"><div class="footer-top"><div><a class="footer-wordmark" href="{{ "/" | relURL }}">Frameworked<span>.</span></a><p>Exploring chemistry, one building block at a time.</p></div></div><div class="footer-bottom"><div class="footer-meta"><span>© {{ now.Year }} Frameworked · An independent science communication project</span><span class="footer-version" aria-label="Interface version">UI v{{ site.Params.uiVersion | default "0.1.0" }}</span></div><nav aria-label="Footer navigation"><a href="{{ "/articles/" | relURL }}">Articles</a><a href="{{ "/explore/" | relURL }}">Explore</a><a href="{{ "/tools/" | relURL }}">Tools</a><a href="{{ "/about/" | relURL }}">About</a></nav><a class="footer-back-top" href="#main">Back to top ↑</a></div></footer>
+<footer class="site-footer"><div class="footer-top"><div><a class="footer-wordmark" href="{{ "/" | relURL }}">Frameworked<span>.</span></a><p>Exploring chemistry, one building block at a time.</p></div></div><div class="footer-bottom"><div class="footer-meta"><span>© {{ now.Year }} Frameworked · An independent science communication project</span><span class="footer-version" aria-label="Interface version">UI v{{ site.Params.uiVersion | default "0.1.0" }}</span>{{ if findRE "^[0-9a-fA-F]{40}$" $buildSHA }}<a class="footer-version footer-build-ref" aria-label="Deployed Git commit {{ $buildSHA }}" title="View deployed Git commit {{ $buildSHA }}" href="{{ printf "https://github.com/stallcal/frameworked-hub/commit/%s" $buildSHA }}">ref {{ substr $buildSHA 0 8 }}</a>{{ else }}<span class="footer-version footer-build-ref" title="A deployment commit reference was not provided to this build">ref unavailable</span>{{ end }}</div><nav aria-label="Footer navigation"><a href="{{ "/articles/" | relURL }}">Articles</a><a href="{{ "/explore/" | relURL }}">Explore</a><a href="{{ "/tools/" | relURL }}">Tools</a><a href="{{ "/about/" | relURL }}">About</a></nav><a class="footer-back-top" href="#main">Back to top ↑</a></div></footer>
 </div></body></html>
