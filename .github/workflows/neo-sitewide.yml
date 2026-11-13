@@ -6,6 +6,9 @@ on:
       - 'layouts/_default/baseof.html'
       - 'tests/neo-sitewide.test.mjs'
       - 'data/science_resources.json'
+      - 'assets/css/resource-library-refresh.css'
+      - 'layouts/explore/list.html'
+      - 'static/js/resource-library.js'
       - 'config.yml'
       - 'tests/articles-neo.test.mjs'
       - 'assets/css/articles-neo-refresh.css'
@@ -22,6 +25,9 @@ on:
       - 'layouts/_default/baseof.html'
       - 'tests/neo-sitewide.test.mjs'
       - 'data/science_resources.json'
+      - 'assets/css/resource-library-refresh.css'
+      - 'layouts/explore/list.html'
+      - 'static/js/resource-library.js'
       - 'config.yml'
 permissions:
   contents: read

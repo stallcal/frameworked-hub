@@ -70,7 +70,7 @@ test("global spacing and inset footer polish preserve page layout and metadata",
   assert.match(base, /class="footer-version"/);
   assert.match(base, /class="footer-back-top"/);
   assert.match(base, /site\.Params\.uiVersion/);
-  assert.match(config, /uiVersion: "0\.1\.2"/);
+  assert.match(config, /uiVersion: "0\.1\.3"/);
   assert.match(polish, /\.interior \.fw-reading-room-hero/);
   assert.match(polish, /\.about-page \.fw-about-hero/);
   assert.match(polish, /\.tools-page \.tools-intro/);
@@ -157,4 +157,40 @@ test("Science Resources catalog retains stable IDs, unique URLs and valid topica
   assert.match(page, /range \$catalog\.kinds/);
   assert.match(page, /data-resource-entry/);
   assert.match(page, /len \$catalog\.resources/);
+});
+
+test("Basic neobrutalist YouTube avatars use valid sources and resilient lazy fallback", () => {
+  const data = JSON.parse(readFileSync("data/science_resources.json", "utf8"));
+  const page = readFileSync("layouts/explore/list.html", "utf8");
+  const css = readFileSync("assets/css/resource-library-refresh.css", "utf8");
+  const js = readFileSync("static/js/resource-library.js", "utf8");
+
+  const channels = data.resources.filter(x => x.kind === "channels");
+  assert.equal(channels.length, 37);
+  for (const item of channels) {
+    assert.ok(/^https:\/\/unavatar\.io\/youtube\/[A-Za-z0-9_-]+$/.test(item.avatar),
+      "Missing/invalid YouTube avatar URL: " + item.id);
+    const handle = item.url.match(/^https:\/\/(?:www\.)?youtube\.com\/(?:@([^/?#]+)|channel\/(UC[\w-]+))/);
+    assert.ok(handle, "Invalid channel identity: " + item.id);
+    assert.equal(item.avatar.split("/").pop().toLowerCase(), (handle[1] || handle[2]).toLowerCase(),
+      "Avatar handle differs from channel: " + item.id);
+  }
+  for (const item of data.resources.filter(x => x.kind !== "channels"))
+    assert.equal(item.avatar, undefined, "Unexpected avatar on nonchannel entry " + item.id);
+
+  assert.match(page, /if eq \.kind "channels"/);
+  assert.match(page, /class="resource-avatar"/);
+  assert.match(page, /class="resource-avatar-fallback"/);
+  assert.match(page, /class="resource-avatar-image"/);
+  assert.match(page, /loading="lazy"/);
+  assert.match(page, /decoding="async"/);
+  assert.match(page, /referrerpolicy="no-referrer"/);
+  assert.match(css, /\.resource-library \.resource-entry-with-avatar/);
+  assert.match(css, /border-radius: 50%/);
+  assert.match(css, /\.resource-avatar\.is-loaded \.resource-avatar-image/);
+  assert.match(css, /@media \(max-width: 620px\)/);
+  assert.match(js, /img\.addEventListener\('error', failed/);
+  assert.match(js, /img\.addEventListener\('load', loaded/);
+  assert.match(js, /img\.complete && img\.naturalWidth > 0/);
+  assert.match(js, /\bupdate\(\);/);
 });

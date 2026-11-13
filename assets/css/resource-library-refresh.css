@@ -378,3 +378,58 @@
     border-color: CanvasText;
   }
 }
+
+/* Neobrutalism Avatar — Basic treatment for YouTube channels only.
+   Images resolve from the channel handle; an initials fallback always occupies
+   the same space until the image loads. Other resource formats are unchanged. */
+.resource-library .resource-entry-with-avatar {
+  display: grid;
+  grid-template-columns: 56px minmax(0, 1fr);
+  gap: 16px;
+  align-items: start;
+}
+.resource-library .resource-entry-copy { min-width: 0; }
+.resource-library .resource-avatar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  overflow: hidden;
+  border: 2px solid var(--navy);
+  border-radius: 50%;
+  background: #eaf1f9;
+  color: var(--navy);
+  flex: none;
+}
+.resource-library .resource-avatar-fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  font: 700 16px/1 'Libron', Georgia, serif;
+  letter-spacing: -.02em;
+}
+.resource-library .resource-avatar-image {
+  opacity: 0;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background: #fff;
+}
+.resource-library .resource-avatar.is-loaded .resource-avatar-image { opacity: 1; }
+@media (max-width: 620px) {
+  .resource-library .resource-entry-with-avatar {
+    grid-template-columns: 48px minmax(0, 1fr);
+    gap: 13px;
+  }
+  .resource-library .resource-avatar { width: 48px; height: 48px; }
+  .resource-library .resource-avatar-fallback { font-size: 14px; }
+}
+@media (forced-colors: active) {
+  .resource-library .resource-avatar { border-color: CanvasText; }
+}

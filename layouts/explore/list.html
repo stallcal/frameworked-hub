@@ -65,7 +65,14 @@
           {{ $link := .url }}
           {{ with .doi }}{{ $link = printf "https://doi.org/%s" . }}{{ end }}
           <article class="resource-entry" data-resource-entry data-kind="{{ .kind }}" data-topics="{{ delimit .topics " " }}">
-            <div class="resource-entry-main">
+            <div class="resource-entry-main{{ if eq .kind "channels" }} resource-entry-with-avatar{{ end }}">
+              {{ if eq .kind "channels" }}
+              <span class="resource-avatar" aria-hidden="true">
+                <span class="resource-avatar-fallback">{{ upper (substr .title 0 2) }}</span>
+                {{ with .avatar }}<img class="resource-avatar-image" src="{{ . }}" alt="" width="56" height="56" loading="lazy" decoding="async" referrerpolicy="no-referrer">{{ end }}
+              </span>
+              {{ end }}
+              <div class="resource-entry-copy">
               <a class="resource-entry-title" href="{{ $link }}" target="_blank" rel="noopener noreferrer">{{ .title }} <span aria-hidden="true">{{ partial "frameworked-arrow.html" . }}</span></a>
               {{ with .meta }}<p class="resource-entry-meta">{{ . }}</p>{{ end }}
               {{ with .description }}<p class="resource-entry-description">{{ . }}</p>{{ end }}
@@ -74,6 +81,7 @@
                   {{ $topic := . }}
                   {{ range $catalog.topics }}{{ if eq .id $topic }}<span>{{ .short }}</span>{{ end }}{{ end }}
                 {{ end }}
+              </div>
               </div>
             </div>
             {{ with .doi }}<a class="resource-doi" href="{{ printf "https://doi.org/%s" . }}" target="_blank" rel="noopener noreferrer" aria-label="Open DOI {{ . }}">DOI: {{ . }}</a>{{ end }}
