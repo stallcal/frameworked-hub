@@ -70,7 +70,7 @@ test("global spacing and inset footer polish preserve page layout and metadata",
   assert.match(base, /class="footer-version"/);
   assert.match(base, /class="footer-back-top"/);
   assert.match(base, /site\.Params\.uiVersion/);
-  assert.match(config, /uiVersion: "0\.1\.3"/);
+  assert.match(config, /uiVersion: "0\.1\.4"/);
   assert.match(polish, /\.interior \.fw-reading-room-hero/);
   assert.match(polish, /\.about-page \.fw-about-hero/);
   assert.match(polish, /\.tools-page \.tools-intro/);
@@ -168,12 +168,12 @@ test("Basic neobrutalist YouTube avatars use valid sources and resilient lazy fa
   const channels = data.resources.filter(x => x.kind === "channels");
   assert.equal(channels.length, 37);
   for (const item of channels) {
-    assert.ok(/^https:\/\/unavatar\.io\/youtube\/[A-Za-z0-9_-]+$/.test(item.avatar),
-      "Missing/invalid YouTube avatar URL: " + item.id);
     const handle = item.url.match(/^https:\/\/(?:www\.)?youtube\.com\/(?:@([^/?#]+)|channel\/(UC[\w-]+))/);
     assert.ok(handle, "Invalid channel identity: " + item.id);
-    assert.equal(item.avatar.split("/").pop().toLowerCase(), (handle[1] || handle[2]).toLowerCase(),
-      "Avatar handle differs from channel: " + item.id);
+    const expected = handle[1]
+      ? "https://avatarsapi.com/youtube/@" + handle[1] + "?size=112"
+      : "https://banner.yt/" + handle[2] + "?type=avatar&width=112&height=112";
+    assert.equal(item.avatar, expected, "Avatar source differs from channel identity: " + item.id);
   }
   for (const item of data.resources.filter(x => x.kind !== "channels"))
     assert.equal(item.avatar, undefined, "Unexpected avatar on nonchannel entry " + item.id);
@@ -185,6 +185,9 @@ test("Basic neobrutalist YouTube avatars use valid sources and resilient lazy fa
   assert.match(page, /loading="lazy"/);
   assert.match(page, /decoding="async"/);
   assert.match(page, /referrerpolicy="no-referrer"/);
+  assert.match(page, /Avatars by|avatar lookups are powered by/);
+  assert.match(page, /avatarsapi\\.com/);
+  assert.match(page, /banner\\.yt/);
   assert.match(css, /\.resource-library \.resource-entry-with-avatar/);
   assert.match(css, /border-radius: 50%/);
   assert.match(css, /\.resource-avatar\.is-loaded \.resource-avatar-image/);
