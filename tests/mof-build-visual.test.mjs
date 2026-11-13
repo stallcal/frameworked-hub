@@ -123,9 +123,9 @@ test('prototype is unlisted and noindex; actual Article 01 remains an unpublishe
   const template = read('../layouts/preview/single.html');
   assert.match(article, /^draft: true$/m);
   assert.match(article, /^editorial_status: outline$/m);
-  assert.match(article, /\{\{< mof-build >\}\}/);
+  assert.match(article, /\{\{< mof-build-3d >\}\}/);
   assert.match(article, /figure-placeholder number="2"/);
-  assert.match(preview, /\{\{< mof-build >\}\}/);
+  assert.match(preview, /\{\{< mof-build-3d >\}\}/);
   assert.match(preview, /^draft: false$/m);
   assert.match(template, /name="robots" content="noindex,nofollow"/);
   assert.match(template, /define "head-extra"/);
