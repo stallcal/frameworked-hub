@@ -53,7 +53,7 @@ jobs:
           test -f public-preview/articles/build-with-molecules/index.html
           test -f public-preview/preview/mof-build/index.html
           grep -q 'data-mof-build-3d' public-preview/articles/build-with-molecules/index.html
-          grep -q 'data-3d-range' public-preview/preview/mof-build/index.html
+          grep -q 'data-3d-stage="3"' public-preview/preview/mof-build/index.html
           grep -q 'type="importmap"' public-preview/preview/mof-build/index.html
       - name: Validate production isolation
         run: |
