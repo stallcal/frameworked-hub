@@ -4,9 +4,11 @@ import * as THREE from 'three';
 import {OrbitControls} from 'three/addons/controls/OrbitControls.js';
 import {makeGraph,voidCenter,centerCoordinate,PITCH,NODE_RADIUS,LINK_RADIUS,VOID_RADIUS} from './model.js';
 
-const NAVY=0x1C3049, BLUE=0x084B9E, RED=0x9E382E, GREEN=0x089E4B;
+// Muted material tints preserve Frameworked's navy/blue/red/green identity
+// without using the intense interface colors as brightly lit plastic meshes.
+const MODEL_NODE=0xCFA6A0, MODEL_LINK=0x678DB5, MODEL_PORE=0x83B99A;
 const UP=new THREE.Vector3(0,1,0);
-const VEC=new THREE.Vector3(), POS=new THREE.Vector3();
+const VEC=new THREE.Vector3();
 const viewDir=new THREE.Vector3(1.16,.88,1.42).normalize();
 
 export function createMofScene(mount) {
@@ -19,15 +21,15 @@ export function createMofScene(mount) {
   renderer.domElement.className='fw-mof-3d__canvas';
   renderer.domElement.tabIndex=0;
   renderer.domElement.setAttribute('role','img');
-  renderer.domElement.setAttribute('aria-label','Rotatable conceptual three-dimensional framework. Drag to rotate, use the slider to change repeats, or use the turn buttons.');
+  renderer.domElement.setAttribute('aria-label','Rotatable conceptual three-dimensional framework. Drag to rotate, choose a building stage below, or use the turn buttons.');
   renderer.domElement.style.touchAction='none';
   mount.append(renderer.domElement);
 
-  scene.add(new THREE.HemisphereLight(0xffffff,0xc9d5e3,2.3));
-  const key=new THREE.DirectionalLight(0xffffff,2.2);
+  scene.add(new THREE.HemisphereLight(0xffffff,0xc1cfdd,1.15));
+  const key=new THREE.DirectionalLight(0xffffff,1.25);
   key.position.set(5,8,7);
   scene.add(key);
-  const fill=new THREE.DirectionalLight(0xb7dbff,.7);
+  const fill=new THREE.DirectionalLight(0xc8d8eb,.35);
   fill.position.set(-6,-2,-4);
   scene.add(fill);
 
@@ -46,25 +48,21 @@ export function createMofScene(mount) {
 
   // Reuse one unit geometry and material per visual role; InstancedMesh prevents
   // 208 separate draw calls for 3x3x3. No textures or postprocessing.
-  const sphereGeometry=new THREE.SphereGeometry(1,16,12);
-  const strutGeometry=new THREE.CylinderGeometry(1,1,1,10);
-  const nodeMat=new THREE.MeshStandardMaterial({color:RED,roughness:.78,metalness:0});
-  const linkMat=new THREE.MeshStandardMaterial({color:BLUE,roughness:.72,metalness:0});
+  const sphereGeometry=new THREE.SphereGeometry(1,24,18);
+  const strutGeometry=new THREE.CylinderGeometry(1,1,1,14);
+  const nodeMat=new THREE.MeshStandardMaterial({color:MODEL_NODE,roughness:1,metalness:0});
+  const linkMat=new THREE.MeshStandardMaterial({color:MODEL_LINK,roughness:1,metalness:0});
+  // Opaque and matte: depth comes from the actual 3D mesh, not a glow,
+  // highlight wireframe, or translucent overlay.
   const poreMat=new THREE.MeshStandardMaterial({
-    color:GREEN,roughness:.46,metalness:0,
-    transparent:true,opacity:.59,depthWrite:false,
-    emissive:0x0b522b,emissiveIntensity:.18
-  });
-  const poreRimMat=new THREE.MeshBasicMaterial({
-    color:0x126d39,transparent:true,opacity:.30,wireframe:true,depthWrite:false
+    color:MODEL_PORE,roughness:1,metalness:0,
+    transparent:false,opacity:1,depthWrite:true
   });
   const group=new THREE.Group();
   scene.add(group);
   const poreGroup=new THREE.Group();
-  const poreBall=new THREE.Mesh(new THREE.SphereGeometry(VOID_RADIUS,28,20),poreMat);
-  const poreRim=new THREE.Mesh(new THREE.SphereGeometry(VOID_RADIUS*1.008,14,10),poreRimMat);
-  poreGroup.add(poreBall,poreRim);
-  poreGroup.renderOrder=3;
+  const poreBall=new THREE.Mesh(new THREE.SphereGeometry(VOID_RADIUS,32,24),poreMat);
+  poreGroup.add(poreBall);
   group.add(poreGroup);
   poreGroup.visible=false;
 
@@ -195,8 +193,8 @@ export function createMofScene(mount) {
     controls.dispose();
     removeMeshes();
     sphereGeometry.dispose();strutGeometry.dispose();
-    poreBall.geometry.dispose();poreRim.geometry.dispose();
-    nodeMat.dispose();linkMat.dispose();poreMat.dispose();poreRimMat.dispose();
+    poreBall.geometry.dispose();
+    nodeMat.dispose();linkMat.dispose();poreMat.dispose();
     renderer.dispose();
     renderer.domElement.remove();
   }
