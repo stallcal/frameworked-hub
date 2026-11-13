@@ -42,10 +42,10 @@ Open with a familiar structural-engineering example: connecting beams and joints
 
 ## Building blocks at a different scale
 
-{{< mof-build >}}
+{{< mof-build-3d >}}
 
 {{< editor-note >}}
-Interactive Figure 1 is a **conceptual cubic network**, not a model of measured MOF-5 atom positions. Check 1×/2×/3× repetition, labels, the single potential-void marker, non-color cues, and the mobile reading experience before finalizing surrounding narration. The original independent Figure 2 / crystallographic-data verification remains an unpublished editorial placeholder.
+Interactive Figure 1 now uses a **rotatable conceptual 3D cubic network**, not measured MOF-5 atom positions. Check 1×/2×/3× repetition, orbit and zoom, the single geometry-consistent but nonphysical pore sphere, mobile/touch use, and the written fallback before finalizing narration. Its original 2D implementation is retained as an unused rollback option. The independent Figure 2 / crystallographic-data verification remains an unpublished editorial placeholder.
 {{< /editor-note >}}
 
 {{< editor-note >}}
