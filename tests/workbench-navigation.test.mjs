@@ -49,6 +49,7 @@ test("rendered workbench links directly to the twelve primary tools and a separa
   assert.deepEqual(linkedTools(quantum), expectedQuantum, "secondary cards should contain only the five early models");
   assert.match(main, /href="\/tools\/quantum\/"/, "main workbench links once to quantum collection");
   assert.match(quantum, /href="\/tools\/"/, "quantum collection links back to main workbench");
+  assert.match(quantum, /class="tools-intro quantum-intro"/, "secondary collection should use a more compact introduction");
 
   for (const url of [...Object.values(expectedGroups).flat(), ...expectedQuantum]) {
     assert.ok(existsSync(`public-production${url}index.html`), `existing canonical tool route must survive: ${url}`);
@@ -81,6 +82,7 @@ test("rendered explorer pages provide curated routes and consistent header navig
     const nav = html.match(/<nav class="tool-related(?: [^"]+)?"[\s\S]*?<\/nav>/);
     assert.ok(nav, `${source} needs a labeled next-step block`);
     assert.match(nav[0], /aria-label="Continue exploring"/);
+    assert.match(nav[0], /class="tool-related-arrow"[^>]*><svg/, `${source} needs a reliable vector arrow`);
     for (const link of links) assert.ok(nav[0].includes(`href="${link.url}"`), `${source} must link to ${link.url}`);
     assert.doesNotMatch(nav[0], /href="\/articles\/|href="\/tools\/franck-condon\/".*href="\/tools\/orbital-mixing\//);
   }
@@ -92,4 +94,6 @@ test("rendered explorer pages provide curated routes and consistent header navig
     }
     assert.ok(!header.includes('href="/articles/"'), `${source}: Articles belongs in the footer`);
   }
+  const standaloneCss = readFileSync("static/css/frameworked-tool-related.css", "utf8");
+  assert.match(standaloneCss, /\.tool-related\.shell\s*\{[^}]*margin:\s*52px auto/, "standalone calculator panel must stay within centered content shell");
 });

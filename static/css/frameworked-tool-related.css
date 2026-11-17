@@ -4,6 +4,7 @@
   padding-top: 24px;
   border-top: 2px solid #1c3049;
 }
+.tool-related.shell { margin: 52px auto 40px; }
 .tool-related h2 {
   color: #1c3049;
   font: 700 clamp(25px, 3vw, 37px)/1.2 Libron, Georgia, serif;
@@ -23,6 +24,7 @@
 }
 .tool-related-links a strong { font: 700 21px/1.3 Libron, Georgia, serif; }
 .tool-related-links a span:not(.tool-related-arrow) { grid-column: 1/-1; color: #53667d; font: 14px/1.5 system-ui, sans-serif; }
-.tool-related-arrow { color: #9e382e; font: 700 20px/1.2 system-ui, sans-serif; }
+.tool-related-arrow { grid-column: 2; grid-row: 1; justify-self: end; color: #9e382e; }
+.tool-related-arrow svg { display: block; width: 20px; height: 20px; }
 .tool-related-links a:hover { color: #084b9e; border-color: #084b9e; }
 .tool-related-links a:focus-visible { outline: 3px solid #084b9e; outline-offset: 5px; }

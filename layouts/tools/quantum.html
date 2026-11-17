@@ -2,9 +2,9 @@
 {{ $style := resources.Get "labs/style.css" | minify | fingerprint }}<link rel="stylesheet" href="{{ $style.RelPermalink }}" integrity="{{ $style.Data.Integrity }}">
 {{ end }}
 {{ define "main" }}
-<section class="tools-intro" aria-labelledby="quantum-tools-title">
+<section class="tools-intro quantum-intro" aria-labelledby="quantum-tools-title">
   <div><p class="design-eyebrow">THE WORKBENCH / EARLY EXPLORATIONS</p><h1 id="quantum-tools-title">Quantum &amp;<br> wave models.</h1></div>
-  <p>These small, idealized models explore selected relationships in quantum mechanics and spectroscopy. They are starting points, not complete lessons or simulations of experimental systems.</p>
+  <p>Short, idealized models of waves, orbitals, and energy levels. Explore them as starting points while we develop fuller spectroscopy lessons.</p>
 </section>
 <section class="mini-tools fw-neo-workbench workbench-quantum" aria-label="Quantum and wave models">
   <div class="chapter-collection">
