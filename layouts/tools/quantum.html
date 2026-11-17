@@ -1,0 +1,20 @@
+{{ define "head-extra" }}
+{{ $style := resources.Get "labs/style.css" | minify | fingerprint }}<link rel="stylesheet" href="{{ $style.RelPermalink }}" integrity="{{ $style.Data.Integrity }}">
+{{ end }}
+{{ define "main" }}
+<section class="tools-intro quantum-intro" aria-labelledby="quantum-tools-title">
+  <div><p class="design-eyebrow">THE WORKBENCH / EARLY EXPLORATIONS</p><h1 id="quantum-tools-title">Quantum &amp;<br> wave models.</h1></div>
+  <p>Short, idealized models of waves, orbitals, and energy levels. Explore them as starting points while we develop fuller spectroscopy lessons.</p>
+</section>
+<section class="mini-tools fw-neo-workbench workbench-quantum" aria-label="Quantum and wave models">
+  <div class="chapter-collection">
+  {{ range site.Data.workbench.quantum.tools }}
+    {{ with site.GetPage .page }}
+      {{ $icon := .Params.icon | default .Params.explorer | default .Params.lab | default .Params.experiment | default "generic" }}
+      {{ partial "tool-link.html" (dict "title" .Title "description" .Description "url" .RelPermalink "icon" $icon) }}
+    {{ end }}
+  {{ end }}
+  </div>
+  <p class="workbench-return"><a href="{{ "/tools/" | relURL }}">← Back to the main workbench</a></p>
+</section>
+{{ end }}

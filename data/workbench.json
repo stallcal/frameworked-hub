@@ -1,0 +1,77 @@
+{
+  "groups": [
+    {
+      "id": "materials",
+      "title": "Materials & Frameworks",
+      "description": "See how building blocks connect and how pore geometry affects access.",
+      "tools": [
+        { "url": "/tools/node-and-linker/", "page": "/tools/node-and-linker/" },
+        { "url": "/tools/pore-access/", "page": "/tools/pore-access/" }
+      ]
+    },
+    {
+      "id": "adsorption",
+      "title": "Adsorption & Gases",
+      "description": "Explore uptake, operating conditions, and the limits of idealized adsorption models.",
+      "tools": [
+        { "url": "/tools/isotherm-shapes/", "page": "/tools/isotherm-shapes/" },
+        { "url": "/tools/langmuir-isotherm/", "page": "/tools/langmuir-isotherm/" },
+        { "url": "/tools/partial-pressure/", "page": "/tools/partial-pressure/" },
+        { "url": "/tools/methane-storage/", "page": "/tools/methane-storage/" }
+      ]
+    },
+    {
+      "id": "crystallography",
+      "title": "Crystallography & Diffraction",
+      "description": "Connect diffraction geometry with what can be inferred from measured peaks.",
+      "tools": [
+        {
+          "url": "/tools/bragg/",
+          "title": "Bragg’s law explorer",
+          "description": "Connect lattice spacing, wavelength, and diffraction angle through an interactive crystal model.",
+          "icon": "lattice"
+        },
+        {
+          "url": "/tools/scherrer/",
+          "title": "Scherrer calculator",
+          "description": "Fit powder diffraction peaks and inspect coherent crystallite size estimates and their assumptions.",
+          "icon": "peak"
+        }
+      ]
+    },
+    {
+      "id": "spectroscopy",
+      "title": "Spectroscopy & Measurement",
+      "description": "Investigate molecular motion, transitions, and light-based measurements.",
+      "tools": [
+        { "url": "/tools/normal-modes/", "page": "/tools/normal-modes/" },
+        { "url": "/tools/molecular-vibration/", "page": "/tools/molecular-vibration/" },
+        { "url": "/tools/beer-lambert/", "page": "/tools/beer-lambert/" }
+      ]
+    },
+    {
+      "id": "practical",
+      "title": "Practical Chemistry",
+      "description": "Calculate quantities you can use while planning laboratory work.",
+      "tools": [
+        {
+          "url": "/tools/reagent-ratios/",
+          "title": "Reagent ratio calculator",
+          "description": "Set molar equivalents and one known quantity to calculate reagent masses and amounts.",
+          "icon": "bars"
+        }
+      ]
+    }
+  ],
+  "quantum": {
+    "title": "Quantum & Wave Models",
+    "description": "Simplified, early-stage models of selected quantum and wave relationships, retained for exploration and future development.",
+    "tools": [
+      { "url": "/tools/franck-condon/", "page": "/tools/franck-condon/" },
+      { "url": "/tools/orbital-mixing/", "page": "/tools/orbital-mixing/" },
+      { "url": "/tools/particle-in-a-box/", "page": "/tools/particle-in-a-box/" },
+      { "url": "/tools/wave-superposition/", "page": "/tools/wave-superposition/" },
+      { "url": "/tools/thermal-populations/", "page": "/tools/thermal-populations/" }
+    ]
+  }
+}

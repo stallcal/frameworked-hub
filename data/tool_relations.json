@@ -1,0 +1,67 @@
+{
+  "/tools/node-and-linker/": [
+    {"url": "/tools/pore-access/", "title": "Pore Accessibility", "description": "See how a framework's geometry affects which guests can enter."},
+    {"url": "/tools/isotherm-shapes/", "title": "Isotherm Shapes", "description": "Connect porous structures with measured adsorption behavior."}
+  ],
+  "/tools/pore-access/": [
+    {"url": "/tools/node-and-linker/", "title": "Node & Linker", "description": "Explore how framework components define the pore network."},
+    {"url": "/tools/isotherm-shapes/", "title": "Isotherm Shapes", "description": "Compare the adsorption signatures of porous materials."}
+  ],
+  "/tools/isotherm-shapes/": [
+    {"url": "/tools/langmuir-isotherm/", "title": "Langmuir Isotherm", "description": "Investigate a simple model of site-limited uptake."},
+    {"url": "/tools/methane-storage/", "title": "Methane Storage", "description": "Apply the idea of adsorption to usable gas capacity."}
+  ],
+  "/tools/langmuir-isotherm/": [
+    {"url": "/tools/isotherm-shapes/", "title": "Isotherm Shapes", "description": "Compare the Langmuir model with other uptake patterns."},
+    {"url": "/tools/methane-storage/", "title": "Methane Storage", "description": "See how gas pressure and uptake relate to storage performance."}
+  ],
+  "/tools/partial-pressure/": [
+    {"url": "/tools/langmuir-isotherm/", "title": "Langmuir Isotherm", "description": "Use gas pressure as an input to an adsorption model."},
+    {"url": "/tools/methane-storage/", "title": "Methane Storage", "description": "Explore why pressure matters for adsorbed gas storage."}
+  ],
+  "/tools/methane-storage/": [
+    {"url": "/tools/langmuir-isotherm/", "title": "Langmuir Isotherm", "description": "Examine the simplest relationship between pressure and uptake."},
+    {"url": "/tools/partial-pressure/", "title": "Partial Pressure", "description": "Revisit pressure in pure and mixed gas systems."}
+  ],
+  "/tools/bragg/": [
+    {"url": "/tools/scherrer/", "title": "Scherrer Calculator", "description": "Move from diffraction angles to estimating coherent domain size."}
+  ],
+  "/tools/scherrer/": [
+    {"url": "/tools/bragg/", "title": "Bragg Explorer", "description": "Explore why changing plane spacing shifts PXRD reflections."}
+  ],
+  "/tools/normal-modes/": [
+    {"url": "/tools/molecular-vibration/", "title": "Molecular Vibration", "description": "Investigate how bond stiffness and mass affect vibrational energy."},
+    {"url": "/tools/beer-lambert/", "title": "Beer–Lambert Law", "description": "Continue from spectroscopy to how absorption is measured."}
+  ],
+  "/tools/molecular-vibration/": [
+    {"url": "/tools/normal-modes/", "title": "Molecular Normal Modes", "description": "Move from a vibrating bond to collective motion of molecules."},
+    {"url": "/tools/beer-lambert/", "title": "Beer–Lambert Law", "description": "Explore the relationship between absorbing species and signal."}
+  ],
+  "/tools/beer-lambert/": [
+    {"url": "/tools/normal-modes/", "title": "Molecular Normal Modes", "description": "Explore one physical origin of infrared spectral features."},
+    {"url": "/tools/molecular-vibration/", "title": "Molecular Vibration", "description": "Examine energy-level spacing behind vibrational absorption."}
+  ],
+  "/tools/reagent-ratios/": [
+    {"url": "/tools/node-and-linker/", "title": "Node & Linker", "description": "Explore the molecular building blocks that reagent choices can assemble."}
+  ],
+  "/tools/franck-condon/": [
+    {"url": "/tools/molecular-vibration/", "title": "Molecular Vibration", "description": "Review vibrational energy levels before considering electronic transitions."},
+    {"url": "/tools/quantum/", "title": "Quantum Explorers", "description": "Return to the collection of early quantum models."}
+  ],
+  "/tools/orbital-mixing/": [
+    {"url": "/tools/particle-in-a-box/", "title": "Particle in a Box", "description": "Explore how boundary conditions shape model wavefunctions."},
+    {"url": "/tools/quantum/", "title": "Quantum Explorers", "description": "Browse the other introductory quantum models."}
+  ],
+  "/tools/particle-in-a-box/": [
+    {"url": "/tools/wave-superposition/", "title": "Wave Superposition", "description": "See how combining waves changes their resulting shape."},
+    {"url": "/tools/quantum/", "title": "Quantum Explorers", "description": "Return to the quantum collection."}
+  ],
+  "/tools/wave-superposition/": [
+    {"url": "/tools/particle-in-a-box/", "title": "Particle in a Box", "description": "Apply wave behavior to a confined quantum system."},
+    {"url": "/tools/quantum/", "title": "Quantum Explorers", "description": "Browse additional early quantum models."}
+  ],
+  "/tools/thermal-populations/": [
+    {"url": "/tools/particle-in-a-box/", "title": "Particle in a Box", "description": "Explore a simple model with discrete energy states."},
+    {"url": "/tools/quantum/", "title": "Quantum Explorers", "description": "Return to the collection of early quantum models."}
+  ]
+}
