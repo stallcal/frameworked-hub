@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="description" content="Calculate reagent masses and molar amounts from a chosen feed ratio and one known quantity. A free, general-purpose chemistry tool from Frameworked." />
   <title>Reagent ratio calculator · Frameworked</title>
-  <link rel="stylesheet" href="./style.css" /><link rel="stylesheet" href="/css/math.css" />
+  <link rel="stylesheet" href="./style.css" /><link rel="stylesheet" href="/css/math.css" /><link rel="stylesheet" href="/css/frameworked-tool-related.css" />
   <script type="module" src="./app.mjs"></script>
 </head>
 <body>
@@ -13,7 +13,7 @@
   <div class="page">
     <header class="site-header">
       <a class="brand" href="/">Frameworked<span>.</span></a>
-      <nav aria-label="Site navigation"><a href="/tools/"><span class="back-arrow" aria-hidden="true">←</span> All tools</a></nav>
+      <nav aria-label="Site navigation"><a href="/">Home</a><a href="/tools/" aria-current="page">Tools</a><a href="/explore/">Explore</a><a href="/about/">About</a></nav>
     </header>
     <main>
       <section class="page-intro" aria-labelledby="page-title">
@@ -130,8 +130,12 @@
           </details>
         </div>
       </section>
+      <nav class="tool-related" aria-label="Continue exploring">
+        <h2>Continue exploring.</h2>
+        <div class="tool-related-links"><a href="/tools/node-and-linker/"><strong>Node &amp; Linker</strong><span>Explore the molecular building blocks that reagent choices can assemble.</span><span class="tool-related-arrow" aria-hidden="true">↗</span></a></div>
+      </nav>
     </main>
-    <footer><a class="brand footer-brand" href="/">Frameworked<span>.</span></a><p>Exploring chemistry, one building block at a time.</p><a href="/tools/">Back to the workbench <span aria-hidden="true">↗</span></a></footer>
+    <footer><a class="brand footer-brand" href="/">Frameworked<span>.</span></a><p>Exploring chemistry, one building block at a time.</p><nav aria-label="Footer navigation"><a href="/articles/">Articles</a><a href="/tools/">Back to the workbench</a></nav></footer>
   </div>
 </body>
 </html>

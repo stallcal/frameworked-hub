@@ -10,8 +10,13 @@ test("new header exposes desktop and native mobile navigation",()=>{
   assert.match(base, /class="fw-primary-nav" aria-label="Main navigation"/);
   assert.match(base, /<details class="fw-mobile-menu">/);
   assert.match(base, /aria-label="Mobile navigation"/);
-  for (const path of ["/", "/articles/", "/tools/", "/explore/", "/about/"])
+  for (const path of ["/", "/tools/", "/explore/", "/about/"])
     assert.equal(base.split('href="{{ "'+path+'" | relURL }}"').length - 1 >= 2, true, path+" exists in both menus");
+  const desktopNav = base.match(/<nav class="fw-primary-nav"[\s\S]*?<\/nav>/)?.[0] ?? "";
+  const mobileNav = base.match(/<nav aria-label="Mobile navigation">[\s\S]*?<\/nav>/)?.[0] ?? "";
+  assert.doesNotMatch(desktopNav, /\/articles\//, "unfinished reading room is not a primary destination");
+  assert.doesNotMatch(mobileNav, /\/articles\//, "mobile navigation agrees with desktop");
+  assert.match(base.match(/<footer class="site-footer">[\s\S]*?<\/footer>/)?.[0] ?? "", /\/articles\//, "reading room remains in footer");
   assert.match(headerCss, /@media \(max-width: 900px\)/);
   assert.match(headerCss, /summary:focus-visible/);
 });
@@ -20,10 +25,12 @@ test("homepage keeps main heading, reading sections and working science-tool rou
   assert.match(home, /Featured explorers/);
   assert.match(home, /Explore by topic/);
   assert.match(home, /"\/tools\/bragg\/"/);
-  assert.match(home, /"\/tools\/node-and-linker\/"/);
+  assert.match(home, /"\/tools\/#materials"/);
+  assert.match(home, /"\/tools\/#spectroscopy"/);
+  assert.match(home, /"\/tools\/#practical"/);
   assert.match(home, /"\/tools\/normal-modes\/"/);
-  assert.match(home, /"\/tools\/reagent-ratios\/"/);
-  assert.match(home, /"\/articles\/pfas-groundwater\/"/);
+  assert.match(home, /"\/explore\/resources\/\?topic=pfas"/);
+  assert.doesNotMatch(home, /\/articles\/pfas-groundwater\//, "environment card must not expose a draft URL");
   assert.match(home, /\{\{ \$published :=/);
   assert.match(home, /Featured <em>story/);
 });

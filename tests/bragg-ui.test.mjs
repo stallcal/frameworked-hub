@@ -255,11 +255,11 @@ test("Bragg explorer header matches Frameworked's main site navigation", () => {
   assert.ok(match, "Expected modern Frameworked site header");
   const header = match[1];
   for (const [path, label] of [
-    ["/", "Home"], ["/articles/", "Articles"], ["/explore/", "Explore"],
-    ["/tools/", "Tools"], ["/about/", "About"]
+    ["/", "Home"], ["/tools/", "Tools"], ["/explore/", "Explore"], ["/about/", "About"]
   ]) {
     assert.match(header, new RegExp(`href="${path}"[^>]*>${label}<\\/a>`));
   }
+  assert.doesNotMatch(header, /href="\/articles\/"/);
   assert.match(header, /src="\/images\/frameworked-mark\.png"/);
   assert.match(header, /href="\/tools\/" aria-current="page"/);
   assert.doesNotMatch(header, /All tools/);

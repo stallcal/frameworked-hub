@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="./style.css" />
     <link rel="stylesheet" href="/css/math.css" />
     <link rel="stylesheet" href="/css/frameworked-standalone-header.css" />
+    <link rel="stylesheet" href="/css/frameworked-tool-related.css" />
     <script type="module" src="./app.mjs"></script>
   </head>
   <body class="bragg-compact">
@@ -23,9 +24,8 @@
         </a>
         <nav class="fw-site-nav" aria-label="Main navigation">
           <a href="/">Home</a>
-          <a href="/articles/">Articles</a>
-          <a href="/explore/">Explore</a>
           <a href="/tools/" aria-current="page">Tools</a>
+          <a href="/explore/">Explore</a>
           <a href="/about/">About</a>
         </nav>
       </header>
@@ -206,11 +206,15 @@
           <p><strong>Measurements:</strong> wavelength presets are rounded values; detector calibration, instrumental effects and uncertainty propagation are not included. Here q = 4πsinθ/λ = 2πn/d, with q in Å⁻¹.</p>
           <p>Reference: <a href="https://dictionary.iucr.org/Bragg%27s_law">IUCr Online Dictionary of Crystallography — Bragg's law</a>.</p>
         </details>
+        <nav class="tool-related" aria-label="Continue exploring">
+          <h2>Continue exploring.</h2>
+          <div class="tool-related-links"><a href="/tools/scherrer/"><strong>Scherrer Calculator</strong><span>Move from diffraction angles to estimating coherent domain size.</span><span class="tool-related-arrow" aria-hidden="true">↗</span></a></div>
+        </nav>
       </main>
       <footer>
         <a href="/"
           >Exploring chemistry, one building block at a time.</a
-        ><span>Runs locally in your browser · No file uploads</span>
+        ><span>Runs locally in your browser · No file uploads · <a href="/articles/">Articles</a></span>
       </footer>
     </div>
   </body>

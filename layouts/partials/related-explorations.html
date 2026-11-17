@@ -1,0 +1,14 @@
+{{ with index site.Data.tool_relations .RelPermalink }}
+<nav class="tool-related" aria-label="Continue exploring">
+  <h2>Continue exploring.</h2>
+  <div class="tool-related-links">
+    {{ range . }}
+    <a href="{{ .url }}">
+      <strong>{{ .title }}</strong>
+      <span>{{ .description }}</span>
+      <span class="tool-related-arrow" aria-hidden="true">↗</span>
+    </a>
+    {{ end }}
+  </div>
+</nav>
+{{ end }}
