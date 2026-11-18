@@ -4,6 +4,11 @@
 <path d="M5 15C12 3 19 3 26 15S40 27 47 15S61 3 65 10" stroke="#9e382e"/>
 <path d="M5 31C12 19 19 19 26 31S40 43 47 31S61 19 65 26"/>
 <path d="M5 25H65" stroke="#9e382e" stroke-dasharray="3 4" opacity=".65"/>
+{{ else if eq .icon "wave" }}
+<!-- Two waves and a reinforced resultant, distinct from quantum-state superposition -->
+<path d="M4 13C10 3 16 3 22 13S34 23 40 13S52 3 58 13S64 20 66 16" stroke="#084b9e"/>
+<path d="M4 24C10 14 16 14 22 24S34 34 40 24S52 14 58 24S64 31 66 27" stroke="#9e382e" stroke-dasharray="4 2"/>
+<path d="M4 19C10 0 16 0 22 19S34 38 40 19S52 0 58 19S64 32 66 26" stroke="#089e4b" stroke-width="2.6"/>
 {{ else if eq .icon "mixing" }}
 <!-- Uncoupled levels on the left and split mixed levels on the right -->
 <path d="M6 15H25M6 34H25M45 8H64M45 41H64"/>

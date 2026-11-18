@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Explore how a phase difference changes the sum of two waves in an interactive Frameworked physics lesson." />
+  <title>Wave interference explorer · Frameworked</title>
+  <link rel="stylesheet" href="/css/frameworked-standalone-header.css" />
+  <link rel="stylesheet" href="./style.css" />
+  <script type="module" src="./app.mjs"></script>
+</head>
+<body>
+<a class="skip" href="#experiment">Skip to the experiment</a>
+<div class="shell">
+  <header class="fw-site-header">
+    <a class="fw-site-brand" href="/" aria-label="Frameworked home"><img src="/images/frameworked-mark.png" alt="" width="34" height="34" /><span>Frameworked<span class="fw-brand-period">.</span></span></a>
+    <nav class="fw-site-nav" aria-label="Main navigation">
+      <a href="/">Home</a><a href="/articles/">Articles</a><a href="/explore/">Explore</a><a href="/tools/" aria-current="page">Tools</a><a href="/about/">About</a>
+    </nav>
+  </header>
+  <main>
+    <section class="intro" aria-labelledby="pageTitle">
+      <p class="eyebrow">TOOLS / WAVES</p>
+      <h1 id="pageTitle">Wave interference<span>.</span></h1>
+      <p class="deck">Change the phase difference to see when two waves reinforce or cancel.</p>
+    </section>
+    <section class="experiment" id="experiment" aria-labelledby="experimentTitle">
+      <div class="panel-header"><p class="eyebrow">LIVE EXPERIMENT</p><h2 id="experimentTitle">Wave addition.</h2></div>
+      <p class="lead">Blue and red have the same wavelength and frequency. Green shows their sum.</p>
+      <div class="phase-control">
+        <div class="phase-head"><label for="phase">Relative phase · φ</label><output for="phase" id="phaseValue">0°</output></div>
+        <input id="phase" type="range" min="0" max="360" step="1" value="0" />
+        <div class="phase-ends"><span>0°</span><span>180°</span><span>360°</span></div>
+        <div class="phase-presets" role="group" aria-label="Try example phase differences">
+          <button type="button" data-phase="0">In phase · 0°</button>
+          <button type="button" data-phase="90">Quarter-cycle · 90°</button>
+          <button type="button" data-phase="180">Out of phase · 180°</button>
+        </div>
+      </div>
+      <figure class="plot">
+        <div class="plot-header"><strong>Waves and resultant</strong><span>One moment in time</span></div>
+        <svg id="wavePlot" viewBox="0 0 850 340" role="img" aria-label="Graph of two sinusoidal waves and their point-by-point sum as relative phase changes"></svg>
+        <figcaption class="legend" aria-label="Curve legend">
+          <span><i class="legend-blue"></i> Wave A</span>
+          <span><i class="legend-red"></i> Wave B</span>
+          <span><i class="legend-green"></i> A + B</span>
+        </figcaption>
+      </figure>
+      <div class="observation" aria-live="polite" aria-atomic="true">
+        <div><strong id="observationTitle">Constructive interference</strong><p id="observationText"></p></div>
+        <div class="amplitude-readout"><span>Resultant amplitude</span><output id="resultantValue">2.00</output><small>Relative units</small></div>
+      </div>
+      <details class="secondary-controls" id="secondaryControls">
+        <summary>Change Wave B’s amplitude</summary>
+        <div class="details-body">
+          <p>Wave A stays at 1. At 180°, complete cancellation requires equal amplitudes.</p>
+          <div class="amplitude-control"><label for="amplitudeB">Wave B amplitude</label><output for="amplitudeB" id="amplitudeBValue">1.00</output></div>
+          <input id="amplitudeB" type="range" min="0" max="1.5" step="0.05" value="1" />
+          <div class="limits"><span>0</span><span>1.5 × wave A</span></div>
+          <button type="button" id="reset" class="reset">Reset experiment</button>
+        </div>
+      </details>
+    </section>
+    <details class="theory">
+      <summary>How does the phase difference between two waves affect interference?</summary>
+      <div class="theory-body">
+        <p>These waves have the same frequency and wavelength. Their amplitudes add at each point: equal waves reinforce at 0° and cancel at 180°.</p>
+        <p>For amplitudes A₁ and A₂, the resultant amplitude is <strong>R = √(A₁² + A₂² + 2A₁A₂ cos φ)</strong>. At 180°, R = |A₁ − A₂|: unequal waves do not cancel completely.</p>
+        <p>An extra path length ΔL produces a phase difference <strong>φ = 360° × ΔL/λ</strong> (modulo 360°). A full wavelength restores the same phase; half a wavelength reverses it.</p>
+        <p>Model: coherent sinusoidal waves at one instant. The curves show amplitude, not intensity or quantum probability density.</p>
+      </div>
+    </details>
+    <section class="connections" aria-labelledby="connectionsTitle">
+      <h2 id="connectionsTitle">Explore related ideas.</h2>
+      <div class="connection-links">
+        <a href="/tools/bragg/"><strong>Bragg's law explorer</strong><span>See how wave reinforcement produces diffraction peaks</span></a>
+        <a href="/tools/wave-superposition/"><strong>Wave superposition</strong><span>Explore quantum-state superposition and probability density</span></a>
+      </div>
+    </section>
+  </main>
+  <footer><a href="/tools/">All tools</a><span>Frameworked · Idealized coherent-wave model</span></footer>
+</div>
+</body>
+</html>
