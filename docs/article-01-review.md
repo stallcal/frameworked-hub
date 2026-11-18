@@ -1,5 +1,10 @@
 # Article 01 review checklist
 
+> **November 13 design status:** The accepted-for-continuation Figure 1 is the 3D widget in [draft PR #64](https://github.com/stallcal/frameworked-hub/pull/64), with four stage buttons, solid green schematic pore marker and exact Frameworked material base colors. Older SVG/slider tasks listed below are historical, not release requirements. Material polish can be revisited. Figure 2 requires vetted experimental MOF-5 structure, source and reuse terms. Article 01 remains draft.
+
+
+**Updated planning references:** [Five-section editorial storyboard](article-01-interactive-storyboard.md) and [discrete scale-slider / potential-void figure specification](article-01-interactive-figure-spec.md). These replace the earlier proposed four-button interaction; they do not approve a live structure model.
+
 Page: `site-content/articles/build-with-molecules/index.md`.
 This sprint supplies an outline and styled figure positions, not the missing manuscript
 from another conversation. It stays `draft: true`, `editorial_status: outline`.
@@ -16,6 +21,8 @@ Before publication:
 - Check activation, stability, and practical limitations without generalizing to every MOF.
 - Resolve every editorial note and figure placeholder.
 - Review figures, captions, accessibility descriptions, mobile layout, and image rights.
+- Confirm the conceptual figure shows **pieces → 1³ → 2³ → 3³** without confusing a schematic cube with the experimentally established unit cell.
+- Verify that the single pore marker is explicitly **illustrative, not to scale**, and is not read as a measured diameter, guest molecule, diffusion path, or evidence of accessible porosity.
 - Only after explicit editorial approval: set the real publication date, `editorial_status: approved`, and `draft: false`.
 - Build preview and production separately, then review deployment as a separate step.
 
