@@ -1,0 +1,97 @@
+{{- $id := printf "fw-mof-3d-%d" .Ordinal -}}
+{{- if not (.Page.Scratch.Get "mofBuild3DAssetsLoaded") -}}
+  {{- .Page.Scratch.Set "mofBuild3DAssetsLoaded" true -}}
+  {{- $css := resources.Get "mof-build-3d/style.css" | minify | fingerprint -}}
+  <link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
+  {{/* Pinned Three.js modules; use exactly one version for core and OrbitControls.
+       Future production hardening can self-host this dependency. */}}
+  <script type="importmap">
+  {"imports":{
+    "three":"https://cdn.jsdelivr.net/npm/three@0.187.0/build/three.module.js",
+    "three/addons/":"https://cdn.jsdelivr.net/npm/three@0.187.0/examples/jsm/"
+  }}
+  </script>
+  <script type="module" src="{{ "/js/mof-build-3d/app.js" | relURL }}"></script>
+{{- end -}}
+<figure class="fw-mof-3d" data-mof-build-3d aria-labelledby="{{ $id }}-title">
+  <header class="fw-mof-3d__head">
+    <span class="fw-mof-3d__eyebrow">FRAMEWORKED / INTERACTIVE STRUCTURES</span>
+    <h3 id="{{ $id }}-title">Build a framework in three dimensions.</h3>
+    <p>A conceptual network—not a measured MOF-5 crystal structure.</p>
+  </header>
+  <div class="fw-mof-3d__viewport">
+    <div class="fw-mof-3d__viewport-top">
+      <span>3D CONCEPT MODEL</span>
+      <span>DRAG TO ROTATE · PINCH TO ZOOM</span>
+    </div>
+    <div class="fw-mof-3d__mount" data-3d-mount>
+      <div class="fw-mof-3d__fallback" data-3d-fallback>
+        <svg viewBox="0 0 520 320" role="img" aria-label="Conceptual building pieces: a Frameworked red metal-containing node and blue organic linker, shown apart.">
+          <g fill="none" stroke="#A8B9CD" stroke-width="2" stroke-dasharray="6 8">
+            <path d="M120 162H400"></path>
+          </g>
+          <circle cx="140" cy="162" r="33" fill="#9E382E" stroke="#1C3049" stroke-width="4"/>
+          <rect x="285" y="148" width="116" height="28" rx="14" fill="#084B9E" stroke="#1C3049" stroke-width="4"/>
+          <g fill="#1C3049" text-anchor="middle" font-family="Georgia,serif" font-size="22">
+            <text x="140" y="229">Node</text><text x="343" y="229">Linker</text>
+          </g>
+          <text x="260" y="270" fill="#526A82" text-anchor="middle" font-family="Arial,sans-serif" font-size="13">Starting pieces · illustrative, not to scale</text>
+        </svg>
+      </div>
+    </div>
+    <p class="fw-mof-3d__status" data-3d-status role="status" hidden>Loading the 3D viewer…</p>
+    <div class="fw-mof-3d__viewer-buttons">
+      <button type="button" data-3d-left disabled aria-label="Rotate framework left"><span aria-hidden="true">↶</span> Left</button>
+      <span aria-hidden="true">ROTATE / 30°</span>
+      <button type="button" data-3d-right disabled aria-label="Rotate framework right">Right <span aria-hidden="true">↷</span></button>
+    </div>
+  </div>
+  <div class="fw-mof-3d__legend" aria-label="Model legend">
+    <span><i class="fw-mof-3d__swatch fw-mof-3d__swatch--node" aria-hidden="true"></i>Metal-containing node*</span>
+    <span><i class="fw-mof-3d__swatch fw-mof-3d__swatch--link" aria-hidden="true"></i>Organic linker*</span>
+    <span><i class="fw-mof-3d__swatch fw-mof-3d__swatch--void" aria-hidden="true"></i>Potential void*</span>
+  </div>
+  <div class="fw-mof-3d__controls">
+    <div class="fw-mof-3d__control-head">
+      <strong id="{{ $id }}-stages-label">Build the framework</strong>
+      <output data-3d-output aria-live="polite">Pieces</output>
+    </div>
+    <div class="fw-mof-3d__stages" role="group" aria-labelledby="{{ $id }}-stages-label" aria-describedby="{{ $id }}-stage-help">
+      <button type="button" class="fw-mof-3d__stage" data-3d-stage="0" aria-pressed="true">
+        <span class="fw-mof-3d__stage-num" aria-hidden="true">01</span><span>Pieces</span>
+      </button>
+      <button type="button" class="fw-mof-3d__stage" data-3d-stage="1" aria-pressed="false">
+        <span class="fw-mof-3d__stage-num" aria-hidden="true">02</span><span>1×1×1</span>
+      </button>
+      <button type="button" class="fw-mof-3d__stage" data-3d-stage="2" aria-pressed="false">
+        <span class="fw-mof-3d__stage-num" aria-hidden="true">03</span><span>2×2×2</span>
+      </button>
+      <button type="button" class="fw-mof-3d__stage" data-3d-stage="3" aria-pressed="false">
+        <span class="fw-mof-3d__stage-num" aria-hidden="true">04</span><span>3×3×3</span>
+      </button>
+    </div>
+    <p id="{{ $id }}-stage-help" class="fw-mof-3d__hint">Choose a stage to reveal more connections. The camera pulls back as the structure grows; the spacing between nodes stays constant.</p>
+    <div class="fw-mof-3d__actions">
+      <label class="fw-mof-3d__check">
+        <input type="checkbox" data-3d-pore disabled>
+        <span>Show a potential void</span>
+      </label>
+      <button type="button" data-3d-focus hidden disabled>Focus on pore</button>
+      <button type="button" data-3d-reset>Reset</button>
+    </div>
+    <p class="fw-mof-3d__hint fw-mof-3d__hint--last" data-3d-help>Select 1×1×1 to build the first open block.</p>
+  </div>
+  <figcaption class="fw-mof-3d__caption">
+    <div class="fw-mof-3d__caption-line">
+      <span data-3d-step>01 / PIECES</span>
+      <strong data-3d-title>Start with the pieces</strong>
+    </div>
+    <p data-3d-explanation>Two building-block roles: a metal-containing node and an organic linker.</p>
+    <p class="fw-mof-3d__caution" data-3d-pore-note hidden>
+      <strong>What does the green sphere mean?</strong>
+      The solid Frameworked-green sphere fills much of one conceptual opening without intersecting the drawn struts. It is not a gas molecule, a measured pore diameter, or evidence of adsorption. Use <em>Focus on pore</em> to inspect its position.
+    </p>
+    <small>* Colors show roles, not chemical elements. A repeating block is not automatically a crystallographic unit cell. No real pore diameter or guest accessibility is predicted.</small>
+  </figcaption>
+  <noscript><p class="fw-mof-3d__noscript">The static diagram shows the pieces. JavaScript and WebGL are needed for the rotatable 3D network; the article's explanatory text remains available without them.</p></noscript>
+</figure>
