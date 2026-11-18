@@ -230,7 +230,7 @@ test("custom wavelength reveals its exact-value input without changing Bragg mat
 test("advanced calculation and optional content remain accessible from the simplified page", () => {
   const html = readFileSync(new URL("../static/tools/bragg/index.html", import.meta.url), "utf8");
   assert.match(html, /<details class="bragg-lattice-details" id="latticeDetails">/);
-  assert.match(html, /<details class="bragg-optional" id="interferenceLesson">/);
+  assert.match(html, /<details class="bragg-optional interference-bridge" id="interferenceLesson">/);
   assert.match(html, /<details class="advanced-panel" id="advancedPanel">/);
   assert.equal((html.match(/id="geometry"/g) || []).length, 1);
 });
