@@ -43,8 +43,19 @@ test("scan follows calculator conditions but does not change calculator readouts
   try{
     el("angle-out").textContent="22.21°";
     await import("../static/tools/bragg/scan-view.mjs");
-    assert.equal(el("scanResponse").textContent,"100.00%");
-    assert.equal(Number(el("scanTwoTheta").value),angle(1));
+    assert.ok(Number.parseFloat(el("scanResponse").textContent)<100);
+    assert.ok(Math.abs(Number(el("scanTwoTheta").value)-angle(.96))<1e-10);
+    assert.equal(el("scanTwoTheta").value,el("scanVectorAngle").value);
+    const initialVectors=el("scanPhasors").innerHTML;
+    const initialResponse=el("scanResponse").textContent;
+    el("scanPlanes").value="12";fire("scanPlanes","input");
+    assert.notEqual(el("scanPhasors").innerHTML,initialVectors);
+    assert.notEqual(el("scanResponse").textContent,initialResponse);
+    assert.equal((el("scanPhasors").innerHTML.match(/class="scan-contribution"/g)||[]).length,12);
+    assert.equal((el("scanPlaneDots").innerHTML.match(/scan-plane-dot/g)||[]).length,12);
+    el("scanVectorAngle").value="32";fire("scanVectorAngle","change");
+    assert.equal(el("scanTwoTheta").value,"32");
+    assert.equal(el("scanAngleValue").textContent,"32.000°");
     el("scanTwoTheta").value="45";fire("scanTwoTheta","input");
     assert.equal(el("scanAngleValue").textContent,"45.000°");
     assert.equal(el("angle-out").textContent,"22.21°");
@@ -54,6 +65,12 @@ test("scan follows calculator conditions but does not change calculator readouts
     assert.equal(el("scanAngleValue").textContent,"45.000°");
     el("scanPeakSelect").value="2";fire("scanPeakSelect","change");fire("scanSnap","click");
     assert.equal(el("scanResponse").textContent,"100.00%");
+    const snapped=el("scanTwoTheta").value;
+    el("scanPlanes").value="2";fire("scanPlanes","change");
+    assert.equal(el("scanTwoTheta").value,snapped);
+    assert.equal(el("scanResponse").textContent,"100.00%");
+    assert.equal((el("scanPhasors").innerHTML.match(/class="scan-contribution"/g)||[]).length,2);
+    assert.match(el("scanObservation").textContent,/normalized response remains 100%/);
     el("wavelength").value="20";fire("wavelength","input");
     assert.equal(el("scanPanels").hidden,false);assert.equal(el("scanSnap").disabled,true);
     el("wavelength").value=".001";fire("wavelength","input");

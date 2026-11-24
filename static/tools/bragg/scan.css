@@ -19,3 +19,7 @@
 .finite-scan [hidden]{display:none!important}
 .finite-scan :focus-visible{outline:3px solid #084b9e;outline-offset:3px}
 @media(max-width:760px){.scan-grid{grid-template-columns:1fr}.scan-card{padding:12px}.finite-scan{padding:12px}.scan-jump{align-items:flex-start}}
+
+.scan-plane-dots{display:flex;flex-wrap:wrap;gap:5px;min-height:12px;margin:-7px 0 14px}
+.scan-plane-dot{display:block;width:9px;height:9px;background:#084b9e;border-radius:50%}
+.scan-card h3{margin:12px 0}
