@@ -1,0 +1,32 @@
+name: Integrated site regression
+on:
+  pull_request:
+  push:
+    branches: [main, 'preview/**']
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: '0.154.5'
+          extended: true
+      - name: Build preview and production
+        run: |
+          hugo --buildDrafts --environment preview --destination public --cleanDestinationDir
+          hugo --environment production --destination public-production --cleanDestinationDir
+      - name: Full JavaScript regression suite
+        run: node --test tests/*.test.mjs
+      - name: Editorial and link checks
+        run: |
+          python3 scripts/test_editorial.py
+          python3 -m unittest discover -s scripts -p 'test_verify_site.py'
+          python3 scripts/verify_site.py
