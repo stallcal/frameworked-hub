@@ -5,6 +5,7 @@ on:
       - 'static/tools/bragg/**'
       - 'tests/bragg-explorer.test.mjs'
       - 'tests/bragg-ui.test.mjs'
+      - 'tests/bragg-scan.test.mjs'
       - '.github/workflows/bragg-explorer.yml'
   push:
     branches: [main]
@@ -12,6 +13,7 @@ on:
       - 'static/tools/bragg/**'
       - 'tests/bragg-explorer.test.mjs'
       - 'tests/bragg-ui.test.mjs'
+      - 'tests/bragg-scan.test.mjs'
 permissions:
   contents: read
 jobs:
@@ -24,4 +26,4 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - run: node --test tests/bragg-explorer.test.mjs tests/bragg-ui.test.mjs tests/scherrer-analysis.test.mjs
+      - run: node --test tests/bragg-explorer.test.mjs tests/bragg-ui.test.mjs tests/bragg-scan.test.mjs tests/scherrer-analysis.test.mjs

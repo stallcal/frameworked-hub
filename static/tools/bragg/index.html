@@ -11,7 +11,9 @@
     <link rel="stylesheet" href="./style.css" />
     <link rel="stylesheet" href="/css/math.css" />
     <link rel="stylesheet" href="/css/frameworked-standalone-header.css" />
+    <link rel="stylesheet" href="./scan.css" />
     <script type="module" src="./app.mjs"></script>
+    <script type="module" src="./scan-view.mjs"></script>
   </head>
   <body class="bragg-compact">
     <a class="skip" href="#main">Skip to tool</a>
@@ -156,6 +158,38 @@
             </div>
           </section>
         </div>
+
+        <section class="finite-scan" aria-labelledby="finite-scan-title">
+          <p class="eyebrow">INTERACTIVE EXPERIMENT / ONE PLANE FAMILY</p>
+          <h2 id="finite-scan-title">Why do diffraction peaks appear?</h2>
+          <p>Scan through scattering angles and see how contributions from equally spaced planes add. What happens to the width of a maximum when you increase the number of planes?</p>
+          <p id="scanError" role="alert"></p>
+          <div id="scanPanels">
+            <p id="scanContext" class="scan-context"></p>
+            <div class="scan-grid">
+              <div class="scan-card">
+                <label for="scanTwoTheta">Scattering angle, 2θ <output id="scanAngleValue" for="scanTwoTheta">22.200°</output></label>
+                <input type="range" id="scanTwoTheta" min="0" max="120" step="any" value="22.2">
+                <div class="scan-plot"><svg id="scanIntensity" viewBox="0 0 400 224" role="img" aria-label="Normalized interference response versus scattering angle"></svg></div>
+                <p class="scan-legend"><span class="scan-key blue"></span> Model response <span class="scan-key green"></span> Bragg positions <span class="scan-key red"></span> Selected angle</p>
+                <div class="scan-jump"><label for="scanPeakSelect">Bragg order</label><select id="scanPeakSelect"></select><button type="button" id="scanSnap">Snap to Bragg angle</button></div>
+                <p id="scanPeakNote" class="scan-context"></p>
+              </div>
+              <div class="scan-card">
+                <label for="scanPlanes">Number of planes <output id="scanPlanesValue" for="scanPlanes">8</output></label>
+                <input type="range" id="scanPlanes" min="2" max="20" step="1" value="8">
+                <h3>Adding the scattered waves</h3>
+                <svg id="scanPhasors" viewBox="0 0 296 296" role="img" aria-label="Head-to-tail phase vectors and their resultant"></svg>
+                <p class="scan-legend"><span class="scan-key blue"></span> Individual contributions <span class="scan-key red"></span> Resultant</p>
+                <p>Relative interference response: <strong id="scanResponse">—</strong></p>
+                <p id="scanObservation"></p>
+              </div>
+            </div>
+          </div>
+          <p>At the Bragg condition, the path difference between neighboring planes equals a whole number of wavelengths. More planes produce narrower normalized maxima. Each blue arrow represents an equal-amplitude contribution; the squared magnitude of the red resultant, divided by the squared plane count, gives the plotted response.</p>
+          <details><summary>Model assumptions and limits</summary><p>This is normalized interference from a finite stack of equally spaced, identical planes, not an experimental PXRD pattern. It does not predict atomic structure factors, systematic absences, texture, or instrumental broadening. The 0° maximum is forward scattering, not a positive-order reflection. The scan uses the plane spacing and wavelength from the calculator above; its selected angle does not change the calculator's predicted Bragg angle.</p></details>
+          <noscript>Enable JavaScript to explore the finite-plane interference model.</noscript>
+        </section>
         <details class="bragg-optional bragg-theory">
           <summary>How does Bragg's law work?</summary>
           <div class="bragg-optional-body">
