@@ -26,7 +26,8 @@ test("Bragg scan is visible and responsive at narrow and short iPhone viewports"
         const page=await context.newPage(),errors=[];
         page.on("pageerror",e=>errors.push(e.message));
         await page.goto("http://127.0.0.1:"+server.address().port+"/tools/bragg/");
-        await page.locator("#scanPhasors .scan-contribution").first().waitFor();
+        await page.locator("#scanPhasors").waitFor({state:"visible"});
+        await page.locator("#scanPhasors .scan-contribution").first().waitFor({state:"attached"});
         await page.evaluate(()=>document.fonts.ready);
         const stage=page.locator(".scan-vector-stage");
         await stage.evaluate(e=>e.scrollIntoView({block:"center"}));
