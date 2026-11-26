@@ -1,0 +1,35 @@
+name: Bragg mobile WebKit QA
+on:
+  pull_request:
+    paths:
+      - 'static/tools/bragg/**'
+      - 'tests/bragg-mobile.browser.mjs'
+      - '.github/workflows/bragg-mobile.yml'
+  push:
+    branches: ['preview/**']
+    paths:
+      - 'static/tools/bragg/**'
+      - 'tests/bragg-mobile.browser.mjs'
+      - '.github/workflows/bragg-mobile.yml'
+permissions:
+  contents: read
+jobs:
+  webkit:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install pinned browser test dependency
+        run: npm install --no-save --no-package-lock playwright@1.56.1
+      - name: Install WebKit
+        run: npx playwright install --with-deps webkit
+      - name: Check iPhone-size viewports and live sliders
+        run: node --test tests/bragg-mobile.browser.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: bragg-mobile-webkit
+          path: test-artifacts/bragg-mobile/
+          if-no-files-found: ignore

@@ -1,0 +1,52 @@
+.finite-scan{margin:40px 0;padding:clamp(16px,3vw,30px);background:white;border:2px solid #1c3049;color:#1c3049}
+.finite-scan h2{margin:8px 0 12px;font-size:clamp(26px,4vw,38px)}
+.finite-scan p{line-height:1.55}
+.scan-grid{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:18px;align-items:start}
+.scan-card{min-width:0;border:1px solid #bdcddd;padding:16px;background:#f7f9fc}
+.scan-card label{display:block;font:700 14px/1.5 system-ui,sans-serif;color:#1c3049}
+.scan-card output{float:right;color:#084b9e;font-variant-numeric:tabular-nums}
+.scan-card input[type=range]{display:block;width:100%;margin:14px 0 18px;accent-color:#084b9e}
+.scan-card svg{display:block;width:100%;height:auto}
+#scanIntensity{font:12px system-ui,sans-serif;fill:#1c3049}
+#scanPhasors{max-width:296px;margin:auto}
+.scan-jump{display:flex;flex-wrap:wrap;align-items:center;gap:10px}
+.scan-jump select,.scan-jump button{max-width:100%;min-height:40px}
+.scan-legend{display:flex;flex-wrap:wrap;align-items:center;gap:6px;font:12px/1.5 system-ui,sans-serif}
+.scan-key{width:18px;height:3px;display:inline-block;background:#084b9e}
+.scan-key.green{background:#087e48}.scan-key.red{background:#9e382e}
+.scan-context{font:13px/1.5 system-ui,sans-serif;color:#41556c}
+#scanError{color:#9e382e}
+.finite-scan [hidden]{display:none!important}
+.finite-scan :focus-visible{outline:3px solid #084b9e;outline-offset:3px}
+@media(max-width:760px){.scan-grid{grid-template-columns:1fr}.scan-card{padding:12px}.finite-scan{padding:12px}.scan-jump{align-items:flex-start}}
+
+.scan-plane-dots{display:flex;flex-wrap:wrap;gap:5px;min-height:12px;margin:-7px 0 14px}
+.scan-plane-dot{display:block;width:9px;height:9px;background:#084b9e;border-radius:50%}
+.scan-card h3{margin:12px 0}
+
+/* Explicit SVG viewport sizing: do not rely on automatic SVG height in Safari.
+   Keep both controls and the complete circle together on narrow/short screens. */
+.finite-scan,.scan-grid,.scan-card,.scan-vector-stage,.scan-vector-graphic,.scan-vector-controls,.scan-plot{min-width:0;max-width:100%}
+.scan-vector-stage{display:grid;grid-template-columns:minmax(0,1fr);gap:8px;align-items:center}
+.scan-vector-graphic{width:100%;display:flex;justify-content:center;align-items:center}
+#scanPhasors{display:block;flex:0 1 auto;width:100%;max-width:296px;height:auto;aspect-ratio:1/1;margin:0 auto;overflow:visible}
+#scanIntensity{display:block;width:100%;max-width:100%;height:auto;aspect-ratio:400/224}
+.scan-vector-controls{width:100%}
+.scan-vector-controls label{display:flex;align-items:baseline;justify-content:space-between;gap:6px;margin:0;font-size:13px}
+.scan-vector-controls output{float:none;white-space:nowrap;flex-shrink:0}
+.scan-card input[type=range]{width:100%;min-width:0;min-height:36px;height:36px;margin:3px 0 8px;padding:0;touch-action:pan-y;cursor:ew-resize}
+.scan-vector-controls .scan-plane-dots{margin:0 0 5px;gap:4px}
+.scan-vector-controls .scan-phase-readout{margin:0;font-size:12px}
+#scanError:empty{display:none}
+@media(max-width:760px){
+  .finite-scan{padding:10px}
+  .scan-grid{grid-template-columns:minmax(0,1fr)}
+  .scan-card{padding:10px}
+  #scanPhasors{max-width:220px}
+  .scan-vector-stage{gap:4px}
+}
+@media(orientation:landscape) and (max-height:500px){
+  .scan-grid{grid-template-columns:minmax(0,1fr)}
+  .scan-vector-stage{grid-template-columns:minmax(0,200px) minmax(0,1fr);gap:12px}
+  #scanPhasors{max-width:180px}
+}

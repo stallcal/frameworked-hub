@@ -41,14 +41,26 @@ for dirname in ['public','public-production']:
 # Discover current drafts so this check follows the editorial workflow as stories publish.
 samples=[]
 new_drafts=[]
+def editorial_flags(text):
+    if text.startswith('---'):
+        parts=text.split('---',2)
+        if len(parts)<3: raise ValueError('Unclosed YAML front matter')
+        frontmatter=parts[1]
+        return (bool(re.search(r'^draft:\s*true\s*$',frontmatter,re.M)),
+                bool(re.search(r'^example:\s*true\s*$',frontmatter,re.M)))
+    if text.lstrip().startswith('{'):
+        frontmatter,_=json.JSONDecoder().raw_decode(text.lstrip())
+        return (frontmatter.get('draft') is True,frontmatter.get('example') is True)
+    return False,False
+
 for source in (root/'site-content').rglob('*.md'):
     if source.name == '_index.md': continue
     text=source.read_text(encoding='utf-8')
-    frontmatter=text.split('---',2)[1]
-    if not re.search(r'^draft:\s*true\s*$',frontmatter,re.M): continue
+    is_draft,is_example=editorial_flags(text)
+    if not is_draft: continue
     relative=source.relative_to(root/'site-content')
     sample=str(relative.with_suffix('.html')) if source.name == 'index.md' else str(relative.with_suffix('')/'index.html')
-    (samples if re.search(r'^example:\s*true\s*$',frontmatter,re.M) else new_drafts).append(sample)
+    (samples if is_example else new_drafts).append(sample)
     preview=root/'public'/sample
     assert preview.exists(),sample
     label='Example draft' if sample in samples else 'Working draft'

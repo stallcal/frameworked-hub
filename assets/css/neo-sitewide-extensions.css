@@ -51,6 +51,58 @@
   outline: 3px solid var(--fw-neo-focus);
   outline-offset: 5px;
 }
+.tools-page .fw-neo-workbench { margin: 30px 0 70px; }
+.tools-page .workbench-group { padding-top: 30px; scroll-margin-top: 115px; }
+.tools-page .workbench-group + .workbench-group { margin-top: 28px; }
+.tools-page .workbench-group-heading { display: grid; grid-template-columns: minmax(0, 1fr) minmax(220px, 0.75fr); gap: 22px; align-items: end; padding: 0 0 20px; }
+.tools-page .workbench-group-heading h2, .tools-page .workbench-secondary h2 { font: 700 clamp(29px, 3vw, 45px)/1.14 Libron, Georgia, serif; color: var(--navy); margin: 0; }
+.tools-page .workbench-group-heading p, .tools-page .workbench-secondary p { color: #41556c; font: 16px/1.55 system-ui, sans-serif; margin: 0; }
+.tools-page .workbench-secondary { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 24px; margin-top: 58px; padding: 28px; border: 2px solid var(--navy); background: #f1f5fb; }
+.tools-page .workbench-secondary > div { max-width: 670px; }
+.tools-page .workbench-secondary .design-eyebrow { margin-bottom: 10px; }
+.tools-page .workbench-secondary h2 { margin-bottom: 10px; }
+.tools-page .workbench-secondary .editorial-button { flex: 0 0 auto; }
+.tools-page .workbench-quantum { padding-top: 25px; }
+.tools-page .quantum-intro h1 { font-size: clamp(52px, 6vw, 82px); }
+.tools-page .quantum-intro > p { font-size: clamp(18px, 1.8vw, 22px); }
+.tools-page .workbench-return { margin: 30px 0 0; font: 700 15px/1.5 system-ui, sans-serif; }
+.tools-page .workbench-return a { color: var(--blue); }
+.tools-page .workbench-return a:focus-visible { outline: 3px solid var(--blue); outline-offset: 5px; }
+@media (max-width: 760px) {
+  .tools-page .workbench-group-heading { grid-template-columns: 1fr; gap: 9px; }
+  .tools-page .workbench-group { scroll-margin-top: 88px; }
+  .tools-page .workbench-secondary { padding: 20px; }
+}
+
+/* Explore landing: treat the destinations as prominent tactile routes. */
+.tool-related {
+  margin: clamp(44px, 6vw, 76px) 0 20px;
+  padding-top: 25px;
+  border-top: 2px solid var(--navy, #1c3049);
+}
+.tool-related h2 {
+  font: 700 clamp(27px, 3vw, 39px)/1.2 Libron, Georgia, serif;
+  color: var(--navy, #1c3049);
+  margin: 0 0 18px;
+}
+.tool-related-links { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 290px), 1fr)); gap: 14px; }
+.tool-related-links a {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 20px;
+  gap: 6px 8px;
+  padding: 18px 20px;
+  background: #fff;
+  border: 2px solid #1c3049;
+  box-shadow: 3px 3px 0 #1c3049;
+  text-decoration: none;
+  color: #1c3049;
+}
+.tool-related-links a strong { font: 700 21px/1.3 Libron, Georgia, serif; }
+.tool-related-links a span:not(.tool-related-arrow) { grid-column: 1/-1; font: 14px/1.5 system-ui, sans-serif; color: #53667d; }
+.tool-related-arrow { grid-column: 2; grid-row: 1; justify-self: end; color: #9e382e; }
+.tool-related-arrow svg { display: block; width: 20px; height: 20px; }
+.tool-related-links a:hover { color: #084b9e; border-color: #084b9e; }
+.tool-related-links a:focus-visible { outline: 3px solid #084b9e; outline-offset: 5px; }
 
 /* Explore landing: treat the destinations as prominent tactile routes. */
 .explore-layout .explore-lead { border-bottom: 3px solid var(--navy); }

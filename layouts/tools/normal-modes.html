@@ -28,8 +28,8 @@
       <li><a href="https://web.mit.edu/course/6/6.734j/www/group-full.pdf">MIT: molecular vibrations, point groups, and IR/Raman selection rules (Chapter 9)</a></li>
       <li><a href="https://www.physchem.no/physchem_book/chapters-13-vibrational-spectroscopy.html">Physical Chemistry II lecture notes: vibrational spectroscopy and CO₂ normal modes</a></li>
     </ul>
-    <p>Also explore the <a href="/tools/molecular-vibration/">Molecular Vibration Explorer</a> for isotope-dependent diatomic vibrational energy levels and the <a href="/tools/franck-condon/">Franck–Condon Explorer</a> for vibrational structure in electronic spectra.</p>
   </div>
+  {{ partial "related-explorations.html" . }}
 </article>
 {{ $js := resources.Get "normal-modes/app.js" | js.Build (dict "target" "es2020") | fingerprint }}
 <script type="module" src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}"></script>
