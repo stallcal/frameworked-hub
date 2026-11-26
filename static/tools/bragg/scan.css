@@ -23,3 +23,30 @@
 .scan-plane-dots{display:flex;flex-wrap:wrap;gap:5px;min-height:12px;margin:-7px 0 14px}
 .scan-plane-dot{display:block;width:9px;height:9px;background:#084b9e;border-radius:50%}
 .scan-card h3{margin:12px 0}
+
+/* Explicit SVG viewport sizing: do not rely on automatic SVG height in Safari.
+   Keep both controls and the complete circle together on narrow/short screens. */
+.finite-scan,.scan-grid,.scan-card,.scan-vector-stage,.scan-vector-graphic,.scan-vector-controls,.scan-plot{min-width:0;max-width:100%}
+.scan-vector-stage{display:grid;grid-template-columns:minmax(0,1fr);gap:8px;align-items:center}
+.scan-vector-graphic{width:100%;display:flex;justify-content:center;align-items:center}
+#scanPhasors{display:block;flex:0 1 auto;width:100%;max-width:296px;height:auto;aspect-ratio:1/1;margin:0 auto;overflow:visible}
+#scanIntensity{display:block;width:100%;max-width:100%;height:auto;aspect-ratio:400/224}
+.scan-vector-controls{width:100%}
+.scan-vector-controls label{display:flex;align-items:baseline;justify-content:space-between;gap:6px;margin:0;font-size:13px}
+.scan-vector-controls output{float:none;white-space:nowrap;flex-shrink:0}
+.scan-card input[type=range]{width:100%;min-width:0;min-height:36px;height:36px;margin:3px 0 8px;padding:0;touch-action:pan-y;cursor:ew-resize}
+.scan-vector-controls .scan-plane-dots{margin:0 0 5px;gap:4px}
+.scan-vector-controls .scan-phase-readout{margin:0;font-size:12px}
+#scanError:empty{display:none}
+@media(max-width:760px){
+  .finite-scan{padding:10px}
+  .scan-grid{grid-template-columns:minmax(0,1fr)}
+  .scan-card{padding:10px}
+  #scanPhasors{max-width:220px}
+  .scan-vector-stage{gap:4px}
+}
+@media(orientation:landscape) and (max-height:500px){
+  .scan-grid{grid-template-columns:minmax(0,1fr)}
+  .scan-vector-stage{grid-template-columns:minmax(0,200px) minmax(0,1fr);gap:12px}
+  #scanPhasors{max-width:180px}
+}

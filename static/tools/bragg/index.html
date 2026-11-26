@@ -169,20 +169,26 @@
               <div class="scan-card">
                 <label for="scanTwoTheta">Scattering angle, 2θ <output id="scanAngleValue" for="scanTwoTheta">22.200°</output></label>
                 <input type="range" id="scanTwoTheta" min="0" max="120" step="any" value="22.2">
-                <div class="scan-plot"><svg id="scanIntensity" viewBox="0 0 400 224" role="img" aria-label="Normalized interference response versus scattering angle"></svg></div>
+                <div class="scan-plot"><svg id="scanIntensity" width="400" height="224" viewBox="0 0 400 224" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Normalized interference response versus scattering angle"></svg></div>
                 <p class="scan-legend"><span class="scan-key blue"></span> Model response <span class="scan-key green"></span> Bragg positions <span class="scan-key red"></span> Selected angle</p>
                 <div class="scan-jump"><label for="scanPeakSelect">Bragg order</label><select id="scanPeakSelect"></select><button type="button" id="scanSnap">Snap to Bragg angle</button></div>
                 <p id="scanPeakNote" class="scan-context"></p>
               </div>
               <div class="scan-card">
-                <label for="scanPlanes">Number of planes <output id="scanPlanesValue" for="scanPlanes">8</output></label>
-                <input type="range" id="scanPlanes" min="2" max="20" step="1" value="8">
-                <div id="scanPlaneDots" class="scan-plane-dots" aria-hidden="true"></div>
                 <h3>Adding the scattered waves</h3>
-                <label for="scanVectorAngle">Scattering angle, 2θ <output id="scanVectorAngleValue" for="scanVectorAngle">—</output></label>
-                <input type="range" id="scanVectorAngle" min="0" max="120" step="any" value="22.2">
-                <p class="scan-context">Phase change between neighboring planes: <strong id="scanPhaseValue">—</strong></p>
-                <svg id="scanPhasors" viewBox="0 0 296 296" role="img" aria-label="Head-to-tail phase vectors and their resultant"></svg>
+                <div class="scan-vector-stage">
+                  <div class="scan-vector-graphic">
+                    <svg id="scanPhasors" width="296" height="296" viewBox="0 0 296 296" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Head-to-tail phase vectors and their resultant"></svg>
+                  </div>
+                  <div class="scan-vector-controls">
+                    <label for="scanVectorAngle">Scattering angle, 2θ <output id="scanVectorAngleValue" for="scanVectorAngle">—</output></label>
+                    <input type="range" id="scanVectorAngle" min="0" max="120" step="any" value="22.2">
+                    <label for="scanPlanes">Number of planes <output id="scanPlanesValue" for="scanPlanes">8</output></label>
+                    <input type="range" id="scanPlanes" min="2" max="20" step="1" value="8">
+                    <div id="scanPlaneDots" class="scan-plane-dots" aria-hidden="true"></div>
+                    <p class="scan-context scan-phase-readout">Adjacent phase: <strong id="scanPhaseValue">—</strong></p>
+                  </div>
+                </div>
                 <p class="scan-legend"><span class="scan-key blue"></span> Individual contributions <span class="scan-key red"></span> Resultant</p>
                 <p>Relative interference response: <strong id="scanResponse">—</strong></p>
                 <p id="scanObservation"></p>
